@@ -1,0 +1,1 @@
+console.warn ("Привет, сейчас ", (new Date).valueOf ());
