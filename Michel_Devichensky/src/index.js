@@ -1,1 +1,1 @@
-console.log('Hello! New is',(new Date).valueOf())
+console.log('works!',(new Date).valueOf())
