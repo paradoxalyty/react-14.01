@@ -10,7 +10,6 @@ const messages = [
 
 ReactDom.render (<MessageList messages={ messages } />, document.getElementById ('root'));
 
-
 // ----- Первый вариант
 // const root = document.getElementById ('root');
 // ReactDom.render (React.createElement ('a', {'href': 'mail.ru'}, 'Hello!'), root);
