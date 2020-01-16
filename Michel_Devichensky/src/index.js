@@ -1,1 +1,4 @@
-console.log('works!',(new Date).valueOf())
+import React from "react";
+import ReactDom from "react-dom";
+
+const root = document.getElementById("#root");
