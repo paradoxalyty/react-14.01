@@ -16,6 +16,15 @@ module.exports = {
                 exclude: /node_modules/,
                 options: {
                     presets: ['@babel/env', "@babel/react"],
+                    plugins: [
+                        [
+                            "@babel/plugin-proposal-class-properties",
+                            {
+                                "loose": true
+                            }
+                        ]
+                    ]
+
                 }
             },
         ],
@@ -24,5 +33,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.html")
         })
-    ]
+    ],
+    resolve: { //Настройка что бы при импорте не прописывать расширение компонента
+        modules: [`${__dirname}/src`, 'node_modules'],
+        extensions: ['.js', '.jsx'],
+    },
 };
