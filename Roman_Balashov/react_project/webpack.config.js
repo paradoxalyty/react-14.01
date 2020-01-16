@@ -16,14 +16,20 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/env', '@babel/react']
+                        presets: ['@babel/env', '@babel/react'],
+                        plugins: [
+                            [
+                                "@babel/plugin-proposal-class-properties",
+                                {
+                                    "loose": true
+                                }
+                            ]
                     }
                 },
             },
         ],
     },
     plugins: [
-        new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html"), })
+        new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html"), }),
     ]
 }
-
