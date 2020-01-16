@@ -1,5 +1,15 @@
 import React from "react";
 import ReactDom from "react-dom";
+import { MessageList } from './components/messageList.jsx';
+
+const messages = [
+    {name: "Kolya", content: "Hello!"},
+    {name: "Olya", content: "Hi! How are you?"},
+    {name: "Kolya", content: "I am well"},
+];
+
+ReactDom.render (<MessageList messages={ messages } />, document.getElementById ('root'));
+
 
 // ----- Первый вариант
 // const root = document.getElementById ('root');
@@ -36,19 +46,3 @@ import ReactDom from "react-dom";
 // ----- Седьмой вариант (JSX деструктуризация)
 // const Link = ({link, text, title}) => <a href={'https://' + link} title={title}>{text}</a>;
 // ReactDom.render (<Link text='Это ссылка (JSX деструктуризация)' title='Это всплывающее сообщение' link='geekbrains.ru' />, document.getElementById ('root'));
-
-const messages = [
-    {name: "Kolya", content: "Hello!"},
-    {name: "Olya", content: "Hi! How are you?"},
-    {name: "Kolya", content: "I am well"},
-];
-
-const Message = ({name, content}) => <div><strong>{ name }: </strong>{ content }</div>;
-// React.createElement ("div", {}, [React.createElement ("strong", {}, name), content]); // after babel conversion
-
-const MessageList = ({messages}) => {
-    // return messages.map ((message, index) => <Message name = { message.name } content = { message.content } key = { index } />);
-    return messages.map ((message, index) => <Message {...message} key = { index } />);
-}
-
-ReactDom.render (<MessageList messages={ messages } />, document.getElementById ('root'));
