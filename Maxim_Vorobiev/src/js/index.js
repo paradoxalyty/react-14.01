@@ -57,7 +57,7 @@ const messages = [
 const Container = function () {
     return (
         <div className="react-wrapper">
-            {H1({h1Text})} // for test
+            {H1({h1Text})} {/* for test */}
             <div id="messages">
                 <MessageList messages={messages}/>
             </div>
