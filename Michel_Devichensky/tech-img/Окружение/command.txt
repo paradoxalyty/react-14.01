@@ -1,9 +1,0 @@
-Команды в консоле
-C:\Users\_Mihail_dwich_\Documents\GitHub\react-14.01>mkdir Michel_Devichensky // mkdir - создаем папку 
-C:\Users\_Mihail_dwich_\Documents\GitHub\react-14.01>cd Michel_Devichensky // cd - переходим в папку
-C:\Users\_Mihail_dwich_\Documents\GitHub\react-14.01>rm Michel_Devichensky // rm - удалить папку
-C:\Users\_Mihail_dwich_\Documents\GitHub\react-14.01>open index.html // open - запустит фаил в браузере
-
-Команды в консоле (npm) 
-C:\Users\_Mihail_dwich_\Documents\GitHub\react-14.01>npm init -y // создаем - package.json
-C:\Users\_Mihail_dwich_\Documents\GitHub\react-14.01>npm i -D webpack // ставим сборщик webpack -D -дев зависимость так понимаю от слова девелопер
