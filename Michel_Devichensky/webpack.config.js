@@ -10,12 +10,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                include: path.resolve(__dirname, "static_src"),
-                loader: 'babel-loader',
-                exclude: /node_modules/,
+                test: /\.(js|jsx)$/,//Условия проверки файлов тоесть файлы с расширением .js и .jsx
+                include: path.resolve(__dirname, "src"),//Указываем папку которую нужно проверять "src"
+                loader: 'babel-loader',//Мы говорим что используем 'babel-loader'
+                exclude: /node_modules/,//За исключением папки /node_modules/
                 options: {
-                  presets: ['@babel/env', "@babel/react"],
+                  presets: ['@babel/env', "@babel/react"],// Пресеты которые мы используем '@babel/env', "@babel/react"
                 }
             },
         ],
