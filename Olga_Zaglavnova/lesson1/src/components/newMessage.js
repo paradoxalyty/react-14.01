@@ -14,9 +14,8 @@ export default class NewMessage extends React.Component {
         this.setState({value: event.target.value});
     }
     handleSubmit(event){
-        let newMsjObj = {name: "Guest", content: this.state.value};
-        console.log('newMessage.js handleSubmit IS WORKING:', newMsjObj);
-        //this.props.updateData(newMsjObj);
+        let newMsjObj = {name: "Я", content: this.state.value};
+        this.props.addMessage(newMsjObj);
         this.setState({value: ""});
 
         event.preventDefault();
