@@ -12,7 +12,10 @@ class ChatPage extends React.Component {
                 {name:"Робот", content: "Как дела?"},
                 {name: "Я", content: "Да неплохо, идут..."},
                 {name:"Робот", content: "Рад за тебя!"}
-            ]};
+            ],
+            robotAnswers: ["Вот это да!", "ЗдОрово!", "Ишь ты!", "Да ты молодец!", "Очень интересно!"],
+            isRobotAnswered: false
+        };
 
         this.addNewMessage = this.addNewMessage.bind(this);
     }
@@ -20,9 +23,24 @@ class ChatPage extends React.Component {
     addNewMessage(newMsg){
         this.state.messages.push(newMsg);
         this.forceUpdate();
-        console.log('index.js addNewMessage IS WORKING', this.state.messages);
+        this.state.isRobotAnswered = false;
     }
-
+    robotAnswer(idx){
+        this.state.messages.push({name: "Робот", content: this.state.robotAnswers[idx]});
+        this.forceUpdate();
+        this.state.isRobotAnswered = true;
+    };
+    getAnswerIndex(){
+        const min = 0;
+        const max = this.state.robotAnswers.length - 1;
+        return Math.round(min + Math.random() * (max - min));
+    };
+    componentDidUpdate(){
+        if (!this.state.isRobotAnswered) {
+            const answerIdx = this.getAnswerIndex();
+            this.robotAnswer(answerIdx);
+        }
+    };
     render(){
         return <div className="container">
                 <MessageList messages={this.state.messages} />
