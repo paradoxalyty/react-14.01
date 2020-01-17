@@ -16,11 +16,17 @@ const MessageList = ({messages}) => {
   ));
 }
 
+const Button = <button>Отправить</button>;
+
 ReactDom.render(
-  <MessageList messages={messages} />,
+    [
+    <MessageList messages={messages} />, 
+    Button
+  ], 
   document.getElementById("root")
 );
 
-//<Link title="Привет! Это ссылка" link="google.com" />
-//const Link = ({ title, link }) => <a href={"https://" + link}>{title}</a>;
-//const element = <h1 className="element">Мы подключили React</h1>;
+
+// <Link title="Привет! Это ссылка" link="google.com" />
+// const Link = ({ title, link }) => <a href={"https://" + link}>{title}</a>;
+// const element = <h1 className="element">Мы подключили React</h1>;
