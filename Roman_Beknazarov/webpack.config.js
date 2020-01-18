@@ -30,5 +30,9 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({template: path.resolve(__dirname, "src", "index.html"),})
-    ]
+    ],
+    resolve: {
+        modules: [`${__dirname}/static_src`, 'node_modules'],
+        extensions: ['.js', '.jsx'],
+    },
 };
