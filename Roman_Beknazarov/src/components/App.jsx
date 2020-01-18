@@ -34,10 +34,3 @@ export default class App extends React.Component {
         )
     }
 }
-
-
-/*
-
-setTimeout(() => this.setState({
-    'text': 'refreshed React-component'
-}), 1000);*/

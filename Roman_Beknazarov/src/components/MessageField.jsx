@@ -6,6 +6,13 @@ export default class MessageField extends React.Component {
         messages: ["Hello!", "How are you?"]
     };
 
+    componentDidUpdate() {
+        if (this.state.messages.length % 2 === 1 ) {
+            setTimeout(() =>
+                this.setState({'messages': [ ...this.state.messages, "Don't bother me I'm a robot" ] }), 1000);
+        }
+    }
+
     handleClick = () => {
         this.setState({messages: [ ...this.state.messages, "I am fine." ] });
     };
