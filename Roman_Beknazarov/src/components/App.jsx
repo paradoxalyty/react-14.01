@@ -5,10 +5,23 @@ export default class App extends React.Component {
         text: 'My first React-component'
     };
 
-    render() {
+    componentWillMount() {
+        console.log("componentWillMount");
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount");
         setTimeout(() => this.setState({
             'text': 'refreshed React-component'
         }), 1000);
+    }
+
+    componentDidUpdate() {
+        console.log("componentDidUpdate");
+    }
+
+    render() {
+        console.log("render");
         return (
             <h1>{this.state.text}</h1>
         )
