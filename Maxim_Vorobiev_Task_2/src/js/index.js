@@ -1,48 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {H1} from './components/h1';
-import {Button} from './components/button';
-import {MessageList} from './components/MessageField';
+import H1 from './components/h1';
+import Button from './components/button';
+import MessageList from './components/MessageField';
 
-/**
- * Test notes
- */
-/*
-// Import second script
-import {script} from './test-script';
-
-// test-script.js func
-script();
-
-// script.js
-// Test Babel
-export const ES6 = () => {
-    console.log('ES6');
-};
-
-ES6();
-
-// Native React
-const element = React.createElement(
-    'h1',
-    {className: 'element'},
-    'ReactJS Messenger',
-);
-
-// JSX
-const elementJsx = <h1 className='elementJsx'>ReactJS Messenger</h1>;
-
-// Component H1
-const content = "ReactJS Messenger";
-
-const Component = (props) => <h1 className="elementComponent">{props.content}</h1>;
-*/
-
-
-/**
- * ReactJS
- */
+// Header
 const h1Text = 'ReactJS Messenger';
 const buttonText = 'Press Me';
 
