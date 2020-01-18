@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDom from "react-dom";
-import App from "./components/MessageField"
+//import App from "./components/MessageField";
+import { Counter } from "./components/Counter";
 
 ReactDom.render(
-    <App/>,
+    //<App/>,
+    <Counter/>,
     document.getElementById('root'),
 );
 

@@ -16,14 +16,7 @@ module.exports = {
                 exclude: /node_modules/,
                 options: {
                     presets: ['@babel/env', "@babel/react"],
-                    plugins: [
-                        [
-                            "@babel/plugin-proposal-class-properties",
-                            {
-                                "loose": true
-                            }
-                        ]
-                    ]
+                    plugins: ["@babel/plugin-proposal-class-properties"]
                 }
             },
         ],
@@ -32,7 +25,6 @@ module.exports = {
         new HtmlWebpackPlugin({template: path.resolve(__dirname, "src", "index.html"),})
     ],
     resolve: {
-        modules: [`${__dirname}/static_src`, 'node_modules'],
         extensions: ['.js', '.jsx'],
     },
 };
