@@ -8,7 +8,7 @@ export class Message extends Component {
 
     render() {
         return <div>
-            <i>{ this.props.text }: </i>
+            <b>{ this.props.text }: </b>
             { this.props.content }
         </div>
     }

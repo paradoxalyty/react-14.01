@@ -8,6 +8,8 @@ export class MessageField extends Component {
             {name: "Mary", content: "Hi, how are You?"},
             {name: "Ivan", content: "I am fine."}
         ],
+
+        value: '',
     };
 
     componentDidMount() {
@@ -26,8 +28,15 @@ export class MessageField extends Component {
         console.log('componentWillUnmount');
     }
 
+    inputChange = (e) => {
+        let inputValue = this.state;
+        inputValue.value = e.target.value;
+        this.setState(inputValue);
+    };
+
     sendMessage = () => {
-        this.setState({messages: [ ...this.state.messages, {name: "Mary", content: "Where is Robot?"} ] });
+        //this.setState({messages: [ ...this.state.messages, {name: "Mary", content: "Where is Robot?"} ] });
+        this.setState({messages: [...this.state.messages, {name: "You", content: ` ${this.state.value}`}]});
     };
 
     render() {
@@ -37,6 +46,13 @@ export class MessageField extends Component {
 
         return <div>
             { messageElements }
+            <br/>
+            <input
+                type="text"
+                placeholder="..."
+                onChange={this.inputChange}
+                value={this.state.value}
+            />
             <br/>
             <button onClick={ this.sendMessage }>Send</button>
         </div>
