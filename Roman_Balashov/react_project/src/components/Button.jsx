@@ -1,12 +1,7 @@
 import React from 'react';
 
-class Button extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+export class Button extends React.Component {
     render() {
         return <button className="send-button" onClick={this.props.onStateChange}>Send</button>;
     }
 }
-
-export default Button;

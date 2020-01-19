@@ -1,7 +1,7 @@
-import React from 'react';
-import Message from './Message.jsx';
+import React, {Component} from 'react';
+import {Message} from './Message';
 
-class MessageField extends React.Component {
+export class MessageField extends Component {
     constructor(props) {
         super(props);
     }
@@ -9,6 +9,3 @@ class MessageField extends React.Component {
         return this.props.messages.map((message, index) => <Message {...message} key={index} />)
     }
 }
-
-
-export default MessageField;
