@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export default class Message extends React.Component {
+export class Message extends Component {
     static propTypes = {
         text: PropTypes.string.isRequired,
     };
 
     render() {
-        return <div>{ this.props.text }</div>
+        return <div>
+            <i>{ this.props.text }: </i>
+            { this.props.content }
+        </div>
     }
 }

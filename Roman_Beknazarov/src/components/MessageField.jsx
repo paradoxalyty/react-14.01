@@ -1,30 +1,44 @@
-import React from 'react';
-import Message from './Message';
+import React, { Component } from 'react';
+import { Message } from './Message';
 
-export default class MessageField extends React.Component {
+export class MessageField extends Component {
     state = {
-        messages: ["Hello!", "How are you?"]
+        messages: [
+            {name: "Ivan", content: "Hello!"},
+            {name: "Mary", content: "Hi, how are You?"},
+            {name: "Ivan", content: "I am fine."}
+        ],
     };
 
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+
     componentDidUpdate() {
-        if (this.state.messages.length % 2 === 1 ) {
+        console.log('componentDidUpdate');
+        if (this.state.messages.length % 2 === 0 ) {
             setTimeout(() =>
-                this.setState({'messages': [ ...this.state.messages, "Don't bother me I'm a robot" ] }), 1000);
+                this.setState({'messages': [ ...this.state.messages, {name: "Robot", content: "Don't bother me I'm a robot"} ] }), 1000);
         }
     }
 
-    handleClick = () => {
-        this.setState({messages: [ ...this.state.messages, "I am fine." ] });
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+
+    sendMessage = () => {
+        this.setState({messages: [ ...this.state.messages, {name: "Mary", content: "Where is Robot?"} ] });
     };
 
     render() {
         const messageElements = this.state.messages.map((text, index) => (
-            <Message key={ index } text={ text } />
+            <Message key={ index } text={ text.name } content={text.content} />
         ));
 
         return <div>
             { messageElements }
-            <button onClick={ this.handleClick }>Send message</button>
+            <br/>
+            <button onClick={ this.sendMessage }>Send</button>
         </div>
     }
 }
