@@ -12,7 +12,7 @@ export class MessageField extends React.Component {
     }
 
     onSendButtonClick() {
-        this.props.sendMessageHandler(this.state.message);
+        this.props.sendMessageHandler(this.props.currentUser, this.state.message);
         this.setState({message: ''});
     }
 
@@ -25,5 +25,6 @@ export class MessageField extends React.Component {
 }
 
 MessageField.propTypes = {
+    currentUser: PropTypes.string,
     sendMessageHandler: PropTypes.func,
 };
