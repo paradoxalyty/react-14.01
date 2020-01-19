@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 300px;
+    margin: 5% auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+.messageRow{
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+}
+.newMessageForm{
+    padding: 5px;
+}
+.messageInput{
+    width: 90%;
+    padding: 5px;
+}
+.submitBtn{
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+}
+.newMessage{
+    text-align: center;
+}
