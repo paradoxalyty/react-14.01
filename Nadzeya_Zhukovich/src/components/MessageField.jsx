@@ -1,7 +1,29 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
-export const MessageField = () =>
-    <div>
-        <input type={"text"} name={"message"}/>
-        <button>sent</button>
-    </div>;
+export class MessageField extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { message: '' };
+    }
+
+    onInputChangeHandler(event) {
+        this.setState({message: event.target.value});
+    }
+
+    onSendButtonClick() {
+        this.props.sendMessageHandler(this.state.message);
+        this.setState({message: ''});
+    }
+
+    render() {
+        return <div>
+            <input type={"text"} name={"message"} value={this.state.message} onChange={this.onInputChangeHandler.bind(this)}/>
+            <button onClick={() => this.onSendButtonClick()}>sent</button>
+        </div>;
+    }
+}
+
+MessageField.propTypes = {
+    sendMessageHandler: PropTypes.func,
+};

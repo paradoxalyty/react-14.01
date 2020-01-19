@@ -1,7 +1,18 @@
 import React from "react";
 import {Message} from "./Message";
+import PropTypes from 'prop-types';
 
-export const MessageList = ({arrayMessages}) => {
-    return arrayMessages.map((arrayMessage, index) =>
-        <Message {...arrayMessage} key={index}/>)
+export class MessageList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return this.props.messages.map((message, index) =>
+            <Message {...message} key={index}/>)
+    }
+}
+
+MessageList.propTypes = {
+    messages: PropTypes.array,
 };
