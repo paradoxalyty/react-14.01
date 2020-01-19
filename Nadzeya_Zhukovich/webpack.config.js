@@ -8,6 +8,10 @@ module.exports = {
         filename: "index.js"
     },
 
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
+
     module: {
         rules: [
             {

@@ -1,8 +1,19 @@
 import React from "react";
 import ReactDom from "react-dom";
+import {MessageList} from "./components/MessageList";
+import {MessageField} from "./components/MessageField";
 
-const Link = (props) =>  <a href={"http://" + props.link}>{props.title}</a>
-ReactDom.render(<Link title="This is a link" link="google.ru"></Link>, document.getElementById("root"));
+const messages = [
+    {name: "Ivan", content: "Hello!"},
+    {name: "Oleg", content: "Hi, how are you!"},
+    {name: "Ivan", content: "I am ok!"},
+];
 
-// return React.createElement("a", {"href": "https://" + props.href}, props.title);
-// React.createElement(Link, {title: "This is a link", link: "google.ru"}
+ReactDom.render(
+    <>
+        <MessageList arrayMessages={messages}/>
+        <MessageField/>
+    </>,
+    document.getElementById("root")
+);
+
