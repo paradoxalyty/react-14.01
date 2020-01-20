@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class Message extends React.Component {
+export class Message extends Component {
     constructor(props) {
         super(props);
     }
@@ -8,5 +8,3 @@ class Message extends React.Component {
         return <div className="message">{this.props.name}: {this.props.text}</div>;
     }
 }
-
-export default Message;
