@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDom from "react-dom";
 // import { MessageList } from './components/MessageList.jsx';
-import { Counter } from './components/Counter'
+// import { Counter } from './components/Counter'
+import { App } from './components/App'
+
 
 const messages = [
     {name: "Kolya", content: "Hello!"},
@@ -10,7 +12,7 @@ const messages = [
 ];
 
 // ReactDom.render (<MessageList messages={ messages } />, document.getElementById ('root'));
-ReactDom.render (<Counter />, document.getElementById ('root'));
+ReactDom.render (<App />, document.getElementById ('root'));
 
 // ----- Первый вариант
 // const root = document.getElementById ('root');

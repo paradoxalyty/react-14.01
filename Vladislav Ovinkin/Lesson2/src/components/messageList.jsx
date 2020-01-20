@@ -1,6 +1,6 @@
 import React from "react";
-import { Message } from './Message.jsx';
-import { ButtonSend } from './ButtonSend.jsx';
+import { Message } from './Message';
+import { ButtonSend } from './ButtonSend';
 
 const MessageList = ({messages}) => {
     // return messages.map ((message, index) => <Message name = { message.name } content = { message.content } key = { index } />);

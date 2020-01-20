@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { MessageList } from './MessageList.jsx';
+import { MessageList } from './MessageList';
 
 let authorName = 'admin';
 

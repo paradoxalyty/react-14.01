@@ -23,19 +23,24 @@ class Counter extends Component {
         console.log ('componentWillUnmount');
     }
     // handleCount () { // эта запись теряет контекст при #5
-    handleCount = () => { // #5
-        console.log ('click!');
+    handleCount = (event) => { // #5
+        const num = +event.target.dataset.number;
+        // console.log ('click!');
         // this.setState ({ count: this.state.count + 1 }) // правильно, но есть опасность периодического не срабатывания из-за ассинхронности
         // this.setState ((state) => ({ count: this.state.count + 1 })) // сработает гарантированно
-        this.setState (({count}) => ({ count: count + 1 })) // сработает гарантированно + деструктуризация
+        // this.setState (({count}) => ({ count: count + num })); // сработает гарантированно + деструктуризация
+        this.props.onCount(num); 
     }
     render () {
+        const {count} = this.props;
         return <span>
-            { this.state.count }
+            <button data-number="-1" onClick={this.handleCount}>-1</button>
+            { count }
+            {/* { this.state.count } */}
             {/* <button onClick={ this.handleCount }>+1</button> // #1 работать не будет - теряется контекст объекта, потому что в this записывается контекст события */}
             {/* <button onClick={ this.handleCount.bind (this) }>+1</button> // #2 так работать будет, но грозит при масштабировании потреблять много ресурсов */}
             {/* <button onClick={() => this.handleCount() }>+1</button> // #3 как в #2 накладные расходы, т.к. анонимная функция создаётся при каждом рендере */}
-            <button onClick={this.handleCount}>+1</button> {/*-- #4 правильный вариант, такой же как #1, но тогда не было ничего прописано в конструкторе */}
+            <button data-number="1" onClick={this.handleCount}>+1</button> {/*-- #4 правильный вариант, такой же как #1, но тогда не было ничего прописано в конструкторе */}
         </span>;
     }
 }
