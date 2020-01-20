@@ -10,4 +10,4 @@ const MessageList = ({messages}) => {
           </div>;
 }
 
-export { MessageList };
+export default MessageList;

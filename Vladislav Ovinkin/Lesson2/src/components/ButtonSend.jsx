@@ -13,4 +13,4 @@ function sendMessage () {
     ReactDom.render (<MessageList messages={ this.messages } />, document.getElementById ('root'));
 }
 
-export { ButtonSend };
+export default ButtonSend;
