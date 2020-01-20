@@ -13,14 +13,17 @@ class Counter extends Component {
     state = { // #5 работает так, если установлено @babel/plugin-proposal-class-properties и прописано в конфиге webpack'а
         count: 0
     }
+    interval = null;
     componentDidMount () {
         console.log ('componentDidMount');
+        this.interval = setInterval (() => console.log ("It's fired!"), 2000);
     }
     componentDidUpdate () {
         console.log ('componentDidUpdate');
     }
     componentWillUnmount () {
         console.log ('componentWillUnmount');
+        clearInterval (this.interval);
     }
     // handleCount () { // эта запись теряет контекст при #5
     handleCount = (event) => { // #5
