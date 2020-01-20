@@ -16,7 +16,7 @@ class Counter extends Component {
     interval = null;
     componentDidMount () {
         console.log ('componentDidMount');
-        this.interval = setInterval (() => console.log ("It's fired!"), 2000);
+        // this.interval = setInterval (() => console.log ("It's fired!"), 2000);
     }
     componentDidUpdate () {
         console.log ('componentDidUpdate');
