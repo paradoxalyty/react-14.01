@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // const Counter = () => <span>It's counter</span>;
 
-class Counter extends Component {
+export class Counter extends Component {
     // constructor (props) {
     //     super (props);
     //     this.state = {
@@ -47,5 +47,3 @@ class Counter extends Component {
         </span>;
     }
 }
-
-export { Counter };
