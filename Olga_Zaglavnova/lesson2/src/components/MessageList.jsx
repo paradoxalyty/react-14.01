@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
-import Message from "message";
+import Message from "./Message";
 
 export default class MessageList extends React.Component{
     render() {
