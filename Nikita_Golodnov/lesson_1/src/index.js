@@ -1,18 +1,25 @@
 import React from "react"
 import ReactDom from "react-dom"
 
-const messages = [
-    {name:"Seneka", content: "Per aspera ad Astra"},
-    {name:"Descartes", content: "Cogito, ergo sum"},
-    {name:"God", content: "Lorem ipsum dolor"}
-]
 
-const MessageList = ({messages}) => {
-    return messages.map((message, index) => <Message name={message.name} content={message.content} key={index} />) //{...message}
-} 
 
-const SendButton = () => <button>Нормально</button>
+// const Chat = ({messages}) => {
+//     const sendMessage = (event) => {
+//         console.log('Button was clicked', event)
+//         messages.push({name:"User", content: "New message"})
+//         ReactDom.render(<Chat messages={messages}/>, document.getElementById("app"))
+//     }
+//     return <>
+//     <MessageList messages={messages}/>
+//     <input type="submit" value="New message" onClick={sendMessage}></input>
+//     </>
+// }
 
-ReactDom.render(<MessageList messages={messages}/>, document.getElementById("app"))
+// ReactDom.render(<Chat messages={messages}/>, document.getElementById("app"))
+
+// import {Counter} from "./components/Counter"
+import {MessageList} from "./components/MessageList"
+
+ReactDom.render(<MessageList />, document.getElementById("app"))
 
 
