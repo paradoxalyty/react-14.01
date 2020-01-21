@@ -12,11 +12,11 @@ export class MessageField extends React.Component {
 
     componentDidUpdate() {
         if (this.state.messages[this.state.messages.length - 1]['name'] !== 'ROBOT') {
-            this.__addNewMessage("ROBOT", this.state.messages[this.state.messages.length - 1]['name'] + ", я робот")
+            this.addNewMessage("ROBOT", this.state.messages[this.state.messages.length - 1]['name'] + ", я робот")
         }
     }
 
-    __addNewMessage(name, text) {
+    addNewMessage(name, text) {
         this.setState(({messages}) => {
             let new_messages = messages.slice();
             new_messages.push({name: name, content: text});
@@ -25,7 +25,7 @@ export class MessageField extends React.Component {
     }
 
     handleOnClickAddMessage() {
-        this.__addNewMessage("Ivan", "Нормально")
+        this.addNewMessage("Ivan", "Нормально")
     }
 
     render() {
