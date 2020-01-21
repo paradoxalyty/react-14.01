@@ -19,8 +19,24 @@ module.exports = {
         path: path.resolve(__dirname, "dist"), //Dist название куда мы будем собирать тут может быть любое 
         filename: "index.js" // Название файла, которе мы хотим применить
     },
+
+    // c методички
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/, //Свойство test говорит нам какие файлы нужно проверять, с каким разрешением js и jsx
+                include: path.resolve(__dirname, "src"), //Указываем папку которую проверять src
+                loader: 'babel-loader', //Указываем, что испульзуем babel-loader
+                exclude: /node_modules/,//Исключаем папку node_modules
+                options: {
+                    presets: ['@babel/env', "@babel/react"],
+                }
+            },
+        ],
+    },
+
     plugins: [
-        new HtmlWebpackPlugin({template: path.resolve(__dirname, "src", "index.html")})
-      ]
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html") })
+    ]
 }
 
