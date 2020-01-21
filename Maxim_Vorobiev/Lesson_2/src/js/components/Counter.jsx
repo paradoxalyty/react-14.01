@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export default class Counter extends React.Component {
+export class Counter extends Component {
     static propTypes = {
         newMessages: PropTypes.number,
         totalMessages: PropTypes.number,

@@ -2,7 +2,7 @@
   "name": "react-messenger",
   "version": "1.0.0",
   "description": "GeekBrains Task",
-  "main": "index.js",
+  "main": "Messenger.js",
   "scripts": {
     "test": "echo \"React Messenger by Maxim Vorobiev\"",
     "build": "webpack --mode=production",
