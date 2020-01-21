@@ -20,6 +20,15 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           presets: ['@babel/env', "@babel/react"],
+          plugins: [
+            [
+              "@babel/plugin-proposal-class-properties",
+              {
+                "loose": true
+              }
+            ]
+          ]
+
         }
       },
     ],
