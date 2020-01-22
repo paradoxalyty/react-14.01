@@ -1,18 +1,26 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { MessageList } from './components/messageList';
-import { messages } from './components/message';
-import { sendMessage } from './components/messageList';
-
+//import { messages } from './components/Message';
+import App from './components/MessageField';
+//import { Counter } from './components/Counter';
+//import { App } from './components/App';
+/*
 ReactDom.render(
 <MessageList messages={messages}/>, 
 document.getElementById("root")
 );
+//const Button = () => <button onClick={sendMessage}>Add Message</button>;
 
-const Button = () => <button onClick={sendMessage}>Add Message</button>;
+export const Chat = (props) => {
+    return <>
+        <MessageList messages={messages}/>
+        <input type="submit" value="New message" onClick={sendMessage}/>
+    </>
+}*/
 
 ReactDom.render(
-    <Button/>, 
-    document.getElementById("button")
+    <App/>, 
+    document.getElementById("root")
     );
 
+    
