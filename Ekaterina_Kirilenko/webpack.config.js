@@ -8,19 +8,25 @@ module.exports = {
     filename: "index.js"
   },
   module: {
-      rules: [
-        {
-          test: /\.(js|jsx)$/,
-          include: path.resolve(__dirname, "src"),
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-          options: {
-            presets: ['@babel/env', '@babel/react'],
-          }
-        },
-      ],
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: path.resolve(__dirname, "src"),
+        loader: "babel-loader",
+        exclude: /node_modules/,
+        options: {
+          presets: ["@babel/env", "@babel/react"],
+          plugins: ["@babel/plugin-proposal-class-properties"]
+        }
+      }
+    ]
   },
-  plugins: [    
-    new HtmlWebpackPlugin({template: path.resolve(__dirname, "src", "index.html")})
-  ]
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src", "index.html")
+    })
+  ],
+  resolve: {
+    extensions: [".jsx", ".js"]
+  }
 };
