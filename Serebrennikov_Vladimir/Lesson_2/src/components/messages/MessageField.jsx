@@ -10,25 +10,20 @@ export default class MessageField extends Component {
       {name: "Робот", text: "Нормально. Как у тебя?"},
       {name: "Я", text: "Тоже."},
       {name: "Робот", text: "Пока Alex."},
-      {name: "Я", text: "Пока Serg."}
-    ],
-    doNotUpdate: false
+      {name: "Я", text: "Пока Робот."}
+    ]
   };
 
   componentDidUpdate() {
-    if (this.state.doNotUpdate) {
-      this.setState({ 
-        messages: [ ...this.state.messages, {name: "Робот", text: "Я устал, ты мне надоел"} ],
-        doNotUpdate: false
-      });
+    if (this.state.messages[ this.state.messages.length - 1 ].name != "Робот") {
+        // или как в методичке на каждое четное по номеру сообщение "%2" отвечает "Робот"
+        
+      this.setState({ messages: [...this.state.messages, {name: "Робот", text: "Не пиши мне"}] });
     }
   }
 
   handleSubmit = (text) => {
-    this.setState({ 
-      messages: [ ...this.state.messages, {name: "Я", text: text} ],
-      doNotUpdate: true
-    });
+    this.setState({ messages: [...this.state.messages, {name: "Я", text: text}] });
   }
 
   render() {
