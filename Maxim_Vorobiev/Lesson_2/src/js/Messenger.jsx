@@ -29,9 +29,10 @@ class Messenger extends Component {
 
     newMessages = 0;
     totalMessages = messages.length;
+    isUserMessage = false;
 
     // Add a new message
-    aMessage = (name, content) => {
+    addMessage = (name, content) => {
         this.setState((state) => (
             {messages: [...state.messages, {name: name, content: content}]}
         ));
@@ -43,7 +44,7 @@ class Messenger extends Component {
     // };
 
     // Update messages counter
-    updateCounter (counter) {
+    updateCounter(counter) {
         this[counter] = this[counter] + 1;
     };
 
@@ -51,20 +52,20 @@ class Messenger extends Component {
     sendMessageClick = () => {
         this.updateCounter('newMessages');
         this.updateCounter('totalMessages');
-
-        this.aMessage('Noname', 'Everything is okay');
+        this.addMessage('Noname', 'Everything is okay');
+        this.isUserMessage = true;
     };
 
     // When the Messenger is updated
     componentDidUpdate() {
-        if (this.state.messages.length % 2 === 1) {
-            setTimeout(() => this.aMessage('Robot', 'Get lost!'), 700);
-
+        if (this.isUserMessage) {
+            setTimeout(() => this.addMessage('Robot', 'Get lost!'), 700);
             this.updateCounter('newMessages');
             this.updateCounter('totalMessages');
+            this.isUserMessage = false;
         }
 
-        console.warn(this.state.messages); // Debug
+        console.log(this.state.messages); // Debug
     }
 
     // Rendering the Messenger component
