@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src", "lesson1.js")
+    app: path.resolve(__dirname, "src", "lesson2.jsx")
   },
   output: {
     path: path.resolve(__dirname, "dist")
@@ -16,7 +16,8 @@ module.exports = {
         loader: "babel-loader",
         exclude: /node_modules/,
         options: {
-          presets: ["@babel/env", "@babel/react"]
+          presets: ["@babel/env", "@babel/react"],
+          plugins: ["@babel/plugin-proposal-class-properties"]
         }
       }
     ]
@@ -25,5 +26,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html")
     })
-  ]
+  ],
+  resolve: {
+    extensions: [".jsx", ".js"]
+  }
 };
