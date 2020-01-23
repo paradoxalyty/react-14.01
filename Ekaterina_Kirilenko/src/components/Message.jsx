@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 export default class Message extends React.Component {
   static propTypes = {
+    name: PropTypes.string,
     content: PropTypes.string.isRequired,
+  };
+  static defaultProps = {
+    name: 'Пользователь'
   };
 
   render() {

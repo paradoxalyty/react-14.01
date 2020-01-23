@@ -20,8 +20,9 @@ export class App extends Component {
     const {count, isShowCounter} = this.state; //деструктизация стэйта
     return (
       <>
-        <button onClick={this.handleTrigger}>Trigger</button>
-        <br />
+        <button className="trigger" onClick={this.handleTrigger}>
+          Показать/скрыть счетчик
+        </button>
         {isShowCounter && <Counter count={count} onCount={this.handleCount} />}
       </>
     );
