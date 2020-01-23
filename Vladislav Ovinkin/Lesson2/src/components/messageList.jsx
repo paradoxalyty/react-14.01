@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Message } from './Message';
 import { ButtonSend } from './ButtonSend';
 
+const botName = "chatBot";
+
 class MessageList extends Component {
     state = {
         messages: [
@@ -18,7 +20,6 @@ class MessageList extends Component {
     componentDidUpdate () {
         const messages = this.state.messages;
         const lastName = messages [messages.length - 1].name;
-        const botName = "chatBot";
         if (lastName != botName) { // бот сам с собой болтать не будет)
             const botReply = {name: botName, content: lastName + ", робот не спит, он зорко бдит!"};
             this.addMessage (botReply);
