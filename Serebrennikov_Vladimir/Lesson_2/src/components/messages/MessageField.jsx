@@ -17,13 +17,17 @@ export default class MessageField extends Component {
   componentDidUpdate() {
     if (this.state.messages[ this.state.messages.length - 1 ].name != "Робот") {
         // или как в методичке на каждое четное по номеру сообщение "%2" отвечает "Робот"
-        
-      this.setState({ messages: [...this.state.messages, {name: "Робот", text: "Не пиши мне"}] });
+
+      this.setState({ 
+        messages: [...this.state.messages, {name: "Робот", text: "Не пиши мне"}] 
+      });
     }
   }
 
   handleSubmit = (text) => {
-    this.setState({ messages: [...this.state.messages, {name: "Я", text: text}] });
+    this.setState({ 
+      messages: [...this.state.messages, {name: "Я", text: text}]
+    });
   }
 
   render() {
