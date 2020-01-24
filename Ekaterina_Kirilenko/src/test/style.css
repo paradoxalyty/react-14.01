@@ -47,3 +47,9 @@ body {
   cursor: pointer;
   outline: none;
 }
+
+.random {
+  display: block;
+  margin: 20px auto;
+  font-size: 40px; 
+}
