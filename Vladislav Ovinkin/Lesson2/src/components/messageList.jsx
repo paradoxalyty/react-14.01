@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Message } from './Message';
 import { ButtonSend } from './ButtonSend';
 
-const botName = "chatBot";
+const BOT_NAME = "chatBot";
 
 class MessageList extends Component {
     state = {
@@ -20,8 +20,8 @@ class MessageList extends Component {
     componentDidUpdate () {
         const messages = this.state.messages;
         const lastName = messages [messages.length - 1].name;
-        if (lastName != botName) { // бот сам с собой болтать не будет)
-            const botReply = {name: botName, content: lastName + ", робот не спит, он зорко бдит!"};
+        if (lastName != BOT_NAME) { // бот сам с собой болтать не будет)
+            const botReply = {name: BOT_NAME, content: lastName + ", робот не спит, он зорко бдит!"};
             this.addMessage (botReply);
         }
     }
