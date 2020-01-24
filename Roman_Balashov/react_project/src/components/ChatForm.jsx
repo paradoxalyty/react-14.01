@@ -1,13 +1,12 @@
-import React from 'react';
-import TextField from './TextField.jsx';
-import Button from './Button.jsx';
+import React, {Component} from 'react';
+import TextField from './TextField';
+import Button from './Button';
 
-// const ChatForm = () => <form className="chat-form"><TextField /><Button /></form>;
-
-class ChatForm extends React.Component {
-    render(){
-        return <form className="chat-form"><TextField /><Button /></form>;
+export class ChatForm extends Component {
+    render() {
+        return <form className="chat-form">
+            <TextField />
+            <Button />
+        </form>;
     }
 }
-
-export default ChatForm;
