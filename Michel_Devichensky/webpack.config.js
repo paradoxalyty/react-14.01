@@ -1,26 +1,32 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
-    output:{
+    output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "index.js"
+        filename: "bundle.js"
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,//Условия проверки файлов тоесть файлы с расширением .js и .jsx
-                include: path.resolve(__dirname, "src"),//Указываем папку которую нужно проверять "src"
-                loader: 'babel-loader',//Мы говорим что используем 'babel-loader'
-                exclude: /node_modules/,//За исключением папки /node_modules/
-                options: {
-                  presets: ['@babel/env', "@babel/react"],// Пресеты которые мы используем '@babel/env', "@babel/react"
-                }
+                test: /\.(js|jsx)$/,
+                include: path.resolve(__dirname, "src"),
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/env', '@babel/react'],
+                        plugins: ['@babel/plugin-proposal-class-properties'],
+                    },
+                },
             },
         ],
-    }, 
+    },
+    resolve: {
+        extensions: ['.jsx', '.js']
+    },
     plugins: [
-        new HTMLWebpackPlugin({template: path.resolve(__dirname, "src", "index.html")})
+        new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html"), }),
     ]
 }
