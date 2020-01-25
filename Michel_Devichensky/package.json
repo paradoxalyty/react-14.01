@@ -1,15 +1,14 @@
 {
-  "name": "Oleg_Shikov",
+  "name": "react_project",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "react.js study project",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode=development --open"
+    "dev": "webpack-dev-server --mode=development"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Roman Balashov",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.8.3",
@@ -24,7 +23,6 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }
