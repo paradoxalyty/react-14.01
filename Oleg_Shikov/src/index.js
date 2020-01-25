@@ -7,29 +7,10 @@ import ReactDom from "react-dom";
 //     { name: "Ivan", content: "I am well" }
 // ]
 
-// const Message = ({ name, content }) => <div><strong>{name}:</strong> {content}</div>;
-// // React.createElement("div", {}, [React.createElement("strong", {}, name), content])
+// Компоненты с логикой = контейнеры  - оборачивают, содержат глупые компонеты
+// Компоненты с версткой = "глупые" / компоненты
 
-// function MessageList({ messages }) {
-//     return messages.map((message, index) => <Message {...message} key={index} />)
-// }
-
-// const Chat = (props) => {
-//     const sendMessage = (event) => {
-//         console.log("Button is clicked", event);
-//         messages.push({ name: "Egor", content: "Hey! " +(new Date).valueOf() })
-//         ReactDom.render(<Chat messages={messages} />, document.getElementById("root"));
-//     }
-//     return <>
-//         <MessageList messages={props.messages} />
-//         <input type="submit" value="New message" onClick={sendMessage}/>
-//     </>
-// }
-
-
-// ReactDom.render(<Chat messages={messages} />, document.getElementById("root"));
-import {Counter} from './components/Counter';
-import { App } from "./components/App";
+import { App } from "./containers/App";
 ReactDom.render(<App />, document.getElementById("root"));
 // ReactDom.render(null, document.getElementById("root"));
 
