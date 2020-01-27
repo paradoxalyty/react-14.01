@@ -5,6 +5,7 @@ import {H1} from './components/H1';
 import {Button} from './components/Button';
 import {Counter} from './components/Counter';
 import {MessageList} from './components/MessageList';
+import {Link} from './components/Link';
 
 // Texts (translation)
 const texts = {
@@ -53,7 +54,9 @@ class Messenger extends Component {
     // When the Messenger is updated
     componentDidUpdate() {
         if (this.state.isUserMessage === true) {
-            setTimeout(() => this.addMessage('Robot', 'Get lost!'), 300);
+            setTimeout(() =>
+                    this.addMessage('Robot', 'Get lost!'),
+                300);
             this.updateCounter('newMessages');
             this.updateCounter('totalMessages');
             this.setState((state) => ({isUserMessage: false}));
@@ -70,11 +73,14 @@ class Messenger extends Component {
             <div className="react-wrapper">
                 <H1 h1Text={texts.h1Text}/>
 
-                <Counter newMessages={this.newMessages}
-                         totalMessages={this.totalMessages}/>
+                {/*<Counter newMessages={this.newMessages}*/}
+                {/*         totalMessages={this.totalMessages}/>*/}
 
                 <Button buttonText={texts.buttonText}
                         sendMessageClick={this.sendMessageClick}/>
+
+                <Link newMessages={this.newMessages}
+                      totalMessages={this.totalMessages}/>
 
                 <MessageList messages={messages}/>
             </div>
