@@ -1,6 +1,43 @@
 import React from 'react';
-import Message from './Message.jsx';
+import Message from '..Message/Message.jsx';
 
+import PropTypes from 'prop-types';
+
+export const MessageList = ({ messages}) =>
+ (messages.map((message, index) => <Message {...message} key={index} /> ));
+
+MessageList.propTypes ={
+    messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 export default class MessageField extends React.Component {
     state = { 
         messages : [
@@ -17,7 +54,7 @@ export default class MessageField extends React.Component {
     };
     
     componentDidUpdate(){
-        console.log(this.state.messages[this.state.messages.length-1].name);
+     
       if (this.state.messages[this.state.messages.length-1].name != 'Robot' ){
         setTimeout(()=>
         this.setState(
@@ -29,8 +66,7 @@ export default class MessageField extends React.Component {
         
         const messageElements = this.state.messages.map((message,index) => (
             <Message {...message} key={index} />));
-            console.log(messageElements);
-            console.log(this.state);
+
             return <div>
                 { messageElements }
                 <button onClick={ this.handleClick }>Send Message</button>
@@ -40,3 +76,6 @@ export default class MessageField extends React.Component {
     }
     
 }
+
+
+*/
