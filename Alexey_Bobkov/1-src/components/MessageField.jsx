@@ -10,7 +10,6 @@ export default class MessageField extends React.Component {
         { name: 'Name4', content: 'Text4' }
     
     ]
-        //messages: ["Привет!", "Как Дела?"]
     };
 
     handleClick =() => {
@@ -18,7 +17,8 @@ export default class MessageField extends React.Component {
     };
     
     componentDidUpdate(){
-      if (this.state.messages.length % 2===1){
+        console.log(this.state.messages[this.state.messages.length-1].name);
+      if (this.state.messages[this.state.messages.length-1].name != 'Robot' ){
         setTimeout(()=>
         this.setState(
             { messages: [...this.state.messages, {name: 'Robot', content: 'dont touch me' }]}),
