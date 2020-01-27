@@ -5,12 +5,7 @@ import PropTypes from 'prop-types';
 
 export class Button extends Component {
     static propTypes = {
-        buttonText: PropTypes.string.isRequired,
         handleButton: PropTypes.func,
-    };
-
-    static defaultProps = {
-        buttonText: "Button Text",
     };
 
     render() {
@@ -18,8 +13,6 @@ export class Button extends Component {
             <FloatingActionButton onClick={() => this.props.handleButton(this.props.input)}>
                 <SendIcon/>
             </FloatingActionButton>
-
-            // {this.props.buttonText}
         )
     }
 }
