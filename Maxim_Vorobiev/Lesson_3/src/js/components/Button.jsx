@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import {FloatingActionButton} from 'material-ui';
+import SendIcon from 'material-ui/svg-icons/content/send';
 import PropTypes from 'prop-types';
 
 export class Button extends Component {
     static propTypes = {
         buttonText: PropTypes.string.isRequired,
-        sendMessageClick: PropTypes.func,
+        handleButton: PropTypes.func,
     };
 
     static defaultProps = {
@@ -13,9 +15,11 @@ export class Button extends Component {
 
     render() {
         return (
-            <button id="button" className="button" onClick={this.props.sendMessageClick}>
-                {this.props.buttonText}
-            </button>
+            <FloatingActionButton onClick={() => this.props.handleButton(this.props.input)}>
+                <SendIcon/>
+            </FloatingActionButton>
+
+            // {this.props.buttonText}
         )
     }
 }

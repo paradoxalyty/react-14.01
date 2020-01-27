@@ -21,7 +21,7 @@ export class Link extends Component {
                 marginBottom: 0
             }}>
                 <a href="#" onClick={this.handleLink}>
-                    {(isShowCounter) ? 'Hide Stats' : 'Show Stats'}
+                    {(isShowCounter) ? 'Hide stats' : 'Show stats'}
                 </a>
             </p>
 

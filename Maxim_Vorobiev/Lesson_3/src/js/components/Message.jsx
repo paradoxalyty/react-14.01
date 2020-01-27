@@ -21,7 +21,7 @@ export class Message extends Component {
                  }}
             >
                 <div>{this.props.content}</div>
-                <div className="react-messenger__message-sender">
+                <div className="react-messenger__message-name">
                     {this.props.name}
                 </div>
             </div>
