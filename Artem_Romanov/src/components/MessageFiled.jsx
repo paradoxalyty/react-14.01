@@ -16,14 +16,15 @@ componentDidUpdate() {
             1000);
     }
 }
-
+//Отправка сообщений автора
 handleClick = () => {
     this.setState({ messages: [ ...this.state.messages, {text: 'Отлично', sender: 'me'} ] });
 };
 
+//Рендер и запрос класса из Message
 render() {
-    const messageElements = this.state.messages.map((text, index) =>      
-     (<Message key={index} text {...text}/>));
+    const messageElements = this.state.messages.map((text, sender) =>      
+     (<Message key={sender} text {...text}/>));
       
 
     return <div>
