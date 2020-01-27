@@ -22,8 +22,6 @@ export class H1 extends Component {
     }
 
     render() {
-        return (
-            <h1>{this.state.h1Text}</h1>
-        )
+        return <h1 style={{textAlign: 'center'}}>{this.state.h1Text}</h1>;
     }
 }

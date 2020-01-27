@@ -15,9 +15,15 @@ export class Link extends Component {
         const {isShowCounter} = this.state;
 
         return <>
-            <a href="#" onClick={this.handleLink}>
-                {(isShowCounter) ? 'Hide Stats' : 'Show Stats'}
-            </a>
+            <p style={{
+                fontSize: 'small',
+                marginTop: 10,
+                marginBottom: 0
+            }}>
+                <a href="#" onClick={this.handleLink}>
+                    {(isShowCounter) ? 'Hide Stats' : 'Show Stats'}
+                </a>
+            </p>
 
             {isShowCounter && <Counter newMessages={this.props.newMessages}
                                        totalMessages={this.props.totalMessages}/>}

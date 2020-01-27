@@ -13,6 +13,18 @@ export class Message extends Component {
     };
 
     render() {
-        return <div><strong>{this.props.name}:</strong> {this.props.content}</div>;
+        return (
+            <div className="react-messenger__message"
+                 style={{
+                     alignSelf: this.props.name === 'Support' ?
+                         'flex-end' : 'flex-start'
+                 }}
+            >
+                <div>{this.props.content}</div>
+                <div className="react-messenger__message-sender">
+                    {this.props.name}
+                </div>
+            </div>
+        )
     }
 }

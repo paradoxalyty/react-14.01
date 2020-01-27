@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 
 import {H1} from './components/H1';
 import {Button} from './components/Button';
-import {Counter} from './components/Counter';
+// import {Counter} from './components/Counter';
 import {MessageList} from './components/MessageList';
 import {Link} from './components/Link';
+import '../css/styles.css';
 
 // Texts (translation)
 const texts = {
@@ -15,10 +16,9 @@ const texts = {
 
 // Messages
 const messages = [
-    {name: 'Max', content: 'How are you?'},
-    {name: 'Dolly', content: 'Fine, thanks. And you?'},
-    {name: 'Max', content: 'I\'m fine :) Bye!'},
-    {name: 'Dolly', content: 'See you!'},
+    {name: 'Me', content: 'Good afternoon!'},
+    {name: 'Me', content: 'How are you?'},
+    {name: 'Me', content: 'Can you help me please?'},
 ];
 
 // Messenger Class
@@ -47,7 +47,7 @@ class Messenger extends Component {
     sendMessageClick = () => {
         this.updateCounter('newMessages');
         this.updateCounter('totalMessages');
-        this.addMessage('Noname', 'Everything is okay');
+        this.addMessage('My', 'Are you here?');
         this.setState((state) => ({isUserMessage: true}));
     };
 
@@ -55,7 +55,7 @@ class Messenger extends Component {
     componentDidUpdate() {
         if (this.state.isUserMessage === true) {
             setTimeout(() =>
-                    this.addMessage('Robot', 'Get lost!'),
+                    this.addMessage('Support', 'I will be here ASAP!'),
                 300);
             this.updateCounter('newMessages');
             this.updateCounter('totalMessages');
@@ -70,19 +70,20 @@ class Messenger extends Component {
         const {messages} = this.state;
 
         return (
-            <div className="react-wrapper">
+            <div className="react-messenger__wrapper">
                 <H1 h1Text={texts.h1Text}/>
 
-                {/*<Counter newMessages={this.newMessages}*/}
-                {/*         totalMessages={this.totalMessages}/>*/}
+                <div className="react-messenger__layout">
+                    <Button buttonText={texts.buttonText}
+                            sendMessageClick={this.sendMessageClick}/>
 
-                <Button buttonText={texts.buttonText}
-                        sendMessageClick={this.sendMessageClick}/>
+                    <Link newMessages={this.newMessages}
+                          totalMessages={this.totalMessages}/>
 
-                <Link newMessages={this.newMessages}
-                      totalMessages={this.totalMessages}/>
-
-                <MessageList messages={messages}/>
+                    <div className="react-messenger__messages-list">
+                        <MessageList messages={messages}/>
+                    </div>
+                </div>
             </div>
         )
     }
