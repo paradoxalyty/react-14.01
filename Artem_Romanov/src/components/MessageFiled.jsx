@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './Message';
+import '../styles/styles.css';
 
 //Кнопка отправки сообщения а так же сами сообщения в качестве дочерних элементов
 export default class MessageField extends React.Component {
@@ -27,7 +28,7 @@ render() {
      (<Message key={sender} text {...text}/>));
       
 
-    return <div>
+    return <div id='main' className='message-field'>
         { messageElements }
         <button onClick={ this.handleClick }>Отправить сообщение</button>
     </div>

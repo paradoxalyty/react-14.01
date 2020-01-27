@@ -21,6 +21,11 @@ module.exports = {
                          plugins: ["@babel/plugin-proposal-class-properties"]
                        }
                    },
+                   {
+                    // Лоадеры для обработки CSS файлов
+                    test: /\.css$/,
+                    loader: 'style-loader!css-loader',
+                },
                ],
            }, 
     //Добавляем html
@@ -28,6 +33,6 @@ module.exports = {
         new HtmlWebpackPlugin({template: path.resolve(__dirname, "src", "index.html")})
       ],
       resolve: {
-      extensions: [".jsx", ".js"]
+      extensions: [".jsx", ".js",]
     }
- }
+ };
