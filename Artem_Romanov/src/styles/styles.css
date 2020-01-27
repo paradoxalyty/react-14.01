@@ -7,7 +7,7 @@
     padding: 20px;
     overflow-y: scroll;
  }
- 
+
  .layout {
     height: 100%;
     width: 50%;
@@ -30,4 +30,19 @@
     color: gray;
     font-size: 14px;
  }
+ 
+ /* .button {
+    border-radius:7px;
+    background-color: lightblue;
+    padding: 10px;
+    font-weight: 700;
+    border-style: none;
+ }
+
+ .input-field {
+   width: 300px;
+   margin: 10px;
+   font-size: 20px;
+   border-radius: 5px;
+} */
  

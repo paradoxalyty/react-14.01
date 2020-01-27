@@ -1,4 +1,6 @@
 import React from 'react';
+import { TextField, FloatingActionButton } from 'material-ui';
+import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from './Message';
 //Импортируем файл со стилями
 import '../styles/styles.css'; 
@@ -7,35 +9,37 @@ import '../styles/styles.css';
 export default class MessageField extends React.Component {
  //Храним тексты сообщений в массиве, добавляя к нему элементы
 state = {
-    messages: [{ text: "Привет!", sender: 'bot' }, { text: "Как дела?", sender: 'bot' }],
+    messages: [{ text: "Привет!", sender: 'bot' }, { text: "Как дела?", sender: 'bot' }], input: '', //В input текст введенный пользователем
 };
 
 componentDidUpdate() {
     if (this.state.messages[this.state.messages.length - 1].sender === 'me') { // Если последний элемент в массиве равени имени автора, то запускаем ответ
         setTimeout(() =>
                 this.setState({
-                    messages: [ ...this.state.messages, {text: 'Не лезь, ко мне, я занят', sender: 'bot'} ] }),
+                    messages: [ ...this.state.messages, {text: 'Не лезь ко мне, я занят', sender: 'bot'} ] }),
             1000);
     }
 }
 //Отправка сообщений автора
-// handleClick = () => {
-//     this.setState({ messages: [ ...this.state.messages, {text: 'Отлично', sender: 'me'} ] });
-// };
 // Передаем сообщение в качестве аргумента функции
     handleClick = (message) => {
-        this.setState({ messages: [ ...this.state.messages, {text: message, sender: 'me'} ] });
+        this.sendMessage(message)
     };
     //Регистрируем изменения в текстовом поле
-    handleChange = (event) => {
-        console.log(event.target.value);
+        handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
      };
      //Обработчик отправки сообщений по enter
      handleKeyUp = (event, message) => {
-         console.log(event.keyCode); //Тест кодов клавиш
-        if (event.keyCode === 13) { 
-            this.setState({ messages: [ ...this.state.messages, {text: message, sender: 'me'} ] });
+        if (event.keyCode === 13) { // Enter
+            this.sendMessage(message)
         }
+    };
+    // Отправка сообщений
+    sendMessage = (message) => {
+        this.setState({messages: [ ...this.state.messages, {text: message, sender: 'me'} ],
+            input: '',
+        });
      };
 
 //Рендер и запрос класса из Message
@@ -47,12 +51,25 @@ render() {
      <div className="message-field">
         { messageElements }
         </div>
-        {/* Создаем текстовое поле для ввода сообщений и подключаем обработчик нажатия enteк */}
-        <input onChange={ this.handleChange } onKeyUp={ (event) => this.handleKeyUp(event, 'Нормально') } />
-        {/* <button onClick={ this.handleClick }>Отправить сообщение</button> */}
-        {/* Пишем промежуточную стрелочную функцию, чтобы handleclick не вызывался раньше времени */}
-        <button onClick={ () => this.handleClick('Нормально') }>Отправить сообщение</button>
-    </div>
+
+        {/* Создаем текстовое поле для ввода сообщений и подключаем обработчик нажатия enter */}
+                  <div style={ { width: '100%', display: 'flex' } }>
+               <TextField
+                   name="input"
+                   fullWidth={ true }
+                   hintText="Введите сообщение"
+                   style={ { fontSize: '20px' } }
+                   onChange={ this.handleChange }
+                   value={ this.state.input }
+                   onKeyUp={ (event) => this.handleKeyUp(event, this.state.input) }
+               />
+               <FloatingActionButton 
+                    onClick={ () => this.handleClick(this.state.input) }>
+                   <SendIcon />
+               </FloatingActionButton>
+           </div>
+       </div>
+
 }
 }
 
