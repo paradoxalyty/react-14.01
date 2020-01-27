@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Message } from './Message/Message';
-import { ButtonSend } from './ButtonSend';
+import { Message } from '../Message/Message';
+import { ButtonSend } from '../ButtonSend';
 
 const BOT_NAME = "chatBot";
 
