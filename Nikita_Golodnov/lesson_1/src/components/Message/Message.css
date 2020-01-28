@@ -1,0 +1,13 @@
+.Message {
+    background-color: lightgray;
+    padding: 5px;
+    border-radius: 5px;
+    width: 40%;
+    align-self: flex-end;
+    margin-bottom: 5px;
+}
+
+.Message__bot {
+    align-self: flex-start;
+    background-color: pink;
+}
