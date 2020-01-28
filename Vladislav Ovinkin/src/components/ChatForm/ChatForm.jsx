@@ -46,7 +46,9 @@ export const ChatForm = ({ onSendMessage }) => {
     }, []);
 
     const handleClick = () => {
-        onSendMessage({name, content});
+        const date = new Date ();
+        const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+        onSendMessage({name, content, time});
     }
 
     return (<div>
