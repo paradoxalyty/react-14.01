@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {Layout} from './components/Layout/Layout';
-import '../css/styles.css';
+import {App} from './containers/App';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-const Messenger = () => (
-    <Layout/>
-);
+import '../css/styles.css';
 
 ReactDOM.render(
     <MuiThemeProvider>
-        <Messenger/>
+        <App/>
     </MuiThemeProvider>,
 
     document.getElementById('root'),
