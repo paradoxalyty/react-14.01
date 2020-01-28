@@ -11,13 +11,20 @@ export class ChatContainer extends Component {
             {name: "Kolya", content: "I am well"},
         ],
     }
+    timer = null;
 
     componentDidUpdate () {
+        clearTimeout (this.timer);
+        
         const lastMessage = this.state.messages[this.state.messages.length - 1];
-
+        
         if (lastMessage.name !== BOT_NAME) {
-            this.handleSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`})
+            this.timer = setTimeout(() => this.handleSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
         }
+    }
+    
+    componentWillUnmount () {
+        clearTimeout (this.timer);
     }
 
     handleSendMessage = (message) => {
