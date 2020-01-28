@@ -12,7 +12,7 @@ export default class Message extends React.Component {
     render() {
         const robotMessage = cn({
             'message': true,
-            'messageRobot': this.props.sender === 'robot',
+            'messageRobot': this.props.sender === 'bot',
           });
 
         return <div className={robotMessage}>
