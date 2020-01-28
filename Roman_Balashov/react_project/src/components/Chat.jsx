@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MessageField } from './MessageField';
-import '../style.css';
 import { ChatForm } from './ChatForm';
+import '../style.css';
 
 export class Chat extends Component {
     state = {
@@ -12,9 +12,8 @@ export class Chat extends Component {
         super(props);
     }
     sendMessage = (message) => {
-        const amessage = {sender: "dog", text: "bork"};
         this.setState(({ messages }) => ({
-            messages: [...messages, amessage],
+            messages: [...messages, message],
         }));
     }
     componentDidUpdate(prevState) {
@@ -28,9 +27,9 @@ export class Chat extends Component {
         }
     }
     render() {
-        return <div className="chat--form">
+        return <>
             <MessageField className="message-field" messages={this.state.messages} />
-            <ChatForm messageHandler={this.sendMessage}/>
-        </div>
+            <ChatForm sendMessage={this.sendMessage} />
+        </>
     }
 }

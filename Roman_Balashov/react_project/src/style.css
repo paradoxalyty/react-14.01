@@ -1,3 +1,7 @@
+* {
+    color: lightgreen;
+}
+
 .chat--form {
     display: flex;
     flex-direction: row;

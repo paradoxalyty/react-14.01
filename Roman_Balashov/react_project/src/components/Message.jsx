@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import SnackbarContent from "@material-ui/core/SnackbarContent";
 
 export class Message extends Component {
     constructor(props) {
