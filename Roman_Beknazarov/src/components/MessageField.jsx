@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {TextField, FloatingActionButton} from 'material-ui';
+import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
-import {Message} from './Message';
+import { Message } from './Message';
 import '../styles/styles.css';
 
 export class MessageField extends Component {
@@ -62,12 +62,12 @@ export class MessageField extends Component {
             <Message key={index} text={message.text} sender={message.sender}/>
         ));
 
-        return <div className="layout">
-            <div className="message-field">
+        return <div className="message-field">
+            <div className="messages">
                 {messageElements}
             </div>
 
-            <div style={{width: '100%', display: 'flex'}}>
+            <div className="user-message" >
                 <TextField
                     ref={this.textInput}
                     name="input"
