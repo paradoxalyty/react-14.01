@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Chat } from '../components/Chat/Chat'
 
+const BOT_NAME = "chatBot";
+
 export class ChatContainer extends Component {
     state = {
         messages: [
@@ -10,7 +12,18 @@ export class ChatContainer extends Component {
         ],
     }
 
+    componentDidUpdate () {
+        const lastMessage = this.state.messages[this.state.messages.length - 1];
+
+        if (lastMessage.name !== BOT_NAME) {
+            this.handleSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`})
+        }
+    }
+
     handleSendMessage = (message) => {
+        const date = new Date ();
+        const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+        message.time = time;
         this.setState ((state) => ({messages: [...state.messages, message]}));
     }
 
