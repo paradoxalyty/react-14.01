@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Chat} from "../components/Chat/Chat";
 
+const ROBOT_NAME = 'Robot';
 export class ChatContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +13,15 @@ export class ChatContainer extends React.Component {
             ],
         }
     }
+
+    componentDidUpdate() {
+        const lastMessage = this.state.messages[this.state.messages.length -1];
+        if(lastMessage.name !== ROBOT_NAME) {
+            setTimeout(() => this.handleSentMessage({name: ROBOT_NAME, content: 'Hi I am robot!'}), 3000)
+
+        }
+    }
+
     handleSentMessage(message) {
         this.setState((state) => ({messages: [...state.messages, message]}))
     }
