@@ -6,14 +6,33 @@ import PropTypes from 'prop-types';
  *  @param {string} message - message text
  *  @param {string} name - sender name
  *  @param {string} time - sending message time
- *  @param {function} onSendMessage - sending new message handler
+ *  @param {Function} onSendMessage - sending new message handler
  */
-export const ChatForm = ({message, name, time, onSendMessage}) =>
-    (<div>
-        <input value={name} type="text" />
-        <textarea value={message} />
-        <button>Отправить</button>
-    </div>);
+export class ChatForm extends React.Component {
+    state = {
+        name: 'User',
+        message: 'My message',
+    }
+    textarea = React.createRef ();
+    componentDidMount () {
+        this.textarea.current.focus ();
+    }
+    render () {
+        return (<div>
+            <input value={ this.state.name } type="text" />
+            <textarea value={ this.state.message} ref={this.textarea}/>
+            <button>Отправить</button>
+        </div>);
+    }
+}
+
+// export const ChatForm = ({onSendMessage}) => {
+//     return (<div>
+//         <input value={name} type="text" />
+//         <textarea value={ message} />
+//         <button>Отправить</button>
+//     </div>)
+// };
 
 ChatForm.propTypes = {
     message: PropTypes.string.isRequired,

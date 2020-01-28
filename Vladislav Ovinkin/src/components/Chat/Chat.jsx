@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { MessageList } from '../MessageList/MessageList'
+import { Message } from '../Message/Message'
 import { ChatForm } from '../ChatForm/ChatForm'
 
 /**
@@ -14,7 +15,7 @@ import { ChatForm } from '../ChatForm/ChatForm'
 export const Chat = ({messages, message, name, time, onSendMessage}) =>
     (<div>
         <MessageList messages={messages} />
-        <ChatForm {...{message, name, time, onSendMessage}} />
+        <ChatForm onSendMessage={onSendMessage} />
     </div>);
 
 Chat.propTypes = {
