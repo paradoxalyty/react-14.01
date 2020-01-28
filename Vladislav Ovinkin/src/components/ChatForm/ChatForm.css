@@ -1,0 +1,12 @@
+.chatForm {
+    display: flex;
+    margin: 0 10%;
+    justify-content: space-around;
+}
+.chatFormUserName {
+    width: 200px;
+    padding: 200px;
+}
+.chatFormTextMessage {
+    width: 500px;
+}

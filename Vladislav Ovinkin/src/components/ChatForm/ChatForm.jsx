@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
+import './ChatForm.css';
 
 /**
  *  Компонент с формой отправки нового сообщения
@@ -46,13 +49,41 @@ export const ChatForm = ({ onSendMessage }) => {
     }, []);
 
     const handleClick = () => {
-        onSendMessage({name, content});
+        if (content.length > 0) {
+            onSendMessage({name, content});
+            setContent('');
+        }
     }
 
-    return (<div>
-        <input value={name} onChange={({currentTarget: {value}})=> setName (value)} type="text" />
-        <textarea value={content} onChange={({currentTarget: {value}})=> setContent (value)} ref={textarea} />
-        <button onClick={handleClick}>Отправить</button>
+    const handleKeyUp = (event) => {
+        if (event.ctrlKey && event.key == "Enter") {
+            handleClick();
+        }
+    }
+
+    return (<div className="chatForm">
+        <TextField
+            className="chatFormUserName"
+            label="Имя пользователя"
+            variant="outlined"
+            size="small"
+            value={name}
+            onChange={({currentTarget: {value}}) => setName (value)} />
+        <TextField
+            className="chatFormTextMessage"
+            label="Текст сообщения"
+            variant="outlined"
+            size="small"
+            value={content}
+            onChange={({currentTarget: {value}}) => setContent (value)}
+            onKeyUp={handleKeyUp}
+            ref={textarea} 
+            multiline />
+        <Button
+            variant="contained"
+            size="small"
+            color="primary"
+            onClick={handleClick}>Отправить</Button>
     </div>)
 };
 

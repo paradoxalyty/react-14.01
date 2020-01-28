@@ -5,12 +5,15 @@
     box-shadow: 1px 1px 3px #555;
     width: 40%;
     align-self: flex-end;
+    font-family: Arial, sans-serif;
 }
-
 .message--robot {
     align-self: flex-start;
 }
-
 .message:not(:last-child) {
     margin-bottom: 5px;
+}
+.messageUserName {
+    color: white;
+    text-shadow: 1px 1px 3px black;
 }
