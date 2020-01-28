@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 /**
@@ -39,10 +39,20 @@ import PropTypes from 'prop-types';
 export const ChatForm = ({ onSendMessage }) => {
     const [name, setName] = useState ('User');
     const [content, setContent] = useState ('Message');
+    const textarea = useRef ();
+
+    useEffect (() => {
+        textarea.current.focus ();
+    }, []);
+
+    const handleClick = () => {
+        onSendMessage({name, content});
+    }
+
     return (<div>
         <input value={name} onChange={({currentTarget: {value}})=> setName (value)} type="text" />
-        <textarea value={content} onChange={({currentTarget: {value}})=> setContent (value)} />
-        <button>Отправить</button>
+        <textarea value={content} onChange={({currentTarget: {value}})=> setContent (value)} ref={textarea} />
+        <button onClick={handleClick}>Отправить</button>
     </div>)
 };
 
