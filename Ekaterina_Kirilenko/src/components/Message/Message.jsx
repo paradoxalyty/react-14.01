@@ -7,7 +7,8 @@ export const Message = ({ author, content }) => {
       const classNames = classnames("message", { "message--robot": author === 'Робот'});
       return (
         <div className={classNames}>
-          <strong>{author}:</strong> {content}
+          <div className="author">{author}</div>
+          <div className="content">{content}</div>
         </div>
       );
 }

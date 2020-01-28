@@ -1,6 +1,10 @@
 .message-field {
-  background-color: lightgrey;
-  padding: 20px;
   display: flex;
   flex-direction: column;
+  background-color:#eee;
+  box-sizing: border-box;  
+  padding: 20px;
+  height: 50%;
+  width: 100%;
+  overflow-y: scroll;
 }

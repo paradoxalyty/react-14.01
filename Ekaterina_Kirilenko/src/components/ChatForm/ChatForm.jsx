@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import "./ChatForm.css";
 
 /**
  * Компонент по отрисовке поля с формой отправки нового сообщения
@@ -43,7 +44,7 @@ import TextField from "@material-ui/core/TextField";
 /* используем хуки */
 export const ChatForm = ({ onSendMessage }) => {
   const [author, setName] = useState('User');
-  const [content, setContent] = useState('Text');
+  const [content, setContent] = useState('My message');
   // const textarea = useRef();
 
   // useEffect(() => {
@@ -52,28 +53,38 @@ export const ChatForm = ({ onSendMessage }) => {
 
   const handleClick = () => {
     onSendMessage({ author, content });
+    setContent('');
+  }
+
+  const handleKeyUp = (event) => {
+    if (event.keyCode === 13) {  // Enter
+      onSendMessage({ author, content });
+      setContent('');
+    }
   }
 
   return (
-    <div>
+    <div className="chat-form">
       <TextField
         value={author}
         onChange={({ currentTarget: { value } }) => setName(value)}
         type="text"
         label="Имя"
+        placeholder="Имя"
         variant="outlined"
       />
       <TextField
+        className="field-content"
         value={content}
         onChange={({ currentTarget: { value } }) => setContent(value)}
+        onKeyUp={handleKeyUp}
         label="Сообщение"
+        placeholder="Сообщение"
         variant="outlined"
         multiline
         autoFocus
       />
-      <Button 
-        onClick={handleClick} 
-        variant="contained" color="primary">
+      <Button onClick={handleClick} variant="contained" color="primary">
         Отправить
       </Button>
     </div>

@@ -1,9 +1,11 @@
 .message {
   background-color: lightskyblue;
-  padding: 4px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   width: 30%;
   align-self: flex-end;
+  overflow-wrap: break-word;
 }
 
 .message--robot {
@@ -12,4 +14,13 @@
 
 .message:not(:last-child) {
   margin-bottom: 20px;
+}
+
+.content {
+  font-size: 18px;
+}
+
+.author {
+  color: #fff;
+  font-size: 14px;
 }

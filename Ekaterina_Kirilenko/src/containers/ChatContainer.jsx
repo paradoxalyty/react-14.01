@@ -7,8 +7,9 @@ export class ChatContainer extends Component {
   state = {
     messages: [
       { author: "Катя", content: "Доброе утро!" },
-      { author: "Максим", content: "Привет!" },
+      { author: "Робот", content: "Привет!" },
       { author: "Катя", content: "Как дела?" },
+      { author: "Робот", content: "Нормально ))" },
     ],
   }
 
