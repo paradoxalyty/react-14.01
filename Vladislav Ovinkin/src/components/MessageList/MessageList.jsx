@@ -1,9 +1,8 @@
 import React from "react";
 import { Message } from '../Message/Message';
 import PropTypes from 'prop-types';
-// import { ButtonSend } from '../ButtonSend';
 
-const BOT_NAME = "chatBot";
+// const BOT_NAME = "chatBot";
 
 export const MessageList = ({ messages }) => 
     (messages.map ((message, index) => <Message {...message} key = { index } />));
