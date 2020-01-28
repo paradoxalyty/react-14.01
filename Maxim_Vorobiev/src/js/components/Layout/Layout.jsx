@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from '../Header/Header';
 import {ChatList} from '../ChatList/ChatList';
-import {MessageField} from '../MessageField/MessageField';
+import {ChatForm} from '../ChatForm/ChatForm';
 
 export const Layout = () => (
     <>
@@ -9,7 +9,7 @@ export const Layout = () => (
 
         <div className="react-messenger__wrapper">
             <ChatList/>
-            <MessageField/>
+            <ChatForm/>
         </div>
     </>
 );
