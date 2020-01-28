@@ -7,12 +7,12 @@ import { ChatForm } from '../ChatForm/ChatForm'
 /**
  *  Компонент объединения формы отправки нового сообщения и области отображения сообщений чата
  *  @param {Array} messages - array of chat messages with sender name, sending time values
- *  @param {string} message - message text
+ *  @param {string} content - message text
  *  @param {string} name - sender name
  *  @param {string} time - sending message time
  *  @param {function} onSendMessage - sending new message handler
  */
-export const Chat = ({messages, message, name, time, onSendMessage}) =>
+export const Chat = ({messages, content, name, time, onSendMessage}) =>
     (<div>
         <MessageList messages={messages} />
         <ChatForm onSendMessage={onSendMessage} />
@@ -20,7 +20,7 @@ export const Chat = ({messages, message, name, time, onSendMessage}) =>
 
 Chat.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
-    message: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
     onSendMessage: PropTypes.func.isRequired,

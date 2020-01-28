@@ -10,9 +10,13 @@ export class ChatContainer extends Component {
         ],
     }
 
+    handleSendMessage = (message) => {
+        this.setState ((state) => ({messages: [...state.messages, message]}));
+    }
+
     render () {
         const {messages} = this.state;
 
-        return <Chat {...{messages}} />
+        return <Chat {...{messages, onSendMessage: this.handleSendMessage}} />
     }
 }
