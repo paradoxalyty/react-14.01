@@ -1,8 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import './Message.css';
 
-export const Message = ({name, content, time}) =>
-    (<div><strong>{ name }{ time == undefined ?  "" : <small> [{time}]</small>}:</strong><br/>&mdash; { content }</div>);
+export const Message = ({name, content, time}) => {
+    const classNames = classnames ('message', {'message--robot': name === 'chatBot'});
+    return (<div className={classNames}>
+        <strong>{ name }{ time == undefined ?  "" : <small> [{time}]</small>}:</strong><br/>&mdash; { content }
+    </div>);
+}
 
 Message.propTypes = {
     name: PropTypes.string.isRequired,

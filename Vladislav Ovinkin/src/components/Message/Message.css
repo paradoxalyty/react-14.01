@@ -1,0 +1,16 @@
+.message {
+    background-color: #fdb;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px #555;
+    width: 40%;
+    align-self: flex-end;
+}
+
+.message--robot {
+    align-self: flex-start;
+}
+
+.message:not(:last-child) {
+    margin-bottom: 5px;
+}
