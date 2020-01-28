@@ -1,11 +1,26 @@
 import React from "react";
 import ReactDom from "react-dom";
+import PropTypes from 'prop-types';
+import cn from 'classnames';
 
+export default class Message extends React.Component {
+    static propTypes = {
+        text: PropTypes.string.isRequired,
+        sender: PropTypes.string.isRequired
+    };
  
-export const messages = [
-    {name: "Anna", content: "Hello!"},
-    {name: "Nick", content: "Hi, how are you?"},
-    {name: "Anna", content: "I am well"}
-];
+    render() {
+        const robotMessage = cn({
+            'message': true,
+            'messageRobot': this.props.sender === 'robot',
+          });
 
-export const Message = ({name, content}) => <div><strong>{name}:</strong> {content}</div>;
+        return <div className={robotMessage}>
+                    <div>{ this.props.text }</div>
+                    <div className="message-sender">{ this.props.sender }</div>
+               </div>
+
+    }
+ }
+ 
+

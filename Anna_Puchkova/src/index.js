@@ -1,18 +1,12 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { MessageList } from './components/messageList';
-import { messages } from './components/message';
-import { sendMessage } from './components/messageList';
+import MessageField from './components/MessageField';
+import Layout from './components/Layout';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-ReactDom.render(
-<MessageList messages={messages}/>, 
-document.getElementById("root")
-);
-
-const Button = () => <button onClick={sendMessage}>Add Message</button>;
-
-ReactDom.render(
-    <Button/>, 
-    document.getElementById("button")
+    ReactDom.render(
+        <Layout/>,      
+    document.getElementById("root")
     );
 
+    

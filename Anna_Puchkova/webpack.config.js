@@ -20,15 +20,12 @@ module.exports = {
                 exclude: /node_modules/,
                 options: {
                     presets: ['@babel/env', "@babel/react"],
+                    plugins: ['@babel/plugin-proposal-class-properties']
                 }
             },
             {
                 test: /\.css$/,
-                use: [
-                  MiniCssExtractPlugin.loader,
-                  'css-loader',
-                  'postcss-loader',
-                ],
+                loader: 'style-loader!css-loader',
               },
               {
                 test: /\.(gif|png|jpe?g)$/,
@@ -41,11 +38,7 @@ module.exports = {
                     }
                   }
                 ]
-              },
-              {
-                test:/\.(s*)css$/,
-                use:['style-loader','css-loader', 'sass-loader']
-              }       
+              }      
         ],
     },
     resolve: {
@@ -66,6 +59,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'style.css',
           }),
-      
+        
     ],
 };
