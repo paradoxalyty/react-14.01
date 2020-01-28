@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import MessageList from '../MessageList/MessageList'
-import ChatForm from '../ChatForm/ChatForm'
+import { MessageList } from '../MessageList/MessageList'
+import { ChatForm } from '../ChatForm/ChatForm'
 
 /**
  *  Компонент объединения формы отправки нового сообщения и области отображения сообщений чата
