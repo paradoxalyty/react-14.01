@@ -17,13 +17,15 @@ export class ChatForm extends React.Component {
     componentDidMount () {
         this.textarea.current.focus ();
     }
-    handleInput = ({currentTarget: {value}}) => {
-        console.log (value);
+    handleInput = ({currentTarget: {value, name}}) => {
+        // event.currentTarget.value
+        console.log (name);
+        this.setState(() => ({[name]: value}));
     }
     render () {
         return (<div>
-            <input value={ this.state.name } onChange={this.handleInput} type="text" />
-            <textarea value={ this.state.message} ref={this.textarea}/>
+            <input name="name" value={ this.state.name } onChange={this.handleInput} type="text" />
+            <textarea name="message" value={ this.state.message} onChange={this.handleInput} ref={this.textarea}/>
             <button>Отправить</button>
         </div>);
     }
