@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDom from "react-dom"
+import {Layout} from "./components/Layout/Layout"
 
 
 
@@ -17,9 +18,8 @@ import ReactDom from "react-dom"
 
 // ReactDom.render(<Chat messages={messages}/>, document.getElementById("app"))
 
-// import {Counter} from "./components/Counter"
-import {MessageList} from "./components/MessageList"
+import {App} from "./containers/App"
 
-ReactDom.render(<MessageList />, document.getElementById("app"))
+ReactDom.render(<App />, document.getElementById("app"))
 
 

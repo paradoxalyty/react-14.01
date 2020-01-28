@@ -18,18 +18,7 @@ export class Counter extends React.Component {
         count: PropTypes.number,
         onCount: PropTypes.func
     }
-    interval = null
-    componentDidMount() {
-        console.log('componentDidMount')
-        this.interval = setInterval(() => console.log('It\'s fired'), 2000)  
-    }
-    componentDidUpdate () {
-        console.log ('componentDidUpdate') ;
-    }
-    componentWillUnmount() {
-        console.log('componentWillUnmount')
-        clearInterval(this.interval)
-    }
+
     handleCount = (event) => {
         const num = +event.target.dataset.number
         this.props.onCount(num)
