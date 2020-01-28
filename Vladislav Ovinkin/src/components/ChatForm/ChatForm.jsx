@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 /**
+ *  Компонент с формой отправки нового сообщения
  *  @param {string} message - message text
  *  @param {string} name - sender name
  *  @param {string} time - sending message time
- *  @param {string} onSendMessage - sending new message handler
+ *  @param {function} onSendMessage - sending new message handler
  */
 export const ChatForm = ({message, name, time, onSendMessage}) =>
     (<div>
