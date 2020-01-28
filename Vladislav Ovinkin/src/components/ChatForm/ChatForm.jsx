@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
+// import React, { useState, useRef, useEffect } from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
@@ -42,11 +43,11 @@ import './ChatForm.css';
 export const ChatForm = ({ onSendMessage }) => {
     const [name, setName] = useState ('User');
     const [content, setContent] = useState ('Message');
-    const textarea = useRef ();
+    // const textarea = useRef ();
 
-    useEffect (() => {
-        textarea.current.focus ();
-    }, []);
+    // useEffect (() => {
+    //     textarea.current.focus ();
+    // }, []);
 
     const handleClick = () => {
         if (content.length > 0) {
@@ -71,13 +72,14 @@ export const ChatForm = ({ onSendMessage }) => {
             onChange={({currentTarget: {value}}) => setName (value)} />
         <TextField
             className="chatFormTextMessage"
-            label="Текст сообщения"
+            label="Текст (ctrl+Enter - для отправки)"
             variant="outlined"
             size="small"
             value={content}
             onChange={({currentTarget: {value}}) => setContent (value)}
             onKeyUp={handleKeyUp}
-            ref={textarea} 
+            // ref={textarea} 
+            autoFocus
             multiline />
         <Button
             variant="contained"
@@ -88,8 +90,8 @@ export const ChatForm = ({ onSendMessage }) => {
 };
 
 ChatForm.propTypes = {
-    content: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
+    // content: PropTypes.string.isRequired,
+    // name: PropTypes.string.isRequired,
+    // time: PropTypes.string.isRequired,
     onSendMessage: PropTypes.func.isRequired,
 }
