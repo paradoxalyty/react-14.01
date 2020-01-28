@@ -1,37 +1,36 @@
 import React, { Component } from 'react';
 import { MessageField } from './MessageField';
-import { Button } from './Button';
+import '../style.css';
+import { ChatForm } from './ChatForm';
 
 export class Chat extends Component {
     state = {
         messages: [],
-        count: 0
+        input: ''
     }
     constructor(props) {
         super(props);
     }
-    onStateChange = () => {
-        const message = { name: "cat", text: "meow" };
-        this.setState(({ messages, count }) => ({
-            messages: [...messages, message],
-            count: count + 1
+    sendMessage = (message) => {
+        const amessage = {sender: "dog", text: "bork"};
+        this.setState(({ messages }) => ({
+            messages: [...messages, amessage],
         }));
     }
     componentDidUpdate(prevState) {
-        if (this.state.messages[this.state.count - 1].name !== "robot") {
+        if (this.state.messages[this.state.messages.length - 1].name !== "robot") {
             const message = { name: "robot", text: "bzz" };
             setTimeout(() => {
-                this.setState(({ messages, count }) => ({
-                    messages: [...messages, message],
-                    count: count + 1
+                this.setState(({ messages }) => ({
+                    messages: [...messages, message]
                 }))
             }, 1000);
         }
     }
     render() {
-        return <>
+        return <div className="chat--form">
             <MessageField className="message-field" messages={this.state.messages} />
-            <Button onStateChange={this.onStateChange} />
-        </>
+            <ChatForm messageHandler={this.sendMessage}/>
+        </div>
     }
 }
