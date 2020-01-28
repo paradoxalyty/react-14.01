@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDom from "react-dom";
-import MessageField from "./components/MessageField";
+import { App } from "./containers/App";
 
-ReactDom.render(<MessageField />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById("root"));
 
 /* для практики */
 // import { App } from "./test/App";

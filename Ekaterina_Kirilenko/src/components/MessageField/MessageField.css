@@ -1,0 +1,6 @@
+.message-field {
+  background-color: lightgrey;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
