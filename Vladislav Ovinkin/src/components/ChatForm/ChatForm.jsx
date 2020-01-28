@@ -17,9 +17,12 @@ export class ChatForm extends React.Component {
     componentDidMount () {
         this.textarea.current.focus ();
     }
+    handleInput = ({currentTarget: {value}}) => {
+        console.log (value);
+    }
     render () {
         return (<div>
-            <input value={ this.state.name } type="text" />
+            <input value={ this.state.name } onChange={this.handleInput} type="text" />
             <textarea value={ this.state.message} ref={this.textarea}/>
             <button>Отправить</button>
         </div>);
