@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Counter } from "./Counter"
+import { Counter } from "../components/Counter"
 import PropTypes from "prop-types";
 
 export class App extends Component {
