@@ -1,0 +1,19 @@
+.ChatForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    padding: 18px; 
+    border-top: 2px solid greenyellow; 
+    width: 384px;
+}
+.ChatForm-input {
+    background-color: black;
+    border: 2px solid greenyellow;
+    color: greenyellow;
+    padding: 3px;
+}
+.ChatForm-textarea {
+    padding: 1px;
+    margin-top: 5px;
+}

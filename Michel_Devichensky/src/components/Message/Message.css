@@ -1,0 +1,11 @@
+.Message {
+    border: 1px solid greenyellow;
+    margin: 10px 0 10px 0;
+    padding: 5px;
+    color: greenyellow;
+    /* align-self: left; */
+    width: 170px;
+}
+.Message--robo {
+   align-self: flex-end;
+}
