@@ -14,8 +14,8 @@ import { ChatForm } from '../ChatForm/ChatForm'
  */
 export const Chat = ({messages, content, name, time, onSendMessage}) =>
     (<div>
-        <MessageList messages={messages} />
         <ChatForm onSendMessage={onSendMessage} />
+        <MessageList messages={messages} />
     </div>);
 
 Chat.propTypes = {
