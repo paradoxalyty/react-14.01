@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Message.sass';
+export const Message = ({ name, content }) =>
+    (<div className='Message'>
 
-export const Message = ({name, content}) =>
-(<div><strong>{name}: </strong>{content}</div>); 
-     
-       
+        <strong>{name}: </strong>{content}
+        </div>);
+
+
 Message.propTypes = {
     name: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,

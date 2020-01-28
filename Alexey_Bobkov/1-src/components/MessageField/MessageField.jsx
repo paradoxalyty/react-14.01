@@ -1,12 +1,13 @@
 import React from 'react';
-import Message from '..Message/Message.jsx';
-
+import { Message } from '../Message/Message.jsx';
 import PropTypes from 'prop-types';
+import './MessageField.sass';
 
-export const MessageList = ({ messages}) =>
- (messages.map((message, index) => <Message {...message} key={index} /> ));
-
-MessageList.propTypes ={
+export const MessageField = ({ messages }) =>
+(<div className='MessageField'>{
+    messages.map((message, index) => <Message {...message} key={index} />)}
+</div>);
+MessageField.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes))
 }
 
@@ -39,22 +40,22 @@ MessageList.propTypes ={
 
 /*
 export default class MessageField extends React.Component {
-    state = { 
+    state = {
         messages : [
         { name: 'Name1', content: 'Text1' },
         { name: 'Name2', content: 'Text2' },
         { name: 'Name3', content: 'Text3' },
         { name: 'Name4', content: 'Text4' }
-    
+
     ]
     };
 
     handleClick =() => {
         this.setState({messages: [...this.state.messages, {name: 'Me', content: 'Есть кто жи?' } ]});
     };
-    
+
     componentDidUpdate(){
-     
+
       if (this.state.messages[this.state.messages.length-1].name != 'Robot' ){
         setTimeout(()=>
         this.setState(
@@ -63,7 +64,7 @@ export default class MessageField extends React.Component {
     }
 }
     render() {
-        
+
         const messageElements = this.state.messages.map((message,index) => (
             <Message {...message} key={index} />));
 
@@ -71,10 +72,10 @@ export default class MessageField extends React.Component {
                 { messageElements }
                 <button onClick={ this.handleClick }>Send Message</button>
             </div>
-            
-            
+
+
     }
-    
+
 }
 
 
