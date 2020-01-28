@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 export const Message = ({name, content, time}) =>
-    (<div><strong>{ name }{ time == undefined ?  "" : <small> [{time}]</small>}:</strong><br/>&mdash; { content }<hr/></div>);
+    (<div><strong>{ name }{ time == undefined ?  "" : <small> [{time}]</small>}:</strong><br/>&mdash; { content }</div>);
 
 Message.propTypes = {
     name: PropTypes.string.isRequired,
