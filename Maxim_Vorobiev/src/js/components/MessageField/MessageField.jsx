@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Message} from './Message';
-import {Button} from './Button';
-import {Input} from './Input';
+import {Message} from '../Message/Message';
+import {Button} from '../Button/Button';
+import {Input} from '../Input/Input';
+import PropTypes from 'prop-types';
 
 // Messages
 const messages = [
@@ -14,6 +15,16 @@ export class MessageField extends Component {
     state = {
         messages: messages,
         input: '',
+    };
+
+    static propTypes = {
+        name: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired,
+    };
+
+    static defaultProps = {
+        name: 'Name',
+        content: "Message",
     };
 
     // Add a new message
@@ -58,18 +69,18 @@ export class MessageField extends Component {
         ));
 
         return (
-                <div className="react-messenger__message-field">
-                    <div className="react-messenger__messages">
-                        {messageField}
-                    </div>
-
-                    <Input handleKeyUp={this.handleKeyUp}
-                           handleChange={this.handleChange}
-                           input={this.state.input}/>
-
-                    <Button handleButton={this.handleButton}
-                            input={this.state.input}/>
+            <div className="react-messenger__message-field">
+                <div className="react-messenger__messages">
+                    {messageField}
                 </div>
+
+                <Input handleKeyUp={this.handleKeyUp}
+                       handleChange={this.handleChange}
+                       input={this.state.input}/>
+
+                <Button handleButton={this.handleButton}
+                        input={this.state.input}/>
+            </div>
         )
     }
 }
