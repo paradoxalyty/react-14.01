@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import SnackbarContent from "@material-ui/core/SnackbarContent";
+import '../style'
 
 export class Message extends Component {
     constructor(props) {
         super(props);
     }
     render() {
-        return <div className="message">{this.props.name}: {this.props.text}</div>;
+        return <div className={this.props.name === 'robot' ? "message-robot" : "message"}>
+                {this.props.name}: {this.props.text}
+        </div>;
     }
 }

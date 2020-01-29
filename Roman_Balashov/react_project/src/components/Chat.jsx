@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { MessageField } from './MessageField';
 import { ChatForm } from './ChatForm';
-import '../style.css';
+import '../style';
 
 export class Chat extends Component {
     state = {
         messages: [],
-        input: ''
-    }
+    };
     constructor(props) {
         super(props);
     }
@@ -15,7 +14,7 @@ export class Chat extends Component {
         this.setState(({ messages }) => ({
             messages: [...messages, message],
         }));
-    }
+    };
     componentDidUpdate(prevState) {
         if (this.state.messages[this.state.messages.length - 1].name !== "robot") {
             const message = { name: "robot", text: "bzz" };
@@ -27,9 +26,9 @@ export class Chat extends Component {
         }
     }
     render() {
-        return <>
-            <MessageField className="message-field" messages={this.state.messages} />
+        return <div className="chat">
+            <MessageField messages={this.state.messages} />
             <ChatForm sendMessage={this.sendMessage} />
-        </>
+        </div>
     }
 }
