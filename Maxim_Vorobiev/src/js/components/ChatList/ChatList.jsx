@@ -6,6 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Avatar1 from '../../../img/avatars/1.png';
+// TODO
 import Avatar2 from '../../../img/avatars/2.png';
 import Avatar3 from '../../../img/avatars/3.png';
 import Avatar4 from '../../../img/avatars/4.png';
@@ -21,20 +22,6 @@ const useStyles = makeStyles(theme => ({
 
 export const ChatList = () => {
     const classes = useStyles();
-    const [checked, setChecked] = React.useState([1]);
-
-    const handleToggle = value => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-
-        setChecked(newChecked);
-    };
 
     return (
         <div className="react-messenger__chatlist">
@@ -43,6 +30,7 @@ export const ChatList = () => {
 
                     const labelId = `checkbox-list-secondary-label-${value}`;
 
+                    // TODO
                     // const avatarSrc = 'Avatar' + (value + 1);
                     // console.log({avatarSrc});
 

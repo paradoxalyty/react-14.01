@@ -9,6 +9,6 @@ export const ChatForm = ({handleKeyUp, handleChange, handleButton, input}) => (
                input={input}/>
 
         <ButtonSend handleButton={handleButton}
-                input={input}/>
+                    input={input}/>
     </>
 );

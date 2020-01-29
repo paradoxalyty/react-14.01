@@ -10,10 +10,10 @@ export const Message = ({name, content}) => {
 
     return (
         <div className={classNames}
-             // style={{
-             //     alignSelf: name === 'bot' ?
-             //         'flex-end' : 'flex-start'
-             // }}
+            // style={{
+            //     alignSelf: name === 'bot' ?
+            //         'flex-end' : 'flex-start'
+            // }}
         >
 
             <div>{content}</div>

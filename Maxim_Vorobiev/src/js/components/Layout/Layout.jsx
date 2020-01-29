@@ -26,9 +26,11 @@ export const Layout = ({messages, handleKeyUp, handleChange, handleButton, input
     </>
 );
 
-Layout.propTypes = {
-    handleKeyUp: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    handleButton: PropTypes.func.isRequired,
-    input: PropTypes.string.isRequired,
-};
+// TODO - Спросить, где нужно проверять пропсы,
+//  в каждом компоненте, в родительском или последнем дочернем
+// Layout.propTypes = {
+//     handleKeyUp: PropTypes.func.isRequired,
+//     handleChange: PropTypes.func.isRequired,
+//     handleButton: PropTypes.func.isRequired,
+//     input: PropTypes.string.isRequired,
+// };
