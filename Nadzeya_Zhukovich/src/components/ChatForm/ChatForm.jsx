@@ -1,13 +1,9 @@
 import React, {useState, useRef, useEffect, Component} from "react";
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
-/**
- * Component for drawing a field with
- * a form for sending a new message
- * @param {String} message Message text
- * @param {String} name Sender name
- * @param {Function} onSentMessage Message handler
- */
+import './ChatForm.scss';
 
 // export class ChatForm extends React.Component {
 //     constructor(prop) {
@@ -61,19 +57,40 @@ export const ChatForm = ({ onSentMessage }) => {
        onSentMessage({name, content});
     };
 
-    return (<div>
-        <input value={name}
+    return (<div className={'chatForm'}>
+        <TextField value={name}
                type='text'
                onChange={({currentTarget: {value}}) => setName(value)}
+               label='Name'
+               variant='outlined'
+               className={'name-input'}
         />
-        <textarea value={content}
+        <TextField value={content}
                   onChange={({currentTarget: {value}}) => setContent(value)}
                   ref={textarea}
+                  multipline={'true'}
+                  rowsMax={'10'}
+                  variant='outlined'
+                  className={'textarea'}
+                  label='Massage'
+                  autoFocus
         />
-        <button onClick={handleClick}> Send </button>
+        <Button onClick={handleClick}
+                variant='contained'
+                color='primary'
+                className={'button'}
+        > Send </Button>
     </div>);
 };
 
 ChatForm.propTypes = {
     onSentMessage: PropTypes.func.isRequired
 };
+
+/**
+ * Component for drawing a field with
+ * a form for sending a new message
+ * @param {String} message Message text
+ * @param {String} name Sender name
+ * @param {Function} onSentMessage Message handler
+ */

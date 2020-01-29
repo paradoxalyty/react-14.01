@@ -3,13 +3,8 @@ import {Message} from "../Message/Message";
 import PropTypes from 'prop-types';
 import './MessageField.scss';
 
-/**
- * Component driving collection of message components
- * @param {Array} messages Array of objects
- */
-
 export const MessageField = ({ messages }) =>
-    (<div className={'message-field'}>
+    (<div className={'messageField'}>
         {messages.map((message, index) =>
         <Message {...message} key={index}/>)}
     </div>);
@@ -17,3 +12,8 @@ export const MessageField = ({ messages }) =>
 MessageField.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes))
 };
+
+/**
+ * Component driving collection of message components
+ * @param {Array} messages Array of objects
+ */
