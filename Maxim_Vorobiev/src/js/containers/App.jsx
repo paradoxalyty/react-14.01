@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {Layout} from '../components/Layout/Layout';
 
+const BOT_NAME = 'Bot';
+const USER_NAME = 'Me';
 const messages = [
-    {name: 'Me', content: 'Good afternoon!'},
-    {name: 'Me', content: 'How are you?'},
-    {name: 'Me', content: 'Can you help me please?'},
+    {name: USER_NAME, content: 'Good afternoon!'},
+    {name: USER_NAME, content: 'How are you?'},
+    {name: USER_NAME, content: 'Can you help me please?'},
 ];
-
 
 export class App extends Component {
     state = {
@@ -14,7 +15,6 @@ export class App extends Component {
         input: '',
     };
 
-// Add a new message
     sendMessage = (name, content) => {
         this.setState((state) => ({
             messages: [...state.messages, {name: name, content: content}],
@@ -22,15 +22,13 @@ export class App extends Component {
         }));
     };
 
-// Button send message handler
     handleButton = (message) => {
-        this.sendMessage('Me', message);
+        this.sendMessage(USER_NAME, message);
     };
 
-// Send message by Enter
     handleKeyUp = (e, message) => {
         if (e.keyCode === 13) {
-            this.sendMessage('Me', message);
+            this.sendMessage(USER_NAME, message);
         }
     };
 
@@ -41,9 +39,11 @@ export class App extends Component {
 
 // When the messages field is updated
     componentDidUpdate() {
-        if (this.state.messages[this.state.messages.length - 1].name !== 'bot') {
+        const lastMessage = this.state.messages[this.state.messages.length - 1];
+
+        if (lastMessage.name !== BOT_NAME) {
             setTimeout(() =>
-                    this.sendMessage('bot', 'I will be back in a minute!'),
+                    this.sendMessage(BOT_NAME, 'I will be back in a minute!'),
                 300);
         }
     }

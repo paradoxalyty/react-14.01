@@ -1,6 +1,16 @@
 import React, {Component} from 'react';
-import {TextField} from 'material-ui';
+import TextField from '@material-ui/core/TextField';
+import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            // width: 100,
+        },
+    },
+}));
 
 export class Input extends Component {
     constructor(props) {
@@ -14,21 +24,26 @@ export class Input extends Component {
         handleChange: PropTypes.func,
     };
 
-    componentDidMount() {
-        this.textInput.current.focus();
-    }
+    // componentDidMount() {
+    //     this.textInput.current.focus();
+    // }
+
+    // classes = useStyles();
 
     render() {
         return (
+            // <form className={this.classes.root} noValidate autoComplete="off">
             <TextField
                 name="input"
-                fullWidth={true}
-                hintText="Enter message..."
+                label="Enter your message..."
+                fullWidth
+                autoFocus
                 ref={this.textInput}
                 value={this.props.input}
                 onChange={this.props.handleChange}
                 onKeyUp={(e) => this.props.handleKeyUp(e, this.props.input)}
             />
+            // </form>
         )
     }
 }

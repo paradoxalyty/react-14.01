@@ -1,21 +1,29 @@
 import React from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import './Message.css';
 
-export const Message = ({name, content}) => (
-    <div className="react-messenger__message"
-         style={{
-             alignSelf: name === 'bot' ?
-                 'flex-end' : 'flex-start'
-         }}
-    >
+const BOT_NAME = 'Bot';
 
-        <div>{content}</div>
+export const Message = ({name, content}) => {
+    const classNames = classnames('react-messenger__message', {'react-messenger__message-bot': name === BOT_NAME});
 
-        <div className="react-messenger__message-name">
-            {name}
+    return (
+        <div className={classNames}
+             // style={{
+             //     alignSelf: name === 'bot' ?
+             //         'flex-end' : 'flex-start'
+             // }}
+        >
+
+            <div>{content}</div>
+
+            <div className="react-messenger__message-name">
+                {name}
+            </div>
         </div>
-    </div>
-);
+    )
+};
 
 Message.propTypes = {
     name: PropTypes.string.isRequired,

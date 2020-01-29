@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button} from '../Button/Button';
+import React from 'react';
+import {ButtonSend} from '../ButtonSend/ButtonSend';
 import {Input} from '../Input/Input';
 
 export const ChatForm = ({handleKeyUp, handleChange, handleButton, input}) => (
@@ -8,7 +8,7 @@ export const ChatForm = ({handleKeyUp, handleChange, handleButton, input}) => (
                handleChange={handleChange}
                input={input}/>
 
-        <Button handleButton={handleButton}
+        <ButtonSend handleButton={handleButton}
                 input={input}/>
     </>
 );

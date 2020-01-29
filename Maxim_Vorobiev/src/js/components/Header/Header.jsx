@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
+import './Header.css';
 
 export class Header extends Component {
     state = {
-        headerText: 'ReactJS Messenger',
+        headerText: 'ReactJS',
     };
 
     componentDidMount() {
         setTimeout(() => this.setState({
             'headerText':
-                this.state.headerText + ' by Maxim'
+                this.state.headerText + ' Messenger'
         }), 1400);
     }
 

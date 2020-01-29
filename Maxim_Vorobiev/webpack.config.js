@@ -2,10 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src', 'js', 'Messenger.jsx'),
+    entry: path.resolve(__dirname, 'src', 'js', 'index.jsx'),
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'Messenger.js'
+        filename: 'index.js'
     },
 
     module: {
@@ -28,8 +28,12 @@ module.exports = {
                 },
             },
             {
-              test: /\.css$/,
-              loader: 'style-loader!css-loader',
+                test: /\.css$/,
+                loader: 'style-loader!css-loader',
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                loader: 'url-loader',
             },
         ]
     },
