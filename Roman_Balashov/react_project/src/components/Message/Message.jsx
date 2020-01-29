@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../style'
+import './Message.css'
 
 export class Message extends Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import '../style';
+import './ChatForm.css';
 
 export class ChatForm extends Component {
     state = {

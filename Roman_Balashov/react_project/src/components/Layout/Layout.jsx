@@ -1,8 +1,8 @@
 import React from "react";
-import {ChatList} from "./ChatList";
-import {Header} from "./Header";
-import {Chat} from "./Chat";
-import '../style';
+import {ChatList} from "../ChatList/ChatList";
+import {Header} from "../Header/Header";
+import {Chat} from "../Chat/Chat";
+import './Layout.css';
 
 export class Layout extends React.Component {
     render() {

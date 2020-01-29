@@ -4,7 +4,7 @@ import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PersonIcon from '@material-ui/icons/Person';
-import '../style'
+import './ChatList.css'
 
 export class ChatList extends React.Component {
     render () {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { MessageField } from './MessageField';
-import { ChatForm } from './ChatForm';
-import '../style';
+import { MessageField } from '../MessageField/MessageField';
+import { ChatForm } from '../ChatForm/ChatForm';
+import './Chat.css';
 
 export class Chat extends Component {
     state = {

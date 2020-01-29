@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Message} from './Message';
-import '../style';
+import {Message} from '../Message/Message';
+import './MessageField.css';
 
 export class MessageField extends Component {
     constructor(props) {
