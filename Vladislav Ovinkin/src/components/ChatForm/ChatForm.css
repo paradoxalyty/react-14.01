@@ -1,12 +1,13 @@
 .chatForm {
+    margin: 10px 0 0;
     display: flex;
-    margin: 0 10%;
     justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }
 .chatFormUserName {
     width: 200px;
-    padding: 200px;
 }
 .chatFormTextMessage {
-    width: 500px;
+    width: 600px;
 }
