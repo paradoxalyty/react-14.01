@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 70%;
+    margin: 0;
+    background-color: aliceblue;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid darkgray;
+}
+
+.newMessageForm{
+    padding: 5px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
