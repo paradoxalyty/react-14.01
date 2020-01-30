@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import { ChatContainer } from "./ChatContainer";
-import { Header } from "../components/Header/Header";
+import { Layout } from "../components/Layout/Layout";
 
 export class App extends Component {
   render() {
-    return (
-      <div>
-        <Header />
-        <ChatContainer />
-      </div>
-    );
+    return <Layout />;
   }
 }
