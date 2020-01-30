@@ -17,10 +17,11 @@ export class ChatContainer extends React.Component {
                 {userMessage: 'Bye', answer: 'Bye!'},
             ]
         }
+        this.timeoutState;
     }
 
     componentDidUpdate() {
-        setTimeout(() => {
+        this.timeoutState = setTimeout(() => {
             const lastMessage = this.state.messages[this.state.messages.length -1];
             if(lastMessage.name !== ROBOT_NAME) {
                 const lastUserAnswer = lastMessage.content;
@@ -28,6 +29,10 @@ export class ChatContainer extends React.Component {
                 this.handleSentMessage({name: ROBOT_NAME, content: robotAnswer})
             }
         }, 2000);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timeoutState);
     }
 
     handleSentMessage(message) {
