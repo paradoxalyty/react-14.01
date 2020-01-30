@@ -1,17 +1,10 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-//import App from "./components/App";
-//import { Trigger } from "./components/Trigger";
-
-import { MessageField } from "./components/MessageField";
-
-
+import { Layout } from "./components/Layout";
 
 
 ReactDom.render(
-    //<App/>,
-    //<Trigger/>,
-    <MessageField/>,
+        <Layout/>,
     document.getElementById('root'),
 );

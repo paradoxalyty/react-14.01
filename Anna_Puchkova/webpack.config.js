@@ -25,11 +25,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
-                  MiniCssExtractPlugin.loader,
-                  'css-loader',
-                  'postcss-loader',
-                ],
+                loader: 'style-loader!css-loader',
               },
               {
                 test: /\.(gif|png|jpe?g)$/,
@@ -42,11 +38,7 @@ module.exports = {
                     }
                   }
                 ]
-              },
-              {
-                test:/\.(s*)css$/,
-                use:['style-loader','css-loader', 'sass-loader']
-              }       
+              }      
         ],
     },
     resolve: {
