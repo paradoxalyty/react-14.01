@@ -8,24 +8,19 @@ const messages = [
     {name: "Ivan", content: "Im fine!"}
 ]
 
-const Message = ({name, content}) => <div><strong>{name}:</strong> {content}</div>;
-
-function MessageList({messages}) {
-    return messages.map((message) => <Message name={message.name} content={message.content}/>)
-}
-
-ReactDom.render(<MessageList messages={messages}/>, document.getElementById("root"));
 
 
+// *** Компоненты с логикой = контейнеры - оборачивают, содержат "глупые компоненты" ***
+// *** Компоненты с версткой = "глупые компоненты" ***
 
 
 //const root = docuument.getElementById("root");
 //console.warn("Привет! Сейчас",(new Date).valueOf());
 */
 
-import {Counter} from "./components/Counter";
-import { App } from "./components/App";
-import MessageField from "./components/MessageField";
+//import {Counter} from "./components/Counter";
+import { App } from "./containers/App";
+//import MessageField from "./components/MessageField/MessageField";
 
 //ReactDom.render(<App />, document.getElementById("root"));
-ReactDom.render(<MessageField />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById("root"));
