@@ -4,11 +4,21 @@ import { Chat } from '../components/Chat/Chat';
 const robotName = 'Robot';
 export class ChatContainer extends Component {
     state = {
-        messages: [
-            {name: "Ivan", content: "Hello!"},
-            {name: "Oleg", content: "Hi! How are you?"},
-            {name: "Ivan", content: "Im fine!"}
-        ],
+        chats: {
+            1: {  // Продолжаем делать чаты
+                id: 1,
+                name: 'Chat 1', 
+                messages: [
+                    {name: "Ivan", content: "Hello!"},
+                    {name: "Oleg", content: "Hi! How are you?"},
+                    {name: "Ivan", content: "Im fine!"}
+                ],
+            }
+        }
+    }
+
+    componentDidMount(){
+
     }
 
     componentDidUpdate() {
@@ -26,6 +36,7 @@ export class ChatContainer extends Component {
 
     render () {
         const {messages} = this.state;
+        console.log(this.props)
         
         return <Chat {...{messages, onSendMessage: this.hendleSendMessage}}/>
     }
