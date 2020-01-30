@@ -20,14 +20,14 @@ export class ChatContainer extends React.Component {
     }
 
     componentDidUpdate() {
-        const lastMessage = this.state.messages[this.state.messages.length -1];
-        if(lastMessage.name !== ROBOT_NAME) {
-            setTimeout(() => {
+        setTimeout(() => {
+            const lastMessage = this.state.messages[this.state.messages.length -1];
+            if(lastMessage.name !== ROBOT_NAME) {
                 const lastUserAnswer = lastMessage.content;
                 const robotAnswer = this.robotAnswer(lastUserAnswer, 'I do not understand you.');
                 this.handleSentMessage({name: ROBOT_NAME, content: robotAnswer})
-            }, 2000);
-        }
+            }
+        }, 2000);
     }
 
     handleSentMessage(message) {
