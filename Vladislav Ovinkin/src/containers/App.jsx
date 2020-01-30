@@ -1,10 +1,39 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Layout } from '../components/Layout/Layout';
 
 export class App extends Component {
+    state = {
+        chats : {
+            1: {
+                name: 'Anna',
+                messages: [
+                    {name: "chatBot", content: "Hello!"},
+                    {name: "Anna", content: "Hi! How are you?"},
+                    {name: "chatBot", content: "I am well!"},
+                ],
+            },
+            2: {
+                name: 'Elena',
+                messages: [
+                    {name: "chatBot", content: "Hello!"},
+                    {name: "Elena", content: "Hi! It's interesting to talking with robot for me)"},
+                ],
+            },
+            3: {
+                name: 'Olga',
+                messages: [],
+            },
+        },
+        currentChatId: 1,
+    }
+    handleChatChange = (newId) => {
+        this.setState (() => ({currentChatId: newId}));
+    }
     render () {
+        const {chats} = this.state;
+        const {currentChatId} = this.state;
         return (
-            <Layout />
+            <Layout {...{chatList: chats, activeChatId: currentChatId, onChatChange: this.handleChatChange}} />
         );
     };
 }

@@ -5,12 +5,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import './ChatList.css'
 
 
-export const ChatList = () => {
+export const ChatList = ({chatList, onChatChange}) => {
     // const [selectedIndex, setSelectedIndex] = React.useState(0); // подсветка в списке чата 1
     const [selectedIndex, setSelectedIndex] = React.useState(); // нет подсветки
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
+        onChatChange (index+1);
     }
 
     function ListItemLink(props) {
@@ -19,7 +20,15 @@ export const ChatList = () => {
 
     return (<div className="chatList">
         <List component="nav">
-            <ListItemLink 
+            {Object.keys (chatList).map (id => 
+                <ListItemLink key={id}
+                selected={"{" + selectedIndex === (id-1) + "}"}
+                onClick={"{ event => handleListItemClick (event," + (id-1)}
+                href={"/chats/" + id}> 
+                    <ListItemText primary={chatList[id].name} />
+                </ListItemLink>)
+            }       
+            {/* <ListItemLink 
             selected={selectedIndex === 0}
             onClick={event => handleListItemClick(event, 0)}
             href="/chats/1">
@@ -36,7 +45,7 @@ export const ChatList = () => {
             onClick={event => handleListItemClick(event, 2)}
             href="/chats/3">
                 <ListItemText primary="Olga" />
-            </ListItemLink>
+            </ListItemLink> */}
         </List>
     </div>);
 }

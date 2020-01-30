@@ -4,30 +4,12 @@ import { Chat } from '../components/Chat/Chat'
 const BOT_NAME = "chatBot";
 
 export class ChatContainer extends Component {
-    state = {
-        chats : {
-            1: {
-                name: 'Anna',
-                messages: [
-                    {name: "Robot", content: "Hello!"},
-                    {name: "Anna", content: "Hi! How are you?"},
-                    {name: "Robot", content: "I am well!"},
-                ],
-            },
-            2: {
-                name: 'Elena',
-                messages: [
-                    {name: "Robot", content: "Hello!"},
-                    {name: "Elena", content: "Hi! It's interesting to talking with robot for me)"},
-                ],
-            },
-            3: {
-                name: 'Olga',
-                messages: [],
-            },
-        }
-    }
+
     timer = null;
+
+    componentDidMount () {
+        // console.log (this.props);
+    }
 
     componentDidUpdate () {
         // clearTimeout (this.timer);
@@ -51,7 +33,7 @@ export class ChatContainer extends Component {
     }
 
     render () {
-        const {chats} = this.state;
+        const {chats} = this.props;
         const {id} = this.props.match.params;
         if (id) {
             return <Chat {...{messages: chats[id].messages, onSendMessage: this.handleSendMessage}} />
