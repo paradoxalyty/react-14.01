@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Message.sass';
+
 export const Message = ({ name, content }) =>
     (<div className='Message'>
 

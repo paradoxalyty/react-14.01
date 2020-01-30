@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Chat } from '../components/Chat/Chat.jsx'
+import { Layout } from '../components/Layout/Layout.jsx';
+//import { Chat } from '../components/Chat/Chat.jsx'
 
 export class ChatContainer extends Component {
     state = {
@@ -18,19 +19,23 @@ export class ChatContainer extends Component {
     }
 
     componentDidUpdate(){
-
+        clearInterval(this.timerId);
         if (this.state.messages[this.state.messages.length-1].name != 'Robot' ){
-            setTimeout(()=>
+            this.timerId=setTimeout(()=>
                 this.handleSendMessage({name: 'Robot', content: 'dont touch me' }),2000);
+                console.log(this.timerId)
         } else {
             var classrobot = document.getElementsByClassName('Message')[document.getElementsByClassName('Message').length-1];
             classrobot.className =  classrobot.className + ' Robot';
+            
+            
         }
     }
+
 
     render () {
         const {messages} = this.state;
 
-        return <Chat {...{messages, onSendMessage: this.handleSendMessage}} />
+        return <Layout {...{messages, onSendMessage: this.handleSendMessage}} />
     }
 }

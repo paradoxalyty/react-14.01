@@ -4,8 +4,9 @@ import { MessageField } from '../MessageField/MessageField.jsx';
 import { Message } from '../Message/Message.jsx';
 import { ChatForm } from '../ChatForm/ChatForm.jsx';
 
-export const Chat = ({ messages, message, name, onSendMessage }) =>
-    (<div>
+
+export const Chat = ({ messages, onSendMessage }) =>
+    (<div className="Chat">
         <MessageField messages={messages} />
         <ChatForm onSendMessage={onSendMessage} />
     </div>);
