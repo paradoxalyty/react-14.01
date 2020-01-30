@@ -45,16 +45,18 @@ import './ChatForm.scss';
 //     }
 // }
 export const ChatForm = ({ onSentMessage }) => {
-    const [name, setName] = useState('User');
-    const [content, setContent] = useState('My message');
-    const textarea = useRef();
+    const [name, setName] = useState('Mi');
+    const [content, setContent] = useState('');
 
-    useEffect(() => {
-        textarea.current.focus();
-    }, []);
+    const handleKeyUp = (event) => {
+        if(event.keyCode === 13) {
+            handleSendClick();
+        }
+    }
 
-    const handleClick = () => {
-       onSentMessage({name, content});
+    const handleSendClick = () => {
+            onSentMessage({name, content});
+            setContent('');
     };
 
     return (<div className={'chatForm'}>
@@ -67,15 +69,15 @@ export const ChatForm = ({ onSentMessage }) => {
         />
         <TextField value={content}
                   onChange={({currentTarget: {value}}) => setContent(value)}
-                  ref={textarea}
                   multipline={'true'}
                   rowsMax={'10'}
                   variant='outlined'
                   className={'textarea'}
                   label='Massage'
                   autoFocus
+                  onKeyUp={handleKeyUp}
         />
-        <Button onClick={handleClick}
+        <Button onClick={handleSendClick}
                 variant='contained'
                 color='primary'
                 className={'button'}
