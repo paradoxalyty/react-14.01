@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 /**
@@ -7,6 +7,9 @@ import PropTypes from 'prop-types';
  * @param {string} name Имя отправителя
  * @param {function} onSendMessage Обработчик отправки нового сообщения
  */
+
+ /*
+//***Компонент написан на классах
 
 export class ChatForm extends React.Component {
     state = {
@@ -34,16 +37,30 @@ export class ChatForm extends React.Component {
         )
     }
 }
-
- /*
-export const ChatForm = ({onSendMessage}) =>
-    (<div>
-        <input value={name} type="text"></input>
-        <textarea value={message} />
-        <button>Отправить</button>
-    </div>);
 */
 
-ChatForm.PropTypes = {
+ //***Компонент на хуках
+export const ChatForm = ({onSendMessage}) => {
+    const [name, setName] = useState ('User');
+    const [content, setContent] = useState ('My hook message');
+    const textarea = useRef();
+
+    useEffect(() => {
+        textarea.current.focus();
+    }, [])
+
+    const handleClick = () => {
+        onSendMessage({name, content});
+    }
+
+    return (<div>
+        <input value={name} onChange={({currentTarget: {value}}) => setName(value)}  type="text" />
+        <textarea value={content} onChange={({currentTarget: {value}}) => setContent(value)} ref={textarea} />
+        <button onClick={handleClick}>Отправить</button>
+    </div>);
+}
+
+
+ChatForm.propTypes = {
     onSendMessage: PropTypes.func.isRequired
 }

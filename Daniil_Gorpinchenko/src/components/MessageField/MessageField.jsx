@@ -6,6 +6,6 @@ import {Message} from '../Message/Message';
 export const MessageField = ({messages}) => 
     (messages.map((message, index) => <Message {...message} key={index}/>));
 
-MessageField.PropTypes = {
+MessageField.propTypes = {
         messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes))
     }

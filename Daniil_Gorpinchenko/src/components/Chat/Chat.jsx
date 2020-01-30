@@ -10,7 +10,7 @@ export const Chat = ({messages, message, name, onSendMessage}) =>
     <ChatForm onSendMessage={onSendMessage}/>
 </div>);
 
-Chat.PropTypes = {
+Chat.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
     onSendMessage: PropTypes.func.isRequired
 }

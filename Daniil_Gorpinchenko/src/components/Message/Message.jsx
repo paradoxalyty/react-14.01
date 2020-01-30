@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const Message = ({name, content}) => 
     <div><strong>{name}:</strong> {content}</div>;
 
-Message.PropTypes = {
+Message.propTypes = {
     name: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
 }
