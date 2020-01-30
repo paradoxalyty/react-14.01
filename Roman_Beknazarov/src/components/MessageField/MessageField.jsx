@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { TextField, FloatingActionButton } from 'material-ui';
+import TextField from '@material-ui/core/TextField';
+import { FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
-import { Message } from './Message';
-import '../styles/styles.css';
+import { Message } from '../Message/Message';
+import './MessageField.css';
 
 export class MessageField extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ export class MessageField extends Component {
         this.textInput.current.focus();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.messages[this.state.messages.length - 1].sender === 'me') {
             setTimeout(() =>
                 this.setState({
@@ -72,8 +73,7 @@ export class MessageField extends Component {
                     ref={this.textInput}
                     name="input"
                     fullWidth={true}
-                    hintText="Your message"
-                    style={{fontSize: '22px'}}
+                    hinttext="Your message"
                     onChange={this.handleChange}
                     value={this.state.input}
                     onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}

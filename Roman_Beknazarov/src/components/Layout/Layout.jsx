@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { MessageField } from "./MessageField";
-import { Header } from "./Header";
-import { ChatList } from "./ChatList";
+import { MessageField } from "../MessageField/MessageField";
+import { Header } from "../Header/Header";
+import { ChatList } from "../ChatList/ChatList";
+
+import './Layout.css';
 
 export class Layout extends Component {
 
