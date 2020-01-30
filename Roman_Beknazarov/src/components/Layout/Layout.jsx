@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { MessageField } from "../MessageField/MessageField";
@@ -7,9 +7,8 @@ import { ChatList } from "../ChatList/ChatList";
 
 import './Layout.css';
 
-export class Layout extends Component {
+export const Layout = () => {
 
-    render() {
         return (
             <MuiThemeProvider>
                 <div className="layout">
@@ -21,5 +20,4 @@ export class Layout extends Component {
                 </div>
             </MuiThemeProvider>
         );
-    }
-}
+};

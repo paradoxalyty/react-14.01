@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
-import { FloatingActionButton } from 'material-ui';
+import Fab from "@material-ui/core/Fab";
 import SendIcon from 'material-ui/svg-icons/content/send';
 import { Message } from '../Message/Message';
 import './MessageField.css';
 
 export class MessageField extends Component {
-    constructor(props) {
-        super(props);
-        // создадим ref в поле `textInput` для хранения DOM-элемента
-        this.textInput = React.createRef();
-    }
 
     state = {
         messages: [
@@ -19,11 +14,6 @@ export class MessageField extends Component {
         ],
         input: '',
     };
-
-    // Ставим фокус на <input> при монтировании компонента
-    componentDidMount() {
-        this.textInput.current.focus();
-    }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.messages[this.state.messages.length - 1].sender === 'me') {
@@ -70,18 +60,18 @@ export class MessageField extends Component {
 
             <div className="user-message" >
                 <TextField
-                    ref={this.textInput}
                     name="input"
                     fullWidth={true}
-                    hinttext="Your message"
+                    label="Your message"
+                    autoFocus
                     onChange={this.handleChange}
                     value={this.state.input}
                     onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}
                 />
 
-                <FloatingActionButton onClick={() => this.handleClick(this.state.input)}>
+                <Fab onClick={() => this.handleClick(this.state.input)}>
                     <SendIcon/>
-                </FloatingActionButton>
+                </Fab>
 
             </div>
         </div>
