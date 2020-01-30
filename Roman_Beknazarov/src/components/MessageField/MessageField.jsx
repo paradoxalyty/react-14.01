@@ -15,15 +15,17 @@ export class MessageField extends Component {
         input: '',
     };
 
+    componentDidMount() {
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.messages[this.state.messages.length - 1].sender === 'me') {
-            setTimeout(() =>
-                this.setState({
-                    'messages': [...this.state.messages, {
-                        text: "Don't bother me I'm a robot",
-                        sender: 'bot'
-                    }]
-                }), 1500);
+            this.setState({
+                messages: [...this.state.messages, {
+                    text: "Don't bother me I'm a robot",
+                    sender: 'bot'
+                }]
+            })
         }
     }
 
