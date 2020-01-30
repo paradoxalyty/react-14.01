@@ -11,19 +11,32 @@ export class ChatContainer extends React.Component {
                 {name: 'Oleg', content: 'Hi!'},
                 {name: 'Ivan', content: 'Bye!'},
             ],
+            dictionary: [
+                {userMessage: 'Hello', answer: 'Hi! How are you?'},
+                {userMessage: 'Ok', answer: 'It is great!'},
+                {userMessage: 'Bye', answer: 'Bye!'},
+            ]
         }
     }
 
     componentDidUpdate() {
         const lastMessage = this.state.messages[this.state.messages.length -1];
         if(lastMessage.name !== ROBOT_NAME) {
-            setTimeout(() => this.handleSentMessage({name: ROBOT_NAME, content: 'Hi I am robot!'}), 3000)
-
+            setTimeout(() => {
+                const lastUserAnswer = lastMessage.content;
+                const robotAnswer = this.robotAnswer(lastUserAnswer, 'I do not understand you.');
+                this.handleSentMessage({name: ROBOT_NAME, content: robotAnswer})
+            }, 2000);
         }
     }
 
     handleSentMessage(message) {
         this.setState((state) => ({messages: [...state.messages, message]}))
+    }
+
+    robotAnswer(userMessage, defaultMessage) {
+        const robotAnswer = this.state.dictionary.filter(data => data.userMessage.toLowerCase() === userMessage.toLowerCase());
+        return robotAnswer.length > 0 ? robotAnswer[0].answer : defaultMessage;
     }
 
     render() {
