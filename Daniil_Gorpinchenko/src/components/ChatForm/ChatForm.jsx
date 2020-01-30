@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 /**
  * Комонент по отрисовке поля с формой отправки нового сообщения
@@ -7,6 +9,9 @@ import PropTypes from 'prop-types';
  * @param {string} name Имя отправителя
  * @param {function} onSendMessage Обработчик отправки нового сообщения
  */
+
+ /*
+//***Компонент написан на классах
 
 export class ChatForm extends React.Component {
     state = {
@@ -34,16 +39,30 @@ export class ChatForm extends React.Component {
         )
     }
 }
-
- /*
-export const ChatForm = ({onSendMessage}) =>
-    (<div>
-        <input value={name} type="text"></input>
-        <textarea value={message} />
-        <button>Отправить</button>
-    </div>);
 */
 
-ChatForm.PropTypes = {
+ //***Компонент на хуках
+export const ChatForm = ({onSendMessage}) => {
+    const [name, setName] = useState ('User');
+    const [content, setContent] = useState ('My hook message');
+    // const textarea = useRef();
+    
+    // useEffect(() => {
+    //    textarea.current.focus();
+    // }, [])
+
+    const handleClick = () => {
+        onSendMessage({name, content});
+    }
+
+    return (<div>
+        <TextField label="Автор" variant="outlined" value={name} onChange={({currentTarget: {value}}) => setName(value)}  type="text" />
+        <TextField label="Вещает" variant="outlined" multiline autoFocus value={content} onChange={({currentTarget: {value}}) => setContent(value)} /*ref={textarea}*/ />
+        <Button onClick={handleClick} variant="contained" color="primary">Отправить</Button>
+    </div>);
+}
+
+
+ChatForm.propTypes = {
     onSendMessage: PropTypes.func.isRequired
 }

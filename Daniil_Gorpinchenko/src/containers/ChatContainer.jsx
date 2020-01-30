@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Chat } from '../components/Chat/Chat';
 
+const robotName = 'Robot';
 export class ChatContainer extends Component {
     state = {
         messages: [
@@ -8,6 +9,14 @@ export class ChatContainer extends Component {
             {name: "Oleg", content: "Hi! How are you?"},
             {name: "Ivan", content: "Im fine!"}
         ],
+    }
+
+    componentDidUpdate() {
+        const lastMessage = this.state.messages[this.state.messages.length-1];
+
+        if(lastMessage.name !== robotName){
+            setTimeout(() => this.hendleSendMessage({name: robotName, content: "Hi, I'm Robot!"}), 2000);
+        }
     }
 
     hendleSendMessage = (message) =>{
