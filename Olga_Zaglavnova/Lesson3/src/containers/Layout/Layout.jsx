@@ -78,11 +78,17 @@ export class Layout extends Component{
     };
     addChat =(newUserName)=> {
         console.log(newUserName);
-        this.setState(this.state.chats[newUserName]={name: newUserName, 
-                      messages: [],
-                      userAvatar: "/src/components/ChatList/img/chatList_icon.png"
-                    }
-        ); 
+        
+        const newChats = {...this.state.chats, newUserName: {name: newUserName, 
+                          messages: [],
+                          userAvatar: "/src/components/ChatList/img/chatList_icon.png"
+                        }
+                    };
+        
+        this.setState({
+            chats: newChats
+        });
+        
         console.log(this.state.chats);
     };
     render(){
@@ -94,12 +100,12 @@ export class Layout extends Component{
                         <Route exact path="/">
                             <Header />
                             <div className="Layout__index">
-                            It's index
+                                Welcome to my first ReactJS chat
                             </div>
                         </Route>
                         <Route exact path="/chats/add" render={(props) => (
                             <>
-                            <Header />
+                            <Header id="Добавление нового чата"/>
                             <AddChat id="" chatKeys={Object.keys(this.state.chats)} addNewChat={this.addChat} />
                             </>)} />
                         <Route path="/chats/:id" render={(props) => (

@@ -14,7 +14,11 @@ export const Header =({id, chat}) => {
                         <div className="Header__name">{chat.name}</div>
                     </div>
                 </Link> )
-    }else{
+    } else if (id && !chat){
+        return (<div className="Header">
+            <div className="Header__name">{id}</div>
+        </div>)
+    } else{
         return (<div className="Header"></div>)
     }
 };

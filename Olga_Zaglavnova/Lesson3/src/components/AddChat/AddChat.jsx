@@ -22,11 +22,13 @@ export const AddChat =({id, chatKeys, addNewChat}) => {
             <div className="AddChat">
                 <h3>{name}</h3>
                 <Avatar alt={name} src={userAvatar} className="Header__avatar"/>
+                <form onSubmit={AddNewChatItem}>
                 <label>
                     Имя:
-                    <input type="text" value={name} onChange={({currentTarget: {value}})=>setName(value)} />
+                    <input type="text" className="AddChat_nameInput" value={name} onChange={({currentTarget: {value}})=>setName(value)} />
                 </label>
                 <p>{userExists}</p>
-                <button className="AddChat__btn" onClick={AddNewChatItem}>Добавить</button>
+                <input type="submit" className="AddChat__btn" value="Добавить" />
+                </form>
             </div> );
 };
