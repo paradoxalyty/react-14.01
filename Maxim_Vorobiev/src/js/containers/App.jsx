@@ -3,32 +3,62 @@ import {Layout} from '../components/Layout/Layout';
 
 const BOT_NAME = 'Bot';
 const USER_NAME = 'Me';
-const messages = [
-    {name: USER_NAME, content: 'Good afternoon!'},
-    {name: USER_NAME, content: 'How are you?'},
-    {name: USER_NAME, content: 'Can you help me please?'},
-];
+
+const chats = {
+    1: {title: 'Chat 1', messageList: [1]},
+    2: {title: 'Chat 2', messageList: [2]},
+    3: {title: 'Chat 3', messageList: [3]},
+};
+
+const messages = {
+    1: {name: USER_NAME, content: 'Good afternoon!'},
+    2: {name: USER_NAME, content: 'How are you?'},
+    3: {name: USER_NAME, content: 'Can you help me please?'},
+};
 
 export class App extends Component {
     state = {
+        chats: chats,
         messages: messages,
         input: '',
     };
 
+    // sendMessage = (name, content) => {
+    //     this.setState((state) => ({
+    //         messages: [...state.messages, {name: name, content: content}],
+    //         input: '',
+    //     }));
+    // };
+
     sendMessage = (name, content) => {
-        this.setState((state) => ({
-            messages: [...state.messages, {name: name, content: content}],
-            input: '',
-        }));
+        const {messages, chats, input} = this.state;
+        const {chatId} = this.props;
+
+        if (input.length > 0 || name === BOT_NAME) {
+            const messageId = Object.keys(messages).length + 1;
+            this.setState({
+                messages: {...messages, [messageId]: {content: content, name: name}},
+                chats: {
+                    ...chats, [chatId]: {
+                        ...chats[chatId], messageList: [...chats[chatId]['messageList'], messageId]
+                    }
+                },
+
+            })
+        }
+
+        if (name === USER_NAME) {
+            this.setState({input: ''})
+        }
     };
 
     handleButton = (message) => {
         this.sendMessage(USER_NAME, message);
     };
 
-    handleKeyUp = (e, message) => {
+    handleKeyUp = (e) => {
         if (e.keyCode === 13) {
-            this.sendMessage(USER_NAME, message);
+            this.sendMessage(USER_NAME, this.state.input);
         }
     };
 
@@ -38,10 +68,12 @@ export class App extends Component {
     };
 
 // When the messages field is updated
-    componentDidUpdate() {
-        const lastMessage = this.state.messages[this.state.messages.length - 1];
+    componentDidUpdate(prevProps, prevState) {
+        const {messages} = this.state;
+        const lastMessage = Object.values(messages)[Object.values(messages).length - 1];
 
-        if (lastMessage.name !== BOT_NAME) {
+        if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
+            lastMessage.name !== BOT_NAME) {
             setTimeout(() =>
                     this.sendMessage(BOT_NAME, 'I will be back in a minute!'),
                 300);
@@ -49,14 +81,16 @@ export class App extends Component {
     }
 
     render() {
-        const {messages} = this.state;
-        const {input} = this.state;
+        const {messages, chats, input} = this.state;
+        const {chatId} = this.props;
 
         return <Layout messages={messages}
                        input={input}
                        handleButton={this.handleButton}
                        handleChange={this.handleChange}
                        handleKeyUp={this.handleKeyUp}
+                       chatId={chatId}
+                       chats={chats}
         />;
     }
 }

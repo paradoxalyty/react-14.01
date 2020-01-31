@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './Header.css';
 
 export class Header extends Component {
     state = {
         headerText: 'ReactJS',
+    };
+
+    static propTypes = {
+        chatId: PropTypes.number,
+    };
+
+    static defaultProps = {
+        chatId: 1,
     };
 
     componentDidMount() {
@@ -14,6 +23,11 @@ export class Header extends Component {
     }
 
     render() {
-        return <h1 className="react-messenger__header" style={{textAlign: 'center'}}>{this.state.headerText}</h1>;
+        return (
+            <>
+                <h1 className="react-messenger__header">{this.state.headerText}</h1>
+                <h2 className="react-messenger__subheader">Chat {this.props.chatId}</h2>
+            </>
+        );
     }
 }

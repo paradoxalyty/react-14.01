@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,7 +10,6 @@ import Avatar1 from '../../../img/avatars/1.png';
 // TODO
 import Avatar2 from '../../../img/avatars/2.png';
 import Avatar3 from '../../../img/avatars/3.png';
-import Avatar4 from '../../../img/avatars/4.png';
 import './ChatList.css';
 
 const useStyles = makeStyles(theme => ({
@@ -26,7 +26,7 @@ export const ChatList = () => {
     return (
         <div className="react-messenger__chatlist">
             <List dense className={classes.root}>
-                {[0, 1, 2, 3].map(value => {
+                {[0, 1, 2].map(value => {
 
                     const labelId = `checkbox-list-secondary-label-${value}`;
 
@@ -35,17 +35,19 @@ export const ChatList = () => {
                     // console.log({avatarSrc});
 
                     return (
-                        <ListItem key={value} button>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt={`Avatar ${value + 1}`}
-                                    // src={`/dist/img/avatars/${value + 1}.png`}
-                                    src={Avatar1}
-                                />
-                            </ListItemAvatar>
+                        <Link className="react-messenger__chatlist-link" key={value} to={`/chat/${value + 1}/`}>
+                            <ListItem button>
+                                <ListItemAvatar>
+                                    <Avatar
+                                        alt={`Avatar ${value + 1}`}
+                                        // src={`/dist/img/avatars/${value + 1}.png`}
+                                        src={Avatar1}
+                                    />
+                                </ListItemAvatar>
 
-                            <ListItemText id={labelId} primary={`User ${value + 1}`}/>
-                        </ListItem>
+                                <ListItemText id={labelId} primary={`User ${value + 1}`}/>
+                            </ListItem>
+                        </Link>
                     );
                 })}
             </List>
