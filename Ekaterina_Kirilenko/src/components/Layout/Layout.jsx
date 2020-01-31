@@ -21,7 +21,6 @@ export class Layout extends Component {
               <Route path="/home">It's home</Route>
               <Route path="/">It's 404</Route>
             </Switch>
-            {/* <ChatContainer /> */}
           </div>
         </Container>
       </BrowserRouter>
