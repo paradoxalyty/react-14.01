@@ -22,7 +22,7 @@ module.exports = {
       {
         test: /\.css$/,
         loader: "style-loader!css-loader"
-      },
+      }
     ]
   },
   plugins: [
@@ -32,5 +32,9 @@ module.exports = {
   ],
   resolve: {
     extensions: [".jsx", ".js"]
-  }
+  },
+  devServer: {
+    historyApiFallback: true
+  },
+  devtool: "inline-source-map",
 };

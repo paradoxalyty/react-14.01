@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { MessageField } from '../MessageField/MessageField';
 import { Message } from '../Message/Message';
 import { ChatForm } from '../ChatForm/ChatForm';
+import "./Chat.css";
 
 
 export const Chat = ({ messages, message, author, onSendMessage }) => (
-  <div>
+  <div className="chat">
     <MessageField messages={messages}/>
     <ChatForm onSendMessage={onSendMessage} />
     {/* <ChatForm {...{ message, name, onSendMessage }} /> */}
