@@ -16,6 +16,9 @@ export class Router extends Component {
                     />
                     }
                 />
+                <Route path="/">
+                    404 Error. The page you are looking for is not found.
+                </Route>
             </Switch>
         )
     }
