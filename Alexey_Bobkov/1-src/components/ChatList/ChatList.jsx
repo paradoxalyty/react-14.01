@@ -5,20 +5,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
 import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
-//import InboxIcon from '@material-ui/icons/Inbox';
+import {Link} from 'react-router-dom';
+
 export const ChatList = () =>
     (<div className='ChatList'>
     
 <List>
-    <ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 1</ListItem>
+    <Link to='/chats/1'><ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 1</ListItem></Link>
     <Divider />
-    <ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 2</ListItem>
+    <Link to='/chats/2'><ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 2</ListItem></Link>
     <Divider />
-    <ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 3</ListItem>
+    <Link to='/chats/3'><ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 3</ListItem></Link>
     <Divider />
-    <ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 4</ListItem>
+    <Link to='/chats/4'><ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 4</ListItem></Link>
     <Divider />
-    <ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 5</ListItem>
+    <Link to='/chats/5'><ListItem><ListItemIcon><ChatBubbleOutlineOutlinedIcon></ChatBubbleOutlineOutlinedIcon></ListItemIcon>Чат 5</ListItem></Link>
 </List>
 
         </div>);
