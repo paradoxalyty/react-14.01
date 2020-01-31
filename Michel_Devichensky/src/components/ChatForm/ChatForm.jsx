@@ -11,8 +11,17 @@ import PropTypes from 'prop-types';
  */
 export class ChatForm extends Component {
     state = {
-        name: '',
-        content: '',
+        chats: {
+            ' ': {
+                name: ' ',
+                messages: [
+                    {
+                        name: " ",
+                        content: " " 
+                    }              
+                ]
+            },
+        }  
     }
     textarea = React.createRef();
     componentDidMount() {
@@ -23,17 +32,15 @@ export class ChatForm extends Component {
      */
     hendleInput = ({currentTarget: {value, name}}) => {
         this.setState(()=>({[name]: value}))
-        console.log(value);
-        console.log(name);
     }
     
     handleClick = () => {
-        const { name, content } = this.state
-        this.props.onSendMessage( {name, content} )
+        const { name, content, } = this.state
+        this.props.onSendMessage( { name, content } )
     }
     
     render() {
-        const { placeholderName, placeholderMessage } = this.props
+        const { placeholderName, placeholderMessage, placeholderAddChat } = this.props
         return(
             <div className="ChatForm">
                 <input 
@@ -56,6 +63,18 @@ export class ChatForm extends Component {
                     className="button"
                     onClick={this.handleClick}
                 >Отправить</button>
+                <input 
+                    className="ChatForm-input"
+                    name="Chat"
+                    onChange={this.hendleInput}
+                    placeholder={placeholderAddChat}
+                    type="text" 
+                    value={this.state.name} 
+                />
+                <button 
+                    className="button"
+                    onClick={this.handleClick}
+                >Добавить чат</button>
             </div> 
         )
     }
