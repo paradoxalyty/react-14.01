@@ -18,7 +18,7 @@ export class App extends Component {
                 It's home...
             </Route>
             <Route path="/">
-                It's 404...( !
+               It's index!
             </Route>
         </Switch>
             </BrowserRouter>
