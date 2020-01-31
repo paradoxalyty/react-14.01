@@ -1,7 +1,8 @@
 import React, {useState, useRef, useEffect} from "react"
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField'
+
 
 /**
  * Компонент по отрисовке поля с формой отправки нового сообщения 
@@ -29,7 +30,7 @@ import TextField from '@material-ui/core/TextField';
 // }
 
 export const ChatForm = ({ sendMessage }) => { 
-    const [text, setText] = useState ('')
+    const [text, setText] = useState ('User')
     const [content, setContent] = useState ('')
     //const textarea = useRef ()
 
@@ -39,6 +40,7 @@ export const ChatForm = ({ sendMessage }) => {
 
     const handleClick = () => {
         sendMessage ({ text, content })
+        setContent('')
     }
 
     const handleKeyUp = (event) => {
