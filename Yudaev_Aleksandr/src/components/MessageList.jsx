@@ -4,7 +4,7 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 import {blue500} from 'material-ui/styles/colors';
 import Message from "./Message";
 import '../styles/styles.css';
-
+//ветка под дз4
 export default class MessageList extends React.Component {
     constructor(props) {
         super(props);
