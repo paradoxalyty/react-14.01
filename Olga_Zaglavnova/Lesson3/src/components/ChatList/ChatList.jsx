@@ -18,13 +18,17 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-export const ChatList =({users}) => {
+export const ChatList =({chats, addChat}) => {
+    const addNewChat=(e)=>{
+      addChat();
+    };
     const classes = useStyles();
     return (
         <div className="ChatList">
         <List className={classes.root}>
-          <ChatListItems users={users} />
+            <ChatListItems chats={chats} />
         </List>
+        <a href="/chats/add" className="ChatList__a"><div className="ChatList__addBtn" onClick={addNewChat}>+</div></a>
         </div>
       );
 };
