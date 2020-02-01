@@ -10,7 +10,7 @@ import ReactDom from "react-dom";
 // Компоненты с логикой = контейнеры  - оборачивают, содержат глупые компонеты
 // Компоненты с версткой = "глупые" / компоненты
 
-import { App } from "./containers/App";
+import { App } from "./App";
 ReactDom.render(<App />, document.getElementById("root"));
 // ReactDom.render(null, document.getElementById("root"));
 
