@@ -13,7 +13,7 @@ import "./ChatList.css";
 
 export const ChatList = ({ chats }) => (
          <List className="chat-list">
-           <Link to="/chats/1">
+           <Link to="/chats/1/">
              <ListItem>
                <ListItemAvatar>
                  <Avatar>
@@ -24,7 +24,7 @@ export const ChatList = ({ chats }) => (
              </ListItem>
            </Link>
            <Divider />
-           <Link to="/chats/2">
+           <Link to="/chats/2/">
              <ListItem>
                <ListItemAvatar>
                  <Avatar>
@@ -35,7 +35,7 @@ export const ChatList = ({ chats }) => (
              </ListItem>
            </Link>
            <Divider />
-           <Link to="/chats/3">
+           <Link to="/chats/3/">
              <ListItem>
                <ListItemAvatar>
                  <Avatar>

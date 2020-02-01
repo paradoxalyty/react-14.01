@@ -5,13 +5,13 @@ import "./Message.css";
 
 export const Message = ({ author, content }) => {
   const classNames = classnames("message", { "message--robot": author === 'Робот' });
-  let date = new Date();
-  date = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
+  // let date = new Date();
+  // date = `${date.getUTCHours()}:${date.getUTCMinutes()}`;
   return (
     <div className={classNames}>
       <div className="author">{author}</div>
       <div className="content">{content}</div>
-      <div className="date">{date}</div>
+      {/* <div className="date">{date}</div> */}
     </div>
   );
 }
