@@ -1,4 +1,6 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -13,6 +15,7 @@ import Avatar1 from '../../../img/avatars/1.png';
 // TODO
 // import Avatar2 from '../../../img/avatars/2.png';
 // import Avatar3 from '../../../img/avatars/3.png';
+import {addChat} from '../../actions/chatActions';
 import PropTypes from 'prop-types';
 import './ChatList.css';
 
@@ -85,3 +88,11 @@ ChatList.propTypes = {
     handleAddChat: PropTypes.func.isRequired,
     handleChatKeyUp: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = ({chatReducer}) => ({
+    chats: chatReducer.chats,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({addChat}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps) (ChatList);
