@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -8,8 +11,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Avatar1 from '../../../img/avatars/1.png';
 // TODO
-import Avatar2 from '../../../img/avatars/2.png';
-import Avatar3 from '../../../img/avatars/3.png';
+// import Avatar2 from '../../../img/avatars/2.png';
+// import Avatar3 from '../../../img/avatars/3.png';
 import PropTypes from 'prop-types';
 import './ChatList.css';
 
@@ -21,7 +24,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ChatList = ({chats}) => {
+export const ChatList = ({chats,
+                        inputChat,
+                        handleAddChat,
+                        handleChange,
+                        handleChatKeyUp}) => {
     const classes = useStyles();
 
     return (
@@ -41,11 +48,32 @@ export const ChatList = ({chats}) => {
                                     />
                                 </ListItemAvatar>
 
-                                <ListItemText id={labelId} primary={`User ${chatId}`}/>
+                                <ListItemText id={labelId} primary={Object.values(chats)[chatId - 1].title}/>
                             </ListItem>
                         </Link>
                     );
                 })}
+
+                <TextField
+                    name="inputChat"
+                    label="Add new chat"
+                    // fullWidth
+                    value={inputChat}
+                    onChange={handleChange}
+                    onKeyUp={(e) => handleChatKeyUp(e)}
+                />
+
+                <br/>
+                
+                <Button
+                    onClick={() => handleAddChat()}
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    endIcon={<Icon>add</Icon>}
+                >
+                        Add
+                    </Button>
             </List>
         </div>
     );
@@ -53,4 +81,7 @@ export const ChatList = ({chats}) => {
 
 ChatList.propTypes = {
     chats: PropTypes.object.isRequired,
+    inputChat: PropTypes.string.isRequired,
+    handleAddChat: PropTypes.func.isRequired,
+    handleChatKeyUp: PropTypes.func.isRequired,
 };

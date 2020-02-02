@@ -6,12 +6,26 @@ import {ChatForm} from '../ChatForm/ChatForm';
 import PropTypes from 'prop-types';
 import './Layout.css';
 
-export const Layout = ({chats, chatId, messages, input, handleButton, handleKeyUp, handleChange}) => (
+export const Layout = ({chats,
+    chatId,
+    messages,
+    input,
+    handleButton,
+    handleKeyUp,
+    handleChange,
+    inputChat,
+    handleAddChat,
+    handleChatKeyUp}) => (
     <>
         <Header chatId={chatId}/>
 
         <div className="react-messenger__wrapper">
-            <ChatList chats={chats}/>
+            <ChatList chats={chats}
+                      inputChat={inputChat}
+                      handleAddChat={handleAddChat}
+                      handleChange={handleChange}
+                      handleChatKeyUp={handleChatKeyUp}
+            />
 
             <div className="react-messenger__message-field">
                 <MessageField chats={chats} chatId={chatId} messages={messages}/>
@@ -34,6 +48,9 @@ Layout.propTypes = {
     handleButton: PropTypes.func.isRequired,
     handleKeyUp: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    inputChat: PropTypes.string.isRequired,
+    handleAddChat: PropTypes.func.isRequired,
+    handleChatKeyUp: PropTypes.func.isRequired,
 };
 
 Layout.defaultProps = {

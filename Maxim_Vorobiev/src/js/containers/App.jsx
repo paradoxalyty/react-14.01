@@ -30,6 +30,7 @@ export class App extends Component {
         chats: chats,
         messages: messages,
         input: '',
+        inputChat: '',
     };
 
     sendMessage = (name, content) => {
@@ -68,6 +69,31 @@ export class App extends Component {
         this.setState({[e.target.name]: e.target.value});
     };
 
+    addChat = (title) => {
+        const {chats} = this.state;
+        const chatId = Object.keys(chats).length + 1;
+
+        this.setState({
+            chats: {...chats,
+            [chatId]: {title: title, messageList: []}},
+        })
+
+        console.log(chats);
+    };
+
+    handleAddChat = () => {
+        if (this.state.inputChat.length > 0) {
+            this.addChat(this.state.inputChat);
+            this.setState({inputChat: ''})
+        }
+    }
+
+    handleChatKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            this.handleAddChat();
+        }
+    }
+
     componentDidUpdate(prevProps, prevState) {
         const {messages} = this.state;
         const lastMessage = Object.values(messages)[Object.values(messages).length - 1];
@@ -81,7 +107,7 @@ export class App extends Component {
     }
 
     render() {
-        const {chats, messages, input} = this.state;
+        const {chats, messages, input, inputChat} = this.state;
         const {chatId} = this.props;
 
         return <Layout chats={chats}
@@ -91,6 +117,10 @@ export class App extends Component {
                        handleButton={this.handleButton}
                        handleKeyUp={this.handleKeyUp}
                        handleChange={this.handleChange}
+                       inputChat={inputChat}
+                       addChat={this.addChat}
+                       handleAddChat={this.handleAddChat}
+                       handleChatKeyUp={this.handleChatKeyUp}
         />;
     }
 }
