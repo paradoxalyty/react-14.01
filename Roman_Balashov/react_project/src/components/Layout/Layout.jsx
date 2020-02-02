@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {ChatList} from "../ChatList/ChatList";
 import {Header} from "../Header/Header";
 import {Chat} from "../Chat/Chat";
 import './Layout.css';
@@ -11,7 +10,6 @@ export class Layout extends Component {
             <div className="layout-wrap">
                 <Header/>
                 <Router />
-                <Chat/>
             </div>
         )
     }

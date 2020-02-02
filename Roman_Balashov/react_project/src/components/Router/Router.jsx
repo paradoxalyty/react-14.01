@@ -5,16 +5,20 @@ import { Chat } from "../Chat/Chat";
 
 export class Router extends Component {
     render() {
-        <BrowserRouter>
-            <ChatList>
+        return (
+            <BrowserRouter>
+                <ChatList />
                 <Switch>
-                    <Route path="/chats/" component={Chat} />
-                    <Route path="/chats/:id" component={Chat} />
-                    <Route path="/">
+                    <Route path="/chats/" component={Chat} exact/>
+                    <Route path="/chats/:id" exact component={Chat} />
+                    <Route path="/" exact>
                         Choose chat.
                     </Route>
+                    <Route path="/">
+                        404 Not Found.
+                    </Route>
                 </Switch>
-            </ChatList>
-        </BrowserRouter>
+            </BrowserRouter>
+        )
     }
 }
