@@ -7,21 +7,25 @@ export class Chat extends Component {
     state = {
         chats: {
             1: {
+                id: 1,
                 name: "Chat 1",
                 messages: [
-                    { name: "Cat", text: "meow" },
-                    { name: "Cow", text: "Moo" }
+                    { name: "Jane", text: "Hi!" },
+                    { name: "Jane", text: "How are you?" }
                 ],
             },
             2: {
+                id: 2,
                 name: "Chat 2",
                 messages: [
-                    { name: "Pig", text: "whee" },
-                    { name: "Cow", text: "Moo" }],
+                    { name: "Jack", text: "Hey" },
+                ]
             },
             3: {
+                id: 3,
                 name: "Chat 3",
-                messages: [],
+                messages: [
+                    { name: "John", text: "What's up!" },],
             }
         }
     };
@@ -50,7 +54,10 @@ export class Chat extends Component {
             const lastMessage = messages[messages.length - 1];
 
             if (lastMessage && lastMessage.name !== "robot") {
-                    setTimeout(() => this.sendMessage(id)({name: "robot", text: "Bzz, it's robot. You are in chat #" + id}), 1000);
+                this.setState((state) => {
+                    setTimeout(() => this.sendMessage(id)({ name: "robot", text: "Bzz, it's robot. You are in chat #" + id }), 1000);
+                });
+
             }
         }
     }
