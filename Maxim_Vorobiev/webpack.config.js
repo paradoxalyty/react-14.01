@@ -42,13 +42,6 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
 
-
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src', 'index.html')
-        }),
-    ],
-
     devServer: {
         port: 8080,
         historyApiFallback: {
@@ -57,4 +50,10 @@ module.exports = {
     },
 
     devtool: 'cheap-inline-module-source-map',
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src', 'index.html')
+        }),
+    ],
 };

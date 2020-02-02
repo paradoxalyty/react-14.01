@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Layout} from '../components/Layout/Layout';
+import PropTypes from 'prop-types';
 
 const BOT_NAME = 'Bot';
 const USER_NAME = 'Me';
@@ -17,34 +18,35 @@ const messages = {
 };
 
 export class App extends Component {
+    static propTypes = {
+        chatId: PropTypes.number,
+    }
+
+    static defaultProps = {
+        chatId: 1,
+    }
+
     state = {
         chats: chats,
         messages: messages,
         input: '',
     };
 
-    // sendMessage = (name, content) => {
-    //     this.setState((state) => ({
-    //         messages: [...state.messages, {name: name, content: content}],
-    //         input: '',
-    //     }));
-    // };
-
     sendMessage = (name, content) => {
         const {messages, chats, input} = this.state;
         const {chatId} = this.props;
+        const messageId = Object.keys(messages).length + 1;
 
         if (input.length > 0 || name === BOT_NAME) {
-            const messageId = Object.keys(messages).length + 1;
-            this.setState({
-                messages: {...messages, [messageId]: {content: content, name: name}},
+            this.setState((state) => ({
+                messages: {...messages, [messageId]: {name: name, content: content}},
                 chats: {
                     ...chats, [chatId]: {
                         ...chats[chatId], messageList: [...chats[chatId]['messageList'], messageId]
                     }
                 },
 
-            })
+            }))
         }
 
         if (name === USER_NAME) {
@@ -64,7 +66,7 @@ export class App extends Component {
 
 // Get input value (message) and change state 'input' when typing
     handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value}); // e.target.name == input
+        this.setState({[e.target.name]: e.target.value});
     };
 
 // When the messages field is updated
@@ -84,13 +86,13 @@ export class App extends Component {
         const {messages, chats, input} = this.state;
         const {chatId} = this.props;
 
-        return <Layout messages={messages}
+        return <Layout chats={chats}
+                       messages={messages}
                        input={input}
-                       handleButton={this.handleButton}
-                       handleChange={this.handleChange}
-                       handleKeyUp={this.handleKeyUp}
                        chatId={chatId}
-                       chats={chats}
+                       handleButton={this.handleButton}
+                       handleKeyUp={this.handleKeyUp}
+                       handleChange={this.handleChange}
         />;
     }
 }
