@@ -36,13 +36,14 @@ export class ChatContainer extends Component {
     const { id } = this.props.match.params;
     if (id && chats[id]) {
       const messages = this.state.chats[id].messages;
-      const prevMessages = prevState.chats[id].messages;
       const lastMessage = messages[messages.length - 1];
+      const prevMessages = prevState.chats[id].messages;
+      const prevStateLengthMessages = prevState.chats[id].messages.length;
       const prevLastMessage = prevMessages[prevMessages.length - 1];
       if (
         lastMessage &&
-        lastMessage.name !== robot.name &&
-        prevLastMessage.name !== "Я"
+        lastMessage.name === "Я" &&
+        (!prevStateLengthMessages || prevLastMessage.name !== "Я")
       ) {
         setTimeout(
           () =>

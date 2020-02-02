@@ -13,12 +13,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Header = () => {
+export const Header = props => {
   const classes = useStyles();
+  const { id } = props.match.params;
   return (
     <AppBar position="static" className="Header">
       <Typography variant="h6" color="inherit">
-        Чат 1
+        Чат {id}
       </Typography>
     </AppBar>
   );

@@ -7,9 +7,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 export class Layout extends Component {
   render() {
+    console.log(this.params);
     return (
       <BrowserRouter>
-        <Header />
+        <Switch>
+          <Route path="/chats" exact component={Header} />
+          <Route path="/chats/:id" exact component={Header} />
+        </Switch>
         <div className="Chat">
           <ChatList className="ChatList-Position" />
           <div className="ChatField-Position">
