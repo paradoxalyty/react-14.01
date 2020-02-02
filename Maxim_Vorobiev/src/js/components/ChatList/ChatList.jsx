@@ -10,6 +10,7 @@ import Avatar1 from '../../../img/avatars/1.png';
 // TODO
 import Avatar2 from '../../../img/avatars/2.png';
 import Avatar3 from '../../../img/avatars/3.png';
+import PropTypes from 'prop-types';
 import './ChatList.css';
 
 const useStyles = makeStyles(theme => ({
@@ -20,32 +21,27 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ChatList = () => {
+export const ChatList = ({chats}) => {
     const classes = useStyles();
 
     return (
         <div className="react-messenger__chatlist">
             <List dense className={classes.root}>
-                {[0, 1, 2].map(value => {
-
-                    const labelId = `checkbox-list-secondary-label-${value}`;
-
-                    // TODO
-                    // const avatarSrc = 'Avatar' + (value + 1);
-                    // console.log({avatarSrc});
+                {Object.keys(chats).map(chatId => {
+                    const labelId = `checkbox-list-secondary-label-${chatId}`;
 
                     return (
-                        <Link className="react-messenger__chatlist-link" key={value} to={`/chat/${value + 1}/`}>
+                        <Link className="react-messenger__chatlist-link" key={chatId} to={`/chat/${chatId}/`}>
                             <ListItem button>
                                 <ListItemAvatar>
                                     <Avatar
-                                        alt={`Avatar ${value + 1}`}
-                                        // src={`/dist/img/avatars/${value + 1}.png`}
+                                        alt={`Avatar ${chatId + 1}`}
+                                        // src={`/dist/img/avatars/${chatId}.png`}
                                         src={Avatar1}
                                     />
                                 </ListItemAvatar>
 
-                                <ListItemText id={labelId} primary={`User ${value + 1}`}/>
+                                <ListItemText id={labelId} primary={`User ${chatId}`}/>
                             </ListItem>
                         </Link>
                     );
@@ -53,4 +49,8 @@ export const ChatList = () => {
             </List>
         </div>
     );
+};
+
+ChatList.propTypes = {
+    chats: PropTypes.object.isRequired,
 };

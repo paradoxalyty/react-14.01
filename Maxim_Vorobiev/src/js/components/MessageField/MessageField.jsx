@@ -3,7 +3,7 @@ import {Message} from '../Message/Message';
 import PropTypes from 'prop-types';
 import './MessageField.css';
 
-export const MessageField = ({messages, chats, chatId}) => (
+export const MessageField = ({chats, chatId, messages}) => (
     <div className="react-messenger__messages">
         {chats[chatId].messageList.map(
             (messageId, index) => (

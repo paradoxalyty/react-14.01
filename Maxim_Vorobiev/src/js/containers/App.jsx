@@ -64,12 +64,10 @@ export class App extends Component {
         }
     };
 
-// Get input value (message) and change state 'input' when typing
     handleChange = (e) => {
         this.setState({[e.target.name]: e.target.value});
     };
 
-// When the messages field is updated
     componentDidUpdate(prevProps, prevState) {
         const {messages} = this.state;
         const lastMessage = Object.values(messages)[Object.values(messages).length - 1];
@@ -83,13 +81,13 @@ export class App extends Component {
     }
 
     render() {
-        const {messages, chats, input} = this.state;
+        const {chats, messages, input} = this.state;
         const {chatId} = this.props;
 
         return <Layout chats={chats}
+                       chatId={chatId}
                        messages={messages}
                        input={input}
-                       chatId={chatId}
                        handleButton={this.handleButton}
                        handleKeyUp={this.handleKeyUp}
                        handleChange={this.handleChange}

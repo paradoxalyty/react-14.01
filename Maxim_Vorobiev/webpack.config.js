@@ -49,6 +49,10 @@ module.exports = {
         }
     },
 
+    // devServer: {
+    //     historyApiFallback: true,
+    //   },
+
     devtool: 'cheap-inline-module-source-map',
 
     plugins: [
