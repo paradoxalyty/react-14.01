@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import Message from "./Message.jsx"
-import MessageSender from "./MessageSender.jsx"
+import MessageSender from "../components/MessageSender/MessageSender.jsx"
+import MessageField from "../components/MessageField/MessageField.jsx"
 
-export default class MessageField extends Component {
+export default class ChatContainer extends Component {
   
   state = {
     messages: [
@@ -16,7 +16,6 @@ export default class MessageField extends Component {
 
   componentDidUpdate() {
     if (this.state.messages[ this.state.messages.length - 1 ].name != "Робот") {
-        // или как в методичке на каждое четное по номеру сообщение "%2" отвечает "Робот"
 
       this.setState({ 
         messages: [...this.state.messages, {name: "Робот", text: "Не пиши мне"}] 
@@ -31,12 +30,9 @@ export default class MessageField extends Component {
   }
 
   render() {
-
-    const MessageElements = this.state.messages.map((message, index) => <Message {...message} key={index}/>);
-
     return (
       <div>
-        { MessageElements }
+        <MessageField messages={this.state.messages}/>
         <MessageSender handleSubmit={this.handleSubmit} />
       </div>
     )

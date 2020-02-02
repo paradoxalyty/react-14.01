@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import MessageField from "./messages/MessageField.jsx"
+import ChatContainer from "./ChatContainer.jsx"
 
 export default class App extends React.Component {
   render() {
       return (
-          <MessageField></MessageField>
+          <ChatContainer></ChatContainer>
       )
   }
 }
