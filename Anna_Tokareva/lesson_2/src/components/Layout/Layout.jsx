@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Profile } from "../Profile/Profile";
 import { ChatContainer } from "../../containers/ChatContainer";
 import { Header } from "../Header/Header";
 import { ChatList } from "../ChatList/ChatList";
@@ -11,6 +12,7 @@ export class Layout extends Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route path="/profile" exact component={Header} />
           <Route path="/chats" exact component={Header} />
           <Route path="/chats/:id" exact component={Header} />
         </Switch>
@@ -18,6 +20,7 @@ export class Layout extends Component {
           <ChatList className="ChatList-Position" />
           <div className="ChatField-Position">
             <Switch>
+              <Route path="/profile" exact component={Profile} />
               <Route path="/chats" exact component={ChatContainer} />
               <Route path="/chats/:id" exact component={ChatContainer} />
             </Switch>

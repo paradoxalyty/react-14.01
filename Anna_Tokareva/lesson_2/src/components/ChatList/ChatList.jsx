@@ -24,7 +24,7 @@ export const ChatList = ({ chats }) => {
   const [open, setOpen] = React.useState(true);
   return (
     <List className="ChatList">
-      <Link to="/chats/1">
+      <Link to="/chats/1" className="chatLink">
         <ListItem button>
           <ListItemIcon>
             <SendIcon />
@@ -33,7 +33,7 @@ export const ChatList = ({ chats }) => {
         </ListItem>
       </Link>
 
-      <Link to="/chats/2">
+      <Link to="/chats/2" className="chatLink">
         <ListItem button>
           <ListItemIcon>
             <SendIcon />
@@ -42,7 +42,7 @@ export const ChatList = ({ chats }) => {
         </ListItem>
       </Link>
 
-      <Link to="/chats/3">
+      <Link to="/chats/3" className="chatLink">
         <ListItem button>
           <ListItemIcon>
             <SendIcon />

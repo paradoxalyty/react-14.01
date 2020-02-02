@@ -3,6 +3,7 @@ import "./Header.css";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,6 +22,9 @@ export const Header = props => {
       <Typography variant="h6" color="inherit">
         Чат {id}
       </Typography>
+      <Link to="/profile" className="profileLink">
+        Мой профиль
+      </Link>
     </AppBar>
   );
 };
