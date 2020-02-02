@@ -9,15 +9,15 @@ export class Chat extends Component {
             1: {
                 name: "Chat 1",
                 messages: [
-                    {name: "Cat", text: "meow"},
-                    {name: "Cow", text: "Moo"}
+                    { name: "Cat", text: "meow" },
+                    { name: "Cow", text: "Moo" }
                 ],
             },
             2: {
                 name: "Chat 2",
                 messages: [
-                    {name: "Pig", text: "whee"},
-                    {name: "Cow", text: "Moo"}],
+                    { name: "Pig", text: "whee" },
+                    { name: "Cow", text: "Moo" }],
             },
             3: {
                 name: "Chat 3",
@@ -43,14 +43,16 @@ export class Chat extends Component {
         }));
     };
     componentDidUpdate() {
-        // if (this.state.messages[this.state.messages.length - 1].name !== "robot") {
-        //     const message = { name: "robot", text: "bzz" };
-        //     setTimeout(() => {
-        //         this.setState(({ messages }) => ({
-        //             messages: [...messages, message]
-        //         }))
-        //     }, 1000);
-        // }
+        const { chats } = this.state;
+        const { id } = this.props.match.params;
+        if (id && chats[id]) {
+            const messages = this.state.chats[id].messages;
+            const lastMessage = messages[messages.length - 1];
+
+            if (lastMessage && lastMessage.name !== "robot") {
+                    setTimeout(() => this.sendMessage(id)({name: "robot", text: "Bzz, it's robot. You are in chat #" + id}), 1000);
+            }
+        }
     }
     render() {
         const { chats } = this.state;
@@ -59,7 +61,7 @@ export class Chat extends Component {
         if (id && chats[id]) {
             return <div className="chat">
                 <MessageField messages={chats[id].messages} />
-                <ChatForm {...{sendMessage: this.sendMessage(id)}} />
+                <ChatForm {...{ sendMessage: this.sendMessage(id) }} />
             </div>
         } else {
             <span>Не найдено</span>
