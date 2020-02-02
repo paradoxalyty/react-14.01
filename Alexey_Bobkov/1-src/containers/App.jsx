@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ChatContainer } from './ChatContainer.jsx';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ChatList } from '../components/ChatList/ChatList.jsx';
+import { Profile } from '../components/Profile/Profile.jsx';
 
 export class App extends Component {
 
@@ -10,14 +12,9 @@ export class App extends Component {
         return (
             <BrowserRouter>
             <Switch>
-                <Route path='/chats' exact component={ChatContainer}></Route>
+                <Route path='/profile' exact component={Profile}></Route>
+                <Route path='/chats' exact component={ChatList}></Route>
                 <Route path='/chats/:id' exact component={ChatContainer}/>
-                <Route>
-                </Route>
-                <Route>
-                </Route>
-                <Route>
-                </Route>
             </Switch>
             </BrowserRouter>
         )

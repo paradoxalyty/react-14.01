@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Layout } from '../components/Layout/Layout.jsx';
-//import { Chat } from '../components/Chat/Chat.jsx'
+import { Chat } from '../components/Chat/Chat.jsx'
+
+
 
 export class ChatContainer extends Component {
+
     state ={
         chats: {
             1:{
@@ -49,6 +52,8 @@ export class ChatContainer extends Component {
             }
         }
 
+
+
     handleSendMessage = (id) => (message) => {
         this.setState((state) => ({chats: {...state.chats,
             [id]: {name: state.chats[id].name,
@@ -58,13 +63,14 @@ export class ChatContainer extends Component {
 }
 
     componentDidUpdate(){
+        
         const {chats} = this.state;
         const {id} = this.props.match.params;
         if(id && chats[id]){
             clearInterval(this.timerId);
             if (this.state.chats[id].messages[this.state.chats[id].messages.length-1].name != 'Robot' ){
                 this.timerId=setTimeout(()=>
-                this.handleSendMessage(id)({name: 'Robot', content: 'Chat: '+id+' dont touch me' }),2000);
+                this.handleSendMessage(id)({name: 'Robot', content: 'Chat - '+id+', dont touch me' }),2000);
             } else {
                 var classrobot = document.getElementsByClassName('Message')[document.getElementsByClassName('Message').length-1];
                 classrobot.className =  classrobot.className + ' Robot';
@@ -75,6 +81,9 @@ export class ChatContainer extends Component {
         }
 
     render () {
+        
+        //console.log(this.state);
+        //console.log((Chat(chats)));
         const {chats} = this.state;
         const {id} = this.props.match.params;
         if(id && chats[id]){

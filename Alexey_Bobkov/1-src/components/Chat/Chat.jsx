@@ -2,7 +2,77 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 
 
-export class Chat extends React.Component {
+export const Chat = () =>
+(
+    {
+
+    chats: {
+        1:{
+            
+            name: 'Chat 1',
+            messages: [
+                            { name: 'Name1', content: 'Text1' }  
+                        ],
+            },
+        2: {
+            
+            name: 'Chat 2',
+            messages: [
+                            { name: 'Name2', content: 'Text2' }
+                            
+            ]
+            },
+        3: {
+            
+            name: 'Chat 3',
+            messages: [
+                            
+                            { name: 'Name3', content: 'Text3' }
+                            
+            ]
+            },
+        4: {
+            
+            name: 'Chat 4',
+            messages: [
+        
+                            { name: 'Name4', content: 'Text4' }
+            ]
+            },
+        5: {
+            
+            name: 'Chat 5',
+            messages: [
+                            
+                            { name: 'Name5', content: 'Text5' }
+            ]
+
+
+        }
+    }
+
+
+}
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*export class Chat extends React.Component {
     state ={
         chats: {
             1:{
@@ -50,7 +120,7 @@ export class Chat extends React.Component {
         }
 
         render(){
-            return this.state
+            return this.state.chats[1]
         }
     }
 
