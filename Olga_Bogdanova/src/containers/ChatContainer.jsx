@@ -1,33 +1,79 @@
 import React, { Component } from 'react';
 import { Chat } from '../components/Chat/Chat';
+import PropTypes from 'prop-types';
 
 
 const ROBOT_NAME = 'Robot';
 
+
+
 export class ChatContainer extends Component {
+    static propTypes = {
+        chatId: PropTypes.number.isRequired,
+    }
+    //
+
     state = {
-        messages: [
-            { name: 'Robot', content: 'Отправь мне сообщение!' }
-        ]
+        chats: {
+            1: {
+                name: 'chat1',
+                messages: [
+                    { name: 'Vlad', content: 'Hay!' },
+                    { name: 'Vlad', content: 'How are you?' }
+                ]
+            },
+            2: {
+                name: 'chat2',
+                messages: [
+                    { name: 'Olga', content: 'Hay!' },
+                    { name: 'Olga', content: 'How are you?' }
+                ]
+            },
+            3: {
+                name: 'chat3',
+                messages: [
+                    { name: 'Platon', content: 'Hay!' },
+                    { name: 'Platon', content: 'How are you?' }
+
+                ]
+            }
+        },
     };
 
-    componentDidUpdate() {
-        const lastMessage = this.state.messages[this.state.messages.length - 1];
-        var complite = false;
 
-        if (lastMessage.name !== ROBOT_NAME) {
-            setTimeout(() => this.handleSendMessage({ name: ROBOT_NAME, content: 'Отличное сообщение!' }), 2000)
+    componentDidUpdate() {
+        const { chats } = this.state;
+        const { id } = this.props.match.params;
+        if (id && chats[id]) {
+            const messages = this.state.chats[id].messages;
+            const lastMessage = messages[messages.length - 1];
+            if (lastMessage && lastMessage.name !== ROBOT_NAME) {
+
+                setTimeout(() => this.handleSendMessage(id)({ name: ROBOT_NAME, content: 'Отличное сообщение! its chat' + id }), 2000)
+            }
         }
     }
 
-    handleSendMessage = (message) => {
-        this.setState((state) => ({ messages: [...state.messages, message] }),
-        )
+    handleSendMessage = (id) => (message) => {
+        this.setState((state) => ({
+            chats: {
+                ...state.chats,
+                [id]: {
+                    name: state.chats[id].name,
+                    messages: [
+                        ...state.chats[id].messages,
+                        message,
+                    ]
+                },
+            }
+        }))
     }
 
     render() {
-        const { messages } = this.state;
-        console.log(this.props)
-        return <Chat {...{ messages, onSendMessage: this.handleSendMessage }} />
+        const { chats } = this.state;
+        const { id } = this.props.match.params;
+        if (id && chats[id]) {
+            return <Chat {...{ messages: chats[id].messages, onSendMessage: this.handleSendMessage(id) }} />
+        }
     }
 }
