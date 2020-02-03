@@ -1,7 +1,7 @@
 import { Chat } from "../components/Chat/Chat";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import { addMessage } from "../store/chatActions";
+import { addMessage } from "../actions/chatActions";
 import React, { Component } from "react";
 
 class ChatContainer extends Component {

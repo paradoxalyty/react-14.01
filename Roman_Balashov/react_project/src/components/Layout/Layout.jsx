@@ -3,7 +3,7 @@ import './Layout.css';
 import { Router } from "../Router/Router";
 import { Provider } from "react-redux";
 import { initStore } from "../../store/store";
-import { loadChats } from "../../store/chatActions";
+import { loadChats } from "../../actions/chatActions";
 
 const store = initStore();
 store.dispatch(loadChats());
