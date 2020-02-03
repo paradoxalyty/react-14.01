@@ -59,7 +59,6 @@ export class ChatContainer extends Component {
     render() {
         const { chats } = this.state;
         const { id } = this.props.match.params;
-       // console.log(Object.keys(chats).length);
         if (id && chats[id]) {
             return <Chat {...{ chats: chats, messages: chats[id].messages, onSendMessage: this.handleSendMessage(id) }} />
         } else {

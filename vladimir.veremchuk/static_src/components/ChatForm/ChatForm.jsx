@@ -22,7 +22,6 @@ export const ChatForm = ({ onSendMessage }) => {
         <TextField
             variant="outlined"
             label="Автор"
-            //value=""
             onChange={({ currentTarget: { value } }) => setName(value)}
             type="text" />
         <TextField
@@ -30,7 +29,6 @@ export const ChatForm = ({ onSendMessage }) => {
             multiline
             autoFocus
             label="Сообщение"
-            //value=""
             onKeyUp={handleKeyUp}
             onChange={({ currentTarget: { value } }) => setContent(value)} />
         <Button onClick={handleClick} variant="contained" color="primary">Отправить</Button>
