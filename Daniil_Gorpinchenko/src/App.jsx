@@ -1,11 +1,16 @@
 import React, {Component} from "react";
-import { ChatContainer } from "./ChatContainer";
-import { ChatList } from "../components/ChatList/ChatList";
+import ChatContainer from "./containers/ChatContainer";
+import { ChatList } from "./components/ChatList/ChatList";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { initStore } from './store/store';
+import { Provider } from 'react-redux';
+
+const store = initStore();
 
 export class App extends Component {
     render () {
         return (
+      <Provider store={store}>
             <BrowserRouter>
         <ChatList />
         <Switch>
@@ -22,6 +27,7 @@ export class App extends Component {
             </Route>
         </Switch>
             </BrowserRouter>
+      </Provider>
         )
     }
 }
