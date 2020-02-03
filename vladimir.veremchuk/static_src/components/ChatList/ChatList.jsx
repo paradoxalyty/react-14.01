@@ -1,8 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 import {List, ListItem} from 'material-ui/List';
 import {Link} from 'react-router-dom';
-//import {Message} from '../Message/Message.jsx';
-import {ChatContainer} from "../../containers/ChatContainer/ChatContainer.jsx";
 
 export const ChatList = ({chats}) => {
         return <div className='chatList'>
