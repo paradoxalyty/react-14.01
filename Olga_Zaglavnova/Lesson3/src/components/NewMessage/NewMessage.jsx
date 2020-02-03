@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
  * @param {string} name - имя автора сообщения
  * @param {Function} onSubmitMessage - Функция оработчик события подтверждения отправки нового сообщения
  */
-export const NewMessage =({onSubmitMessage}) => {
-    const [name, setName] = useState('User');
+export const NewMessage =({userName, onSubmitMessage}) => {
+    const [name, setName] = useState(userName);
     const [message, setMessage] = useState('My message');
     const [msgClass, setMsgClass] = useState('guest');
 
@@ -42,21 +42,16 @@ export const NewMessage =({onSubmitMessage}) => {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        onSubmitMessage({msgClass, name, message});
+        onSubmitMessage({msgClass, name: userName, message});
         setMessage("");
         textarea.current.focus();
     };
-
+    const handleKeyUp = (e) => {
+        if(e.keyCode===13 && e.ctrlKey) sendMessage(e);
+    };
     return <form onSubmit={sendMessage} className="newMessageForm">
                 <label>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Имя" 
-                        variant="outlined" 
-                        value={name} 
-                        onChange={({currentTarget: {value}})=>setName(value)} 
-                        className="newMessageForm__nameInput" 
-                    />
+                    <span className="newMessageForm__nameInput" >{userName}</span>
                     <strong className="newMessageForm__doublepoints">: </strong>
                     <TextField 
                         className="newMessageForm__messageInput" 
@@ -65,6 +60,7 @@ export const NewMessage =({onSubmitMessage}) => {
                         variant="outlined" 
                         value={message} 
                         onChange={({currentTarget: {value}})=>setMessage(value)}
+                        onKeyUp={handleKeyUp}
                         multiline 
                         autoFocus 
                         ref={textarea}
