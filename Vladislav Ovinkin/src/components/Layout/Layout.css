@@ -1,0 +1,9 @@
+.layoutHeader {
+    display: flex;
+    flex-direction: column;
+}
+.layoutChatList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
