@@ -26,6 +26,7 @@ export class ChatContainer extends Component {
         },
     }
 
+    // тут эпичная починка бота
         componentDidUpdate(prevProps, prevState) {
         const { chats } = this.state;
         const { id } = this.props.match.params;
