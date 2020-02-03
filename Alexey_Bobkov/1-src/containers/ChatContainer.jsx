@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Layout } from '../components/Layout/Layout.jsx';
-import { Chat } from '../components/Chat/Chat.jsx'
+//import { Layout } from '../components/Layout/Layout.jsx';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {loadChats, addMessage} from '../store/chatAction'
 
 
+class ChatContainer extends Component {
 
-export class ChatContainer extends Component {
-
-    state ={
+    /*state ={
         chats: {
             1:{
                 id:1,
@@ -50,21 +51,23 @@ export class ChatContainer extends Component {
                 },
 
             }
-        }
+        }*/
 
 
 
-    handleSendMessage = (id) => (message) => {
+ /*   handleSendMessage = (id) => (message) => {
         this.setState((state) => ({chats: {...state.chats,
             [id]: {name: state.chats[id].name,
         messages: [...state.chats[id].messages, message,]},
 }
     }));
-}
-
+}*/
+    componentDidMount(){
+        this.props.loadChats();
+    }
     componentDidUpdate(){
         
-        const {chats} = this.state;
+   /*     const {chats} = this.state;
         const {id} = this.props.match.params;
         if(id && chats[id]){
             clearInterval(this.timerId);
@@ -77,19 +80,31 @@ export class ChatContainer extends Component {
                 
                 }
         
-            }
+                 } */ 
         }
 
     render () {
+        console.log(this.props.chats)
+        return null
         
-        //console.log(this.state);
-        //console.log((Chat(chats)));
-        const {chats} = this.state;
-        const {id} = this.props.match.params;
-        if(id && chats[id]){
-             return <Layout {...{messages: chats[id].messages, onSendMessage: this.handleSendMessage(id)}} />
-        }
+    //     // const {chats} = this.state;
+    //     const {id} = this.props.match.params;
+    //     if(id && chats[id]){
+    //          return <Layout {...{messages: chats[id].messages, onSendMessage: this.handleSendMessage(id)}} />
+    //     }
 
         
-    }
-}
+     }
+};
+
+
+const mapStateToProps = ({chatReducer}) => ({
+        chats: chatReducer.chats
+});
+
+
+const mapDispatchToProps = ({}) => {
+    return bindActionCreators( {loadChats, addMessage}, dispatch )
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer);
