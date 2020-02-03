@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MessageField } from '../MessageField/MessageField';
 import { ChatForm } from '../ChatForm/ChatForm';
-import { CharContainer } from '../../containers/ChatContainer';
 import './Chat.css';
 
 export class Chat extends Component {
