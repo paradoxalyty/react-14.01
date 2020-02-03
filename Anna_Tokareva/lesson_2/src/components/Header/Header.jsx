@@ -3,6 +3,7 @@ import "./Header.css";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,13 +14,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Header = () => {
+export const Header = props => {
   const classes = useStyles();
+  const { id } = props.match.params;
   return (
     <AppBar position="static" className="Header">
       <Typography variant="h6" color="inherit">
-        Чат 1
+        Чат {id}
       </Typography>
+      <Link to="/profile" className="profileLink">
+        Мой профиль
+      </Link>
     </AppBar>
   );
 };
