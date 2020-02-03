@@ -98,12 +98,6 @@ body {
 .listLink {
    text-decoration: none;
 }
-.listLink:active {
-   font-weight: bold;
-}
-.activeChat {
-   font-weight: bold;
-}
 .backLink {
 color: white;
 text-decoration: none;
