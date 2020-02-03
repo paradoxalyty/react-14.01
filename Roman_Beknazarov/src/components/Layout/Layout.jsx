@@ -1,5 +1,6 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import {ChatContainer} from "../../Containers/ChatContainer";
 import { Header } from "../Header/Header";
@@ -14,8 +15,22 @@ export const Layout = () => {
             <div className="layout">
                 <Header/>
                 <main className="main">
-                    <ChatList />
-                    <ChatContainer />
+                    <BrowserRouter>
+                        <ChatList />
+                        <Switch>
+                            <Route path="/chats/" exact component={ ChatContainer } />
+                            <Route path="/chats/:id" exact component={ ChatContainer } />
+                            <Route path="/about">
+                                It's About
+                            </Route>
+                            <Route path="/home">
+                                It's Home
+                            </Route>
+                            <Route path="/" >
+                                It's 404
+                            </Route>
+                        </Switch>
+                    </BrowserRouter>
                 </main>
             </div>
         </MuiThemeProvider>

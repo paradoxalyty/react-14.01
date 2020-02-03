@@ -31,4 +31,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx'],
     },
+    devServer: {
+        historyApiFallback: true,
+    },
+    devtool: 'inline-source-map',
 };
