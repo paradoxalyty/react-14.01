@@ -1,25 +1,32 @@
 import React, { Component } from "react";
-import { Chat } from '../components/Chat/Chat'
+import { Chat } from '../components/Chat/Chat';
 
 const BOT_NAME = "chatBot";
 
 export class ChatContainer extends Component {
-    state = {
-        messages: [
-            {name: "Kolya", content: "Hello!"},
-            {name: "Olya", content: "Hi! How are you?"},
-            {name: "Kolya", content: "I am well"},
-        ],
+
+    timer = null;
+
+    componentDidMount () {
+        const {onSendMessage, onChatChange} = this.props;
+        const {id} = this.props;
+        onChatChange (id);
+        // onSendMessage ({name: "Владислав", content: "Ершы!"});
     }
     timer = null;
 
     componentDidUpdate () {
+        const {id} = this.props;
+        const {chats} = this.props;
+        const {onSendMessage} = this.props;
         clearTimeout (this.timer);
         
-        const lastMessage = this.state.messages[this.state.messages.length - 1];
+        if (chats[id]) {
+            const lastMessage = chats[id].messages[chats[id].messages.length - 1];
         
-        if (lastMessage.name !== BOT_NAME) {
-            this.timer = setTimeout(() => this.handleSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
+            if (lastMessage && lastMessage.name !== BOT_NAME) {
+                this.timer = setTimeout(() => onSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
+            }
         }
     }
     
@@ -27,16 +34,17 @@ export class ChatContainer extends Component {
         clearTimeout (this.timer);
     }
 
-    handleSendMessage = (message) => {
-        const date = new Date ();
-        const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
-        message.time = time;
-        this.setState ((state) => ({messages: [...state.messages, message]}));
-    }
-
     render () {
-        const {messages} = this.state;
+        const {chats} = this.props;
+        const {id} = this.props;
+        const {onSendMessage} = this.props;
 
-        return <Chat {...{messages, onSendMessage: this.handleSendMessage}} />
+        console.log (id, chats[id]);
+
+        if (id && chats[id]) {
+            return <Chat {...{messages: chats[id].messages, onSendMessage: onSendMessage}} />
+        } else {
+            return "Ошибка: необходимо выбрать номер чата.";
+        }
     }
 }
