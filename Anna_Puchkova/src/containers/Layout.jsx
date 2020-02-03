@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
-import connect from "react-redux/es/connect/connect";
 import MessageField from './MessageField';
 import ChatList from './ChatList';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from './Header';
-import { sendMessage } from "../actions/messageActions";
 import '../styles/styles.css';
 export default class Layout extends React.Component {
   static propTypes = {

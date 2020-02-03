@@ -27,15 +27,7 @@ body {
    background-color: lightblue;
    align-self: flex-start;
 }
-.layout {
-   height: 100%;
-   width: 50%;
-   margin: auto;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-}
+
 .message-field {
    display: flex;
    flex-direction: column;
@@ -52,10 +44,17 @@ body {
    display: flex;
    align-items: center;
    flex-direction: column;
+   justify-content: center;
 }
 .layout h1 {
    font-size: 30px;
    color: gray;
+   margin: 40px auto;
+}
+.layout p {
+   font-size: 30px;
+   color: darkgray;
+   margin: 0 auto;
 }
 .layout-canvas {
    height: 60%;
@@ -111,4 +110,5 @@ background-color: #66D7E5;
 font-size: 20px;
 padding: 5px 10px;
 border-radius: 5px;
+margin: 50px 0 0 0;
 }
