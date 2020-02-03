@@ -1,71 +1,27 @@
-import React, { Component } from "react";
 import { Chat } from "../components/Chat/Chat";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { addMessage } from "../store/chatActions";
 
-export class ChatContainer extends Component {
-    state = {
-        chats: {
-            1: {
-                id: 1,
-                name: "Chat 1",
-                messages: [
-                    { name: "Jane", text: "Hi!" },
-                    { name: "Jane", text: "How are you?" }
-                ],
-            },
-            2: {
-                id: 2,
-                name: "Chat 2",
-                messages: [
-                    { name: "Jack", text: "Hey" },
-                ]
-            },
-            3: {
-                id: 3,
-                name: "Chat 3",
-                messages: [
-                    { name: "John", text: "What's up!" },],
-            }
-        }
-    };
-    constructor(props) {
-        super(props);
-    }
-    sendMessage = (id) => (message) => {
-        this.setState((state) => ({
-            chats: {
-                ...state.chats,
-                [id]: {
-                    name: state.chats[id].name,
-                    messages: [
-                        ...state.chats[id].messages,
-                        message
-                    ]
-                },
-            }
-        }));
-    };
-    componentDidUpdate() {
-        const { chats } = this.state;
-        const { id } = this.props.match.params;
-        if (id && chats[id]) {
-            const messages = this.state.chats[id].messages;
-            const lastMessage = messages[messages.length - 1];
-
-            if (lastMessage && lastMessage.name !== "robot") {
-                this.setState((state) => {
-                    setTimeout(() => this.sendMessage(id)({ name: "robot", text: "Bzz, it's robot. You are in chat #" + id }), 1000);
-                });
-
-            }
-        }
-    };
-    render() {
-        const { chats } = this.state;
-        const { id } = this.props.match.params;
-        if (id && chats[id]) {
-            return <Chat {...{ messages: chats[id].messages, sendMessage: this.sendMessage(id) }} />;
-        } else {
-            <span>Не найдено</span>
-        }
+const mapStateToProps = ({ chatReducer}, {match}) => {
+    const id = match.params.id;
+    return {
+        messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        addMessage,
+    }, dispatch);
+}
+
+const mergeProps = (stateProps, dispatchProps, {match}) => {
+    const id = match.params.id;
+    return {
+        ...stateProps,
+        sendMessage: ({name, text}) => dispatchProps.addMessage(id, name, text)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);

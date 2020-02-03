@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ChatList } from "../ChatList/ChatList";
 import {Profile} from "../Profile/Profile";
 import {Header} from "../Header/Header";
-import { ChatContainer } from "../../containers/ChatContainer";
+import ChatContainer from "../../containers/ChatContainer";
 
 export class Router extends Component {
     render() {
