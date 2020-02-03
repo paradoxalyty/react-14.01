@@ -6,7 +6,8 @@ import './Layout.css'
 
 export const Layout = (props) => {
     const {chatList, activeChatId, onChatChange, onSendMessage} = props;
-    const {id} = props.match.params;
+    let id;
+    !props.noParams ? id = props.match.params.id : id = 0;
 
     console.log ("LayoutId: ", id);
     //onChatChange (id);

@@ -21,24 +21,14 @@ export const ChatList = (props) => {
 
     return (<div className="chatList">
         <List component="nav">
-            <ListItemLink 
-            selected={selectedIndex === 0}
-            onClick={event => handleListItemClick(event, 0)}
-            href="/Anna">
-                <ListItemText primary="Anna" />
-            </ListItemLink>
-            <ListItemLink 
-            selected={selectedIndex === 1}
-            onClick={event => handleListItemClick(event, 1)}
-            href="/Elena">
-                <ListItemText primary="Elena" />
-            </ListItemLink>
-            <ListItemLink
-            selected={selectedIndex === 2}
-            onClick={event => handleListItemClick(event, 2)}
-            href="/Olga">
-                <ListItemText primary="Olga" />
-            </ListItemLink>
+            {Object.keys (chatList).map (id => 
+                <ListItemLink key={id}
+                selected={selectedIndex === id-1}
+                onClick={event => handleListItemClick (event, id-1)}
+                href={"/chats/" + id}> 
+                    <ListItemText primary={chatList[id].name} />
+                </ListItemLink>)
+            }       
         </List>
     </div>);
 }
