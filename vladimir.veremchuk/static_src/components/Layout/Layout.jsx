@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Header} from "../Header/Header.jsx"
 import {ChatList} from '../ChatList/ChatList.jsx';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import {ChatContainer} from "../../containers/ChatContainer/ChatContainer.jsx";
+import ChatContainer from "../../containers/ChatContainer/ChatContainer.jsx";
 import {Profile} from "../Profile/Profile.jsx"
 
 export class Layout extends Component {

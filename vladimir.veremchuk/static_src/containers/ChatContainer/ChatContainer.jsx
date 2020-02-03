@@ -1,69 +1,26 @@
-import React, { Component } from 'react';
 import {Chat} from '../../components/Chat/Chat.jsx';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {loadChats, addMessage} from '../../store/chatAction.js';
 
-const ROBOT_NAME = 'Robot';
-export class ChatContainer extends Component {
-    state = {
-        chats: {
-            1: {
-                name: 'Chat 1',
-                messages: [
-                    { name: "ChatBot", content: "Hello! It's ChatBot of room#1!" },
-                ]
-            },
-            2: {
-                name: 'Chat 2',
-                messages: [
-                    { name: "ChatBot", content: "Hello! It's ChatBot of room#2!" },
-                ]
-            },
-            3: {
-                name: 'Chat 3',
-                messages: [
-                    { name: "ChatBot", content: "Hello! It's ChatBot of room#3!" },
-                ]
-            }
-        },
+const mapStateToProps = ({chatReducer}, {match}) => {
+    const id = match.params.id;
+    return {
+        messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
     }
+};
 
-    // тут эпичная починка бота
-        componentDidUpdate(prevProps, prevState) {
-        const { chats } = this.state;
-        const { id } = this.props.match.params;
-        if (id && chats[id]){
-            if (this.state.chats[id].messages.length != prevState.chats[id].messages.length)  {
-            if (prevState.chats[id].messages.length > 1) {
-                if (prevState.chats[id].messages.length < this.state.chats[id].messages.length && this.state.chats[id].messages[this.state.chats[id].messages.length -1].name !== "ChatBot" && prevState.chats[id].messages[prevState.chats[id].messages.length -2].name !== "ChatBot") {
-                    setTimeout(()=>
-            this.handleSendMessage(id)({name: "ChatBot", content: "Ping from ChatBot of room#" + id}),200)
-                }
-            }else {setTimeout(()=>
-                this.handleSendMessage(id)({name: "ChatBot", content: "Ping from ChatBot of room#" + id}),200)}
- }}}
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators ({loadChats, addMessage
+    }, dispatch);
+};
 
-    handleSendMessage = (id) => (message) => {
-        this.setState((state) => (
-            {
-                chats: {
-                    ...state.chats,
-                    [id]: {
-                        name: state.chats[id].name,
-                        messages: [
-                            ...state.chats[id].messages,
-                            message,
-                        ]
-                    },
-                }
-            }))
+const mergeProps = (stateProps, dispatchProps, {match}) => {
+    const id = match.params.id;
+    return {
+        ...stateProps,
+        onSendMessage: ({name, content}) => dispatchProps.addMessage(id, name, content),
     }
+}
 
-    render() {
-        const { chats } = this.state;
-        const { id } = this.props.match.params;
-        if (id && chats[id]) {
-            return <Chat {...{ chats: chats, messages: chats[id].messages, onSendMessage: this.handleSendMessage(id) }} />
-        } else {
-            return <span>Вы не выбрали чат</span>
-        }
-}
-}
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);
