@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Chat } from "../components/Chat/Chat";
+import "./ChatContainer.css";
 
 const ROBOT_NAME = 'Робот';
 
 export class ChatContainer extends Component {
+  static propTypes = {
+    chatId: PropTypes.number.isRequired,
+  };
+
   state = {
     chats: {
       1: {
@@ -37,7 +43,7 @@ export class ChatContainer extends Component {
 
   componentDidUpdate() {
     const { chats } = this.state;
-    const { id } = this.props.match.params;
+    const id = this.props.chatId;
 
     if (id && chats[id]) {  
       const messages = this.state.chats[id].messages;    
@@ -67,12 +73,12 @@ export class ChatContainer extends Component {
 
   render() {
     const { chats } = this.state;
-    const { id } = this.props.match.params; // получаем id чата
+    const id = this.props.chatId; // получаем id чата
 
     if (id && chats[id]) {
       return <Chat {...{ messages: chats[id].messages, onSendMessage: this.handleSendMessage(id) }} />;
     } else {
-      return <span>Пожалуйста, выберите чат</span> 
+      return <div className="no-selected-chat">Пожалуйста, выберите чат</div> 
       //логика должна быть вынесена в отдельный файл
     }
   }
