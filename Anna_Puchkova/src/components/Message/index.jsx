@@ -2,6 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import '../../styles/styles.css';
 
 export default class Message extends React.Component {
     static propTypes = {
@@ -12,7 +13,7 @@ export default class Message extends React.Component {
     render() {
         const robotMessage = cn({
             'message': true,
-            'messageRobot': this.props.sender === 'robot',
+            'messageRobot': this.props.sender === 'bot',
           });
 
         return <div className={robotMessage}>
