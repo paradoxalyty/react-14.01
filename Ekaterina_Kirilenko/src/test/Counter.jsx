@@ -15,14 +15,14 @@ export class Counter extends Component {
 
   componentDidMount() {
     console.log("компонент был примонтирован");
-    this.interval = setInterval(() => console.log("It's fired"), 2000); 
+    // this.interval = setInterval(() => console.log("It's fired"), 2000); 
   }
   componentDidUpdate() {
     console.log("компонент был обновлен"); 
   }
   componentWillUnmount() {
     console.log("компонент был отмонтирован"); 
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
   }
 
   handleCount = (e) => {
@@ -33,15 +33,15 @@ export class Counter extends Component {
   render () {
     const { count } = this.props; 
     return (
-      <span>
-        <button data-number="-1" onClick={this.handleCount}>
+      <div className="counter">
+        <button className="counter__btn" data-number="-1" onClick={this.handleCount}>
           -1
         </button>
-        {count}
-        <button data-number="1" onClick={this.handleCount}>
+        <div className="counter__count">{count}</div>
+        <button className="counter__btn" data-number="1" onClick={this.handleCount}>
           +1
         </button>
-      </span>
+      </div>
     );
   }
 }
