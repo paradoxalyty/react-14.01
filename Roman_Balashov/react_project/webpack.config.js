@@ -21,10 +21,14 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
         ],
     },
     resolve: {
-        extensions: ['.jsx', '.js']
+        extensions: ['.jsx', '.js', '.css']
     },
     plugins: [
         new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html"), }),

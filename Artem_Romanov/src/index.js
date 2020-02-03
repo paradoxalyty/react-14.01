@@ -1,10 +1,12 @@
-import ReactDom from "react-dom";
-import React from "react";
-import MessageField from './components/messageFiled';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Layout from './components/Layout'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-ReactDom.render(<MuiThemeProvider><MessageField /></MuiThemeProvider>, document.getElementById('root')); //Рендерим в div
-
-
+ReactDOM.render(<MuiThemeProvider>
+           <Layout />
+       </MuiThemeProvider>,
+   document.getElementById('root'),
+);
 
 

@@ -9,4 +9,5 @@ export const Header = ({text}) => {
             </h1>
             <a className="header-link" href="/profile">Profile page</a>
         </div>);
+
 }

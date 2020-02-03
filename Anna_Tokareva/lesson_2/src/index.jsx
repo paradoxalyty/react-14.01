@@ -1,14 +1,11 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { MessageField } from "./components/MessageField";
-
-const messages = [
-  { name: "Иван", content: "Привет!" },
-  { name: "Петр", content: "Привет, как дела?" },
-  { name: "Иван", content: "Хорошо, спасибо." }
-];
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { App } from "./containers/App";
 
 ReactDom.render(
-  <MessageField messages={messages} />,
+  <MuiThemeProvider>
+    <App />
+  </MuiThemeProvider>,
   document.getElementById("root")
 );
