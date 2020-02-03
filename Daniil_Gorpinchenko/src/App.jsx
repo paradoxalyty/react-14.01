@@ -4,8 +4,10 @@ import { ChatList } from "./components/ChatList/ChatList";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { initStore } from './store/store';
 import { Provider } from 'react-redux';
+import {loadChats} from './store/chatAction';
 
 const store = initStore();
+store.dispatch(loadChats());
 
 export class App extends Component {
     render () {

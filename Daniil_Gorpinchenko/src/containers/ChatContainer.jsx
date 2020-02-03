@@ -7,7 +7,7 @@ import {loadChats, addMessage} from '../store/chatAction';
 
 const robotName = 'Robot';
 
-class ChatContainer extends Component {
+// class ChatContainer extends Component {
     // state = {
     //     chats: {
     //         1: {
@@ -35,9 +35,9 @@ class ChatContainer extends Component {
     //     }
     // }
 
-    componentDidMount(){
-        this.props.loadChats();
-    }
+    // componentDidMount(){
+    //     this.props.loadChats();
+    // }
 
     // componentDidUpdate() {
     //     // const {chats} = this.state;
@@ -53,8 +53,8 @@ class ChatContainer extends Component {
     //     // }
     // }
 
-    hendleSendMessage = (id) => (message) =>{
-        this.props.addMessage(id, message.name, message.content);
+    // hendleSendMessage = (id) => (message) =>{
+    //     this.props.addMessage(id, message.name, message.content);
     //     this.setState((state) => (
     //         {
     //         chats: {
@@ -67,29 +67,29 @@ class ChatContainer extends Component {
     //             ]
     //         },
     //     }}))
-    }
+    // }
 
 
-    render () {
-        // console.log(this.props.chats)
-        // return null;
-        const {messages} = this.props;
-        const {id} = this.props.match.params;
+    // render () {
+    //     // console.log(this.props.chats)
+    //     // return null;
+    //     const {messages, id,addMessage} = this.props;
+
         
-        if(messages){
-            return <Chat {...{messages: messages, onSendMessage: this.hendleSendMessage(id)}}/>
-        }else{
-            return <span>You did'n select the chat...(</span>
-        }
-    }
-}
+    //     if(messages){
+    //         return <Chat {...{messages: messages, onSendMessage: addMessage}}/>
+    //     }else{
+    //         return <span>You did'n select the chat...(</span>
+    //     }
+    // }
+// }
 
 const mapStateToProps =({chatReducer}, {match}) => {
-    const id = match.params.id;
     // console.log(props)
+    const id = match.params.id;
     return {
         messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
-        id
+        // id
     }
 }
 
@@ -99,4 +99,12 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer);
+const mergeProps = (stateProps, dispatchProps, {match}) => {
+    const id = match.params.id;
+    return {
+        ...stateProps,
+        onSendMessage:  ({name, content}) => dispatchProps.addMessage(id, name, content),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);
