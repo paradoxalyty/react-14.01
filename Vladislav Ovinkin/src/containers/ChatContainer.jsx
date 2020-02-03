@@ -8,7 +8,10 @@ export class ChatContainer extends Component {
     timer = null;
 
     componentDidMount () {
-        // console.log (this.props);
+        // const {id} = this.props.match.params;
+        const {id} = this.props;
+        const {onChatChange} = this.props;
+        onChatChange (id);
     }
 
     componentDidUpdate () {
@@ -34,7 +37,9 @@ export class ChatContainer extends Component {
 
     render () {
         const {chats} = this.props;
-        const {id} = this.props.match.params;
+        // const {id} = this.props.match.params;
+        const {id} = this.props;
+
         if (id) {
             return <Chat {...{messages: chats[id].messages, onSendMessage: this.handleSendMessage}} />
         } else {

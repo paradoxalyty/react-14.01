@@ -29,11 +29,17 @@ export class App extends Component {
     handleChatChange = (newId) => {
         this.setState (() => ({currentChatId: newId}));
     }
+    componentDidMount () {
+    }
+    componentDidUpdate (prevProps, prevState) {
+        
+    }
     render () {
+        const {id} = this.props.match.params;
         const {chats} = this.state;
         const {currentChatId} = this.state;
         return (
-            <Layout {...{chatList: chats, activeChatId: currentChatId, onChatChange: this.handleChatChange}} />
+            <Layout {...{chatList: chats, activeChatId: currentChatId, id: id, onChatChange: this.handleChatChange}} />
         );
     };
 }
