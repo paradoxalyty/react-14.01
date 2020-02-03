@@ -1,4 +1,4 @@
-import React, {useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import Fab from "@material-ui/core/Fab";
 import SendIcon from 'material-ui/svg-icons/content/send';
@@ -17,15 +17,22 @@ export const ChatForm = ({onSendMessage}) => {
         textInput.current.value = "";
     };
 
-    const handleKeyUp = (event, message) => {
-        if(event.shiftKey && event.keyCode === 13) {
+/*  //Так делать нельзя
+    const DUMM_handleKeyUp = (event, message) => {
+        if (event.shiftKey && event.keyCode === 13) {
             console.log('shift+enter');
-        }else if(event.keyCode === 13) {
+        } else if (event.keyCode === 13) {
+            handleClick(message);
+        }
+    };*/
+
+    const handleKeyUp = (event, message) => {
+        if (event.shiftKey && event.keyCode === 13) {
             handleClick(message);
         }
     };
 
-    return (<div className="user-message" >
+    return (<div className="user-message">
         <TextField label="Your message"
                    fullWidth={true}
                    autoFocus

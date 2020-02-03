@@ -28,9 +28,10 @@ export class ChatContainer extends Component {
         }
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate() {
         const {chats} = this.state;
         const {id} = this.props.match.params;
+
         if (id && chats[id]) {
             const messages = this.state.chats[id].messages;
             const lastMessage = messages[messages.length - 1];
@@ -63,7 +64,7 @@ export class ChatContainer extends Component {
         if (id && chats[id]) {
             return <MessageField {...{messages: chats[id].messages, onSendMessage: this.handleSendMessage(id)}}/>
         } else {
-            return <span>404</span>
+            return <div className="404 emptyBlock">404</div>
         }
     }
 }
