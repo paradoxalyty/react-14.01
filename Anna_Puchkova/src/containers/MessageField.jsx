@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
@@ -6,6 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../components/Message';
+import { sendMessage } from '../actions/messageActions';
 import '../styles/styles.css';
 
 class MessageField extends React.Component {
@@ -21,11 +21,11 @@ class MessageField extends React.Component {
     };
 
     handleSendMessage = (message, sender) => {
-        if (this.state.input.length > 0 || sender === 'bot') {
-            this.props.sendMessage(message, sender);
+        if (message.length > 0 || sender === 'bot') {
+            this.sendMessage(message, sender);
         }
         if (sender === 'me') {
-            this.setState({ input: '' });
+            this.setState({ input: '' })
         }
     };
 
@@ -38,6 +38,18 @@ class MessageField extends React.Component {
            this.handleSendMessage(this.state.input, 'me')
        }
    };
+
+   componentDidUpdate(prevProps, prevState) {
+    if (Object.keys(prevProps.messages).length < Object.keys(this.props.messages).length &&
+        this.props.messages[Object.keys(this.props.messages).length].sender === 'me') {
+        setTimeout(() => this.sendMessage(`I am Robot and it is Chat # ${this.props.chatId}`, 'bot'), 1000);
+    }
+}
+    sendMessage = (message, sender) => {
+        const { chatId, messages } = this.props;
+        const messageId = Object.keys(messages).length + 1;
+        this.props.sendMessage(messageId, message, sender, chatId);
+    };
 
    render() {
       const { chatId, messages, chats } = this.props;
@@ -72,10 +84,11 @@ class MessageField extends React.Component {
    }
 }
 
-const mapStateToProps = ({ chatReducer }) => ({
+const mapStateToProps = ({ chatReducer, messageReducer }) => ({
     chats: chatReducer.chats,
+    messages: messageReducer.messages,
  });
  
- const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+ const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
  
  export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
