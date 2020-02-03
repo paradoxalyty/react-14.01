@@ -2,3 +2,7 @@
   width: 30%;
   background-color: lightslategray;
 }
+
+.chatLink {
+  text-decoration: none;
+}
