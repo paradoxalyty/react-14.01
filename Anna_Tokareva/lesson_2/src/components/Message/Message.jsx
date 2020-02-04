@@ -5,7 +5,7 @@ import classnames from "classnames";
 
 export const Message = ({ name, content }) => {
   const classNames = classnames("Message", {
-    "Message--robot": name === "Я"
+    "Message--user": name === "Я"
   });
   return (
     <div className={classNames}>

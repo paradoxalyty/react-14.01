@@ -1,12 +1,17 @@
-import React, { Component } from "react";
+//import React, { Component } from "react";
 import { Chat } from "../components/Chat/Chat";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { addMessage } from "../store/chatAction";
 
 const robot = {
   name: "Робот",
   content: "Привет! Я робот."
 };
 
-export class ChatContainer extends Component {
+/*
+class ChatContainer extends Component {
+  /*
   state = {
     chats: {
       1: {
@@ -30,7 +35,13 @@ export class ChatContainer extends Component {
       }
     }
   };
+  */
 
+//componentDidMount() {
+//  this.props.loadChats();
+//}
+
+/*
   componentDidUpdate(prevProps, prevState) {
     const { chats } = this.state;
     const { id } = this.props.match.params;
@@ -55,9 +66,12 @@ export class ChatContainer extends Component {
         );
       }
     }
+    
   }
-
-  handleSendMessage = id => message => {
+*/
+//handleSendMessage = id => message => {
+//  this.props.addMessage(id, message.name, message.content);
+/*
     this.setState(state => ({
       chats: {
         ...state.chats,
@@ -67,17 +81,17 @@ export class ChatContainer extends Component {
         }
       }
     }));
-  };
-
+    */
+//};
+/*
   render() {
-    const { chats } = this.state;
-    const { id } = this.props.match.params;
-    if (id && chats[id]) {
+    const { messages, id, addMessage } = this.props;
+    if (id && messages) {
       return (
         <Chat
           {...{
-            messages: chats[id].messages,
-            onSendMessage: this.handleSendMessage(id)
+            messages: messages,
+            onSendMessage: addMessage
           }}
         />
       );
@@ -86,3 +100,30 @@ export class ChatContainer extends Component {
     }
   }
 }
+*/
+
+const mapStateToProps = ({ chatReducer }, { match }) => {
+  const id = match.params.id;
+  return {
+    messages: id
+      ? chatReducer.chats[id]
+        ? chatReducer.chats[id].messages
+        : null
+      : null
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ addMessage }, dispatch);
+};
+
+const mergeProps = (stateProps, dispatchProps, { match }) => {
+  const id = match.params.id;
+  return {
+    ...stateProps,
+    onSendMessage: ({ name, content }) =>
+      dispatchProps.addMessage(id, name, content)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);

@@ -6,6 +6,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SendIcon from "@material-ui/icons/Send";
+import AddIcon from "@material-ui/icons/Add";
+import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -50,6 +52,13 @@ export const ChatList = ({ chats }) => {
           <ListItemText primary="Чат 3" />
         </ListItem>
       </Link>
+
+      <ListItem>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <TextField id="standard-basic" label="Новый чат" />
+      </ListItem>
     </List>
   );
 };
