@@ -28,7 +28,10 @@ export const Layout = ({chats,
             />
 
             <div className="react-messenger__message-field">
-                <MessageField chats={chats} chatId={chatId} messages={messages}/>
+                <MessageField chats={chats}
+                              chatId={chatId}
+                              messages={messages}
+                />
 
                 <ChatForm input={input}
                           handleButton={handleButton}

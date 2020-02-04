@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
-import initReducers from './../reducers';
+import initReducers from './../reducers'; // combineReducers from reducers/index.js
 
-function initStore() {
+export const initStore = () => {
     const initialStore = {};
 
     return createStore(
@@ -11,5 +11,3 @@ function initStore() {
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
     );
 }
-
-export default initStore;

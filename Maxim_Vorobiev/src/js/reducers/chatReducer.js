@@ -10,7 +10,7 @@ const initialStore = {
     },
 };
 
-export default function chatReducer(store = initialStore, action) {
+export const chatReducer = (store = initialStore, action) => {
     switch (action.type) {
         case SEND_MESSAGE: {
             return update(store, {

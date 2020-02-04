@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 const BOT_NAME = 'Bot';
 const USER_NAME = 'Me';
 
-// const chats = {
-//     1: {title: 'Chat 1', messageList: [1]},
-//     2: {title: 'Chat 2', messageList: [2]},
-//     3: {title: 'Chat 3', messageList: [3]},
-// };
+const chats = {
+    1: {title: 'Chat 1', messageList: [1]},
+    2: {title: 'Chat 2', messageList: [2]},
+    3: {title: 'Chat 3', messageList: [3]},
+};
 
 const messages = {
     1: {name: USER_NAME, content: 'Good afternoon!'},
@@ -21,7 +21,7 @@ const messages = {
 export class App extends Component {
     static propTypes = {
         chatId: PropTypes.number,
-        sendMessage: PropTypes.func.isRequired,
+        // sendMessage: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -29,46 +29,46 @@ export class App extends Component {
     }
 
     state = {
-        // chats: chats,
+        chats: chats,
         messages: messages,
         input: '',
         inputChat: '',
     };
 
-    // sendMessage = (name, content) => {
-    //     const {messages, chats, input} = this.state;
-    //     const {chatId} = this.props;
-    //     const messageId = Object.keys(messages).length + 1;
-
-    //     if (input.length > 0 || name === BOT_NAME) {
-    //         this.setState((state) => ({
-    //             messages: {...messages, [messageId]: {name: name, content: content}},
-    //             chats: {
-    //                 ...chats, [chatId]: {
-    //                     ...chats[chatId], messageList: [...chats[chatId]['messageList'], messageId]
-    //                 }
-    //             },
-
-    //         }))
-    //     }
-
-    //     if (name === USER_NAME) {
-    //         this.setState({input: ''})
-    //     }
-    // };
-
     sendMessage = (name, content) => {
-        const {messages} = this.state;
+        const {messages, chats, input} = this.state;
         const {chatId} = this.props;
         const messageId = Object.keys(messages).length + 1;
 
-        this.setState({
-            messages: {...messages,
-                [messageId]: {name: name, content: content}},
-        });
+        if (input.length > 0 || name === BOT_NAME) {
+            this.setState((state) => ({
+                messages: {...messages, [messageId]: {name: name, content: content}},
+                chats: {
+                    ...chats, [chatId]: {
+                        ...chats[chatId], messageList: [...chats[chatId]['messageList'], messageId]
+                    }
+                },
 
-        this.props.sendMessage(messageId, name, content, chatId);
-    }
+            }))
+        }
+
+        if (name === USER_NAME) {
+            this.setState({input: ''})
+        }
+    };
+
+    // sendMessage = (name, content) => {
+    //     const {messages} = this.state;
+    //     const {chatId} = this.props;
+    //     const messageId = Object.keys(messages).length + 1;
+
+    //     this.setState({
+    //         messages: {...messages,
+    //             [messageId]: {name: name, content: content}},
+    //     });
+
+    //     this.props.sendMessage(messageId, name, content, chatId);
+    // }
 
     handleButton = (message) => {
         this.sendMessage(USER_NAME, message);
@@ -126,10 +126,10 @@ export class App extends Component {
         const {chatId} = this.props;
 
         return <Layout chats={chats}
-                    //    chatId={chatId}
-                    //    messages={messages}
+                       chatId={chatId}
+                       messages={messages}
                        chatId={this.props.chatId}
-                       messages={this.props.messages}
+                    //    messages={this.props.messages}
                        input={input}
                        handleButton={this.handleButton}
                        handleKeyUp={this.handleKeyUp}
