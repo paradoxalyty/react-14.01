@@ -1,6 +1,16 @@
 import React from "react";
 import ReactDom from "react-dom";
-import {Layout} from "./containers/Layout/Layout";
+import Layout from "./containers/Layout/Layout";
+import {loadChats} from "./store/chatAction";
 import css from 'style.css';
 
-ReactDom.render(<Layout />, document.getElementById("root"));
+import {Provider} from "react-redux";
+import {initStore} from "./store/store";
+
+const store=initStore();
+store.dispatch(loadChats());
+
+ReactDom.render(
+    <Provider store={store}>
+        <Layout />
+    </Provider>, document.getElementById("root"));

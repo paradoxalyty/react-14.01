@@ -18,9 +18,9 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-export const ChatList =({chats, addChat}) => {
+export const ChatList =({chats}) => {
     const addNewChat=(e)=>{
-      addChat();
+      //addChat();
     };
     const classes = useStyles();
     return (

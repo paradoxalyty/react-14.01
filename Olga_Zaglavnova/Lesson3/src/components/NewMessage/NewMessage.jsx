@@ -79,31 +79,3 @@ export const NewMessage =({userName, onSubmitMessage}) => {
 NewMessage.propTypes={
     onSubmitMessage: PropTypes.func.isRequired
 }
-//  {
-//     constructor(props){
-//         super(props);
-//         this.state = {value: ""};
-
-//         this.handleChange = this.handleChange.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//     }
-
-//     handleChange(event) {
-//         this.setState({value: event.target.value});
-//     }
-//     handleSubmit(event){
-//         let newMsjObj = {msgClass: "guest", name: "Я", content: this.state.value};
-//         this.props.addMessage(newMsjObj);
-//         this.setState({value: ""});
-
-//         event.preventDefault();
-//     }
-//     render() {
-//         return 
-//         //return <div>Hello</div>
-//     }
-//     /*render() {
-//         return <form className="newMessageForm"><input className="messageInput" value={this.state.value} onChange={this.handleChange} /><input type="submit" value="Отправить" className="submitBtn" /></form>
-//         //return <div>Hello</div>
-//     }*/
-// }
