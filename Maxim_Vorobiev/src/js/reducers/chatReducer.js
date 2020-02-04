@@ -1,3 +1,42 @@
+// From video lesson
+// import {handleActions} from 'react-actions';
+// import {loadChats, addMessage} from '../actions/chatActions';
+
+// const defaultState = {
+//     chats: {}
+// };
+
+// export default handleActions({
+//     [loadChats]: (state) => {
+//         return {
+//             ...state,
+//             chats: {
+//                 1: {title: 'Chat 1', messageList: [1]},
+//                 2: {title: 'Chat 2', messageList: [2]},
+//                 3: {title: 'Chat 3', messageList: [3]},
+//             }
+//         }
+//     },
+
+//     [addMessage]: (state, {payload: {id, name, content}}) => {
+//         return {
+//             ...state,
+//             chats: {
+//                 ...state.chats,
+//                 [id]: {
+//                     name: state.chats[id].name,
+//                     messages: [
+//                         ...state.chats[id].messages,
+//                         {name, content},
+//                     ]
+//                 },
+//             }
+//         }
+//     }
+// }, defaultState);
+
+
+
 import update from 'react-addons-update';
 import {SEND_MESSAGE} from '../actions/messageActions';
 import {ADD_CHAT} from '../actions/chatActions';
@@ -22,7 +61,7 @@ export const chatReducer = (store = initialStore, action) => {
         }
 
         case ADD_CHAT: {
-            const chatID = Object.keys(stoe.chats).length + 1;
+            const chatId = Object.keys(store.chats).length + 1;
 
             return update(store, {
                 chats: {$merge: {

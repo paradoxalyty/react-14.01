@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import initReducers from './../reducers'; // combineReducers from reducers/index.js
+import initReducers from '../reducers';
 
 export const initStore = () => {
     const initialStore = {};
