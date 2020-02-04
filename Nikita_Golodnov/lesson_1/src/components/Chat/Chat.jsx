@@ -5,11 +5,17 @@ import { ChatForm } from '../ChatForm/ChatForm'
 import { Message } from '../Message/Message'
 import './Chat.css'
 
-export const Chat = ({messages, sendMessage}) => 
-    (<div className="Chat">
+export const Chat = ({messages, sendMessage}) => {    
+    if (messages) {
+        return (<div className="Chat">
         <MessageList messages={messages}/>
         <ChatForm sendMessage={sendMessage}/>
-    </div>)
+        </div>)
+    } else {
+        return <span>Выберите доступный чат</span>
+    }
+}
+
 
 Chat.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),

@@ -1,12 +1,19 @@
 import React from "react"
 import {ChatList} from "../ChatList/ChatList"
 import {Header} from "..//Header/Header"
-import {ChatContainer} from "../../containers/ChatContainer"
+import ChatContainer from "../../containers/ChatContainer"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './Layout.css'
+import {initStore} from "../../store/store"
+import {Provider} from "react-redux"
+import {loadChats} from "../../store/chatAction"
+
+const store = initStore ()
+store.dispatch(loadChats ())
 
 export const Layout = () => {
     return (
+        <Provider store={store}>
         <BrowserRouter> 
             <div className="layout">
                 <Header />
@@ -26,5 +33,6 @@ export const Layout = () => {
                 </Switch>
             </div>
         </BrowserRouter>
+        </Provider>
     )
 }
