@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addMessage } from "../store/chatAction";
 
-const robot = {
-  name: "Робот",
-  content: "Привет! Я робот."
-};
+//const robot = {
+//  name: "Робот",
+//  content: "Привет! Я робот."
+//};
 
 /*
 class ChatContainer extends Component {

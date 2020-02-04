@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Profile } from "../Profile/Profile";
 import ChatContainer from "../../containers/ChatContainer";
+import ChatListContainer from "../../containers/ChatListContainer";
+import HeaderContainer from "../../containers/HeaderContainer";
 import { Header } from "../Header/Header";
 import { ChatList } from "../ChatList/ChatList";
 import "./Layout.css";
@@ -14,17 +16,16 @@ store.dispatch(loadChats());
 
 export class Layout extends Component {
   render() {
-    console.log(this.params);
     return (
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route path="/profile" exact component={Header} />
-            <Route path="/chats" exact component={Header} />
-            <Route path="/chats/:id" exact component={Header} />
+            <Route path="/profile" exact component={HeaderContainer} />
+            <Route path="/chats" exact component={HeaderContainer} />
+            <Route path="/chats/:id" exact component={HeaderContainer} />
           </Switch>
           <div className="Chat">
-            <ChatList className="ChatList-Position" />
+            <ChatListContainer className="ChatList-Position" />
             <div className="ChatField-Position">
               <Switch>
                 <Route path="/profile" exact component={Profile} />

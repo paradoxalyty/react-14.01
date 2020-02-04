@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ChatList.css";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -21,6 +21,55 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+export const ChatList = ({ chats, addChat }) => {
+  const classes = useStyles();
+  const [name, setName] = useState("");
+
+  const handleClik = () => {
+    if (name) {
+      addChat({ name });
+      setName("");
+    }
+  };
+
+  const handleKeyUp = () => {
+    if (name && event.keyCode === 13 && event.ctrlKey) {
+      addChat({ name });
+      setName("");
+    }
+  };
+
+  const chatElements = Object.keys(chats).map(id => (
+    <Link key={id} to={`/chats/${id}`} className="chatLink">
+      <ListItem button>
+        <ListItemIcon>
+          <SendIcon />
+        </ListItemIcon>
+        <ListItemText primary={chats[id].name} />
+      </ListItem>
+    </Link>
+  ));
+
+  return (
+    <List className="ChatList">
+      {chatElements}
+      <ListItem>
+        <ListItemIcon>
+          <AddIcon onClick={handleClik} />
+        </ListItemIcon>
+        <TextField
+          id="standard-basic"
+          label="Новый чат"
+          value={name}
+          onChange={({ currentTarget: { value } }) => setName(value)}
+          onKeyUp={handleKeyUp}
+        />
+      </ListItem>
+    </List>
+  );
+};
+
+/*
 export const ChatList = ({ chats }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -62,3 +111,4 @@ export const ChatList = ({ chats }) => {
     </List>
   );
 };
+*/
