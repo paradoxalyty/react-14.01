@@ -1,5 +1,5 @@
-import { handleActions } from 'redux-action';
-import { loadChats, addMessage } from "./chatAction";
+import { handleActions } from 'redux-actions';
+import { loadChats, addMessage } from "./chatAction.js";
 
 const defaultState = {
     chats: {

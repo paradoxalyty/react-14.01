@@ -5,9 +5,8 @@ import { ChatList } from '../components/ChatList/ChatList.jsx';
 import { Profile } from '../components/Profile/Profile.jsx';
 import { initStore } from '../store/store';
 import { Provider } from 'react-redux';
+
 export class App extends Component {
-
-
 
     render() {
         return (

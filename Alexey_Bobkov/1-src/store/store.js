@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import chatReducer from './chatReducer';
+import chatReducer from './chatReducer.js';
 
 const reducer = combineReducers({
     chatReducer,
@@ -7,5 +7,10 @@ const reducer = combineReducers({
 });
 
 export const initStore = (preloadedState = {}) => {
-    return createStore(reducer, preloadedState)
-};
+    return createStore(
+        reducer,
+        preloadedState,
+
+    )
+
+}
