@@ -1,5 +1,11 @@
 import React from "react";
 import ReactDom from "react-dom";
-import MessageList from "./components/MessageList";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Layout from "./components/Layout";
 
-ReactDom.render(<MessageList />, document.getElementById("root"));
+ReactDom.render(
+    <MuiThemeProvider>
+        <Layout />
+    </MuiThemeProvider>,
+    document.getElementById("root")
+);

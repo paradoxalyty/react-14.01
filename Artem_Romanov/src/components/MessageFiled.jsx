@@ -13,7 +13,7 @@ state = {
 };
 
 componentDidUpdate() {
-    if (this.state.messages[this.state.messages.length - 1].sender === 'me') { // Если последний элемент в массиве равени имени автора, то запускаем ответ
+    if (this.state.messages[this.state.messages.length - 1].sender !== 'bot') { // Если последний элемент в массиве равени имени автора, то запускаем ответ
         setTimeout(() =>
                 this.setState({
                     messages: [ ...this.state.messages, {text: 'Не лезь ко мне, я занят', sender: 'bot'} ] }),
