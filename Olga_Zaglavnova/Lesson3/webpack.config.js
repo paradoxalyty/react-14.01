@@ -10,6 +10,10 @@ module.exports = {
         modules: ['node_modules', 'src', 'components'],
         extensions: ['.js', '.jsx'],
     },
+    devServer: {
+        historyApiFallback: true,
+    },
+    devtool: "inline-source-map",
     module:{
         rules: [
             {

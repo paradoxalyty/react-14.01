@@ -13,12 +13,17 @@
     border: 1px solid darkred;
     /*float: right;*/
     align-self: flex-end;
+    clear: both;
+}
+.messageRow:first-of-type{
+    margin-top: auto;
 }
 .messageRow--robot{
     background-color: lavender;
     border: 1px solid darkslateblue;
-    /*float: left;*/
+    float: left;
     align-self: flex-start;
+    float: left;
 }
 .messageTime{
     font-size: 10px;
