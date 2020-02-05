@@ -1,0 +1,12 @@
+.Chat {
+  display: flex;
+  justify-content: stretch;
+}
+
+.ChatList-Position {
+  height: 100%;
+}
+
+.ChatField-Position {
+  width: 70%;
+}
