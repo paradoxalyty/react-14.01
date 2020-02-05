@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from "redux";
 import chatReducer from "./chatReducer";
+import userReducer from "./userReducer";
 
 const reducer = combineReducers({
-  chatReducer
+  chatReducer,
+  userReducer
 });
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__

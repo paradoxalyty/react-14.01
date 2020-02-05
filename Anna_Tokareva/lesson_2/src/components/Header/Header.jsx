@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Header = ({ name }) => {
+export const Header = ({ name, userName }) => {
   const classes = useStyles();
   return (
     <AppBar position="static" className="Header">
@@ -22,7 +22,7 @@ export const Header = ({ name }) => {
         {name}
       </Typography>
       <Link to="/profile" className="profileLink">
-        Мой профиль
+        Перейти в профиль пользователя {userName}
       </Link>
     </AppBar>
   );
