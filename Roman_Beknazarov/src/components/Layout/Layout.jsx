@@ -1,17 +1,15 @@
 import React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-import {ChatContainer} from "../../Containers/ChatContainer";
-import {Header} from "../Header/Header";
-import {ChatList} from "../ChatList/ChatList";
+import ChatContainer from '../../Containers/ChatContainer';
+import {Header} from '../Header/Header';
+import {ChatList} from '../ChatList/ChatList';
 
 import './Layout.css';
 
 export const Layout = () => {
 
     return (<BrowserRouter>
-            <MuiThemeProvider>
                 <div className="layout">
                     <Header/>
                     <main>
@@ -33,7 +31,6 @@ export const Layout = () => {
                         </div>
                     </main>
                 </div>
-            </MuiThemeProvider>
         </BrowserRouter>
     );
 };

@@ -1,8 +1,8 @@
 import React, {useState, useRef} from 'react';
 import PropTypes from 'prop-types';
-import Fab from "@material-ui/core/Fab";
-import SendIcon from 'material-ui/svg-icons/content/send';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+
 import './ChatForm.css'
 
 // используем HOOKS
@@ -17,7 +17,7 @@ export const ChatForm = ({onSendMessage}) => {
         textInput.current.value = "";
     };
 
-/*  //Так делать нельзя
+    /*  //Так делать нельзя
     const DUMM_handleKeyUp = (event, message) => {
         if (event.shiftKey && event.keyCode === 13) {
             console.log('shift+enter');
@@ -42,9 +42,7 @@ export const ChatForm = ({onSendMessage}) => {
                    onChange={({currentTarget: {value}}) => setContent(value)}
                    onKeyUp={(event) => handleKeyUp(event, content)}
         />
-        <Fab onClick={handleClick}>
-            <SendIcon/>
-        </Fab>
+        <Button onClick={handleClick} variant="contained" color="primary">Send</Button>
     </div>);
 };
 
