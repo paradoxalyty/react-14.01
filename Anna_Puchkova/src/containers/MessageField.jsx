@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Message from '../components/Message';
 import { sendMessage } from '../actions/messageActions';
 import '../styles/styles.css';
@@ -45,15 +46,21 @@ class MessageField extends React.Component {
         this.props.sendMessage(messageId, message, sender, chatId);
     };
 
+    //deleteMessage = () => {};
+
    render() {
       const { chatId, messages, chats } = this.props;
 
        const messageElements = chats[chatId].messageList.map(messageId => (
+
            <Message
                key={ messageId }
                text={ messages[messageId].text }
                sender={ messages[messageId].sender }
-           />));
+               //deleteButton={<DeleteIcon className={"deleteButton"} onClick={() => this.deleteMessage(messageId)}/>}
+           />
+          
+           ));
 
        return [
            <div key='messageElements' className="message-field">

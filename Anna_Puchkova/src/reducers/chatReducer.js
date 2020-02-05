@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from '../actions/messageActions';
-import { ADD_CHAT, HIGHLIGHT_CHAT, UNHIGHLIGHT_CHAT } from "../actions/chatActions";
+import { ADD_CHAT, DELETE_CHAT, HIGHLIGHT_CHAT, UNHIGHLIGHT_CHAT } from "../actions/chatActions";
 
 const initialStore = {
    chats: {
@@ -8,7 +8,7 @@ const initialStore = {
            2: {title: 'Chat 2', messageList: [2]},
            3: {title: 'Chat 3', messageList: []},
        },
-       chatsWithNewMessages: [],
+       chatNewMessages: [],
 };
 
 
@@ -31,18 +31,28 @@ export default function chatReducer(store = initialStore, action) {
               } } },
            });
        }
+
+       case DELETE_CHAT: {
+        const chatId = Number(action.chatId);
+        return update(store, {
+          chats: { $splice: [
+              [chatId, 1]
+            ] },
+        });
+      }
+
        case HIGHLIGHT_CHAT: {
         const chatId = Number(action.chatId);
         return update(store, {
-            chatsWithNewMessages: { $set: [...store.chatsWithNewMessages, chatId] }
+            chatNewMessages: { $set: [...store.chatNewMessages, chatId] }
         });
     }
         case UNHIGHLIGHT_CHAT: {
             const chatId = Number(action.chatId);
-            const chatsWithNewMessages = [...store.chatsWithNewMessages];
-            delete chatsWithNewMessages[chatsWithNewMessages.indexOf(chatId)];
+            const chatNewMessages = [...store.chatNewMessages];
+            delete chatNewMessages[chatNewMessages.indexOf(chatId)];
             return update(store, {
-                chatsWithNewMessages: { $set: chatsWithNewMessages }
+                chatNewMessages: { $set: chatNewMessages }
             });
         }
        default:

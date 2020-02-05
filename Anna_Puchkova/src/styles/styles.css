@@ -83,6 +83,16 @@ body {
    justify-content: space-between;
    align-self: flex-end;
 }
+.deleteButtonDiv {
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+   justify-content: space-between;
+}
+.deleteButton {
+   color: #3cc2d1;
+   font-size: "small";
+}
 .profileLink {
    margin: 0 10px 0 0;
    color: gray;
