@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { ChatList } from "./components/ChatList/ChatList";
+import ChatListContainer from "./containers/ChatListContainer";
 import ChatContainer from "./containers/ChatContainer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { initStore } from './store/store';
+import { initStore, history } from './store/store';
 import { Provider } from 'react-redux';
 import {loadChats} from './store/chatAction';
+import {ConnectedRouter} from "connected-react-router";
 // https://domain/page/2 - BrowserRouter
 // https://domain/#page/2 - HashRouter
 const store = initStore();
@@ -14,8 +15,8 @@ export class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <BrowserRouter>
-                    <ChatList />
+                <ConnectedRouter history={history}>
+                    <ChatListContainer />
                     <Switch>
                         <Route path="/chats/" exact component={ChatContainer} />
                         <Route path="/chats/:id" exact component={ChatContainer} />
@@ -29,7 +30,7 @@ export class App extends Component {
                             It's 404
                 </Route>
                     </Switch>
-                </BrowserRouter>
+                </ConnectedRouter>
             </Provider>
         )
     }
