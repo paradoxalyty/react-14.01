@@ -5,13 +5,17 @@ import { ChatList } from '../components/ChatList/ChatList.jsx';
 import { Profile } from '../components/Profile/Profile.jsx';
 import { initStore } from '../store/store';
 import { Provider } from 'react-redux';
+import {loadChats} from '../store/chatAction'
 
-export class App extends Component {
+
+initStore().dispatch(loadChats());
+
+export  class App extends Component {
 
     render() {
         return (
-            <Provider>
-                <BrowserRouter store={initStore()}> 
+            <Provider store={initStore()}>
+                <BrowserRouter> 
             <Switch>
                 <Route path='/profile' exact component={Profile}></Route>
                 <Route path='/chats' exact component={ChatList}></Route>
