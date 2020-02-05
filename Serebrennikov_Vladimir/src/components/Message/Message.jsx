@@ -1,9 +1,8 @@
-import React, {Component} from "react";
+import React from "react";
 import './Message.css';
 
-export default class Message extends Component {
-  
-  render() {
-    return <div className='Message'><strong>{this.props.name}:</strong> {this.props.text}</div>;
-  }
-}
+export const Message = ({name, text, sender}) => (
+  <div className='Message' style={{alignSelf: sender === 'bot' ? 'flex-start' : 'flex-end' }}>
+    <strong>{name}:</strong> {text}
+  </div>
+);

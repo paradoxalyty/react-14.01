@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import SendIcon from '@material-ui/icons/Send';
 
 import './MessageSender.css';
 
@@ -53,7 +54,10 @@ export default class MessageSender extends Component {
           variant="contained"
           color="primary"
           size="small"
-          > Отправить </Button>
+          > 
+            Отправить 
+            <SendIcon style={{ marginLeft: '7px' }} />
+          </Button>
       </div>
     )
   }

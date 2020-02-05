@@ -1,5 +1,6 @@
 .MessageField {
-  margin: 20px;
   display: flex;
   flex-direction: column;
+  margin: 10px 0;
+  /* overflow-y: scroll; */
 }
