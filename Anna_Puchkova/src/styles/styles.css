@@ -97,7 +97,7 @@ body {
 .listLink {
    text-decoration: none;
 }
-.listLink:active {
+.listLink:hover {
    font-weight: bold;
 }
 .activeChat {
