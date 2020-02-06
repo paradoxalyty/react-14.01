@@ -9,7 +9,7 @@ import {Profile} from '../Profile/Profile';
 import './Layout.css';
 
 export const Layout = () => {
-
+console.log();
     return (<BrowserRouter>
                 <div className="layout">
                     <Header/>
@@ -23,10 +23,10 @@ export const Layout = () => {
                                     <Profile />
                                 </Route>
                                 <Route path="/home">
-                                    <div className="home emptyBlock"><h4>Home</h4></div>
+                                    <div className="home mainBlock"><h4>Home</h4></div>
                                 </Route>
                                 <Route path="/">
-                                    <div className="404 emptyBlock"><h4>404</h4></div>
+                                    <div className="404 mainBlock"><h4>404</h4></div>
                                 </Route>
                             </Switch>
                         </div>

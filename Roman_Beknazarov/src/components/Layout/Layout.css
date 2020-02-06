@@ -13,15 +13,15 @@ main h2 {
     padding: 30px;
 }
 
-.wrapper .emptyBlock {
+.wrapper .mainBlock {
     height: 100%;
     width: 70%;
-    text-align: left;
 }
 
-.wrapper .emptyBlock h4 {
+.wrapper .mainBlock h4 {
     font-size: 24px;
-    color: red;
+    color: grey;
+    text-align: left;
 }
 
 .wrapper .ChatList a {

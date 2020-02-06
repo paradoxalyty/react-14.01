@@ -6,3 +6,8 @@
 .MuiListItem-gutters {
     font-size: 20px;
 }
+
+.avatar {
+    padding-right: 10px;
+    color: grey;
+}
