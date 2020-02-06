@@ -13,7 +13,7 @@ export default store => next => action => {
     // console.log(action.type);
     if(action.type === addMessage.toString() && action.payload.name !== 'Robot'){
         const {name, id} = action.payload;
-        setTimeout(() => store.dispatch(addMessage(id, 'Robot', `Hello, ${name}, I'm Robot in chat ${id}`)), 1500)
+        setTimeout(() => store.dispatch(addMessage(id, 'Robot', `Hello, ${name}, I'm Robot in chat ${id}`)), 1500);
     }
     next(action);
-}
+};
