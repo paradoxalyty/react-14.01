@@ -10,7 +10,6 @@ import {ChatForm} from '../ChatForm/ChatForm'
 
 export const Layout = ({messages, onSendMessage}) =>
     (<div className='Layout'>
-
         <Header/>
         <ChatList/>
         <MessageField messages={messages} />

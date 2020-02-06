@@ -6,6 +6,7 @@ import { addMessage } from '../store/chatAction';
 
 
 
+
 // class ChatContainer extends Component {
 
 //     state ={
@@ -120,3 +121,4 @@ const mergeProps = (stateProps, dispatchProps, { match }) => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Layout);
+

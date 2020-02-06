@@ -7,12 +7,8 @@ import { initStore } from '../store/store';
 import { Provider } from 'react-redux';
 import { loadChats } from '../store/chatAction'
 
-
-// initStore().dispatch(loadChats());
-
 const store = initStore();
 store.dispatch(loadChats());
-console.log(store);
 
 export class App extends Component {
 
