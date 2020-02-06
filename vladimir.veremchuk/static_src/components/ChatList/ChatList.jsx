@@ -14,18 +14,4 @@ export const ChatList = ({chats, addChat}) => {
           </ListItem>
           </List>
           </div>
-          {/* <ListItem>
-          <Link to ="/chats/1">Чат 1</Link>
-          </ListItem>
-          <ListItem>
-          <Link to ="/chats/2">Чат 2</Link>
-          </ListItem>
-          <ListItem>
-          <Link to ="/chats/3">Чат 3</Link>
-          </ListItem>
-        </List>   
-        <ListItem>
-          <Link to ="/chats/1">+</Link>
-          </ListItem> */}
-
     }
