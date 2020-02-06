@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ChatList } from '../ChatList/ChatList.jsx';
+import { ChatList } from '../components/ChatList/ChatList.jsx'
 
 const mapStateToProps = ({ chatReducer }) => ({
-        chats: chatReducer.chats ? chatReducer.chats.name : null
-    }
-);
+
+    chats: chatReducer.chats ? chatReducer.chats.name : null
+});
 
 // const mapStateToProps = ({ chatReducer }) => ({
 //     chats: chatReducer.chats,

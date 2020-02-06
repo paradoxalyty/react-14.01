@@ -5,20 +5,22 @@ import { Header } from '../Header/Header.jsx';
 import { ChatList } from '../ChatList/ChatList.jsx';
 import { MessageField } from '../MessageField/MessageField.jsx';
 import { Message } from '../Message/Message.jsx';
-import {ChatForm} from '../ChatForm/ChatForm'
+import { ChatForm } from '../ChatForm/ChatForm'
 
 
-export const Layout = ({messages, onSendMessage}) =>
+export const Layout = ({ messages, onSendMessage }) =>
+
     (<div className='Layout'>
-        <Header/>
-        <ChatList/>
+        <Header />
+        <ChatList />
         <MessageField messages={messages} />
-        <ChatForm onSendMessage={onSendMessage}/>
-        </div>);
+        <ChatForm onSendMessage={onSendMessage} />
+
+    </div>);
 
 
 Layout.propTypes = {
-    
+
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
     onSendMessage: PropTypes.func.isRequired
 }

@@ -7,8 +7,8 @@ import Divider from '@material-ui/core/Divider';
 import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import { Link } from 'react-router-dom';
 
-export const ChatList = ({chats}) => {
-    console.log({chats})
+export const ChatList = ({ }) => {
+    console.log(chatReducer);
     return (<div className='ChatList'>
 
         <List>
@@ -59,4 +59,4 @@ export const ChatList = ({chats}) => {
             <Divider />
         </List>
     </div>)
-    }
+}

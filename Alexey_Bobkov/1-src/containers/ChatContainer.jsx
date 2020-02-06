@@ -105,8 +105,10 @@ const mapStateToProps = ({ chatReducer }, { match }) => {
     const id = match.params.id;
     return {
         messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
+
     }
 }
+
 
 
 const mapDispatchToProps = (dispatch) => {
