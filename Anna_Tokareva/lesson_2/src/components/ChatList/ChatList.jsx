@@ -7,8 +7,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SendIcon from "@material-ui/icons/Send";
 import AddIcon from "@material-ui/icons/Add";
+import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,33 +21,46 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const ChatList = ({ chats, addChat }) => {
+export const ChatList = ({ chats, activeChat, addChat, deleteChat, push }) => {
   const classes = useStyles();
   const [name, setName] = useState("");
 
+  const handleNavigate = link => {
+    push(link);
+  };
+
   const handleClik = () => {
     if (name) {
-      addChat({ name });
+      let chatId = parseInt(chats[chats.length - 1].id) + 1;
+      addChat({ name, chatId });
       setName("");
     }
   };
 
   const handleKeyUp = () => {
     if (name && event.keyCode === 13 && event.ctrlKey) {
-      addChat({ name });
+      let chatId = parseInt(chats[chats.length - 1].id) + 1;
+      addChat({ name, chatId });
       setName("");
     }
   };
 
-  const chatElements = Object.keys(chats).map(id => (
-    <Link key={id} to={`/chats/${id}`} className="chatLink">
-      <ListItem button>
-        <ListItemIcon>
-          <SendIcon />
-        </ListItemIcon>
-        <ListItemText primary={chats[id].name} />
-      </ListItem>
-    </Link>
+  const handleDeleteClik = chatId => {
+    deleteChat(chatId);
+    //if (chatId === currentChat) handleNavigate(`/chats/`);
+  };
+
+  const chatElements = chats.map(({ id, name }) => (
+    <ListItem button selected={id === activeChat} key={id}>
+      <ListItemIcon onClick={() => handleNavigate(`/chats/${id}`)}>
+        <SendIcon />
+      </ListItemIcon>
+      <ListItemText
+        onClick={() => handleNavigate(`/chats/${id}`)}
+        primary={name}
+      />
+      <DeleteIcon onClick={() => handleDeleteClik(id)} />
+    </ListItem>
   ));
 
   return (

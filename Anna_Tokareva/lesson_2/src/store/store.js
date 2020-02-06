@@ -1,16 +1,53 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { createLogger } from "redux-logger";
 import chatReducer from "./chatReducer";
 import userReducer from "./userReducer";
+import botMiddleware from "./botMiddleware";
+import chatMiddleware from "./chatMiddleware";
+import { createBrowserHistory } from "history";
+import { routerMiddleware, connectRouter } from "connected-react-router";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+
+const persistConfig = {
+  key: "reactmessanger",
+  storage,
+  stateReconciler: autoMergeLevel2,
+  whitelist: ["chatReducer", "userReducer"]
+};
+
+export const history = createBrowserHistory();
 
 const reducer = combineReducers({
   chatReducer,
-  userReducer
+  userReducer,
+  router: connectRouter(history)
 });
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
   ? window.__REDUX_DEVTOOLS_EXTENSION__()
   : () => {};
 
+const logger = createLogger();
+
 export const initStore = (preloadedState = {}) => {
-  return createStore(reducer, preloadedState, devTools);
+  const store = createStore(
+    persistReducer(persistConfig, reducer),
+    preloadedState,
+    compose(
+      applyMiddleware(
+        routerMiddleware(history),
+        logger,
+        chatMiddleware,
+        botMiddleware
+      ),
+      devTools
+    )
+  );
+  const persistor = persistStore(store);
+  return {
+    store,
+    persistor
+  };
 };

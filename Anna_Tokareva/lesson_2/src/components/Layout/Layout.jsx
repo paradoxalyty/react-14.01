@@ -8,12 +8,14 @@ import { Header } from "../Header/Header";
 import { ChatList } from "../ChatList/ChatList";
 import "./Layout.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { initStore } from "../../store/store";
+import { connectedRouter, ConnectedRouter } from "connected-react-router";
+import { PersistGate } from "redux-persist/integration/react";
+import { initStore, history } from "../../store/store";
 import { Provider } from "react-redux";
 import { loadChats } from "../../store/chatAction";
 import { loadUser } from "../../store/userAction";
 
-const store = initStore();
+const { store, persistor } = initStore();
 store.dispatch(loadChats());
 store.dispatch(loadUser());
 
@@ -21,23 +23,25 @@ export class Layout extends Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/profile" exact component={HeaderContainer} />
-            <Route path="/chats" exact component={HeaderContainer} />
-            <Route path="/chats/:id" exact component={HeaderContainer} />
-          </Switch>
-          <div className="Chat">
-            <ChatListContainer className="ChatList-Position" />
-            <div className="ChatField-Position">
-              <Switch>
-                <Route path="/profile" exact component={ProfileContainer} />
-                <Route path="/chats" exact component={ChatContainer} />
-                <Route path="/chats/:id" exact component={ChatContainer} />
-              </Switch>
+        <PersistGate loading={null} persistor={persistor}>
+          <ConnectedRouter history={history}>
+            <Switch>
+              <Route path="/profile" exact component={HeaderContainer} />
+              <Route path="/chats" exact component={HeaderContainer} />
+              <Route path="/chats/:id" exact component={HeaderContainer} />
+            </Switch>
+            <div className="Chat">
+              <ChatListContainer className="ChatList-Position" />
+              <div className="ChatField-Position">
+                <Switch>
+                  <Route path="/profile" exact component={ProfileContainer} />
+                  <Route path="/chats" exact component={ChatContainer} />
+                  <Route path="/chats/:id" exact component={ChatContainer} />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </BrowserRouter>
+          </ConnectedRouter>
+        </PersistGate>
       </Provider>
     );
   }
