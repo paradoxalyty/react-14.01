@@ -16,7 +16,10 @@ main h2 {
 .wrapper .emptyBlock {
     height: 100%;
     width: 70%;
-    text-align: center;
+    text-align: left;
+}
+
+.wrapper .emptyBlock h4 {
     font-size: 24px;
     color: red;
 }

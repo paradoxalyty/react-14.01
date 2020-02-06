@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import ChatContainer from '../../Containers/ChatContainer';
 import {Header} from '../Header/Header';
 import {ChatList} from '../ChatList/ChatList';
+import {Profile} from '../Profile/Profile';
 
 import './Layout.css';
 
@@ -19,13 +20,13 @@ export const Layout = () => {
                                 <Route path="/chats/" exact component={ChatContainer}/>
                                 <Route path="/chats/:id" exact component={ChatContainer}/>
                                 <Route path="/profile">
-                                    <div className="profile emptyBlock">Profile</div>
+                                    <Profile />
                                 </Route>
                                 <Route path="/home">
-                                    <div className="home emptyBlock">Home</div>
+                                    <div className="home emptyBlock"><h4>Home</h4></div>
                                 </Route>
                                 <Route path="/">
-                                    <div className="404 emptyBlock">404</div>
+                                    <div className="404 emptyBlock"><h4>404</h4></div>
                                 </Route>
                             </Switch>
                         </div>
