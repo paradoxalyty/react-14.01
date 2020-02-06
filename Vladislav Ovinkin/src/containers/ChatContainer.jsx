@@ -5,7 +5,7 @@ const BOT_NAME = "chatBot";
 
 export class ChatContainer extends Component {
 
-    timer = null;
+    // timer = null;
 
     componentDidMount () {
         const {onSendMessage, onChatChange} = this.props;
@@ -13,25 +13,25 @@ export class ChatContainer extends Component {
         onChatChange (id);
         // onSendMessage ({name: "Владислав", content: "Ершы!"});
     }
-    timer = null;
+    //timer = null;
 
     componentDidUpdate () {
-        const {id} = this.props;
-        const {chats} = this.props;
-        const {onSendMessage} = this.props;
-        clearTimeout (this.timer);
+        // const {id} = this.props;
+        // const {chats} = this.props;
+        // const {onSendMessage} = this.props;
+        // clearTimeout (this.timer);
         
-        if (chats[id]) {
-            const lastMessage = chats[id].messages[chats[id].messages.length - 1];
+        // if (chats[id]) {
+        //     const lastMessage = chats[id].messages[chats[id].messages.length - 1];
         
-            if (lastMessage && lastMessage.name !== BOT_NAME) {
-                this.timer = setTimeout(() => onSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
-            }
-        }
+        //     if (lastMessage && lastMessage.name !== BOT_NAME) {
+        //         this.timer = setTimeout(() => onSendMessage(id) ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
+        //     }
+        // }
     }
     
     componentWillUnmount () {
-        clearTimeout (this.timer);
+        // clearTimeout (this.timer);
     }
 
     render () {

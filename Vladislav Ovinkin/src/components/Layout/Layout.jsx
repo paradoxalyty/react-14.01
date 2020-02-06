@@ -6,11 +6,13 @@ import './Layout.css'
 
 export const Layout = (props) => {
     const {chatList, activeChatId, onChatChange, onSendMessage} = props;
-    let id;
-    !props.noParams ? id = props.match.params.id : id = 0;
+    // let id;
+    // !props.noParams ? id = props.match.params.id : id = 0;
 
-    console.log ("LayoutId: ", id);
+    // console.log ("LayoutId: ", id);
     //onChatChange (id);
+
+    const {id} = props.match.params;
 
     return (
         <div className="layoutHeader">

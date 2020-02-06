@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Router } from '../components/Router/Router';
+
+const BOT_NAME = "chatBot";
 export class App extends Component {
     state = {
         chats : {
@@ -25,6 +27,7 @@ export class App extends Component {
         },
         currentChatId: 1,
     }
+    timer = null;
     handleChatChange = (newId) => {
         this.setState (() => ({currentChatId: newId}));
     }
@@ -47,13 +50,33 @@ export class App extends Component {
         ));
         console.log (id, this.state);
     }
-    componentDidUpdate (prevProps, prevState) {
+    // componentDidUpdate (prevProps, prevState) {
+    componentDidUpdate () {
+        console.log ("App update!");
+        const id = this.state.currentChatId;
+        const {chats} = this.state;
+        // const {onSendMessage} = this.props;
+        clearTimeout (this.timer);
         
+        console.log (id);
+
+        if (chats[id]) {
+            const lastMessage = chats[id].messages[chats[id].messages.length - 1];
+        
+            if (lastMessage && lastMessage.name !== BOT_NAME) {
+                this.timer = setTimeout(() => this.handleSendMessage(id) ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
+            }
+        }
+    }
+    componentWillUnmount () {
+        console.log ("App unmount!");
+        clearTimeout (this.timer);
     }
     render () {
         const id = this.state.currentChatId;
         const {chats} = this.state;
         const {currentChatId} = this.state;
+        console.log ('App render');
         return (
             <Router chatList={chats} activeChatId={currentChatId} onChatChange={this.handleChatChange} onSendMessage={this.handleSendMessage(id)} />
         );

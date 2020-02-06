@@ -17,7 +17,7 @@ export const ChatList = (props) => {
         return <ListItem button component="a" {...props} />;
     }
 
-    console.log (chatList);
+    // console.log (chatList);
 
     return (<div className="chatList">
         <List component="nav">
