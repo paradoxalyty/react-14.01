@@ -1,4 +1,3 @@
-
 import {addChat} from './chatAction';
 import { push } from 'connected-react-router'
 

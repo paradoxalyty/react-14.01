@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {ChatList} from '../components/ChatList/ChatList';
+import { addChat } from '../store/chatAction';
 
 const mapStateToProps = (store) => {
     const chats = Object.keys(store.chatReducer.chats).map((id) => ({
@@ -11,7 +12,6 @@ const mapStateToProps = (store) => {
         chats
     }
 }
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({addChat}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList)
