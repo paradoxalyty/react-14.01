@@ -44,14 +44,14 @@ export class ChatContainer extends Component {
     }
         
     render () {
-        const {chats, id, stateId, onSendMessage, onChangeId} = this.props;
+        const {chats, id, onSendMessage} = this.props;
 
         // console.log (stateId, id, chats[id]);
 
         if (id && chats[id]) {
             return <Chat {...{messages: chats[id].messages, onSendMessage: onSendMessage}} />
         } else {
-            return "Ошибка: необходимо выбрать номер чата.";
+            return "Для продолжения работы выберите номер чата.";
         }
     }
 }

@@ -5,13 +5,13 @@ import { Layout } from '../Layout/Layout';
 import { Profile } from '../Profile/Profile';
 
 export const Router = (props) => {
-    console.log ('Component Router', props);
-    const {chatList, stateId, onChangeId, onSendMessage} = props;
+    // console.log ('Component Router', props);
+    const {chatList, stateId, onChangeId, onSendMessage, onChatAdd} = props;
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/chats/" exact render={(props) => (<Layout {...props} chatList={chatList} stateId={stateId} onChangeId={onChangeId} onSendMessage={onSendMessage} />)} />
-                <Route path="/chats/:id" exact render={(props) => (<Layout {...props} chatList={chatList} stateId={stateId} onChangeId={onChangeId} onSendMessage={onSendMessage} />)}/>
+                <Route path="/chats/" exact render={(props) => (<Layout {...props} chatList={chatList} stateId={stateId} onChangeId={onChangeId} onSendMessage={onSendMessage} onChatAdd={onChatAdd} />)} />
+                <Route path="/chats/:id" exact render={(props) => (<Layout {...props} chatList={chatList} stateId={stateId} onChangeId={onChangeId} onSendMessage={onSendMessage} onChatAdd={onChatAdd} />)}/>
                 <Route path="/about">
                     It's about
                 </Route>
