@@ -8,7 +8,7 @@ export const Header = ({text}) => {
             <h1 className="header-text">
                 React Chat project. User: {text}.
             </h1>
-            <Link to="/profile">Profile page link</Link>
+            <Link className="header-link" to="/profile">Profile page</Link>
         </div>);
 
 }

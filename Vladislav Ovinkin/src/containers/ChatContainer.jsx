@@ -4,7 +4,7 @@ import { Chat } from '../components/Chat/Chat';
 const BOT_NAME = "chatBot";
 export class ChatContainer extends Component {
 
-    timer = null;
+    timer = {};
 
     componentDidMount () {
         const {id, stateId, onChangeId} = this.props;
@@ -30,17 +30,19 @@ export class ChatContainer extends Component {
             const lastMessage = chats[id].messages[nowNumMessages - 1];
 
             if (nowNumMessages !== prevNumMessages || prevState.id !== id) {
-                clearTimeout (this.timer);
+                clearTimeout (this.timer[id]);
             }
 
             if (lastMessage && prevNumMessages !== nowNumMessages && lastMessage.name !== BOT_NAME) {
-                this.timer = setTimeout(() => onSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2500);
+                this.timer[id] = setTimeout(() => onSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2500);
             }
         }
     }
     
     componentWillUnmount () {
-        clearTimeout (this.timer);
+        Object.keys (this.timer).map (id => {
+            clearTimeout (this.timer[id])
+        })
     }
         
     render () {

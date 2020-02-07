@@ -5,6 +5,6 @@ export const Profile = () => {
     return (
         <div>
             <p>Страница профиля</p>
-            <Link to="/chats">К выбору чата link</Link>
+            <Link to="/chats">К выбору чата</Link>
         </div>);
 }
