@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
 import {loadChats, addMessage, addChat, switchToAdd, changeClass, switchPage, setIsActive, deleteChat} from './chatAction';
-
+import {push} from 'connected-react-router';
 const defaultState={
     chats: {}
 };
@@ -133,11 +133,11 @@ export default handleActions({
     [deleteChat]: (state, {payload:{id}}) => {
         //
         const chatKey = Object.keys(state.chats)[id];
-        //const newChats = state.chats.map((chat, idx)=>idx !== id);
-        console.log("ChatReducer deleteChat ", state , "chatKey = ", chatKey);
+        const newChats = {...state.chats};
+        delete newChats[chatKey];
         return {
             ...state,
-            //chats: state.chats.filter((chat)=>chat.name !== id)
+            chats: newChats,
 
         }
     },

@@ -5,6 +5,7 @@ import botMiddleware from './botMiddleware';
 import chatMiddleware from './chatMiddleware';
 import addMiddleware from './addMiddleware';
 import loadMiddleware from "./loadMiddleware";
+import deleteChatMiddleware from "./deleteChatMiddleware";
 import {createLogger} from 'redux-logger';
 import {createBrowserHistory} from 'history';
 import {routerMiddleware, connectRouter} from 'connected-react-router';
@@ -34,7 +35,7 @@ export const initStore =(preloadedState = {}) => {
     const store = createStore(
         persistReducer(persisitConfig, reducer),
         innitialStore,
-        compose(applyMiddleware(routerMiddleware(history), logger, loadMiddleware, addMiddleware, switchPageMiddleware, chatMiddleware, botMiddleware), devTools),
+        compose(applyMiddleware(routerMiddleware(history), logger, loadMiddleware, addMiddleware, deleteChatMiddleware, switchPageMiddleware, chatMiddleware, botMiddleware), devTools),
     );
 
     const persistor = persistStore(store);
