@@ -6,11 +6,23 @@ export class ChatContainer extends Component {
 
     timer = null;
 
+    componentDidMount () {
+        const {id, stateId, onChangeId} = this.props;
+
+        if (id && stateId != id) {
+            onChangeId (id);
+        }
+    }
+
     componentDidUpdate (prevState) {
-        const {id} = this.props;
-        const {chats} = this.props;
-        const {onSendMessage} = this.props;
+        const {id, stateId, chats, onSendMessage, onChangeId} = this.props;
         
+        // console.log ('ChatContainer DID_UPDATE!', id, stateId);
+
+        if (stateId != id) {
+            onChangeId (id);
+        }
+
         if (chats[id] && prevState.id === id) {
 
             const nowNumMessages = chats[id].messages.length;
@@ -32,11 +44,9 @@ export class ChatContainer extends Component {
     }
         
     render () {
-        const {chats} = this.props;
-        const {id} = this.props;
-        const {onSendMessage} = this.props;
+        const {chats, id, stateId, onSendMessage, onChangeId} = this.props;
 
-        console.log (id, chats[id]);
+        // console.log (stateId, id, chats[id]);
 
         if (id && chats[id]) {
             return <Chat {...{messages: chats[id].messages, onSendMessage: onSendMessage}} />

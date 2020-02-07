@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './ChatList.css'
 
 export const ChatList = (props) => {
-    const {chatList, id} = props;
+    const {chatList, pathId} = props;
 
     return (<div className="chatList">
             <ul>

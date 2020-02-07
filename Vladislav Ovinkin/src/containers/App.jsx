@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Layout } from '../components/Layout/Layout';
+// import { Layout } from '../components/Layout/Layout';
+import {Router} from "../components/Router/Router";
 export class App extends Component {
     state = {
         chats : {
@@ -23,6 +24,7 @@ export class App extends Component {
                 messages: [],
             },
         },
+        activeId: 3,
     }
 
     componentWillUnmount () {
@@ -45,12 +47,18 @@ export class App extends Component {
         // console.log (id, this.state);
     }
     
+    handleChangeId = (newId) => {
+        this.setState (() => ({
+            activeId: newId,
+        }))
+    }
+
     render () {
-        const {chats} = this.state;
-        const {id} = this.props.match.params;
+        const {chats, activeId} = this.state;
+        // const {id} = this.props.match.params;
     
         return (
-            <Layout chatList={chats} id={id} onSendMessage={this.handleSendMessage(id)} />
+            <Router chatList={chats} stateId={activeId} onChangeId={this.handleChangeId} onSendMessage={this.handleSendMessage(activeId)} />
         );
     };
 }
