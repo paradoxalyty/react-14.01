@@ -5,14 +5,13 @@ import { Header } from '../Header/Header.jsx';
 import { ChatList } from '../ChatList/ChatList.jsx';
 import { MessageField } from '../MessageField/MessageField.jsx';
 import { Message } from '../Message/Message.jsx';
-import { ChatForm } from '../ChatForm/ChatForm'
+import { ChatForm } from '../ChatForm/ChatForm';
 
-
-export const Layout = ({ messages, onSendMessage }) =>
+export const Layout = ({ messages, onSendMessage, chats}) =>
 
     (<div className='Layout'>
         <Header />
-        <ChatList />
+        <ChatList chats={chats} />
         <MessageField messages={messages} />
         <ChatForm onSendMessage={onSendMessage} />
 

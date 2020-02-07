@@ -8,7 +8,7 @@ import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineO
 import { Link } from 'react-router-dom';
 
 export const ChatList = ({ }) => {
-    console.log(chatReducer);
+    
     return (<div className='ChatList'>
 
         <List>
