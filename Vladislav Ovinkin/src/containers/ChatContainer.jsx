@@ -2,36 +2,33 @@ import React, { Component } from "react";
 import { Chat } from '../components/Chat/Chat';
 
 const BOT_NAME = "chatBot";
-
 export class ChatContainer extends Component {
 
-    // timer = null;
+    timer = null;
 
-    componentDidMount () {
-        const {onSendMessage, onChatChange} = this.props;
+    componentDidUpdate (prevState) {
         const {id} = this.props;
-        onChatChange (id);
-        // onSendMessage ({name: "Владислав", content: "Ершы!"});
-    }
-    //timer = null;
+        const {chats} = this.props;
+        const {onSendMessage} = this.props;
+        
+        if (chats[id] && prevState.id === id) {
 
-    componentDidUpdate () {
-        // const {id} = this.props;
-        // const {chats} = this.props;
-        // const {onSendMessage} = this.props;
-        // clearTimeout (this.timer);
-        
-        // if (chats[id]) {
-        //     const lastMessage = chats[id].messages[chats[id].messages.length - 1];
-        
-        //     if (lastMessage && lastMessage.name !== BOT_NAME) {
-        //         this.timer = setTimeout(() => onSendMessage(id) ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
-        //     }
-        // }
+            const nowNumMessages = chats[id].messages.length;
+            const prevNumMessages = prevState.chats[id].messages.length;
+            const lastMessage = chats[id].messages[nowNumMessages - 1];
+
+            if (nowNumMessages !== prevNumMessages || prevState.id !== id) {
+                clearTimeout (this.timer);
+            }
+
+            if (lastMessage && prevNumMessages !== nowNumMessages && lastMessage.name !== BOT_NAME) {
+                this.timer = setTimeout(() => onSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2500);
+            }
+        }
     }
     
     componentWillUnmount () {
-        // clearTimeout (this.timer);
+        clearTimeout (this.timer);
     }
 
     render () {

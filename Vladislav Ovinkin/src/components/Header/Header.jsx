@@ -1,5 +1,6 @@
 import React from "react";
 import './Header.css';
+import {Link} from 'react-router-dom';
 
 export const Header = ({text}) => {
     return (
@@ -7,6 +8,6 @@ export const Header = ({text}) => {
             <h1 className="header-text">
                 React Chat project. User: {text}.
             </h1>
-            <a className="header-link" href="/profile">Profile page</a>
+            <Link to="/profile">Profile page link</Link>
         </div>);
 }

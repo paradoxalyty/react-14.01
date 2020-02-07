@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Router } from '../components/Router/Router';
-
-const BOT_NAME = "chatBot";
+import { Layout } from '../components/Layout/Layout';
 export class App extends Component {
     state = {
         chats : {
@@ -25,20 +23,16 @@ export class App extends Component {
                 messages: [],
             },
         },
-        currentChatId: 1,
     }
-    timer = null;
-    handleChatChange = (newId) => {
-        this.setState (() => ({currentChatId: newId}));
-    }
-    componentDidMount () {
-        // const {id} = this.props.match.params;
+
+    componentWillUnmount () {
+        console.log ('App unmount');
     }
 
     handleSendMessage = (id) => (message) => {
         const date = new Date ();
         const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
-        // message.time = time;
+    
         this.setState ((state) => (
             {
                 chats: {...state.chats, 
@@ -48,37 +42,15 @@ export class App extends Component {
                 }
             }
         ));
-        console.log (id, this.state);
+        // console.log (id, this.state);
     }
-    // componentDidUpdate (prevProps, prevState) {
-    componentDidUpdate () {
-        console.log ("App update!");
-        const id = this.state.currentChatId;
-        const {chats} = this.state;
-        // const {onSendMessage} = this.props;
-        clearTimeout (this.timer);
-        
-        console.log (id);
-
-        if (chats[id]) {
-            const lastMessage = chats[id].messages[chats[id].messages.length - 1];
-        
-            if (lastMessage && lastMessage.name !== BOT_NAME) {
-                this.timer = setTimeout(() => this.handleSendMessage(id) ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
-            }
-        }
-    }
-    componentWillUnmount () {
-        console.log ("App unmount!");
-        clearTimeout (this.timer);
-    }
+    
     render () {
-        const id = this.state.currentChatId;
         const {chats} = this.state;
-        const {currentChatId} = this.state;
-        console.log ('App render');
+        const {id} = this.props.match.params;
+    
         return (
-            <Router chatList={chats} activeChatId={currentChatId} onChatChange={this.handleChatChange} onSendMessage={this.handleSendMessage(id)} />
+            <Layout chatList={chats} id={id} onSendMessage={this.handleSendMessage(id)} />
         );
     };
 }
