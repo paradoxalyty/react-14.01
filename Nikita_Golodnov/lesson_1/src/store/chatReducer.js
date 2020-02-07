@@ -1,5 +1,5 @@
-import {handleActions} from "redux-actions"
-import {addMessage, loadChats} from "./chatAction"
+import {handleActions} from 'redux-actions'
+import {addMessage, loadChats, addChat} from './chatAction'
 
 const defaultState = {
     chats: {}
@@ -8,20 +8,20 @@ const defaultState = {
 export default handleActions ({
     [loadChats]: (state) => {
         return {
-           ...state,
-           chats: {
+            ...state,
+            chats: {
                 1: {
                     name: 'Chat 1',
                     messages: [
-                        {text:"Seneka", content: "Per aspera ad Astra"},
-                        {text:"Descartes", content: "Cogito, ergo sum"},
-                        {text:"God", content: "Lorem ipsum dolor"}
+                        {text:'Seneka', content: 'Per aspera ad Astra'},
+                        {text:'Descartes', content: 'Cogito, ergo sum'},
+                        {text:'God', content: 'Lorem ipsum dolor'}
                     ]
                 },
                 2: {
                     name: 'Chat 2',
                     messages: [
-                        {text:"Voenkomat", content: "Vam povestka! Zavtra yavites v raspredelitelniy punkt k 8 chasam"}
+                        {text:'Voenkomat', content: 'Vam povestka! Zavtra yavites v raspredelitelniy punkt k 8 chasam'}
                     ]
                 },
                 3: {
@@ -35,7 +35,7 @@ export default handleActions ({
     },
     [addMessage]: (state, {payload: {id, text, content}}) => {
         return  {...state, 
-                chats: {
+            chats: {
                 ...state.chats,
                 [id]: {
                     name: state.chats[id].name,
@@ -43,6 +43,17 @@ export default handleActions ({
                         ...state.chats[id].messages,
                         {text, content},
                     ]
+                }
+            }
+        }
+    },
+    [addChat]: (state, {payload: {name}}) => {
+        return  {...state, 
+            chats: {
+                ...state.chats,
+                [name]: {
+                    name: name,
+                    messages: []
                 }
             }
         }
