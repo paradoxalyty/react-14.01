@@ -26,10 +26,18 @@ module.exports = {
           presets: ["@babel/env", "@babel/react"],
           plugins: ["@babel/plugin-proposal-class-properties"]
         }
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
   resolve: {
     extensions: [".jsx", ".js"]
-  }
+  },
+  devServer: {
+    historyApiFallback: true
+  },
+  devtool: "inline-source-map"
 };

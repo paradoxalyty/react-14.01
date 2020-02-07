@@ -10,4 +10,5 @@ export const Header = ({text}) => {
             </h1>
             <Link to="/profile">Profile page link</Link>
         </div>);
+
 }

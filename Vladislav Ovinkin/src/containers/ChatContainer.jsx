@@ -30,7 +30,7 @@ export class ChatContainer extends Component {
     componentWillUnmount () {
         clearTimeout (this.timer);
     }
-
+        
     render () {
         const {chats} = this.props;
         const {id} = this.props;

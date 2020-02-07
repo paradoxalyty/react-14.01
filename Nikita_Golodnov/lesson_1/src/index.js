@@ -3,6 +3,7 @@ import ReactDom from "react-dom"
 
 
 
+
 // const Chat = ({messages}) => {
 //     const sendMessage = (event) => {
 //         console.log('Button was clicked', event)
@@ -17,9 +18,8 @@ import ReactDom from "react-dom"
 
 // ReactDom.render(<Chat messages={messages}/>, document.getElementById("app"))
 
-// import {Counter} from "./components/Counter"
-import {MessageList} from "./components/MessageList"
+import {App} from "./containers/App"
 
-ReactDom.render(<MessageList />, document.getElementById("app"))
+ReactDom.render(<App />, document.getElementById("app"))
 
 

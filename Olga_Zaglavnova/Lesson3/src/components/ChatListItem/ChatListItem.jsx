@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -20,21 +21,23 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-export const ChatListItem =({user}) => {
+export const ChatListItem =({chat}) => {
     const classes = useStyles();
-   
+    const linkPath = "/chats/"+chat.name;
     return (
-        <div>
-          <ListItem name={user.userName} alignItems="flex-start" >
+        <>
+        <Link to={linkPath}>
+          <ListItem name={chat.name} alignItems="flex-start" >
             <ListItemAvatar>
-              <Avatar alt={user.userName} src={user.userAvatar} />
+              <Avatar alt={chat.name} src={chat.userAvatar} />
             </ListItemAvatar>
             <ListItemText
-              primary={user.userName}
+              primary={chat.name}
               />
           </ListItem>
+          </Link>
           <Divider variant="inset" component="li" />
-          </div>
+          </>
       );
 };
 
