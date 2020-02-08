@@ -6,11 +6,11 @@ import {NewMessage} from '../NewMessage/NewMessage';
 
 import css from './ChatPage.css';
 
-export const ChatPage = ({messages, userName, onSubmitMessage}) => {
+export const ChatPage = ({messages, userName, onSubmitMessage, handleDeleteMessage}) => {
     if (messages){
         return (
             <ScrollableFeed forceScroll className="ChatPage__container" >
-                <MessageList messages={messages} />
+                <MessageList messages={messages} handleDeleteMessage={handleDeleteMessage}/>
                 <NewMessage userName={userName} onSubmitMessage={onSubmitMessage} />
             </ScrollableFeed>
         );} else {

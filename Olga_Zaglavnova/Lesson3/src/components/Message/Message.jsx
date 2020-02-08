@@ -9,9 +9,15 @@ import './Message.css';
  * @param {string} message Текст сообщения
  * @param {string} time Время отправки сообщения
  */
-export const Message = ({msgClass, name, message, time}) => {
+export const Message = ({msgClass, name, message, time, msgIdx, handleDeleteMessage}) => {
     const classNames = classnames('messageRow', {'messageRow--robot': msgClass==='robot'});
-    return <div className={classNames}><strong>{name}: </strong>{message} <span className="messageTime"> {time}</span></div>;
+    const onRightMouseBtnClick = (e) => {
+        e.preventDefault();
+        if (confirm('Удалить сообщение от  ' + name + "?", "Удаление сообщения")) {
+            handleDeleteMessage(msgIdx);
+        }
+    };
+    return <div className={classNames} onContextMenu={onRightMouseBtnClick}><strong>{name}: </strong>{message} <span className="messageTime"> {time}</span></div>;
 };
 
 //let classStr = "messageRow " + this.props.msgClass;

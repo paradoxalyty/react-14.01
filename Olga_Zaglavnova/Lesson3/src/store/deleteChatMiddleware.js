@@ -7,12 +7,10 @@ export default store => next => action => {
 
         const chatKey = Object.keys(store.getState().chatReducer.chats)[id];
         const chatIsActive = store.getState().chatReducer.chats[chatKey].isActive;
-        console.log("deleteChatMiddleware id = ",  id, "isActive", chatKey, chatIsActive);
         next(action);
         if (chatIsActive !== ""){
             store.dispatch(push('/' ));
         }
-        //store.dispatch(push('/chats/' + name));
 
     } else {
         next(action);

@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
-import {loadChats, addMessage, addChat, switchToAdd, changeClass, switchPage, setIsActive, deleteChat} from './chatAction';
-import {push} from 'connected-react-router';
+import {loadChats, addMessage, addChat, switchToAdd, changeClass, switchPage, setIsActive, deleteChat, deleteMessage} from './chatAction';
+
 const defaultState={
     chats: {}
 };
@@ -140,5 +140,24 @@ export default handleActions({
             chats: newChats,
 
         }
+    },
+    [deleteMessage]: (state, {payload:{id, msgIdx}}) => {
+
+        const tmpMessages = [...state.chats[id].messages];
+        tmpMessages.splice(msgIdx, 1);
+        return {
+            ...state,
+            chats:
+                {
+                    ...state.chats,
+                    [id]: {
+                        name: state.chats[id].name,
+                        messages: [...tmpMessages],
+                        userAvatar: state.chats[id].userAvatar,
+                        botAnswers: state.chats[id].botAnswers,
+                        isActive: state.chats[id].isActive
+                    }
+                }
+        };
     },
 }, defaultState);
