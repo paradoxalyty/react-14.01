@@ -1,6 +1,7 @@
 import React from "react";
-import {Message} from "../Message/Message";
+import { Message } from "../Message/Message";
 import './MessageField.css'
+import {ChatForm} from '../ChatForm/ChatForm'
 
 export class MessageField extends React.Component {
     constructor(props) {
@@ -11,14 +12,18 @@ export class MessageField extends React.Component {
             error: false
         };
     }
-    componentWillUnmount() {
-        if (this.timeout) clearTimeout(this.timeout);
-    }
-    render() {
     
-        let messages = this.props.messages.map((message, index) => <Message {...message} key={index}/>);
+    render() {
+        if (this.props.messages) {
+            let messages = this.props.messages.map((message, index) => <Message {...message} key={index} />);
+            return <>
+                <div className="MessageField">{messages}</div>
+                <ChatForm addNewMessage={this.props.onSendMessage}/>
+            </>
+        }
         return <>
-            <div className="MessageField">{messages}</div>
-        </>
+                Чат не выбран
+            </>
+
     }
 }

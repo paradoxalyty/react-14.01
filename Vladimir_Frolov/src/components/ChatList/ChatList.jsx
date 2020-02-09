@@ -2,7 +2,7 @@ import React from 'react';
 
 export const ChatList = ({chats}) =>
     (<div className='ChatList'>
-        <ul>{Object.keys(chats).map((chatId) => (
-            <li key={chatId}><a href={"/chats/"+chatId}>{chats[chatId].name}</a></li>))}
+        <ul>{chats.map(({id, name}) => (
+            <li key={id}><a href={"/chats/"+id}>{name}</a></li>))}
         </ul>
     </div>);
