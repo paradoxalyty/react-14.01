@@ -49,5 +49,17 @@ export default handleActions({
                 }
             }
         }
+    },
+    [addChat]: (state, {payload: {name}}) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [name]: {
+                    name: name,
+                    messages: []
+                },
+            }
+        };
     }
 }, defaultState);
