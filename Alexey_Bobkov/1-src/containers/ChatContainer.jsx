@@ -5,8 +5,6 @@ import { bindActionCreators } from 'redux';
 import { addMessage } from '../store/chatAction';
 
 
-
-
 // class ChatContainer extends Component {
 
 //     state ={
