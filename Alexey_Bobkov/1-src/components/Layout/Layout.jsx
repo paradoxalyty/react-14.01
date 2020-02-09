@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Layout.sass';
@@ -7,15 +8,18 @@ import { MessageField } from '../MessageField/MessageField.jsx';
 import { Message } from '../Message/Message.jsx';
 import { ChatForm } from '../ChatForm/ChatForm';
 
-export const Layout = ({ messages, onSendMessage, chats}) =>
+export const Layout = ({ messages, onSendMessage, chats }) => {
+    return (
+        (<div className='Layout'>
+            <Header />
+            <ChatList chats={chats} />
+            <MessageField messages={messages} />
+            <ChatForm onSendMessage={onSendMessage} />
 
-    (<div className='Layout'>
-        <Header />
-        <ChatList chats={chats} />
-        <MessageField messages={messages} />
-        <ChatForm onSendMessage={onSendMessage} />
+        </div>)
+    )
+}
 
-    </div>);
 
 
 Layout.propTypes = {
