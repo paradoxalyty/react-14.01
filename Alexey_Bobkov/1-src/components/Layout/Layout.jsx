@@ -11,7 +11,7 @@ import { ChatForm } from '../ChatForm/ChatForm';
 export const Layout = ({ messages, onSendMessage, chats }) => {
     return (
         (<div className='Layout'>
-            <Header />
+            <Header headerChat={chats} />
             <ChatList chats={chats} />
             <MessageField messages={messages} />
             <ChatForm onSendMessage={onSendMessage} />

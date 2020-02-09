@@ -14,7 +14,6 @@ export const Profile = ({ profile, chats }) => {
             <ChatList chats={chats} />
             <div className='Profile-description'>
                 <h2>Профиль</h2>
-
                 <ul>
                     <li>Имя: {profile.name}</li>
                     <li>Описание: {profile.Description}</li>
