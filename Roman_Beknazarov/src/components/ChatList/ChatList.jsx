@@ -1,12 +1,15 @@
 import React from 'react';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import {List} from '@material-ui/core/';
+import {ListItem} from '@material-ui/core/';
 import {Link} from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import Fab from '@material-ui/core/Fab';
+// import AddIcon from '@material-ui/icons/Add';
 
 import './ChatList.css';
 
 export const ChatList = () => {
+
     return (
         <List className="ChatList">
             <ListItem>
