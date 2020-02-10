@@ -5,19 +5,26 @@ export default store => next => action => {
     if (action.type === switchPage.toString()){
         next(action);
         const {id, linkStr} = action.payload;
-        //if (id && linkStr !=="") {
+        const chatsKeys = Object.keys(store.getState().chatReducer.chats);
+        
+        console.log("switchPageMiddleware ", chatsKeys[id], id);
+        if (linkStr !=="") {
             let isActiveClass = "";
-            const chatsKeys = Object.keys(store.getState().chatReducer.chats);
+            let botAnswersClass = "";
+            //  const chatsKeys = Object.keys(store.getState().chatReducer.chats);
             for (let i = 0; i < chatsKeys.length; i++) {
                 if (i == id) {
                     isActiveClass = "isActive";
+                    botAnswersClass = "";
                 } else {
                     isActiveClass = ""
+                    botAnswersClass = store.getState().chatReducer.chats[chatsKeys[i]].botAnswers;
                 }
-                store.dispatch(setIsActive(chatsKeys[i], isActiveClass));
+                store.dispatch(setIsActive(chatsKeys[i], isActiveClass, botAnswersClass));
             }
-       // }
+       }
         store.dispatch(push(linkStr));
+        // store.dispatch(setIsActive(chatId, "isActive"));
     } else {
         next(action);
     };

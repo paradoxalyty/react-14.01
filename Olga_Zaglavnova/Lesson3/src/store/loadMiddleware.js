@@ -1,9 +1,11 @@
-import {loadChats, switchPage} from "./chatAction";
+import {loadChats, switchPage, chatsSuccess} from "./chatAction";
 import {push} from 'connected-react-router';
 
 export default store => next => action => {
     //const {id, name} = action.payload;
-    if (action.type === loadChats.toString()){
+    
+    if (action.type === chatsSuccess.toString()){
+        //if (action.type === loadChats.toString()){
         next(action);
         let path= store.getState().router.location.pathname;
         const name = path.substring(path.lastIndexOf("/")+1, path.length);
@@ -13,10 +15,9 @@ export default store => next => action => {
         } else
         {
             store.dispatch(push('/'));
-           // console.log("Hi");
+            console.log("Hi");
         }
-
-    } else {
+    } else{
         next(action);
     };
 

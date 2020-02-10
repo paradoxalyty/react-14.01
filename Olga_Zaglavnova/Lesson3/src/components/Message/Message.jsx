@@ -25,5 +25,5 @@ export const Message = ({msgClass, name, message, time, msgIdx, handleDeleteMess
 Message.propTypes = {
     name: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
+    time: PropTypes.string,
 };
