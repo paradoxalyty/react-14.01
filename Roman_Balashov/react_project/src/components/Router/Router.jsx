@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { ChatList } from "../ChatList/ChatList";
+import { Switch, Route } from "react-router-dom";
 import {Profile} from "../Profile/Profile";
 import {Header} from "../Header/Header";
 import ChatContainer from "../../containers/ChatContainer";
+import ChatListContainer from "../../containers/ChatListContainer";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "../../store/store";
+
 
 export class Router extends Component {
     render() {
         return (
-            <BrowserRouter>
+            <ConnectedRouter history={history}>
                 <Header />
-                <ChatList />
+                <ChatListContainer />
                 <Switch>
                     <Route path="/chats/" exact component={ChatContainer} />
                     <Route path="/chats/:id" exact component={ChatContainer} />
@@ -22,7 +25,7 @@ export class Router extends Component {
                         404 Not Found.
                     </Route>
                 </Switch>
-            </BrowserRouter>
+            </ConnectedRouter>
         )
     }
 }

@@ -5,8 +5,18 @@ import chatMiddleware from "../middlewares/chatMiddleware";
 import { createBrowserHistory } from "history";
 import { routerMiddleware, connectRouter } from "connected-react-router";
 import { createLogger } from "redux-logger";
+import {persistStore, persistReducer} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 export const history = createBrowserHistory();
+
+const persistConfig = {
+    key: "messenger",
+    storage,
+    stateReconciler: autoMergeLevel2,
+    whitelist: ["chatReducer"]
+};
 
 const reducer = combineReducers({
     chatReducer,
@@ -17,5 +27,8 @@ const logger = createLogger();
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
 
 export const initStore = (preloadedState = {}) => {
-    return createStore(reducer, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, chatMiddleware, botMiddleware)));
+    
+    const store = createStore(persistReducer(persistConfig, reducer), preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, chatMiddleware, botMiddleware)));
+    const persistor = persistStore(store);
+    return {store, persistor};
 }
