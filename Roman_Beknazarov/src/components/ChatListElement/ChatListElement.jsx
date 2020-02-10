@@ -4,6 +4,7 @@ import {ListItem} from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 export const ChatListElement = ({name, number}) => {
+    console.log(`name = ${name}, number = ${number}`);
     return (<ListItem>
         <AccountCircleIcon className="avatar"/>
         <Link to={`/chats/${number}`}>{name}</Link>

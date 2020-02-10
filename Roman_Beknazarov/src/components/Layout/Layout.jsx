@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import {Header} from "../Header/Header";
-import ChatListContainer from '../../containers/ChatListContainer';
+import ChatsListContainer from '../../containers/ChatsListContainer';
 import {Profile} from '../Profile/Profile';
 import ChatContainer from "../../containers/ChatContainer";
 import './Layout.css';
@@ -14,7 +14,7 @@ export const Layout = () => {
                 <Header/>
                 <main>
                     <div className="wrapper">
-                        <ChatListContainer/>
+                        <ChatsListContainer/>
                         <Switch>
                             <Route path="/chats/" exact component={ChatContainer}/>
                             <Route path="/chats/:id" exact component={ChatContainer}/>

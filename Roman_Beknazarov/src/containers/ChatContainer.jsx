@@ -1,7 +1,7 @@
 import {Chat} from '../components/Chat/Chat';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
-import {addMessage} from "../store/chatAction";
+import {loadChats,addMessage} from "../store/chatAction";
 
 // const ROBOT_NAME = 'Robot';
 
@@ -26,7 +26,7 @@ const mapStateToProps = ({chatReducer}, {match}) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({addMessage}, dispatch);
+    return bindActionCreators({loadChats,addMessage}, dispatch);
 };
 
 const mergeProps = (stateProps, dispatchProps, {match}) => {

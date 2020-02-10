@@ -42,6 +42,7 @@ export default handleActions({
                 ...state.chats,
                 [id]: {
                     name: state.chats[id].name,
+                    number: state.chats[id].number,
                     messages: [
                         ...state.chats[id].messages,
                         {name, content},

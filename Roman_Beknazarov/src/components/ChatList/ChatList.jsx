@@ -1,7 +1,7 @@
 import React from 'react';
 import {ChatListElement} from '../ChatListElement/ChatListElement';
-import {List} from '@material-ui/core/';
-import {ListItem} from '@material-ui/core/';
+import {List} from '@material-ui/core';
+import {ListItem} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import Fab from '@material-ui/core/Fab';
@@ -17,8 +17,8 @@ export const ChatList = ({chats}) => {
                 <AccountCircleIcon className="avatar"/>
                 <Link to="/profile">My Profile</Link>
             </ListItem>
-            {Object.values(chats).map((chat) =>
-                <ChatListElement name={chat.name} number={chat.number} key={chat.number}
+            {Object.values(chats).map((chat, index) =>
+                <ChatListElement name={chat.name} number={chat.number} key={index}
                 />)}
         </List>
     );
