@@ -1,14 +1,14 @@
 import React from 'react';
 import './Message.css';
-import classnames from "classnames";
+import classnames from 'classnames';
 
 export const Message = ({name, content}) => {
-    const classNames = classnames('Message', {'Message--robot': name === 'Robot'});
+    const classNames = classnames('Message', {'Message--robot': name === 'Robot'}, {'Message--user': name !== 'Robot'});
 
     return (
         <div className={classNames}>
             <div>{content}</div>
             <div className="Message-sender">{name}</div>
         </div>
-    )
+    );
 };

@@ -14,17 +14,17 @@ export default handleActions({
                     number: 1,
                     name: 'Chat 1',
                     messages: [
-                        {name: "Robot", content: "Hello!"},
-                        {name: "Robot", content: "It's chat one."},
-                        {name: "Robot", content: "Hi, how are You?"}
+                        {name: 'Robot', content: 'Hello!'},
+                        {name: 'Robot', content: 'It\'s chat one.'},
+                        {name: 'Robot', content: 'Hi, how are You?'}
                     ]
                 },
                 2: {
                     number: 2,
                     name: 'Chat 2',
                     messages: [
-                        {name: "Robot", content: "Hi!"},
-                        {name: "Robot", content: "It's chat two"}
+                        {name: 'Robot', content: 'Hi!'},
+                        {name: 'Robot', content: 'It\'s chat two'}
                     ]
                 },
                 3: {
@@ -33,7 +33,7 @@ export default handleActions({
                     messages: []
                 }
             }
-        }
+        };
     },
     [addMessage]: (state, {payload: {id, name, content}}) => {
         return {
@@ -49,6 +49,6 @@ export default handleActions({
                     ]
                 },
             }
-        }
+        };
     },
 }, defaultState);

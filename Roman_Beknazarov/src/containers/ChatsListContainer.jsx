@@ -1,12 +1,12 @@
-import {bindActionCreators} from "redux";
-import {loadChats} from "../store/chatAction";
-import {connect} from "react-redux";
-import {ChatList} from "../components/ChatList/ChatList";
+import {bindActionCreators} from 'redux';
+import {loadChats} from '../store/chatAction';
+import {connect} from 'react-redux';
+import {ChatList} from '../components/ChatList/ChatList';
 
 const mapStateToProps = ({chatReducer}) => {
     return {
         chats: chatReducer.chats
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Avatar from "@material-ui/core/Avatar";
+import Avatar from '@material-ui/core/Avatar';
 import {Clock} from '../Clock/Clock';
 
 export class Profile extends Component {

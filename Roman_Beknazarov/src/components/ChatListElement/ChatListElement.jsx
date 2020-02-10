@@ -1,6 +1,6 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import {ListItem} from "@material-ui/core";
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {ListItem} from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 export const ChatListElement = ({name, number}) => {
