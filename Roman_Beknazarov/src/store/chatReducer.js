@@ -11,6 +11,7 @@ export default handleActions({
             ...state,
             chats: {
                 1: {
+                    number: 1,
                     name: 'Chat 1',
                     messages: [
                         {name: "Robot", content: "Hello!"},
@@ -19,6 +20,7 @@ export default handleActions({
                     ]
                 },
                 2: {
+                    number: 2,
                     name: 'Chat 2',
                     messages: [
                         {name: "Robot", content: "Hi!"},
@@ -26,6 +28,7 @@ export default handleActions({
                     ]
                 },
                 3: {
+                    number: 3,
                     name: 'Chat 3',
                     messages: []
                 }
@@ -46,5 +49,5 @@ export default handleActions({
                 },
             }
         }
-    }
+    },
 }, defaultState);

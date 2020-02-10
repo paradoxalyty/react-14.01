@@ -11,6 +11,6 @@ export const Chat = ({messages, onSendMessage}) => {
             <ChatForm onSendMessage={onSendMessage}/>
         </div>);
     } else {
-        return <div className="404 mainBlock">Chat does not exist</div>
+        return <div className="404 mainBlock">Chat doesn't exist</div>
     }
 };

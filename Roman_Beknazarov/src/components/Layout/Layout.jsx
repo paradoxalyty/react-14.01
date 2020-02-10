@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import {Header} from "../Header/Header";
-import {ChatList} from '../ChatList/ChatList';
+import ChatListContainer from '../../containers/ChatListContainer';
 import {Profile} from '../Profile/Profile';
 import ChatContainer from "../../containers/ChatContainer";
 import './Layout.css';
@@ -14,7 +14,7 @@ export const Layout = () => {
                 <Header/>
                 <main>
                     <div className="wrapper">
-                        <ChatList/>
+                        <ChatListContainer/>
                         <Switch>
                             <Route path="/chats/" exact component={ChatContainer}/>
                             <Route path="/chats/:id" exact component={ChatContainer}/>
@@ -22,10 +22,10 @@ export const Layout = () => {
                                 <Profile />
                             </Route>
                             <Route path="/home">
-                                <div className="home mainBlock"><h4>Home</h4></div>
+                                <div className="home mainBlock"><h3>Home</h3></div>
                             </Route>
                             <Route path="/">
-                                <div className="404 mainBlock"><h4>404</h4></div>
+                                <div className="404 mainBlock"><h3>404</h3></div>
                             </Route>
                         </Switch>
                     </div>

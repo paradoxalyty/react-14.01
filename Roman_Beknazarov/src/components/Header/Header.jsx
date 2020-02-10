@@ -1,11 +1,11 @@
 import React from 'react';
-import './Header.css';
 import {Link} from 'react-router-dom';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
+import './Header.css';
+
 export const Header = () => {
     return <header className="header">
-        <a className="logo"><MeetingRoomIcon/></a>
-
+        <Link to="/home" className="logo"><MeetingRoomIcon/>Home</Link>
     </header>
 };
