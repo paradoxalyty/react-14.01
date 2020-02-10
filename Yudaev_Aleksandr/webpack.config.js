@@ -42,4 +42,7 @@ module.exports = {
         modules: [`${__dirname}/src`, 'node_modules'],
         extensions: ['.js', '.jsx'],
     },
+    devServer: {
+        historyApiFallback: true
+    },
 };
