@@ -1,17 +1,22 @@
 import React, { Component } from "react";
-import { ChatContainer } from "./ChatContainer";
-import { ChatList } from '../components/ChatList/ChatList';
-import { Header } from '../components/Header/Header';
+import  ChatContainer  from "./containers/ChatContainer";
+import { ChatList } from './components/ChatList/ChatList';
+import { Header } from './components/Header/Header';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import classnames from 'classnames';
+import {initStore} from './store/store'
+import {Provider} from 'react-redux';
+import {loadChats} from './store/chatAction';
 
-
-
+const store = initStore();
+store.dispatch(loadChats());
+//лучше всего вставлять loadChats к инициализации store 
 export class Layout extends Component {
     render() {
 
         return (
-            <BrowserRouter>
+            <Provider store={store}>
+                            <BrowserRouter>
                 <Header />
                 <ChatList />
                 <Switch>
@@ -24,6 +29,8 @@ export class Layout extends Component {
                     <Route path="/">404</Route>
                 </Switch>
             </BrowserRouter>
+            </Provider>
+
         )
 
     }
