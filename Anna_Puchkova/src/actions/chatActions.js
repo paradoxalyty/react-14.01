@@ -3,15 +3,27 @@ import { normalize } from 'normalizr';
 import { chats } from '../utils/schemas';
 
 export const ADD_CHAT = '@@chat/ADD_CHAT';
-export const BLINK = '@@chat/BLINK'
+export const DELETE_CHAT = '@@chat/DELETE_CHAT';
+export const HIGHLIGHT_CHAT = '@@chat/HIGHLIGHT_CHAT';
+export const UNHIGHLIGHT_CHAT = '@@chat/UNHIGHLIGHT_CHAT';
 
 export const addChat = (title) => ({
    type: ADD_CHAT,
    title,
 });
 
-export const blinkChat = (chatId) => ({
-   type: BLINK,
+export const deleteChat = chatId => ({
+   type: DELETE_CHAT,
+   chatId,
+ });
+
+export const highlightChat = (chatId) => ({
+   type: HIGHLIGHT_CHAT,
+   chatId,
+});
+
+export const unhighlightChat = (chatId) => ({
+   type: UNHIGHLIGHT_CHAT,
    chatId,
 });
 
