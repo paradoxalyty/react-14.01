@@ -6,7 +6,9 @@ import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Message from '../components/Message';
+import CircularProgress from 'material-ui/CircularProgress';
 import { sendMessage } from '../actions/messageActions';
+import { loadChats } from '../actions/chatActions';
 import '../styles/styles.css';
 
 class MessageField extends React.Component {
@@ -15,11 +17,17 @@ class MessageField extends React.Component {
        messages: PropTypes.object.isRequired,
        chats: PropTypes.object.isRequired,
        sendMessage: PropTypes.func.isRequired,
+       isLoading: PropTypes.bool.isRequired,
    };
 
    state = {
         input: '',
     };
+
+    componentDidMount() {
+        this.props.loadChats();
+     }
+  
 
     handleSendMessage = (message, sender) => {
         if (message.length > 0 || sender === 'bot') {
@@ -49,6 +57,9 @@ class MessageField extends React.Component {
     //deleteMessage = () => {};
 
    render() {
+    if (this.props.isLoading) {
+        return <CircularProgress />
+    }
       const { chatId, messages, chats } = this.props;
 
        const messageElements = chats[chatId].messageList.map(messageId => (
@@ -87,8 +98,9 @@ class MessageField extends React.Component {
 const mapStateToProps = ({ chatReducer, messageReducer }) => ({
     chats: chatReducer.chats,
     messages: messageReducer.messages,
+    isLoading: messageReducer.isLoading,
  });
  
- const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+ const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, loadChats  }, dispatch);
  
  export default connect(mapStateToProps, mapDispatchToProps)(MessageField);

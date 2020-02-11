@@ -1,14 +1,11 @@
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from '../actions/messageActions';
-import { ADD_CHAT, DELETE_CHAT, HIGHLIGHT_CHAT, UNHIGHLIGHT_CHAT } from "../actions/chatActions";
+import { ADD_CHAT, DELETE_CHAT, HIGHLIGHT_CHAT, UNHIGHLIGHT_CHAT, SUCCESS_CHATS_LOADING } from "../actions/chatActions";
 
 const initialStore = {
-   chats: {
-           1: {title: 'Chat 1', messageList: [1]},
-           2: {title: 'Chat 2', messageList: [2]},
-           3: {title: 'Chat 3', messageList: []},
-       },
-       chatNewMessages: [],
+    chats: {},
+    chatNewMessages: [],
+    isLoading: true,
 };
 
 
@@ -53,6 +50,12 @@ export default function chatReducer(store = initialStore, action) {
             delete chatNewMessages[chatNewMessages.indexOf(chatId)];
             return update(store, {
                 chatNewMessages: { $set: chatNewMessages }
+            });
+        }
+        case SUCCESS_CHATS_LOADING: {
+            return update(store, {
+                chats: { $set: action.payload.entities.chats },
+                isLoading: { $set: false },
             });
         }
        default:

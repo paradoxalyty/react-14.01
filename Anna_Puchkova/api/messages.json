@@ -2,13 +2,13 @@
     {
         "id": 1,
         "chatId": 1,
-        "text": "Привет!",
+        "text": "hi!",
         "sender": "bot"
     },
     {
         "id": 2,
         "chatId": 2,
-        "text": "Здравствуйте!",
+        "text": "hi-hi!",
         "sender": "bot"
     }
  ]

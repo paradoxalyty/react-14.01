@@ -8,6 +8,6 @@ export default store => next => (action) => {
                 `I am Robot and it is Chat # ${action.chatId}`, 'bot', action.chatId)), 1000)
             }
     }
-    return next(action)
+    return next(action);
  }
  
