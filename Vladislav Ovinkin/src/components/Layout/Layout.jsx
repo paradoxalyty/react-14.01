@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from '../Header/Header';
 import { ChatList } from '../ChatList/ChatList';
-import { ChatContainer } from '../../containers/ChatContainer'
+import ChatContainer from '../../containers/ChatContainer'
 import './Layout.css'
 
 export const Layout = (props) => {

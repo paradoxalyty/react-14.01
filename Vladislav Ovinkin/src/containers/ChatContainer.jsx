@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Chat } from '../components/Chat/Chat';
+import { connect } from 'react-redux';
 
 const BOT_NAME = "chatBot";
-export class ChatContainer extends Component {
+class ChatContainer extends Component {
 
     timer = {};
 
@@ -57,3 +58,13 @@ export class ChatContainer extends Component {
         }
     }
 }
+
+const mapStateToProps = () => {
+
+}
+
+const mapDispatchToProps = () => {
+    
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (ChatContainer);

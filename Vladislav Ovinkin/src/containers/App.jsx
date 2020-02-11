@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 // import { Layout } from '../components/Layout/Layout';
 import {Router} from "../components/Router/Router";
+import {initStore} from '../store/store';
+import {Provider} from 'react-redux';
+
+const store = initStore ();
 export class App extends Component {
     state = {
         chats : {
@@ -76,7 +80,9 @@ export class App extends Component {
         // const {id} = this.props.match.params;
     
         return (
-            <Router chatList={chats} stateId={activeId} onChangeId={this.handleChangeId} onSendMessage={this.handleSendMessage(activeId)} onChatAdd={this.handleChatAdd} />
+            <Provider store={store}>
+                <Router chatList={chats} stateId={activeId} onChangeId={this.handleChangeId} onSendMessage={this.handleSendMessage(activeId)} onChatAdd={this.handleChatAdd} />
+            </Provider>
         );
     };
 }
