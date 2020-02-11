@@ -30,11 +30,14 @@ module.exports = {
           ]
 
         }
+      },{
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   plugins: [
     new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html"), })
-  ]
-
+  ],
+  devtool: 'cheap-inline-module-source-map'
 }
