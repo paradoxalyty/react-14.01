@@ -13,7 +13,7 @@ export const ChatList = ({ chats, addChat }) => {
             <li><Link to="/chats/2">Чатик 2</Link></li>
             <li><Link to="/chats/3">Чатик 3</Link></li> */}
 
-            {chats.map(({id, name}) => <li  key={id}><Link to={'/chats/' + id}>{name}</Link></li>)}
+        {chats.map(({id, name, unreadMessages}) => <li  key={id}><Link to={'/chats/' + id}>{name}</Link>{unreadMessages && 'Новое сообщение'}</li>)}
 
             <li>
                 <input type="text" value={chatName} onChange={({currentTarget: {value}}) => setChatName(value)}/>

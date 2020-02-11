@@ -9,10 +9,14 @@ import {addMessage} from './chatAction'
 //     }
 // }
 
+let timers = {}
+
 export default store => next => action => {
     if (action.type === addMessage.toString () && action.payload.text !== 'Bot') {
         const {id, text} = action.payload
-        setTimeout (() => store.dispatch (addMessage (id, 'Bot', `И, ${text}, redux ты тоже никогда не выучишь, кусок мяса!1`)), 1500)
+        clearTimeout(timers[id])
+        timers[id] = setTimeout (() => 
+            store.dispatch (addMessage (id, 'Bot', `И, ${text}, redux ты тоже никогда не выучишь, кусок мяса!1`)), 3000)
     }
     next (action)
 }

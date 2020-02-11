@@ -6,7 +6,8 @@ import {addChat} from '../store/chatAction'
 const mapStateToProps = (store) => {
     const chats = Object.keys(store.chatReducer.chats).map((id) => ({
         id,
-        name: store.chatReducer.chats[id].name
+        name: store.chatReducer.chats[id].name,
+        unreadMessages: store.chatReducer.chats[id].unreadMessages
     }))
     return {
         chats

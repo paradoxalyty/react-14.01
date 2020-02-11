@@ -1,0 +1,35 @@
+{ 
+   "1":{
+        "name":"Chat 1",
+        "unreadMessages":false,
+        "messages":[
+            {
+                "text":"Seneka",
+                "content":"Per aspera ad Astra"
+            },
+            {
+                "text":"Descartes",
+                "content":"Cogito, ergo sum"
+            },
+            {
+                "text":"God",
+                "content":"Lorem ipsum dolor"
+            }
+        ]
+    },
+    "2":{
+        "name":"Chat 2",
+        "unreadMessages":false,
+        "messages":[
+            {
+                "text":"Voenkomat",
+                "content":"Vam povestka! Zavtra yavites v raspredelitelniy punkt k 8 chasam"
+            }
+        ]
+    },
+    "3":{
+        "name":"Chat 3",
+        "unreadMessages":false,
+        "messages":[]
+    }
+}
