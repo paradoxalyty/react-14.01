@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import {loadChats, addMessage} from './chatActions'
+import {loadChats, addMessage, chatStatus} from './chatActions'
 
 const defaultState = {
     chats: {}
@@ -44,5 +44,21 @@ export default handleActions({
                 },
             }
         }
+    },
+    [chatStatus]: (state, {payload: {id, is_active}}) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    name: state.chats[id].name,
+                    is_active: is_active, 
+                    messages: [
+                        ...state.chats[id].messages
+                    ]
+                },
+            }
+        }
     }
+
 }, defaultState);

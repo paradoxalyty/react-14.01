@@ -1,0 +1,8 @@
+header .ChatList li {
+text-decoration: underline;
+cursor: pointer;
+
+}
+header .ChatList li.BotAnswered{
+    color: red;
+}

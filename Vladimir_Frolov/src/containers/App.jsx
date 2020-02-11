@@ -1,42 +1,48 @@
 import React from "react";
 import ChatContainer from "./ChatContainer";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {initStore} from '../store/store'
-import {loadChats} from '../store/chatActions';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { initStore, history } from '../store/store'
+import { loadChats } from '../store/chatActions';
 import { Provider } from 'react-redux';
 import { Header } from "../components/Header/Header";
+import { ConnectedRouter } from 'connected-react-router';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore, persistReducer } from 'redux-persist';
+export const ROBOT_NAME = 'Robot';
 
 
-
-const store = initStore();
+export const store = initStore();
+const persistor = persistStore(store)
 store.dispatch(loadChats())
 
 export class App extends React.Component {
-    
+
     render() {
         return (
             <Provider store={store}>
-                <Header/>
-                <BrowserRouter>
-                    <Switch>
-                        <Route path="/" exact>
-                            Root
+                <PersistGate loading={null} persistor={persistor}>
+                    <ConnectedRouter history={history}>
+                        <Header />
+                        <Switch>
+                            <Route path="/" exact>
+                                Root
                         </Route>
-                        <Route path="/chats/" exact component={ChatContainer}/>
-                        <Route path="/chats/:id" exact component={ChatContainer}/>
-                        <Route path="/about">
-                            It's about
+                            <Route path="/chats/" exact component={ChatContainer} />
+                            <Route path="/chats/:id" exact component={ChatContainer} />
+                            <Route path="/about">
+                                It's about
                         </Route>
-                        <Route path="/home">
-                            It's home
+                            <Route path="/home">
+                                It's home
                         </Route><Route path="/profile">
-                        It's profile
+                                It's profile
                     </Route>
-                        <Route path="/">
-                            It's 404
+                            <Route path="/">
+                                It's 404
                         </Route>
-                    </Switch>
-                </BrowserRouter>
+                        </Switch>
+                    </ConnectedRouter>
+                </PersistGate>
             </Provider>
         )
     }

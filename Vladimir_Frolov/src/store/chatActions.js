@@ -1,6 +1,6 @@
 import {createActions} from 'redux-actions';
 
-export const {loadChats, addMessage} = createActions({
+export const {loadChats, addMessage, chatStatus} = createActions({
     LOAD_CHATS: () => ({
         chats: {
             1: {
@@ -23,4 +23,6 @@ export const {loadChats, addMessage} = createActions({
         },
     }),
     ADD_MESSAGE: (id, name, content) => ({id, name, content}),
+    CHAT_STATUS: (id, is_active) => ({id, is_active}),
 });
+

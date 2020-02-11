@@ -1,22 +1,25 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import './ChatForm.css';
-export const ROBOT_NAME = 'Robot';
+
 
 
 export class ChatForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: '',
-            message: '',
-            error: false
-        };
+        this.state = this.defaultState();
         this.handleOnClickAddMessage = this.handleOnClickAddMessage.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
         this.handOnChange = this.handOnChange.bind(this);
         this.ref_name = React.createRef();
         this.timeout;
+    }
+    defaultState = () => {
+          return ({
+            name: 'User',
+            message: 'Message',
+            error: false
+        })
     }
 
     handleKeyUp(event) {
@@ -28,10 +31,6 @@ export class ChatForm extends React.Component {
     }
     addNewMessage = (name, message) => {
         this.props.addNewMessage(this.state.name, this.state.message);
-        if (this.timeout) clearTimeout(this.timeout);
-        if (this.timeout) clearTimeout(this.timeout);
-        this.timeout =
-            setTimeout(() => this.props.addNewMessage(ROBOT_NAME, "Hi, I'm robot!"), 2000)
     }
     componentWillUnmount() {
         if (this.timeout) clearTimeout(this.timeout);
@@ -47,11 +46,7 @@ export class ChatForm extends React.Component {
 
     handleOnClickAddMessage() {
         this.addNewMessage(this.state.name, this.state.message);
-        this.setState({
-            name: '',
-            message: '',
-            error: false
-        });
+        this.setState(this.defaultState());
     }
 
     render() {
