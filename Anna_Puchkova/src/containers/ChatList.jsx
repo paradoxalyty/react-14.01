@@ -59,8 +59,7 @@ class ChatList extends React.Component {
     render () {
       const { chats, chatNewMessages } = this.props;
       
-      const chatElements = Object.keys(chats).map(chatId => (
-       
+      const chatElements = Object.keys(chats).map(chatId => (     
             <ListItem
                 key={ chatId }
                 primaryText={ chats[chatId].title }            
