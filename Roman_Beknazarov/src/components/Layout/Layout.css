@@ -3,7 +3,27 @@ body {
     margin: 0;
 }
 
-.main {
+main h2 {
+    text-align: center;
+}
+
+.wrapper {
     display: flex;
     justify-content: space-evenly;
+    padding: 30px;
+}
+
+.wrapper .mainBlock {
+    height: 100%;
+    width: 70%;
+}
+
+.wrapper .mainBlock h4 {
+    font-size: 24px;
+    color: grey;
+    text-align: left;
+}
+
+.wrapper .ChatList a {
+    text-decoration: none;
 }

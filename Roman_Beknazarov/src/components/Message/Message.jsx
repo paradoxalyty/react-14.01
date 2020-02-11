@@ -4,7 +4,7 @@ import './Message.css';
 import classnames from 'classnames';
 
 export const Message = ({author, content}) => {
-    const classNames = classnames('Message', {'Message--robot': author === 'Robot'});
+    const classNames = classnames('Message', {'Message--robot': author === 'Robot' ||  author === 'Bot'});
     return (
         <div className={classNames}>
             <div>{content}</div>
