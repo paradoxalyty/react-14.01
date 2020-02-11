@@ -1,4 +1,4 @@
-import { RSAA, getJSON } from 'redux-api-middleware';
+import { RSAA, getJSON} from 'redux-api-middleware';
 
 export const SEND_MESSAGE = '@@message/SEND_MESSAGE';
 

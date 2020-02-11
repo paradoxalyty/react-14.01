@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import MessageField from './MessageField';
-import Profile from './Profile'
 import ChatList from './ChatList';
 import Header from './Header';
 import '../styles/styles.css';
@@ -23,9 +22,7 @@ export default class Layout extends React.Component {
                       <ChatList />
                   </div>
                   <div className="layout-right-side">
-                      <MessageField 
-                        chatId={ this.props.chatId } 
-                      />
+                      <MessageField chatId={ this.props.chatId } />
                   </div>
               </div>
           </div>

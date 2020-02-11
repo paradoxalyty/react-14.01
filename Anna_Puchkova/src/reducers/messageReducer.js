@@ -1,14 +1,14 @@
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from '../actions/messageActions';
 import {
-    START_CHATS_LOADING,
-    SUCCESS_CHATS_LOADING,
-    ERROR_CHATS_LOADING,
- } from '../actions/chatActions';
+   START_CHATS_LOADING,
+   SUCCESS_CHATS_LOADING,
+   ERROR_CHATS_LOADING,
+} from '../actions/chatActions';
 
 const initialStore = {
     messages: {},
-    isLoading: false,
+   // isLoading: false,
  };
 
 

@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Anna Puchkova",
-        "age": "38",
-        "email": "puchkova.anne@gmail.com"
+        "email": "puchkova.anne@gmail.com",
+        "age": "38"
     }
 ]

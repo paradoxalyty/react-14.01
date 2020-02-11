@@ -1,11 +1,11 @@
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from '../actions/messageActions';
-import { ADD_CHAT, DELETE_CHAT, HIGHLIGHT_CHAT, UNHIGHLIGHT_CHAT, SUCCESS_CHATS_LOADING } from "../actions/chatActions";
+import { SUCCESS_CHATS_LOADING, ADD_CHAT, DELETE_CHAT, HIGHLIGHT_CHAT, UNHIGHLIGHT_CHAT } from "../actions/chatActions";
 
 const initialStore = {
     chats: {},
-    chatNewMessages: [],
     isLoading: true,
+    chatNewMessages: [],
 };
 
 
@@ -58,6 +58,7 @@ export default function chatReducer(store = initialStore, action) {
                 isLoading: { $set: false },
             });
         }
+ 
        default:
            return store;
    }

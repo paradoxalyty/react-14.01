@@ -10,7 +10,6 @@ import CircularProgress from 'material-ui/CircularProgress';
 import { sendMessage } from '../actions/messageActions';
 import { loadChats } from '../actions/chatActions';
 import '../styles/styles.css';
-
 class MessageField extends React.Component {
    static propTypes = {
        chatId: PropTypes.number.isRequired,
@@ -19,16 +18,13 @@ class MessageField extends React.Component {
        sendMessage: PropTypes.func.isRequired,
        isLoading: PropTypes.bool.isRequired,
    };
-
    state = {
         input: '',
     };
-
-    componentDidMount() {
+    componentDidMount() {      
         this.props.loadChats();
-     }
+    }
   
-
     handleSendMessage = (message, sender) => {
         if (message.length > 0 || sender === 'bot') {
             this.sendMessage(message, sender);
@@ -54,53 +50,48 @@ class MessageField extends React.Component {
         this.props.sendMessage(messageId, message, sender, chatId);
     };
 
-    //deleteMessage = () => {};
-
    render() {
     if (this.props.isLoading) {
         return <CircularProgress />
     }
-      const { chatId, messages, chats } = this.props;
+    const { chatId, messages, chats } = this.props;
 
-       const messageElements = chats[chatId].messageList.map(messageId => (
+    const messageElements = chats[chatId].messageList.map(messageId => (
+        <Message
+            key={ messageId }
+            text={ messages[messageId].text }
+            sender={ messages[messageId].sender }
+        />));
 
-           <Message
-               key={ messageId }
-               text={ messages[messageId].text }
-               sender={ messages[messageId].sender }
-               //deleteButton={<DeleteIcon className={"deleteButton"} onClick={() => this.deleteMessage(messageId)}/>}
-           />         
-           ));
-
-       return [
-           <div key='messageElements' className="message-field">
-               { messageElements }
-           </div>,
-           <div key='textInput' className='txt-field'>
-               <TextField
-                   name="input"
-                   fullWidth={ true }
-                   hintText="Enter your message"
-                   style={ { fontSize: '22px' } }
-                   onChange={ this.handleChange }
-                   value={ this.state.input }
-                   onKeyUp={ this.handleKeyUp }
-               />
-               <FloatingActionButton
-                   onClick={ () => this.handleSendMessage(this.state.input, 'me') }>
-                   <SendIcon />
-               </FloatingActionButton>
-           </div>
-       ]
+    return [
+        <div key='messageElements' className="message-field">
+            { messageElements }
+        </div>,
+        <div key='textInput' className='txt-field'>
+            <TextField
+                name="input"
+                fullWidth={ true }
+                hintText="Enter your message"
+                style={ { fontSize: '22px' } }
+                onChange={ this.handleChange }
+                value={ this.state.input }
+                onKeyUp={ this.handleKeyUp }
+            />
+            <FloatingActionButton
+                onClick={ () => this.handleSendMessage(this.state.input, 'me') }>
+                <SendIcon />
+            </FloatingActionButton>
+        </div>
+    ]
    }
 }
 
 const mapStateToProps = ({ chatReducer, messageReducer }) => ({
     chats: chatReducer.chats,
     messages: messageReducer.messages,
-    isLoading: messageReducer.isLoading,
+    isLoading: chatReducer.isLoading,
  });
  
- const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, loadChats  }, dispatch);
+ const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, loadChats }, dispatch);
  
  export default connect(mapStateToProps, mapDispatchToProps)(MessageField);

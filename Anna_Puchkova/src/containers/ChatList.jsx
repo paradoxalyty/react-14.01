@@ -52,21 +52,21 @@ class ChatList extends React.Component {
     this.props.push(link);
     };
 
-    handleDeleteChat = (chatId) => {
+  /*  handleDeleteChat = (chatId) => {
         this.props.deleteChat(chatId);
-    };
+    };*/
 
     render () {
       const { chats, chatNewMessages } = this.props;
       
-      const chatElements = Object.keys(chats).map((chatId, index) => (
+      const chatElements = Object.keys(chats).map(chatId => (
        
             <ListItem
                 key={ chatId }
                 primaryText={ chats[chatId].title }            
                 leftIcon={ <CommunicationChatBubble /> }
                 onClick={ () => this.handleNavigate(`/chat/${chatId}`) }    
-                rightIcon={<DeleteIcon className={"deleteButton"} onClick={() => this.handleDeleteChat(index)}/>}
+                rightIcon={<DeleteIcon className={"deleteButton"}/>}
                 style={ chatNewMessages.indexOf(Number(chatId)) >= 0 ? { backgroundColor: '#4ca1aa' } : {} }
                 className={"deleteButtonDiv"}
             />

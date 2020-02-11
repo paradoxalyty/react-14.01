@@ -1,19 +1,15 @@
 import update from 'react-addons-update';
-import { LOAD_PROFILE, SUCCESS_PROFILE_LOADING, START_PROFILE_LOADING,  ERROR_PROFILE_LOADING } from "../actions/profileActions";
+import { LOAD_PROFILE } from '../actions/profileActions';
+import { SUCCESS_PROFILE_LOADING, START_PROFILE_LOADING,  ERROR_PROFILE_LOADING } from "../actions/profileActions";
 
 const initialStore = {
-    name: 'Anna Puchkova',
-    age: 38,
-    email: 'puchkova.anne@gmail.com'
-  /*  profile: {},
-    isLoading: true,*/
+    profile: {},
+    isLoading: true,
+    
 };
 
-export default function profileReducer(store = initialStore) {
-    return store;
-}
 
-/*export default function profileReducer(store = initialStore, action) {
+export default function profileReducer(store = initialStore, action) {
     switch (action.type) {
         case START_PROFILE_LOADING: {
             return update(store, {
@@ -23,8 +19,8 @@ export default function profileReducer(store = initialStore) {
         case SUCCESS_PROFILE_LOADING: {
             const profile = {};
             action.payload.forEach(msg => {
-                const { name, age, email } = msg;
-                profile[msg.id] = { name, age, email };
+                const { name, email, age } = msg;
+                profile[msg.id] = { name, email, age };
             });
             
             return update(store, {
@@ -42,4 +38,4 @@ export default function profileReducer(store = initialStore) {
         default:
             return store;
     }
-}*/
+}
