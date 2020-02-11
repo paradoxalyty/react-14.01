@@ -20,12 +20,21 @@ module.exports = {
                 exclude: /node_modules/,
                 options: {
                     presets: ['@babel/env', "@babel/react"],
+                    plugins: ['@babel/plugin-proposal-class-properties']
                 }
             },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            }
         ],
-    }
+    },
+    devServer: {
+        historyApiFallback: true
+    },
+    devtool: 'inline-source-map'
     ,
     plugins: [
         new HtmlWebpackPlugin({template: path.resolve(__dirname, "src", "index.html"),})
     ]
-}
+};
