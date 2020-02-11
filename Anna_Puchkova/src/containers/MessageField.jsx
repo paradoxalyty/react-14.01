@@ -58,8 +58,7 @@ class MessageField extends React.Component {
                text={ messages[messageId].text }
                sender={ messages[messageId].sender }
                //deleteButton={<DeleteIcon className={"deleteButton"} onClick={() => this.deleteMessage(messageId)}/>}
-           />
-          
+           />         
            ));
 
        return [
