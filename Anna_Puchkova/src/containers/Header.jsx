@@ -8,6 +8,7 @@ import connect from "react-redux/es/connect/connect";
 import { loadChats } from "../actions/chatActions";
 import { loadProfile } from "../actions/profileActions";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import PushToggle from '../components/PushToggle';
 
 class Header extends Component {
     static propTypes = {
@@ -34,6 +35,7 @@ class Header extends Component {
                     <Avatar color='#3cc2d1' className='profileAvatar' />
                     <span>Profile: { this.props.profile.name }</span>
                     </Link>
+                    <PushToggle />
             </div>
     }
 }
