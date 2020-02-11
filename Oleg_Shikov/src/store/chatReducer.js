@@ -53,8 +53,7 @@ export default handleActions({
             chats: {
                 ...state.chats,
                 [id]: {
-                    name: state.chats[id].name,
-                    messages: state.chats[id].messages,
+                    ...state.chats[id],
                     unread: true
                 },
             }
@@ -67,8 +66,7 @@ export default handleActions({
             chats: {
                 ...state.chats,
                 [id]: {
-                    name: state.chats[id].name,
-                    messages: state.chats[id].messages,
+                    ...state.chats[id],
                     unread: false
                 },
             }

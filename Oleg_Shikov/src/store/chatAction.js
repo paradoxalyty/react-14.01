@@ -1,5 +1,5 @@
 import {createActions} from 'redux-actions';
-import {createAction} from 'redux-api-middleware';
+// import {createAction} from 'redux-api-middleware';
 
 export const { addChat, addMessage, fire, unfire, chatsRequest, chatsSuccess, chatsFailure} = createActions({
     // LOAD_CHATS: () => ({}), loadChats,
@@ -27,14 +27,14 @@ export const { addChat, addMessage, fire, unfire, chatsRequest, chatsSuccess, ch
 //   ]
 // })
 
-export const loadChats = () => {
-    return async (dispatch) => {
-       try {
-            dispatch(chatsRequest())
-            const result = await fetch('/api/chats.json');
-            dispatch(chatsSuccess(await result.json()))
-       }catch(e){
-            dispatch(chatsFailure(e))
-       }
-    }
-}
+// export const loadChats = () => {
+//     return async (dispatch) => {
+//        try {
+//             dispatch(chatsRequest())
+//             const result = await fetch('/api/chats.json');
+//             dispatch(chatsSuccess(await result.json()))
+//        }catch(e){
+//             dispatch(chatsFailure(e))
+//        }
+//     }
+// }

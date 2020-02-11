@@ -62,7 +62,7 @@ export const ChatForm = ({ onSendMessage }) => {
             label="Сообщение"
             value={content}
             onChange={({ currentTarget: { value } }) => setContent(value)} />
-        <Button onClick={handleClick} variant="contained" color="primary">Отправить</Button>
+        <Button onClick={handleClick} variant="contained" color="primary" id="#send">Отправить</Button>
     </div>);
 }
 

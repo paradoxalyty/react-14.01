@@ -4,7 +4,7 @@ import ChatContainer from "./containers/ChatContainer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { initStore, history } from './store/store';
 import { Provider } from 'react-redux';
-import {loadChats} from './store/chatAction';
+import {loadChats} from './store/asyncChatAction';
 import {ConnectedRouter} from "connected-react-router";
 // https://domain/page/2 - BrowserRouter
 // https://domain/#page/2 - HashRouter
