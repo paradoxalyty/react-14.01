@@ -23,43 +23,40 @@ const useStyles = makeStyles(theme => ({
 
 export const ChatList = ({ chats, activeChat, addChat, deleteChat, push }) => {
   const classes = useStyles();
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleNavigate = link => {
     push(link);
   };
 
   const handleClik = () => {
-    if (name) {
-      let chatId = parseInt(chats[chats.length - 1].id) + 1;
-      addChat({ name, chatId });
-      setName("");
+    if (title) {
+      addChat({ title });
+      setTitle("");
     }
   };
 
   const handleKeyUp = () => {
-    if (name && event.keyCode === 13 && event.ctrlKey) {
-      let chatId = parseInt(chats[chats.length - 1].id) + 1;
-      addChat({ name, chatId });
-      setName("");
+    if (title && event.keyCode === 13 && event.ctrlKey) {
+      addChat({ title });
+      setTitle("");
     }
   };
 
   const handleDeleteClik = chatId => {
     deleteChat(chatId);
-    //if (chatId === currentChat) handleNavigate(`/chats/`);
   };
 
-  const chatElements = chats.map(({ id, name }) => (
-    <ListItem button selected={id === activeChat} key={id}>
-      <ListItemIcon onClick={() => handleNavigate(`/chats/${id}`)}>
-        <SendIcon />
+  const chatElements = chats.map(({ chatId, title }) => (
+    <ListItem button selected={chatId === activeChat} key={chatId}>
+      <ListItemIcon onClick={() => handleNavigate(`/chats/${chatId}`)}>
+        <SendIcon color="primary" />
       </ListItemIcon>
       <ListItemText
-        onClick={() => handleNavigate(`/chats/${id}`)}
-        primary={name}
+        onClick={() => handleNavigate(`/chats/${chatId}`)}
+        primary={title}
       />
-      <DeleteIcon onClick={() => handleDeleteClik(id)} />
+      <DeleteIcon color="primary" onClick={() => handleDeleteClik(chatId)} />
     </ListItem>
   ));
 
@@ -68,60 +65,16 @@ export const ChatList = ({ chats, activeChat, addChat, deleteChat, push }) => {
       {chatElements}
       <ListItem>
         <ListItemIcon>
-          <AddIcon onClick={handleClik} />
+          <AddIcon color="primary" onClick={handleClik} />
         </ListItemIcon>
         <TextField
           id="standard-basic"
           label="Новый чат"
-          value={name}
-          onChange={({ currentTarget: { value } }) => setName(value)}
+          value={title}
+          onChange={({ currentTarget: { value } }) => setTitle(value)}
           onKeyUp={handleKeyUp}
         />
       </ListItem>
     </List>
   );
 };
-
-/*
-export const ChatList = ({ chats }) => {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  return (
-    <List className="ChatList">
-      <Link to="/chats/1" className="chatLink">
-        <ListItem button>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Чат 1" />
-        </ListItem>
-      </Link>
-
-      <Link to="/chats/2" className="chatLink">
-        <ListItem button>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Чат 2" />
-        </ListItem>
-      </Link>
-
-      <Link to="/chats/3" className="chatLink">
-        <ListItem button>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Чат 3" />
-        </ListItem>
-      </Link>
-
-      <ListItem>
-        <ListItemIcon>
-          <AddIcon />
-        </ListItemIcon>
-        <TextField id="standard-basic" label="Новый чат" />
-      </ListItem>
-    </List>
-  );
-};
-*/

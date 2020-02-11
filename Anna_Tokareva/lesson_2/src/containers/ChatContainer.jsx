@@ -1,29 +1,37 @@
 import { Chat } from "../components/Chat/Chat";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addMessage } from "../store/chatAction";
+import { addMessage, deleteMessage } from "../store/chatAction";
 
 const mapStateToProps = ({ chatReducer }, { match }) => {
-  const id = match.params.id;
+  const chatId = match.params.chatId;
   return {
-    messages: id
-      ? chatReducer.chats[id]
-        ? chatReducer.chats[id].messages
+    messages: chatId
+      ? chatReducer.chats[chatId]
+        ? chatReducer.chats[chatId].messages
         : null
       : null
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ addMessage }, dispatch);
+  return bindActionCreators({ addMessage, deleteMessage }, dispatch);
 };
 
 const mergeProps = (stateProps, dispatchProps, { match }) => {
-  const id = match.params.id;
+  const chatId = match.params.chatId;
+  const messagesIdArr = stateProps.messages
+    ? Object.keys(stateProps.messages)
+    : [];
+  const lastMessageId = messagesIdArr.length
+    ? parseInt(messagesIdArr[messagesIdArr.length - 1])
+    : 0;
+  const newMessageId = lastMessageId + 1;
   return {
     ...stateProps,
     onSendMessage: ({ name, content }) =>
-      dispatchProps.addMessage(id, name, content)
+      dispatchProps.addMessage(chatId, newMessageId, name, content),
+    deleteMessage: messageId => dispatchProps.deleteMessage(chatId, messageId)
   };
 };
 

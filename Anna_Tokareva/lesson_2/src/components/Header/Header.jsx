@@ -14,12 +14,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Header = ({ name, userName }) => {
+export const Header = ({ title, userName }) => {
   const classes = useStyles();
   return (
     <AppBar position="static" className="Header">
       <Typography variant="h6" color="inherit">
-        {name}
+        {title}
       </Typography>
       <Link to="/profile" className="profileLink">
         Перейти в профиль пользователя {userName}

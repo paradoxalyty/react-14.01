@@ -5,9 +5,9 @@ import { addChat, deleteChat } from "../store/chatAction";
 import { push } from "connected-react-router";
 
 const mapStateToProps = ({ chatReducer }) => {
-  const chats = Object.keys(chatReducer.chats).map(id => ({
-    id,
-    name: chatReducer.chats[id].name
+  const chats = Object.keys(chatReducer.chats).map(chatId => ({
+    chatId,
+    title: chatReducer.chats[chatId].title
   }));
   const activeChat = chatReducer.activeChat;
   return {
@@ -21,9 +21,13 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const lastChatId = stateProps.chats.length
+    ? parseInt(stateProps.chats[stateProps.chats.length - 1].chatId)
+    : 0;
+  const newChatId = lastChatId + 1;
   return {
     ...stateProps,
-    addChat: ({ name, chatId }) => dispatchProps.addChat(name, chatId),
+    addChat: ({ title }) => dispatchProps.addChat(title, newChatId),
     deleteChat: chatId => dispatchProps.deleteChat(chatId),
     push: location => dispatchProps.push(location)
   };

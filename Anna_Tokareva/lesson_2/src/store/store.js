@@ -9,6 +9,8 @@ import { routerMiddleware, connectRouter } from "connected-react-router";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+import { apiMiddleware } from "redux-api-middleware";
+import thunk from "redux-thunk";
 
 const persistConfig = {
   key: "reactmessanger",
@@ -40,7 +42,9 @@ export const initStore = (preloadedState = {}) => {
         routerMiddleware(history),
         logger,
         chatMiddleware,
-        botMiddleware
+        botMiddleware,
+        apiMiddleware,
+        thunk
       ),
       devTools
     )

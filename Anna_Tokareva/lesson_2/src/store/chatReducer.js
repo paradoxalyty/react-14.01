@@ -1,75 +1,81 @@
 import { handleActions } from "redux-actions";
 import {
-  loadChats,
+  chatsRequest,
+  chatsSuccess,
+  chatsFailure,
   addMessage,
+  deleteMessage,
   addChat,
   deleteChat,
   highlightChat
 } from "./chatAction";
 
 const defaultState = {
-  chats: {}
+  chats: {},
+  isLoading: false,
+  activeChat: 0
 };
 
 export default handleActions(
   {
-    [loadChats]: state => {
+    [chatsRequest]: state => {
       return {
         ...state,
-        chats: {
-          1: {
-            name: "Чат 1",
-            messages: [
-              { name: "Иван", content: "Привет!" },
-              { name: "Петр", content: "Привет, как дела?" },
-              { name: "Иван", content: "Хорошо, спасибо." }
-            ]
-          },
-          2: {
-            name: "Чат 2",
-            messages: [
-              { name: "Иван", content: "Привет!" },
-              { name: "Иван", content: "Как дела?" }
-            ]
-          },
-          3: {
-            name: "Чат 3",
-            messages: []
-          }
-        }
+        isLoading: true
       };
     },
-    [addMessage]: (state, { payload: { id, name, content } }) => {
+    [chatsSuccess]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        chats: payload
+      };
+    },
+    [chatsFailure]: state => {
+      return {
+        ...state,
+        isLoading: false
+      };
+    },
+    [addMessage]: (
+      state,
+      { payload: { chatId, messageId, name, content } }
+    ) => {
       return {
         ...state,
         chats: {
           ...state.chats,
-          [id]: {
-            name: state.chats[id].name,
-            messages: [...state.chats[id].messages, { name, content }]
+          [chatId]: {
+            title: state.chats[chatId].title,
+            messages: {
+              ...state.chats[chatId].messages,
+              [messageId]: { name, content }
+            }
           }
         }
       };
     },
-    [addChat]: (state, { payload: { name, chatId } }) => {
+    [deleteMessage]: (state, { payload: { chatId, messageId } }) => {
+      let messages = { ...state.chats[chatId].messages };
+      delete messages[messageId];
       return {
         ...state,
-        chats: { ...state.chats, [chatId]: { name: name, messages: [] } }
+        chats: {
+          ...state.chats,
+          [chatId]: { title: state.chats[chatId].title, messages: messages }
+        }
+      };
+    },
+    [addChat]: (state, { payload: { title, chatId } }) => {
+      return {
+        ...state,
+        chats: { ...state.chats, [chatId]: { title: title, messages: {} } }
       };
     },
     [deleteChat]: (state, { payload: { chatId } }) => {
-      //let chatsFiltred = Object.keys(state.chats).filter(
-      //  chat => chat !== chatId
-      //);
-      //let chatsNew = {};
-      //for (let id of chatsFiltred) {
-      //  chatsNew = { ...chatsNew, [id]: state.chats[id] };
-      //}
-      //return { ...state, chats: chatsNew };
       let chats = { ...state.chats };
       delete chats[chatId];
       return { ...state, chats };
-      return state.chats.filter(chat => chat[chatId] !== action.payload.id);
     },
     [highlightChat]: (state, { payload: { chatId } }) => {
       return {
