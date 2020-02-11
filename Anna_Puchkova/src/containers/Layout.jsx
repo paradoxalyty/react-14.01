@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import MessageField from './MessageField';
+import Profile from './Profile'
 import ChatList from './ChatList';
 import Header from './Header';
 import '../styles/styles.css';

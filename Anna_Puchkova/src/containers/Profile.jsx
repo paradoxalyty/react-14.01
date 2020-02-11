@@ -10,7 +10,7 @@ class Profile extends React.Component {
                 <h1>Profile: {this.props.profile.name}</h1>
                 <p>Age: {this.props.profile.age}</p>
                 <p>E-mail: {this.props.profile.email}</p>
-                <Link to='/' className='backLink'> ← Назад</Link>
+                <Link to='/' className='backLink'> ← Back to the Chat</Link>
             </div>
         )
     }
