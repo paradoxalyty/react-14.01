@@ -7,7 +7,7 @@ import React, { Component } from "react";
 class ChatContainer extends Component {
     componentDidMount() {
     }
-    sendMessage = (message) => {
+    sendMessage = message => {
         this.props.sendMessage(message)
     }
     render() {

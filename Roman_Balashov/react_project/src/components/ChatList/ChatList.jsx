@@ -14,12 +14,12 @@ export class ChatList extends React.Component {
         return (
             <div className="chatlist-wrap">
                 <List>
-                    {chats.map(({ id, name }) => <li key={id}><Link to={"/chats/" + id}>                <ListItem classes={{ root: "chatlist__item" }}>
+                    {chats.map(({ id, name }) => <Link key={id} to={"/chats/" + id}>                <ListItem classes={{ root: "chatlist__item" }}>
                         <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
                             <PersonIcon fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary={name} />
-                    </ListItem></Link></li>)}
+                    </ListItem></Link>)}
                 </List>
                 {/* <Input type="text" value={chatName}></Input>
                 <Button onClick={() => addChat(chatName)}>+</Button> */}
