@@ -1,49 +1,70 @@
 import React, { Component } from "react";
-import { Chat } from '../components/Chat/Chat'
+import { Chat } from '../components/Chat/Chat';
+import { connect } from 'react-redux';
 
 const BOT_NAME = "chatBot";
+class ChatContainer extends Component {
 
-export class ChatContainer extends Component {
-
-    timer = null;
+    timer = {};
 
     componentDidMount () {
-        // const {id} = this.props.match.params;
-        const {id} = this.props;
-        const {onChatChange} = this.props;
-        onChatChange (id);
+        const {id, stateId, onChangeId} = this.props;
+
+        if (id && stateId != id) {
+            onChangeId (id);
+        }
     }
 
-    componentDidUpdate () {
-        // clearTimeout (this.timer);
+    componentDidUpdate (prevState) {
+        const {id, stateId, chats, onSendMessage, onChangeId} = this.props;
         
-        // const lastMessage = this.state.messages[this.state.messages.length - 1];
-        
-        // if (lastMessage.name !== BOT_NAME) {
-        //     this.timer = setTimeout(() => this.handleSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2000);
-        // }
+        // console.log ('ChatContainer DID_UPDATE!', id, stateId);
+
+        if (stateId != id) {
+            onChangeId (id);
+        }
+
+        if (chats[id] && prevState.id === id) {
+
+            const nowNumMessages = chats[id].messages.length;
+            const prevNumMessages = prevState.chats[id].messages.length;
+            const lastMessage = chats[id].messages[nowNumMessages - 1];
+
+            if (nowNumMessages !== prevNumMessages || prevState.id !== id) {
+                clearTimeout (this.timer[id]);
+            }
+
+            if (lastMessage && prevNumMessages !== nowNumMessages && lastMessage.name !== BOT_NAME) {
+                this.timer[id] = setTimeout(() => onSendMessage ({name: BOT_NAME, content: `Hi, ${lastMessage.name}, I'm a robot!`}), 2500);
+            }
+        }
     }
     
     componentWillUnmount () {
-        clearTimeout (this.timer);
+        Object.keys (this.timer).map (id => {
+            clearTimeout (this.timer[id])
+        })
     }
-
-    handleSendMessage = (message) => {
-        const date = new Date ();
-        const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
-        message.time = time;
-        this.setState ((state) => ({messages: [...state.messages, message]}));
-    }
-
+        
     render () {
-        const {chats} = this.props;
-        // const {id} = this.props.match.params;
-        const {id} = this.props;
+        const {chats, id, onSendMessage} = this.props;
 
-        if (id) {
-            return <Chat {...{messages: chats[id].messages, onSendMessage: this.handleSendMessage}} />
+        // console.log (stateId, id, chats[id]);
+
+        if (id && chats[id]) {
+            return <Chat {...{messages: chats[id].messages, onSendMessage: onSendMessage}} />
         } else {
-            return "Ошибка: необходимо выбрать номер чата.";
+            return "Для продолжения работы выберите номер чата.";
         }
     }
 }
+
+const mapStateToProps = () => {
+
+}
+
+const mapDispatchToProps = () => {
+    
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (ChatContainer);

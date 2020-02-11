@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import { Layout } from '../components/Layout/Layout';
+// import { Layout } from '../components/Layout/Layout';
+import {Router} from "../components/Router/Router";
+import {initStore} from '../store/store';
+import {Provider} from 'react-redux';
 
+const store = initStore ();
 export class App extends Component {
     state = {
         chats : {
@@ -24,22 +28,61 @@ export class App extends Component {
                 messages: [],
             },
         },
-        currentChatId: 1,
+        activeId: 3,
     }
-    handleChatChange = (newId) => {
-        this.setState (() => ({currentChatId: newId}));
+
+    componentWillUnmount () {
+        console.log ('App unmount');
     }
-    componentDidMount () {
+
+    handleSendMessage = (id) => (message) => {
+        const date = new Date ();
+        const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+    
+        this.setState ((state) => (
+            {
+                chats: {...state.chats, 
+                    [id]: { name: state.chats[id].name,
+                            messages: [...state.chats[id].messages, message]
+                    },
+                }
+            }
+        ));
+        // console.log (id, this.state);
     }
-    componentDidUpdate (prevProps, prevState) {
-        
+    
+    handleChangeId = (newId) => {
+        this.setState (() => ({
+            activeId: newId,
+        }))
     }
+
+    handleChatAdd = (name) => {
+        const chatsId = Object.keys (this.state.chats);
+        const newChatId = Math.max.apply(null, chatsId) + 1;
+        // console.log("name=" + name, "newChatId=" + newChatId);
+        this.setState ((state) => (
+            {
+                chats: {...state.chats, 
+                    [newChatId]: { name: name,
+                            messages: []
+                    },
+                },
+                activeId: newChatId,
+            }
+        ));
+    
+        // console.log (this.state);
+    }
+
     render () {
-        const {id} = this.props.match.params;
-        const {chats} = this.state;
-        const {currentChatId} = this.state;
+        const {chats, activeId} = this.state;
+        // const {id} = this.props.match.params;
+    
         return (
-            <Layout {...{chatList: chats, activeChatId: currentChatId, id: id, onChatChange: this.handleChatChange}} />
+            <Provider store={store}>
+                <Router chatList={chats} stateId={activeId} onChangeId={this.handleChangeId} onSendMessage={this.handleSendMessage(activeId)} onChatAdd={this.handleChatAdd} />
+            </Provider>
         );
     };
 }
