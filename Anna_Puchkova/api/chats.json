@@ -1,0 +1,52 @@
+
+[
+    {
+        "id": 1,
+        "title": "Games",
+        "messageList": [
+            {
+                "id": 1,
+                "text": "Hello!",
+                "sender": "me"
+            },
+            {
+                "id": 2,
+                "text": "I am Robot",
+                "sender": "bot"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Trips",
+        "messageList": [
+            {
+                "id": 3,
+                "text": "Good day!",
+                "sender": "me"
+            },
+            {
+                "id": 4,
+                "text": "I am Robot",
+                "sender": "bot"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Business",
+        "messageList": [
+            {
+                "id": 5,
+                "text": "How are you?",
+                "sender": "me"
+            },
+            {
+                "id": 6,
+                "text": "I am Robot",
+                "sender": "bot"
+            }
+        ]
+    }
+ ]
+ 
