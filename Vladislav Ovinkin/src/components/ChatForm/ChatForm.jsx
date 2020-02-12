@@ -1,57 +1,23 @@
 import React, { useState } from "react";
-// import React, { useState, useRef, useEffect } from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addMessage } from '../../store/chatAction';
 import './ChatForm.css';
 
 /**
  *  Компонент с формой отправки нового сообщения
- *  @param {string} content - message text
- *  @param {string} name - sender name
- *  @param {string} time - sending message time
- *  @param {Function} onSendMessage - sending new message handler
  */
-// export class ChatForm extends React.Component {
-//     state = {
-//         name: 'User',
-//         content: 'My message',
-//     }
-//     textarea = React.createRef ();
-//     componentDidMount () {
-//         this.textarea.current.focus ();
-//     }
-//     handleInput = ({currentTarget: {value, name}}) => {
-//         // event.currentTarget.value
-//         this.setState(() => ({[name]: value}));
-//     }
-//     handleClick = () => {
-//         const {name, content} = this.state;
-//         const date = new Date ();
-//         const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
-//         this.props.onSendMessage ({name, content, time});
-//     }
-//     render () {
-//         return (<div>
-//             <input name="name" value={ this.state.name } onChange={this.handleInput} type="text" />
-//             <textarea name="content" value={ this.state.content} onChange={this.handleInput} ref={this.textarea}/>
-//             <button onClick={this.handleClick}>Отправить</button>
-//         </div>);
-//     }
-// }
 
-export const ChatForm = ({ onSendMessage }) => {
+const ChatForm = (props) => {
     const [name, setName] = useState ('User');
     const [content, setContent] = useState ('Message');
-    // const textarea = useRef ();
-
-    // useEffect (() => {
-    //     textarea.current.focus ();
-    // }, []);
+    const {id} = props;
 
     const handleClick = () => {
         if (content.length > 0) {
-            onSendMessage({name, content});
+            props.addMessage (id, name, content)
             setContent('');
         }
     }
@@ -78,7 +44,6 @@ export const ChatForm = ({ onSendMessage }) => {
             value={content}
             onChange={({currentTarget: {value}}) => setContent (value)}
             onKeyUp={handleKeyUp}
-            // ref={textarea} 
             autoFocus
             multiline />
         <Button
@@ -89,9 +54,14 @@ export const ChatForm = ({ onSendMessage }) => {
     </div>)
 };
 
-ChatForm.propTypes = {
-    // content: PropTypes.string.isRequired,
-    // name: PropTypes.string.isRequired,
-    // time: PropTypes.string.isRequired,
-    onSendMessage: PropTypes.func.isRequired,
+const mapStateToProps = ({chatReducer}) => ({
+    chats: chatReducer.chats,
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        addMessage
+    }, dispatch);
 }
+
+export default connect (mapStateToProps, mapDispatchToProps) (ChatForm);

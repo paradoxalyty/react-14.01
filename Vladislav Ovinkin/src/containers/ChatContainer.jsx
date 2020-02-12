@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import { Chat } from '../components/Chat/Chat';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { loadChats, addMessage } from '../store/chatAction';
 
 const BOT_NAME = "chatBot";
-export class ChatContainer extends Component {
+class ChatContainer extends Component {
 
     timer = {};
 
     componentDidMount () {
-        const {id, stateId, onChangeId} = this.props;
+    //     const {id, stateId} = this.props;
 
-        if (id && stateId != id) {
-            onChangeId (id);
-        }
+    //     if (id && stateId != id) {
+    //         // onChangeId (id);
+    //     }
     }
 
     // componentDidUpdate (prevState) {
@@ -49,28 +47,20 @@ export class ChatContainer extends Component {
     }
         
     render () {
-        console.log (this.props.chats);
-        return null;
-        // const {chats, id, onSendMessage} = this.props;
+        const {id, chats} = this.props;
 
-        // // console.log (stateId, id, chats[id]);
+        // console.log (this.props);
 
-        // if (id && chats[id]) {
-        //     return <Chat {...{messages: chats[id].messages, onSendMessage: onSendMessage}} />
-        // } else {
-        //     return "Для продолжения работы выберите номер чата.";
-        // }
+        if (id && chats[id]) {
+            return <Chat id={id} />
+        } else {
+            return "Чат не выбран.";
+        }
     }
 }
 
-// const mapStateToProps = ({chatReducer}) => ({
-//     chats: chatReducer.chats,
-// })
+const mapStateToProps = ({chatReducer}) => ({
+    chats: chatReducer.chats,
+})
 
-// const mapDispatchToProps = (dispatch) => {
-//     return bindActionCreators({
-//         loadChats, addMessage
-//     }, dispatch);
-// }
-
-// export default connect (mapStateToProps, mapDispatchToProps) (ChatContainer);
+export default connect (mapStateToProps) (ChatContainer);

@@ -3,24 +3,21 @@ import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { loadChats, addMessage } from '../../store/chatAction';
 import './ChatList.css';
 
 const ChatList = (props) => {
-   //const {chatList, pathId} = props;
     const chatList = props.chats;
     const { pathId } = props;
     const [name, setName] = useState ('NewChatName');
 
     const handleClick = () => {
         if (name.length > 0) {
-            props.onChatAdd(name);
+            // props.onChatAdd(name);
             setName('');
         }
     }
 
-    console.log (props);
+    // console.log (props);
 
     return (<div className="chatList">
             <ul>
@@ -43,8 +40,8 @@ const ChatList = (props) => {
                     variant="contained"
                     size="small"
                     color="primary"
-                    onClick={addMessage}
-                    >Добавить
+                    onClick={handleClick}>
+                    Добавить
                 </Button>
             </div>
         </div>);
@@ -53,10 +50,4 @@ const mapStateToProps = ({chatReducer}) => ({
     chats: chatReducer.chats,
 })
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        loadChats, addMessage
-    }, dispatch);
-}
-
-export default connect (mapStateToProps, mapDispatchToProps) (ChatList);
+export default connect (mapStateToProps) (ChatList);
