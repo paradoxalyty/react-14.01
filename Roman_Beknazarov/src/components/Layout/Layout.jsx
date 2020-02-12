@@ -1,15 +1,17 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 
 import {Header} from '../Header/Header';
 import ChatsListContainer from '../../containers/ChatsListContainer';
 import {Profile} from '../Profile/Profile';
 import ChatContainer from '../../containers/ChatContainer';
+import {ConnectedRouter} from 'connected-react-router';
+import {history} from '../../store/store';
 import './Layout.css';
 
 export const Layout = () => {
 
-    return (<BrowserRouter>
+    return (<ConnectedRouter history={history}>
         <div className="layout">
             <Header/>
             <main>
@@ -31,5 +33,5 @@ export const Layout = () => {
                 </div>
             </main>
         </div>
-    </BrowserRouter>);
+    </ConnectedRouter>);
 };

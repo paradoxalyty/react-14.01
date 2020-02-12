@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import {loadChats, addMessage} from './chatAction';
+import {loadChats, addChat, addMessage} from './chatAction';
 
 const defaultState = {
     chats: {}
@@ -11,7 +11,7 @@ export default handleActions({
             ...state,
             chats: {
                 1: {
-                    number: 1,
+                    chatNumber: 1,
                     name: 'Chat 1',
                     messages: [
                         {name: 'Robot', content: 'Hello!'},
@@ -20,7 +20,7 @@ export default handleActions({
                     ]
                 },
                 2: {
-                    number: 2,
+                    chatNumber: 2,
                     name: 'Chat 2',
                     messages: [
                         {name: 'Robot', content: 'Hi!'},
@@ -28,7 +28,7 @@ export default handleActions({
                     ]
                 },
                 3: {
-                    number: 3,
+                    chatNumber: 3,
                     name: 'Chat 3',
                     messages: []
                 }
@@ -41,13 +41,28 @@ export default handleActions({
             chats: {
                 ...state.chats,
                 [id]: {
+                    chatNumber: state.chats[id].chatNumber,
                     name: state.chats[id].name,
-                    number: state.chats[id].number,
                     messages: [
                         ...state.chats[id].messages,
                         {name, content},
                     ]
                 },
+            }
+        };
+    },
+    [addChat]: (state, {payload: {name}}) => {
+        let chatsQuantity = Object.keys(state.chats).map((chat ) => chat);
+
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [name]: {
+                    chatNumber: chatsQuantity.length + 1,
+                    name: name,
+                    messages: []
+                }
             }
         };
     },

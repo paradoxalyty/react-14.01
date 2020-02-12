@@ -1,10 +1,16 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import chatReducer from './chatReducer';
 import botMiddleware from './botMiddleware';
+import chatMiddleware from './chatMiddleware';
 import {createLogger} from 'redux-logger/src';
+import {createBrowserHistory} from 'history';
+import {routerMiddleware, connectRouter} from 'connected-react-router';
+
+export const history = createBrowserHistory();
 
 const reducer = combineReducers({
-    chatReducer
+    chatReducer,
+    router: connectRouter(history),
 });
 
 const logger = createLogger();
@@ -14,6 +20,6 @@ export const initStore = (preloadedState = {}) => {
     return createStore(
         reducer,
         preloadedState,
-        compose(applyMiddleware(logger, botMiddleware), devTools),
+        compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware, chatMiddleware), devTools),
     );
 };
