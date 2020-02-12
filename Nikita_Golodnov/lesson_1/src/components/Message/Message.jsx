@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import PropTypes from 'prop-types'
 import './Message.css'
 import classnames from 'classnames'
@@ -9,9 +9,9 @@ export const Message = ({text, content}) => {
 }
 
 
- Message.propTypes = {
-        text: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired 
+Message.propTypes = {
+    text: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired 
 }
  
 

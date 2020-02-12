@@ -1,5 +1,5 @@
-import React from "react"
-import ReactDom from "react-dom"
+import React from 'react'
+import ReactDom from 'react-dom'
 
 
 
@@ -18,8 +18,8 @@ import ReactDom from "react-dom"
 
 // ReactDom.render(<Chat messages={messages}/>, document.getElementById("app"))
 
-import {App} from "./containers/App"
+import {App} from './App'
 
-ReactDom.render(<App />, document.getElementById("app"))
+ReactDom.render(<App />, document.getElementById('app'))
 
 
