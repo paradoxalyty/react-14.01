@@ -4,9 +4,7 @@ import {Header} from "../Header/Header";
 import "./Profile.css";
 import { render } from "react-dom";
 
-export class Profile extends Component{
-    render(){
-        const chat =this.props.chat;
+export const Profile  = ({chat}) => {
         return (<>
             <div className="Profile">
                 <h3>PROFILE</h3>
@@ -16,5 +14,4 @@ export class Profile extends Component{
                 {chat.messages.length}
             </div>
         </>)
-    }
 }
