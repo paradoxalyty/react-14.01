@@ -9,13 +9,7 @@ export const Message = ({name, content}) => {
     const classNames = classnames('react-messenger__message', {'react-messenger__message-bot': name === BOT_NAME});
 
     return (
-        <div className={classNames}
-            // style={{
-            //     alignSelf: name === 'bot' ?
-            //         'flex-end' : 'flex-start'
-            // }}
-        >
-
+        <div className={classNames}>
             <div>{content}</div>
 
             <div className="react-messenger__message-name">

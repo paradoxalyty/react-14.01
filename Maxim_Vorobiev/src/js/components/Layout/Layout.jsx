@@ -1,12 +1,11 @@
 import React from 'react';
 import {Header} from '../Header/Header';
-import {ChatList} from '../ChatList/ChatList';
-import {MessageField} from '../MessageField/MessageField';
-import {ChatForm} from '../ChatForm/ChatForm';
+import ChatList from '../ChatList/ChatList';
+import MessageField from '../MessageField/MessageField';
 import PropTypes from 'prop-types';
 import './Layout.css';
 
-export const Layout = ({messages, handleKeyUp, handleChange, handleButton, input, chats, chatId}) => (
+export const Layout = ({chatId, messages, sendMessage}) => (
     <>
         <Header chatId={chatId}/>
 
@@ -14,31 +13,21 @@ export const Layout = ({messages, handleKeyUp, handleChange, handleButton, input
             <ChatList/>
 
             <div className="react-messenger__message-field">
-                <MessageField messages={messages} chats={chats} chatId={chatId}/>
-
-                <ChatForm handleKeyUp={handleKeyUp}
-                          handleChange={handleChange}
-                          handleButton={handleButton}
-                          input={input}
+                <MessageField
+                            chatId={chatId}
+                            messages={messages}
+                            sendMessage={sendMessage}
                 />
             </div>
         </div>
     </>
 );
 
-// TODO - Спросить, где нужно проверять пропсы,
-//  в каждом компоненте, в родительском или последнем дочернем
 Layout.propTypes = {
-    chatId: PropTypes.number,
+    chatId: PropTypes.number.isRequired,
+    messages: PropTypes.object.isRequired,
 };
 
 Layout.defaultProps = {
     chatId: 1,
 };
-
-// Layout.propTypes = {
-//     handleKeyUp: PropTypes.func.isRequired,
-//     handleChange: PropTypes.func.isRequired,
-//     handleButton: PropTypes.func.isRequired,
-//     input: PropTypes.string.isRequired,
-// };
