@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { loadChats, addMessage } from '../store/chatAction';
 
 const BOT_NAME = "chatBot";
-class ChatContainer extends Component {
+export class ChatContainer extends Component {
 
     timer = {};
 
@@ -51,7 +51,7 @@ class ChatContainer extends Component {
     render () {
         console.log (this.props.chats);
         return null;
-        // const {ch    ats, id, onSendMessage} = this.props;
+        // const {chats, id, onSendMessage} = this.props;
 
         // // console.log (stateId, id, chats[id]);
 
@@ -63,14 +63,14 @@ class ChatContainer extends Component {
     }
 }
 
-const mapStateToProps = ({chatReducer}) => ({
-    chats: chatReducer.chats,
-})
+// const mapStateToProps = ({chatReducer}) => ({
+//     chats: chatReducer.chats,
+// })
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        loadChats, addMessage
-    }, dispatch);
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({
+//         loadChats, addMessage
+//     }, dispatch);
+// }
 
-export default connect (mapStateToProps, mapDispatchToProps) (ChatContainer);
+// export default connect (mapStateToProps, mapDispatchToProps) (ChatContainer);

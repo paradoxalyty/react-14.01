@@ -2,10 +2,15 @@ import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import './ChatList.css'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loadChats, addMessage } from '../../store/chatAction';
+import './ChatList.css';
 
-export const ChatList = (props) => {
-    const {chatList, pathId} = props;
+const ChatList = (props) => {
+   //const {chatList, pathId} = props;
+    const chatList = props.chats;
+    const { pathId } = props;
     const [name, setName] = useState ('NewChatName');
 
     const handleClick = () => {
@@ -14,6 +19,8 @@ export const ChatList = (props) => {
             setName('');
         }
     }
+
+    console.log (props);
 
     return (<div className="chatList">
             <ul>
@@ -36,9 +43,20 @@ export const ChatList = (props) => {
                     variant="contained"
                     size="small"
                     color="primary"
-                    onClick={handleClick}
+                    onClick={addMessage}
                     >Добавить
                 </Button>
             </div>
         </div>);
 }
+const mapStateToProps = ({chatReducer}) => ({
+    chats: chatReducer.chats,
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        loadChats, addMessage
+    }, dispatch);
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (ChatList);

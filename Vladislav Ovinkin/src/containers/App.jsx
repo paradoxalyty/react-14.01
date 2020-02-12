@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import {Router} from "../components/Router/Router";
-import {initStore} from '../store/store';
-import {Provider} from 'react-redux';
+import { Router } from "../components/Router/Router";
+import { initStore } from '../store/store';
+import { Provider } from 'react-redux';
+import { loadChats } from '../store/chatAction';
 
 const store = initStore ();
+store.dispatch (loadChats ());
 export class App extends Component {
     // state = {
     //     chats : {
@@ -33,28 +35,12 @@ export class App extends Component {
     componentWillUnmount () {
         console.log ('App unmount');
     }
-
-    // handleSendMessage = (id) => (message) => {
-    //     const date = new Date ();
-    //     const time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     
-    //     this.setState ((state) => (
-    //         {
-    //             chats: {...state.chats, 
-    //                 [id]: { name: state.chats[id].name,
-    //                         messages: [...state.chats[id].messages, message]
-    //                 },
-    //             }
-    //         }
-    //     ));
-    //     // console.log (id, this.state);
+    // handleChangeId = (newId) => {
+    //     this.setState (() => ({
+    //         activeId: newId,
+    //     }))
     // }
-    
-    handleChangeId = (newId) => {
-        this.setState (() => ({
-            activeId: newId,
-        }))
-    }
 
     handleChatAdd = (name) => {
         const chatsId = Object.keys (this.state.chats);
@@ -70,18 +56,13 @@ export class App extends Component {
                 activeId: newChatId,
             }
         ));
-    
-        // console.log (this.state);
     }
 
     render () {
-        const {chats, activeId} = this.state;
-        // const {id} = this.props.match.params;
-    
         return (
             <Provider store={store}>
-                <Router chatList={chats} stateId={activeId} onChangeId={this.handleChangeId} onSendMessage={this.handleSendMessage(activeId)} onChatAdd={this.handleChatAdd} />
+                <Router />
             </Provider>
         );
-    };
+    };  
 }

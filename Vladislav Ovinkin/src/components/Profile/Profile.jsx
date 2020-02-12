@@ -1,7 +1,8 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 
-export const Profile = () => {
+export const Profile = (props) => {
+    console.log (props);
     return (
         <div>
             <p>Страница профиля</p>
