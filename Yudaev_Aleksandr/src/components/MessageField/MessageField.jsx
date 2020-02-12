@@ -2,10 +2,10 @@ import React from "react";
 import {TextField, IconButton} from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import {blue500} from 'material-ui/styles/colors';
-import Message from "./Message";
-import '../styles/styles.css';
+import Message from "../Message/Message";
+import '../../styles/styles.css';
 //ветка под дз4
-export default class MessageList extends React.Component {
+export default class MessageField extends React.Component {
     constructor(props) {
         super(props);
         // создадим ref в поле `textInput` для хранения DOM-элемента
@@ -13,6 +13,35 @@ export default class MessageList extends React.Component {
     }
 
     state = {
+        chats: {
+            1: {
+                id: 1,
+                name: "Chat 1",
+                messages: [
+                    {name: "Ivan", content: "Hello! It's chat 1"},
+                    {name: "Oleg", content: "Hi, how are you?"},
+                ],
+                input: '',
+                textFieldDisabled: false
+            },
+            2: {
+                id: 2,
+                name: "Chat 2",
+                messages: [
+                    {name: "Den", content: "Hi from chat 2!"},
+                ],
+                input: '',
+                textFieldDisabled: false
+            },
+            3: {
+                id: 3,
+                name: "Chat 3",
+                messages: [
+                ],
+                input: '',
+                textFieldDisabled: false
+            }
+        },
         messages: [
             {name: "Ivan", content: "Hello!"},
             {name: "Oleg", content: "Hi, how are you?"},
@@ -67,6 +96,11 @@ export default class MessageList extends React.Component {
     };
 
     render() {
+        //console.log(this.props);
+        const {chats} = this.state;
+        //console.log(chats);
+        console.log(this);
+        const {id} = this.props.match.params;
         let messageList = this.state.messages.map((data, i) => <Message content={ data.content } name={ data.name } key = { i } />);
         return (
             <div className='message-field'>
