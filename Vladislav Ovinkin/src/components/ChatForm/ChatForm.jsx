@@ -17,7 +17,7 @@ const ChatForm = (props) => {
 
     const handleClick = () => {
         if (content.length > 0) {
-            props.addMessage (id, name, content)
+            props.addMessage (id, name, content);
             setContent('');
         }
     }
