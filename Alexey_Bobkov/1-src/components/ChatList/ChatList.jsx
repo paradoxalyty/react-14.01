@@ -8,69 +8,26 @@ import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineO
 import { Link } from 'react-router-dom';
 
 
+export const ChatList = ({ chatsList }) =>
 
-export class ChatList extends React.Component {
+    (<div className='ChatList'>
+        <List>
+            {chatsList.map(({ id, name }) =>
+                <ListItem key={id}>
 
+                    <Link to={'/chats/' + id}>
+                        <ListItemIcon>
+                            <ChatBubbleOutlineOutlinedIcon />
+                        </ListItemIcon>
+                        {name}
+                    </Link>< Divider />
 
-    render() {
+                </ListItem>)}
+            <ListItem> <input type='text' /><button>Добавить чат</button>
+            </ListItem>
+        </List>
 
-        const { chats } = this.props;
-        return (
-
-            <div className='ChatList'>
-
-                <List>
-                    <Link to='/chats/'>
-                        <ListItem>
-                            <ListItemIcon>
-                                <ChatBubbleOutlineOutlinedIcon />
-                            </ListItemIcon>
-                            {chats[1].name}
-                        </ListItem>
-                    </Link>
-                    <Divider />
-                    <Link to='/chats/2'>
-                        <ListItem>
-                            <ListItemIcon>
-                                <ChatBubbleOutlineOutlinedIcon />
-                            </ListItemIcon>
-                            {chats[2].name}
-                        </ListItem>
-                    </Link>
-                    <Divider />
-                    <Link to='/chats/3'>
-                        <ListItem>
-                            <ListItemIcon>
-                                <ChatBubbleOutlineOutlinedIcon />
-                            </ListItemIcon>
-                            {chats[3].name}
-                        </ListItem>
-                    </Link>
-                    <Divider />
-                    <Link to='/chats/4'>
-                        <ListItem>
-                            <ListItemIcon>
-                                <ChatBubbleOutlineOutlinedIcon />
-                            </ListItemIcon>
-                            {chats[4].name}
-                        </ListItem>
-                    </Link>
-                    <Divider />
-                    <Link to='/chats/5'>
-                        <ListItem>
-                            <ListItemIcon>
-                                <ChatBubbleOutlineOutlinedIcon />
-                            </ListItemIcon>
-                            {chats[5].name}
-                        </ListItem>
-                    </Link>
-                    <Divider />
-                </List>
-            </div>
-        )
-
-    }
-}
+    </div>);
 
 
 

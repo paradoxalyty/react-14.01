@@ -17,11 +17,13 @@ export class App extends Component {
         return (
             <Provider store={store}>
                 <BrowserRouter>
+
                     <Switch >
                         <Route path='/profile' exact component={ProfileContainer}></Route>
                         <Route path='/chats' exact component={ChatListContainer}></Route>
-                        <Route path='/chats/:id' exact component={ChatContainer}/>
+                        <Route path='/chats/:id' exact component={ChatContainer} />
                     </Switch>
+                    <ChatListContainer />
                 </BrowserRouter>
             </Provider>
         )
