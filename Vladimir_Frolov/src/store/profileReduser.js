@@ -1,13 +1,15 @@
 import {handleActions} from 'redux-actions';
+import {loadProfileSuccess} from './profileActions'
 
-const defaultState={
-    user:{
-        name: 'Иван'
+const defaultState={}
+
+
+
+export default handleActions({
+    [loadProfileSuccess]: (state, {payload}) => {
+        return {
+            ...state,
+            user: payload
+        }
     }
-
-
-}
-
-
-
-export default handleActions({}, defaultState);
+}, defaultState);
