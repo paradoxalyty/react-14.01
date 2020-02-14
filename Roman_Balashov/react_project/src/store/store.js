@@ -8,6 +8,7 @@ import { createLogger } from "redux-logger";
 import {persistStore, persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
+import { apiMiddleware } from "redux-api-middleware";
 
 export const history = createBrowserHistory();
 
@@ -28,7 +29,7 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_E
 
 export const initStore = (preloadedState = {}) => {
     
-	const store = createStore(persistReducer(persistConfig, reducer), preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, chatMiddleware, botMiddleware)), devTools);
+	const store = createStore(persistReducer(persistConfig, reducer), preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, chatMiddleware, botMiddleware, apiMiddleware), devTools));
 	const persistor = persistStore(store);
 	return {store, persistor};
 };

@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { loadChats, addMessage, addChat, fire, unfire } from "../actions/chatActions";
+import { loadChats, addMessage, addChat, fire, unfire, chatRequest, chatSuccess, chatFailure } from "../actions/chatActions";
 
 const defaultState = {
 	chats: {},
@@ -76,7 +76,7 @@ export default handleActions({
 		};
 	},
 	[unfire]: (state, { payload: { id } }) => {
-		if(!state.chats[id]) return state;
+		if (!state.chats[id]) return state;
 		return {
 			...state,
 			chats: {
@@ -89,4 +89,23 @@ export default handleActions({
 			}
 		};
 	},
+	[chatRequest]: state => {
+		return {
+			...state,
+			isLoading: true
+		};
+	},
+	[chatSuccess]: (state, { payload }) => {
+		return {
+			...state,
+			isLoading: false,
+			chats: payload
+		}
+	},
+	[chatFailure]: state => {
+		return {
+			...state,
+			isLoading: false
+		}
+	}
 }, defaultState);
