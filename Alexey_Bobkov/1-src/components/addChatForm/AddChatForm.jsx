@@ -13,7 +13,7 @@ export class AddChatForm extends React.Component {
     }
   
     handleAddChat = () => {
-        const { name } = this.state;
+        const {  name } = this.state;
         this.props.addChat(name);
         
         }

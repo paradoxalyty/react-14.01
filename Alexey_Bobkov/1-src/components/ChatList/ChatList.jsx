@@ -2,27 +2,21 @@ import React from 'react';
 import './ChatList.sass';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Divider from '@material-ui/core/Divider';
+
 import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
-import { Link } from 'react-router-dom';
 import { AddChatForm } from '../AddChatForm/AddChatForm';
 
 
-export const ChatList = ({ chatsList, addChat }) =>
-
+export const ChatList = ({ chatsList, addChat, push }) =>
+    
     (<div className='ChatList'>
         <List>
-            {chatsList.map(({ id, name }) =>
-                <ListItem key={id}>
-
-                    <Link to={'/chats/' + id}>
-                        <ListItemIcon>
-                            <ChatBubbleOutlineOutlinedIcon />
-                        </ListItemIcon>
-                        {name}
-                    </Link>< Divider />
-
+            {chatsList.map(({ id, name }) => 
+                <ListItem
+                    key={id}
+                    onClick = {() => push('/chats/'+id)}>
+                    <ChatBubbleOutlineOutlinedIcon />
+                    {name}
                 </ListItem>)}
             <ListItem> 
                 <AddChatForm addChat={addChat}/>

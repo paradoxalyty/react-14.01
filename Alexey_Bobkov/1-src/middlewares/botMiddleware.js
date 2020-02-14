@@ -1,8 +1,5 @@
 import { addMessage } from '../store/chatAction'
 
-
-
-
 export default store => next => action => {
 
 
