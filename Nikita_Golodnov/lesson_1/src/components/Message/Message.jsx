@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './Message.css'
-import classnames from 'classnames'
+import React from 'react';
+import PropTypes from 'prop-types';
+// import './Message.css';
+import classnames from 'classnames';
 
 export const Message = ({text, content}) => {
     const classNames = classnames ('Message', {'Message__bot': text === 'Bot'})
