@@ -1,4 +1,3 @@
-//import React, { Component } from 'react';
 import { Layout } from '../components/Layout/Layout.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,8 +12,6 @@ const mapStateToProps = ({ chatReducer }, { match }) => {
 
     }
 }
-
-
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ addMessage }, dispatch);

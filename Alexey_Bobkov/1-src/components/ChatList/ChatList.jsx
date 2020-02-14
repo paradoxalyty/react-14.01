@@ -6,9 +6,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
 import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import { Link } from 'react-router-dom';
+import { AddChatForm } from '../AddChatForm/AddChatForm';
 
 
-export const ChatList = ({ chatsList }) =>
+export const ChatList = ({ chatsList, addChat }) =>
 
     (<div className='ChatList'>
         <List>
@@ -23,7 +24,8 @@ export const ChatList = ({ chatsList }) =>
                     </Link>< Divider />
 
                 </ListItem>)}
-            <ListItem> <input type='text' /><button>Добавить чат</button>
+            <ListItem> 
+                <AddChatForm addChat={addChat}/>
             </ListItem>
         </List>
 
