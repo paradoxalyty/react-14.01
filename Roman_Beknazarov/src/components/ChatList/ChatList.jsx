@@ -12,6 +12,9 @@ import './ChatList.css';
 export const ChatList = ({chats, addChat}) => {
     const [chatName, setChatName] = useState('');
 
+    const chatsKeysArr = Object.keys(chats); //Определяю количество чатов
+    let id = chatsKeysArr.length + 1;  //В зависимости от количества чатов присваиваю очередной порядковый номер создаваемому чату.
+
     return (
         <List className="ChatList">
             <ListItem>
@@ -27,9 +30,9 @@ export const ChatList = ({chats, addChat}) => {
                     value={chatName}
                     onChange={({currentTarget: {value}}) => setChatName(value)}
                 />
-                <Fab
-                    onClick={() => addChat(chatName)}
-                ><AddIcon/></Fab>
+                <Fab onClick={() => addChat(chatName, id)}>
+                    <AddIcon/>
+                </Fab>
             </ListItem>
         </List>
     );
