@@ -1,6 +1,5 @@
 import {handleActions} from 'redux-actions';
 import {loadChats, addChat, addMessage} from './chatAction';
-import React from "react";
 
 const defaultState = {
     chats: {}

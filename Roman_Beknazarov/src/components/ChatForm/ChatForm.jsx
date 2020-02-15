@@ -1,4 +1,5 @@
 import React, {useState, useRef} from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
@@ -40,4 +41,8 @@ export const ChatForm = ({onSendMessage}) => {
             <Button onClick={handleClick} variant="contained" color="primary">Send</Button>
         </div>
     );
+};
+
+ChatForm.propTypes = {
+    onSendMessage: PropTypes.func.isRequired,
 };

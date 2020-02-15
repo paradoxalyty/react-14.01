@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import {ChatListElement} from '../ChatListElement/ChatListElement';
 import {List, TextField} from '@material-ui/core';
 import {ListItem} from '@material-ui/core';
@@ -36,4 +37,9 @@ export const ChatList = ({chats, addChat}) => {
             </ListItem>
         </List>
     );
+};
+
+ChatList.propTypes = {
+    chats: PropTypes.object.isRequired,
+    addChat: PropTypes.func.isRequired,
 };
