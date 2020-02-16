@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import chatReducer from "../reducers/chatReducer";
+import profileReducer from "../reducers/profileReducer";
 import botMiddleware from "../middlewares/botMiddleware";
 import chatMiddleware from "../middlewares/chatMiddleware";
 import { createBrowserHistory } from "history";
@@ -22,6 +23,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
 	chatReducer,
+	profileReducer,
 	router: connectRouter(history),
 });
 
