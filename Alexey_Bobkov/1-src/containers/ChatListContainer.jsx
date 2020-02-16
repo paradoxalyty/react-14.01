@@ -7,14 +7,15 @@ import { push } from 'connected-react-router';
 const mapStateToProps = (store) => {
     const chatsList = Object.keys(store.chatReducer.chats).map((id) => ({
         id,
-        name: store.chatReducer.chats[id].name
+        name: store.chatReducer.chats[id].name,
+        unread: store.chatReducer.chats[id].unread,
     }));
     return {
         chatsList
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({addChat, push}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat, push }, dispatch);
 
 
 

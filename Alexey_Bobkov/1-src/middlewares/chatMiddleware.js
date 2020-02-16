@@ -1,4 +1,4 @@
-import { addChat, loadChats } from '../store/chatAction';
+import { addChat } from '../store/chatAction';
 import { push } from 'connected-react-router';
 
 

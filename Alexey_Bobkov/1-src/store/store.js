@@ -9,6 +9,7 @@ import { routerMiddleware, connectRouter } from 'connected-react-router';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import UnreadMessageMiddleware from '../middlewares/UnreadMessageMiddleware';
 
 const persistConfig = {
     key: 'geekmessanger',
@@ -35,6 +36,6 @@ const logger = createLogger();
 const persist = persistReducer(persistConfig, reducer);
 
 export const initStore = (preloadedState = {}) => {
-    return createStore(persist, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware)))
+    return createStore(persist, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware, UnreadMessageMiddleware)))
 };
 
