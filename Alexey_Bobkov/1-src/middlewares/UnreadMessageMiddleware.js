@@ -12,7 +12,11 @@ export default store => next => action => {
     } else if (action.type == '@@router/LOCATION_CHANGE') {
         next(action);
         const id = action.payload.location.pathname.split('/')[2];
-        store.dispatch(deleteUnread(id))
+        if (action.payload.location.pathname == "/chats/" + id) {
+            console.log(action.payload.location.pathname);
+            store.dispatch(deleteUnread(id))
+        }
+
     } else {
         next(action);
     }
