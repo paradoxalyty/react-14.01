@@ -22,8 +22,8 @@ export const ChatList = ({chats, addChat}) => {
                 <AccountCircleIcon className="avatar"/>
                 <Link to="/profile">My Profile</Link>
             </ListItem>
-            {Object.values(chats).map((chat, index) =>
-                <ChatListElement name={chat.name} number={chat.chatNumber} key={index}
+            {chats.map(({id, name, chatNumber, unread}) =>
+                <ChatListElement name={name} number={chatNumber} unread={unread} key={id}
                 />)}
             <ListItem>
                 <TextField
@@ -40,6 +40,6 @@ export const ChatList = ({chats, addChat}) => {
 };
 
 ChatList.propTypes = {
-    chats: PropTypes.object.isRequired,
+    chats: PropTypes.array.isRequired,
     addChat: PropTypes.func.isRequired,
 };

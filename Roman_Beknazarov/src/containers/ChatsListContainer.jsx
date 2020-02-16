@@ -4,8 +4,14 @@ import {connect} from 'react-redux';
 import {ChatList} from '../components/ChatList/ChatList';
 
 const mapStateToProps = ({chatReducer}) => {
+    const chats = Object.keys(chatReducer.chats).map((id) => ({
+        id,
+        name: chatReducer.chats[id].name,
+        chatNumber: chatReducer.chats[id].chatNumber,
+        unread: chatReducer.chats[id].unread,
+    }));
     return {
-        chats: chatReducer.chats
+        chats
     };
 };
 
