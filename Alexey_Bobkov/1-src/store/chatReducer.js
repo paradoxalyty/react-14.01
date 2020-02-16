@@ -69,9 +69,20 @@ export default handleActions({
             }
         }
     },
-    // [deleteChat]: (state, { payload: { name } }) => {
-
-    // },
+    [deleteChat]: (state, { payload: { name } }) => {
+        const chatId = action.id;
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [chatId]: {
+                    name: name,
+                    unread: false,
+                    messages: []
+                },
+            }
+        }
+    },
 
     [addUnread]: (state, {
         payload: { id } }) => {

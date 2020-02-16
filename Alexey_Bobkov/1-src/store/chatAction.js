@@ -6,7 +6,7 @@ export const { loadChats, addMessage, loadProfile, addChat, deleteChat, addUnrea
     ADD_CHAT: (name) => ({ name }),
     LOAD_PROFILE: (name, discription) => ({ name, discription }),
     DELETE_CHAT: (name) => ({ name }),
-    //DELETE_MESSAGE: (id) => ({ id }),
+    DELETE_MESSAGE: (id, name, content) => ({ id, name, content }),
     ADD_UNREAD: (id) => ({ id }),
     DELETE_UNREAD: (id) => ({ id }),
 });
