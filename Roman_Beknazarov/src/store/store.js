@@ -33,7 +33,7 @@ export const initStore = (preloadedState = {}) => {
         compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware, chatMiddleware), devTools),
     );
 
-    const persistor = persistStore(store);
+    /*const persistor = persistStore(store);*/
 
-    return {store, persistor};
+    return {store, /*persistor*/};
 };

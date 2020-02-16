@@ -6,16 +6,16 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {loadChats} from '../store/chatAction';
 
-const {store, persistor} = initStore();
+const {store, /*persistor*/} = initStore();
 store.dispatch(loadChats());
 
 export class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
+                {/*<PersistGate loading={null} persistor={persistor}>*/}
                     <Layout/>
-                </PersistGate>
+                {/*</PersistGate>*/}
             </Provider>
         );
     }
