@@ -24,25 +24,6 @@ export const ChatList = ({ chatsList, addChat, push }) => {
                             <ChatBubbleOutlineOutlinedIcon />
                             {name} {unread && 'New Messages!'}
                         </ListItem>
-<<<<<<< HEAD
-                    </Link>
-                    <Divider />
-                    <Link to='/chats/5'>
-                        <ListItem>
-                            <ListItemIcon>
-                                <ChatBubbleOutlineOutlinedIcon />
-                            </ListItemIcon>
-                            {chats[5].name}
-                        </ListItem>
-                    </Link>
-                    <Divider />
-                </List>
-            </div>
-        )
-
-    }
-}
-=======
                     )
                 })}
 
@@ -56,4 +37,3 @@ export const ChatList = ({ chatsList, addChat, push }) => {
     );
 }
 
->>>>>>> 235c223bbc3e6f655feb0dc3d383580e7d179fda
