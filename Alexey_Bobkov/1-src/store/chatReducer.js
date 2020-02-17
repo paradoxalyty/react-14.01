@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { loadChats, addMessage } from "./chatAction.js";
+import { loadChats, addMessage, addChat, deleteChat, addUnread, deleteUnread } from "./chatAction.js";
 
 const defaultState = {
     chats: {
@@ -13,6 +13,7 @@ export default handleActions({
             chats: {
                 1: {
                     name: 'Chat 1',
+                    unread: false,
                     messages: [{
                         name: 'Name1',
                         content: 'Text1'
@@ -20,6 +21,7 @@ export default handleActions({
                 },
                 2: {
                     name: 'Chat 2',
+                    unread: false,
                     messages: [{
                         name: 'Name2',
                         content: 'Text2'
@@ -27,6 +29,7 @@ export default handleActions({
                 },
                 3: {
                     name: 'Chat 3',
+                    unread: false,
                     messages: [{
                         name: 'Name3',
                         content: 'Text3'
@@ -34,6 +37,7 @@ export default handleActions({
                 },
                 4: {
                     name: 'Chat 4',
+                    unread: false,
                     messages: [{
                         name: 'Name4',
                         content: 'Text4'
@@ -41,6 +45,7 @@ export default handleActions({
                 },
                 5: {
                     name: 'Chat 5',
+                    unread: false,
                     messages: [{
                         name: 'Name5',
                         content: 'Text5'
@@ -49,6 +54,67 @@ export default handleActions({
 
             }
         }
+    },
+    [addChat]: (state, { payload: { name } }) => {
+        const chatId = Object.keys(state.chats).length + 1;
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [chatId]: {
+                    name: name,
+                    unread: false,
+                    messages: []
+                },
+            }
+        }
+    },
+    [deleteChat]: (state, { payload: { name } }) => {
+        const chatId = action.id;
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [chatId]: {
+                    name: name,
+                    unread: false,
+                    messages: []
+                },
+            }
+        }
+    },
+
+    [addUnread]: (state, {
+        payload: { id } }) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    name: state.chats[id].name,
+                    messages: state.chats[id].messages,
+                    unread: true,
+
+                },
+            }
+        };
+
+    },
+    [deleteUnread]: (state, {
+        payload: { id } }) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    name: state.chats[id].name,
+                    messages: state.chats[id].messages,
+                    unread: false,
+
+                },
+            }
+        };
+
     },
 
 
@@ -73,5 +139,5 @@ export default handleActions({
             }
         }
 
-    }
+    },
 }, defaultState);

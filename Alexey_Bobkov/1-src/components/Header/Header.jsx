@@ -3,6 +3,7 @@ import React from 'react';
 import './Header.sass';
 import { Link } from 'react-router-dom';
 
+<<<<<<< HEAD
 export const Header = ({ }) => {
 
 
@@ -16,3 +17,13 @@ export const Header = ({ }) => {
         </div>)
     )
 }
+=======
+export const Header = ({ chatName }) =>
+
+    (
+        <div className='Header'>
+            <h1>{chatName}</h1>
+            <h3><Link to='/Profile'>Profile</Link></h3>
+        </div>
+    );
+>>>>>>> 235c223bbc3e6f655feb0dc3d383580e7d179fda

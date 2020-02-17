@@ -3,8 +3,6 @@ import { loadProfile } from './chatAction.js';
 
 const defaultState = {
     profile: {
-        name: "Alexey",
-        Description: "Student ReactJS"
 
     }
 };
