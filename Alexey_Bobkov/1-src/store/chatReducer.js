@@ -1,59 +1,23 @@
 import { handleActions } from 'redux-actions';
-import { loadChats, addMessage, addChat, deleteChat, addUnread, deleteUnread } from "./chatAction.js";
+import { addMessage, addChat, deleteChat, addUnread, deleteUnread, chatsRequest, chatsSuccess } from "./chatAction.js";
 
 const defaultState = {
-    chats: {
-
-    }
+    chats: {},
+    isLoading: false,
 };
 export default handleActions({
-    [loadChats]: (state) => {
+    [chatsRequest]: (state) => {
         return {
             ...state,
-            chats: {
-                1: {
-                    name: 'Chat 1',
-                    unread: false,
-                    messages: [{
-                        name: 'Name1',
-                        content: 'Text1'
-                    }],
-                },
-                2: {
-                    name: 'Chat 2',
-                    unread: false,
-                    messages: [{
-                        name: 'Name2',
-                        content: 'Text2'
-                    }]
-                },
-                3: {
-                    name: 'Chat 3',
-                    unread: false,
-                    messages: [{
-                        name: 'Name3',
-                        content: 'Text3'
-                    }]
-                },
-                4: {
-                    name: 'Chat 4',
-                    unread: false,
-                    messages: [{
-                        name: 'Name4',
-                        content: 'Text4'
-                    }]
-                },
-                5: {
-                    name: 'Chat 5',
-                    unread: false,
-                    messages: [{
-                        name: 'Name5',
-                        content: 'Text5'
-                    }]
-                }
-
-            }
-        }
+            isLoading: true,
+        };
+    },
+    [chatsSuccess]: (state, { payload }) => {
+        return {
+            ...state,
+            isLoading: false,
+            chats: payload,
+        };
     },
     [addChat]: (state, { payload: { name } }) => {
         const chatId = Object.keys(state.chats).length + 1;
@@ -85,7 +49,8 @@ export default handleActions({
     },
 
     [addUnread]: (state, {
-        payload: { id } }) => {
+        payload: { id }
+    }) => {
         return {
             ...state,
             chats: {
@@ -101,7 +66,8 @@ export default handleActions({
 
     },
     [deleteUnread]: (state, {
-        payload: { id } }) => {
+        payload: { id }
+    }) => {
         return {
             ...state,
             chats: {

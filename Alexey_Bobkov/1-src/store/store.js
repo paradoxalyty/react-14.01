@@ -10,6 +10,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import UnreadMessageMiddleware from '../middlewares/UnreadMessageMiddleware';
+import thunk from 'redux-thunk';
 
 const persistConfig = {
     key: 'geekmessanger',
@@ -29,13 +30,12 @@ const reducer = combineReducers({
     router: connectRouter(history),
 })
 
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => { };
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
 //const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const logger = createLogger();
 
 const persist = persistReducer(persistConfig, reducer);
 
 export const initStore = (preloadedState = {}) => {
-    return createStore(persist, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware, UnreadMessageMiddleware)))
+    return createStore(persist, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware, UnreadMessageMiddleware, thunk)))
 };
-
