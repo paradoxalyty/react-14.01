@@ -9,14 +9,6 @@ class ChatContainer extends Component {
 
     timer = {};
 
-    componentDidMount () {
-    //     const {id, stateId} = this.props;
-
-    //     if (id && stateId != id) {
-    //         // onChangeId (id);
-    //     }
-    }
-
     componentDidUpdate (prevState) {
         const {id, chats} = this.props;
         const prevId = prevState.id;

@@ -7,7 +7,7 @@ const defaultState = {
 
 export default handleActions ({
     [loadChats]: (state) => {
-        return {
+        return { 
             ...state,
             chats : {
                 1: {

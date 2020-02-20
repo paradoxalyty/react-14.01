@@ -6,8 +6,8 @@ import './Chat.css'
 /**
  *  Компонент объединения формы отправки нового сообщения и области отображения сообщений чата
  */
-export const Chat = (props) =>
+export const Chat = ({id}) =>
     (<div className="chat">
-        <MessageList id={props.id} />
-        <ChatForm id={props.id} />
+        <MessageList id={id} />
+        <ChatForm id={id} />
     </div>);
