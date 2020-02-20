@@ -10,24 +10,24 @@ class ChatContainer extends Component {
     timer = {};
 
     componentDidUpdate (prevState) {
-        const {id, chats} = this.props;
-        const prevId = prevState.id;
-        const prevChats = prevState.chats;
+        // const {id, chats} = this.props;
+        // const prevId = prevState.id;
+        // const prevChats = prevState.chats;
 
-        if (chats[id] && prevId === id) {
-            const nowNumMessages = chats[id].messages.length;
-            const prevNumMessages = prevChats[id].messages.length;
-            const lastMessage = chats[id].messages[nowNumMessages - 1];
+        // if (chats[id] && prevId === id) {
+        //     const nowNumMessages = chats[id].messages.length;
+        //     const prevNumMessages = prevChats[id].messages.length;
+        //     const lastMessage = chats[id].messages[nowNumMessages - 1];
 
-            if (nowNumMessages !== prevNumMessages || prevId !== id) {
-                clearTimeout (this.timer[id]);
-            }
+        //     if (nowNumMessages !== prevNumMessages || prevId !== id) {
+        //         clearTimeout (this.timer[id]);
+        //     }
 
-            if (lastMessage && prevNumMessages !== nowNumMessages && lastMessage.name !== BOT_NAME) {
-                const content = `Hi, ${lastMessage.name}, I'm a robot!`;
-                this.timer[id] = setTimeout(() => this.props.addMessage (id, BOT_NAME, content), 2500);
-            }
-        }
+        //     if (lastMessage && prevNumMessages !== nowNumMessages && lastMessage.name !== BOT_NAME) {
+        //         const content = `Hi, ${lastMessage.name}, I'm a robot!`;
+        //         this.timer[id] = setTimeout(() => this.props.addMessage (id, BOT_NAME, content), 2500);
+        //     }
+        // }
     }
     
     componentWillUnmount () {
