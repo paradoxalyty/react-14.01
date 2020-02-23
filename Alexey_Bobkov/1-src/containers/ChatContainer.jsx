@@ -8,8 +8,10 @@ import { addMessage } from '../store/chatAction';
 const mapStateToProps = ({ chatReducer }, { match }) => {
     const id = match.params.id;
     return {
+        isLoading: chatReducer.isLoading,
         messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
         chatName: chatReducer.chats[id].name,
+
 
     }
 }

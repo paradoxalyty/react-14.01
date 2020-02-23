@@ -13,7 +13,6 @@ export default store => next => action => {
         next(action);
         const id = action.payload.location.pathname.split('/')[2];
         if (action.payload.location.pathname == "/chats/" + id) {
-            console.log(action.payload.location.pathname);
             store.dispatch(deleteUnread(id))
         }
 

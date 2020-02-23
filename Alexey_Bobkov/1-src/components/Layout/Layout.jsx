@@ -7,16 +7,18 @@ import { MessageField } from '../MessageField/MessageField.jsx';
 import { Message } from '../Message/Message.jsx';
 import { ChatForm } from '../ChatForm/ChatForm';
 import ChatListContainer from '../../containers/ChatListContainer';
+import { CircularProgress } from '@material-ui/core';
 
-export const Layout = ({ messages, onSendMessage, chatName }) => {
+
+export const Layout = ({ isLoading, messages, onSendMessage, chatName }) => {
+    console.log(isLoading)
+
     return (
         (<div className='Layout'>
-
             <Header chatName={chatName} />
             <ChatListContainer />
-            <MessageField messages={messages} />
+            <MessageField messages={messages} isLoading={isLoading} />
             <ChatForm onSendMessage={onSendMessage} />
-
         </div>)
     )
 }

@@ -3,15 +3,15 @@ import { Message } from '../Message/Message.jsx';
 import PropTypes from 'prop-types';
 import './MessageField.sass';
 
-export const MessageField = ({ messages }) =>
+export const MessageField = ({ messages, isLoading }) =>
 
-(<div className='MessageField'>
-    {messages.map((message, index) => <Message {...message} key={index} />)}
+    (<div className='MessageField'>
+        {messages.map((message, index) => <Message {...message} key={index} isLoading={isLoading} />)}
 
-</div>);
+    </div>);
 
 
 MessageField.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
-    
+
 }

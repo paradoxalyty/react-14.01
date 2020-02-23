@@ -3,7 +3,7 @@ import { addMessage, addChat, deleteChat, addUnread, deleteUnread, chatsRequest,
 
 const defaultState = {
     chats: {},
-    isLoading: false,
+    isLoading: true,
 };
 export default handleActions({
     [chatsRequest]: (state) => {
