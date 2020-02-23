@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
@@ -20,13 +20,13 @@ const ChatForm = (props) => {
             props.addMessage (id, name, content);
             setContent('');
         }
-    }
+    };
 
     const handleKeyUp = (event) => {
-        if (event.ctrlKey && event.key == "Enter") {
+        if (event.ctrlKey && event.key == 'Enter') {
             handleClick();
         }
-    }
+    };
 
     return (<div className="chatForm">
         <TextField
@@ -51,17 +51,17 @@ const ChatForm = (props) => {
             size="small"
             color="primary"
             onClick={handleClick}>Отправить</Button>
-    </div>)
+    </div>);
 };
 
 const mapStateToProps = ({chatReducer}) => ({
     chats: chatReducer.chats,
-})
+});
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         addMessage
     }, dispatch);
-}
+};
 
 export default connect (mapStateToProps, mapDispatchToProps) (ChatForm);

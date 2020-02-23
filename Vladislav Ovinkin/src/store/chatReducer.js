@@ -13,16 +13,16 @@ export default handleActions ({
                 1: {
                     name: 'Anna',
                     messages: [
-                        {name: "chatBot", content: "Hello!"},
-                        {name: "Anna", content: "Hi! How are you?"},
-                        {name: "chatBot", content: "I am well!"},
+                        {name: 'chatBot', content: 'Hello!'},
+                        {name: 'Anna', content: 'Hi! How are you?'},
+                        {name: 'chatBot', content: 'I am well!'},
                     ],
                 },
                 2: {
                     name: 'Elena',
                     messages: [
-                        {name: "chatBot", content: "Hello!"},
-                        {name: "Elena", content: "Hi! It's interesting to talking with robot for me)"},
+                        {name: 'chatBot', content: 'Hello!'},
+                        {name: 'Elena', content: 'Hi! It\'s interesting to talking with robot for me)'},
                     ],
                 },
                 3: {
@@ -30,16 +30,17 @@ export default handleActions ({
                     messages: [],
                 },
             },
-        }
+        };
     },
     [addMessage]: (state, {payload: {id, name, content}}) => {
         return {
             ...state,
             chats: {...state.chats, 
-                [id]: { name: state.chats[id].name,
-                        messages: [...state.chats[id].messages, {name, content}],
+                [id]: { 
+                    name: state.chats[id].name,
+                    messages: [...state.chats[id].messages, {name, content}],
                 },
             }
-        }
+        };
     },
 }, defaultState);

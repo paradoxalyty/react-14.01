@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Header } from '../Header/Header';
 import ChatList from '../ChatList/ChatList';
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ const Layout = (props) => {
                 <ChatContainer id={id} />
             </div>
         </div>);
-}
+};
 
 const mapStateToProps = ({chatReducer}, {match}) => {
     const id = +match.params.id;
@@ -28,21 +28,21 @@ const mapStateToProps = ({chatReducer}, {match}) => {
         chats: chatReducer.chats,
         messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
         id: id ? +id : null,
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         addMessage
     }, dispatch);
-}
+};
 
 const mergeProps = (stateProps, dispatchProps, {match}) => {
     const id = +match.params.id;
     return {
         ...stateProps,
         onSendMessage: ({name, content}) => dispatchProps.addMessage (id, name, content),
-    }
-}
+    };
+};
 
 export default connect (mapStateToProps, mapDispatchToProps, mergeProps) (Layout);

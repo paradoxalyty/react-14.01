@@ -15,4 +15,4 @@ export default store => next => action => {
         setTimeout (() => store.dispatch (addMessage (id, 'chatBot', `Hi, ${name}, I'm a robot in chat ${id}!`)), 3000);
     }
     next (action);
-}
+};
