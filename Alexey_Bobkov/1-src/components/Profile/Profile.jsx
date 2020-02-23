@@ -1,6 +1,6 @@
 import React from 'react';
 import './Profile.sass';
-
+import ChatListContainer from '../../containers/ChatListContainer';
 
 
 export const Profile = ({ profile }) => {
@@ -11,6 +11,7 @@ export const Profile = ({ profile }) => {
             <div className='Profile-header'>
                 <h1>{profile.name}</h1>
             </div>
+            <ChatListContainer />
             <div className='Profile-description'>
                 <h2>Профиль</h2>
                 <ul>
