@@ -3,7 +3,6 @@ import chatReducer from './chatReducer';
 import profileReducer from './profileReducer';
 import { createLogger } from 'redux-logger'
 import botMiddleware from '../middlewares/botMiddleware'
-import chatMiddleware from '../middlewares/chatMiddleware'
 import { createBrowserHistory } from 'history';
 import { routerMiddleware, connectRouter } from 'connected-react-router';
 import { persistReducer } from 'redux-persist';
@@ -30,7 +29,7 @@ const reducer = combineReducers({
     router: connectRouter(history),
 })
 
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => { };
 //const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const logger = createLogger();
 

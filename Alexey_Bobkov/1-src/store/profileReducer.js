@@ -1,20 +1,24 @@
 import { handleActions } from 'redux-actions';
-import { loadProfile } from './chatAction.js';
+import { profileRequest, profileSuccess, profileFailure } from './profileAction';
 
 const defaultState = {
-    profile: {
-
-    }
+    profile: {},
+    isLoading: false,
 };
 
 export default handleActions({
-    [loadProfile]: (state) => {
+    [profileRequest]: (state) => {
         return {
             ...state,
-            profile: {
-                name: "Alexey",
-                Description: "Student ReactJS"
-            }
+            isLoading: true,
         }
+    },
+    [profileSuccess]: (state, { payload }) => {
+        return {
+            ...state,
+            isLoading: false,
+            profile: payload,
+        };
     }
-}, defaultState);
+},
+    defaultState);

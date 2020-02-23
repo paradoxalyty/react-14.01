@@ -3,7 +3,8 @@ import ChatContainer from './ChatContainer.jsx';
 import { Switch, Route } from "react-router-dom";
 import { initStore, history, } from '../store/store';
 import { Provider } from 'react-redux';
-import { loadChats, loadProfile } from '../store/chatAction'
+import { loadChats } from '../store/chatAction';
+import { loadProfile } from '../store/profileAction';
 import ChatListContainer from './ChatListContainer.jsx';
 import ProfileContainer from './ProfileContainer.jsx';
 import { ConnectedRouter } from 'connected-react-router';
