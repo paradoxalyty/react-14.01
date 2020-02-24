@@ -12,6 +12,7 @@ export default handleActions({
             profiles: {
                 ...state.profiles,
                 [id]: {
+                    id: state.profiles[id].id,
                     name: state.profiles[id].name
                 }
             }

@@ -18,7 +18,7 @@ const persistConfig = {
 	key: "messenger",
 	storage,
 	stateReconciler: autoMergeLevel2,
-	whitelist: ["chatReducer"]
+	whitelist: ["chatReducer", "profileReducer"]
 };
 
 const reducer = combineReducers({

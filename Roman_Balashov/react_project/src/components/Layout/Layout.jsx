@@ -4,10 +4,12 @@ import { Router } from "../Router/Router";
 import { Provider } from "react-redux";
 import { initStore } from "../../store/store";
 import { loadChats } from "../../actions/chatActions";
+import { loadProfiles } from "../../actions/profileActions";
 import { PersistGate } from "redux-persist/integration/react";
 
 const { store, persistor } = initStore();
 store.dispatch(loadChats());
+store.dispatch(loadProfiles());
 
 export class Layout extends Component {
     render() {

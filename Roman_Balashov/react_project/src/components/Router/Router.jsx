@@ -20,7 +20,7 @@ export class Router extends Component {
                     <Route path="/" exact>
                         Choose chat.
                     </Route>
-                    <Route exact path='/profile/' component={Profile}/>
+                    <Route exact path='/profile/:id' component={Profile}/>
                     <Route path="/">
                         404 Not Found.
                     </Route>
