@@ -18,7 +18,7 @@ export class ChatList extends React.Component {
                         <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
                             <PersonIcon fontSize="large" />
                         </ListItemIcon>
-                        <ListItemText primary={name} />
+                        <ListItemText primary={name} classes={{ root: "chatlis__item_text" }} />
                     </ListItem>{unread && "unread"}</Link>)}
                 </List>
                 {/* <Input type="text" value={chatName}></Input>

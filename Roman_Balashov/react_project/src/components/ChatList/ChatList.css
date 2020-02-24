@@ -24,7 +24,7 @@
 }
 
 @media screen and (max-width: 479px) {
-    .chatlist__item .chatlist__item_icon {
-        min-width: 10px;
+    .chatlist-wrap .chatlist__item {
+        padding: 0;
     }
 }

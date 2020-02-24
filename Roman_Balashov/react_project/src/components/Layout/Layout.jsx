@@ -6,6 +6,7 @@ import { initStore } from "../../store/store";
 import { loadChats } from "../../actions/chatActions";
 import { loadProfiles } from "../../actions/profileActions";
 import { PersistGate } from "redux-persist/integration/react";
+import { InstallPopup } from "../InstallPopup/Popup";
 
 const { store, persistor } = initStore();
 store.dispatch(loadChats());
@@ -20,6 +21,7 @@ export class Layout extends Component {
                         <Router />
                     </PersistGate>
                 </Provider>
+                <InstallPopup />
             </div>
         )
     }
