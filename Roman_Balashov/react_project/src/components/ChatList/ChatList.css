@@ -22,3 +22,9 @@
     min-width: 35px;
     color: #FFFFFF;
 }
+
+@media screen and (max-width: 479px) {
+    .chatlist__item .chatlist__item_icon {
+        min-width: 10px;
+    }
+}

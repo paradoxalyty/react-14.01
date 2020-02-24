@@ -7,3 +7,9 @@
     border: 1px solid black;
     background-color: #FFFFFF;
 }
+
+@media screen and (max-width: 479px) {
+    .layout-wrap {
+        width: 50%;
+    }
+}

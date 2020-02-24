@@ -1,6 +1,6 @@
-let doCache = true;
+var doCache = true;
 
-const CACHE_NAME = "react-chat-cache";
+var CACHE_NAME = "react-chat-cache";
 
 self.addEventListener("activate", event => {
     const cacheWhiteList = [CACHE_NAME];
