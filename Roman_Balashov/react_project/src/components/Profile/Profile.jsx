@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
+import "./Profile.css";
 
 export class Profile extends Component {
-    constructor(props){
-        super(props);
-    }
     render() {
-        const { name } = this.props;
-        const { id } = this.props.match.params;
-        console.log(id);
-        return (<>
-            <h1>chat id is {id}</h1>
-            <h2>Name is </h2>
-        </>)
+        const { id, name, description } = this.props.profiles;
+        return (<div className="profile">
+            <h1>Hello, {name}.</h1>
+            <h2>Your id is: {id}</h2>
+            <p>Description: {description}</p>
+        </div>)
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import {Profile} from "../Profile/Profile";
 import {Header} from "../Header/Header";
+import ProfileContainer from "../../containers/ProfileContainer";
 import ChatContainer from "../../containers/ChatContainer";
 import ChatListContainer from "../../containers/ChatListContainer";
 import { ConnectedRouter } from "connected-react-router";
@@ -20,7 +20,7 @@ export class Router extends Component {
                     <Route path="/" exact>
                         Choose chat.
                     </Route>
-                    <Route exact path='/profile/:id' component={Profile}/>
+                    <Route exact path='/profile/' exact component={ProfileContainer} />
                     <Route path="/">
                         404 Not Found.
                     </Route>

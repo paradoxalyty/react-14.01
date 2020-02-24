@@ -1,6 +1,5 @@
 {
-    "1": {
-        "id": 1,
-        "name": "Dog"
-    }
+    "id": 1,
+    "name": "Dog",
+    "description": "My profile description."
 }

@@ -31,8 +31,7 @@ const logger = createLogger();
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
 
 export const initStore = (preloadedState = {}) => {
-    
-	const store = createStore(persistReducer(persistConfig, reducer), preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, chatMiddleware, botMiddleware, apiMiddleware, thunk), devTools));
+	const store = createStore(persistReducer(persistConfig, reducer), preloadedState, compose(applyMiddleware(routerMiddleware(history), chatMiddleware, botMiddleware, apiMiddleware, thunk), devTools));
 	const persistor = persistStore(store);
 	return {store, persistor};
 };

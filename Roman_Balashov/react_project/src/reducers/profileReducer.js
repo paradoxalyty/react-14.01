@@ -1,20 +1,18 @@
 import { handleActions } from "redux-actions";
-import { addProfile, profilesRequest, profilesSuccess, profilesFailure } from "../actions/profileActions";
+import { editProfile, profilesRequest, profilesSuccess, profilesFailure } from "../actions/profileActions";
 
 const defaultState = {
     profiles: {},
+    isLoading: false
 }
 
 export default handleActions({
-    [addProfile]: (state, { payload: { id, name } }) => {
+    [editProfile]: (state, { payload: { name } }) => {
         return {
             ...state,
             profiles: {
                 ...state.profiles,
-                [id]: {
-                    id: state.profiles[id].id,
-                    name: state.profiles[id].name
-                }
+                name: state.profiles.name
             }
         }
     },
