@@ -3,7 +3,7 @@ import { addMessage, addChat, deleteChat, addUnread, deleteUnread, chatsRequest,
 
 const defaultState = {
     chats: {},
-    isLoading: true,
+    isLoading: false,
 };
 export default handleActions({
     [chatsRequest]: (state) => {
@@ -33,20 +33,8 @@ export default handleActions({
             }
         }
     },
-    [deleteChat]: (state, { payload: { name } }) => {
-        const chatId = action.id;
-        return {
-            ...state,
-            chats: {
-                ...state.chats,
-                [chatId]: {
-                    name: name,
-                    unread: false,
-                    messages: []
-                },
-            }
-        }
-    },
+
+
 
     [addUnread]: (state, {
         payload: { id }
@@ -105,5 +93,15 @@ export default handleActions({
             }
         }
 
+    },
+    [deleteChat]: (state, { payload: { id } }) => {
+        console.log(state.payload)
+        const chatId = Object.keys(state.chats)[id];
+        const delChat = { ...state.chats };
+        delete delChat[chatId];
+        return {
+            ...state,
+            chats: delChat,
+        }
     },
 }, defaultState);

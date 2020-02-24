@@ -5,10 +5,10 @@ import ListItem from '@material-ui/core/ListItem';
 import classnames from 'classnames';
 import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import { AddChatForm } from '../AddChatForm/AddChatForm';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
-
-export const ChatList = ({ chatsList, addChat, push }) => {
+export const ChatList = ({ chatsList, addChat, deleteChat, push }) => {
 
     return (
 
@@ -23,6 +23,7 @@ export const ChatList = ({ chatsList, addChat, push }) => {
                             onClick={() => push('/chats/' + id)}>
                             <ChatBubbleOutlineOutlinedIcon />
                             {name} {unread && 'New Messages!'}
+                            <DeleteIcon value={name} className="deleteIcon" onClick={deleteChat} />
                         </ListItem>
                     )
                 })}

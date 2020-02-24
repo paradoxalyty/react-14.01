@@ -8,7 +8,7 @@ export const Message = ({ name, content, isLoading }) => {
 
     const classNames = classnames('Message', { 'Message Robot': name === 'Robot' });
 
-    if (isLoading == true) {
+    if (isLoading === true) {
         return <CircularProgress />
     }
 

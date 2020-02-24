@@ -11,7 +11,7 @@ import { CircularProgress } from '@material-ui/core';
 
 
 export const Layout = ({ isLoading, messages, onSendMessage, chatName }) => {
-    console.log(isLoading)
+
 
     return (
         (<div className='Layout'>

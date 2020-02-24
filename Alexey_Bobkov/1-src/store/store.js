@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import chatReducer from './chatReducer';
 import profileReducer from './profileReducer';
 import { createLogger } from 'redux-logger'
@@ -19,8 +20,6 @@ const persistConfig = {
 };
 
 
-
-
 export const history = createBrowserHistory();
 
 const reducer = combineReducers({
@@ -35,6 +34,19 @@ const logger = createLogger();
 
 const persist = persistReducer(persistConfig, reducer);
 
+// export const initStore = (preloadedState = {}) => {
+//     return createStore(reducer, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware, UnreadMessageMiddleware, thunk)))
+// };
+
+
+
 export const initStore = (preloadedState = {}) => {
-    return createStore(persist, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, botMiddleware, UnreadMessageMiddleware, thunk)))
+
+    return configureStore({
+        reducer: persist,
+        middleware: [createLogger(), routerMiddleware(history), botMiddleware, UnreadMessageMiddleware, thunk],
+        preloadedState,
+        devTools: devTools,
+
+    })
 };
