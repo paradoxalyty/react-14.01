@@ -6,7 +6,7 @@ import './ChatForm.css';
 export class ChatForm extends Component {
     state = {
         name: 'Dog',
-        text: '',
+        text: 'Message',
         inputError: false
     };
     TextField = React.createRef();
