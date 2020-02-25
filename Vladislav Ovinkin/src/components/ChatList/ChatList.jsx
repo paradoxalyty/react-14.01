@@ -12,12 +12,9 @@ const ChatList = (props) => {
 
     const handleClick = () => {
         if (name.length > 0) {
-            // props.onChatAdd(name);
             setName('');
         }
     };
-
-    // console.log (props);
 
     return (<div className="chatList">
         <ul>

@@ -11,8 +11,10 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
+            "arrowFunctions":true,
             "jsx": true
         },
         "ecmaVersion": 2018,

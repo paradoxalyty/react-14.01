@@ -6,7 +6,7 @@ export const Header = ({text}) => {
     return (
         <div className="header">
             <h1 className="header-text">
-                React Chat project. {text.length == 0 ? 'Выберите чат.' : 'Чат с пользователем ' + text + '.'}
+                React Chat project. {text.length == 0 ? 'Выберите чат.' : `Чат с пользователем ${text}.`}
             </h1>
             <Link className="header-link" to="/profile">Profile page</Link>
         </div>);

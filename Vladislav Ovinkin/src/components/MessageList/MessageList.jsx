@@ -1,8 +1,8 @@
 import React from 'react';
 import { Message } from '../Message/Message';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { addMessage } from '../../store/chatAction';
+// import { bindActionCreators } from 'redux';
+// import { addMessage } from '../../store/chatAction';
 import './MessageList.css';
 
 
@@ -21,10 +21,10 @@ const mapStateToProps = ({chatReducer}) => ({
     chats: chatReducer.chats,
 });
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        addMessage
-    }, dispatch);
-};
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({
+//         addMessage
+//     }, dispatch);
+// };
 
-export default connect (mapStateToProps, mapDispatchToProps) (MessageList);
+export default connect (mapStateToProps) (MessageList);

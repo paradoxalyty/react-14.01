@@ -9,10 +9,15 @@ import { addMessage } from './chatAction';
 //     }
 // }
 
+const BOT_NAME = 'chatBot';
+
+const timer = {};
+
 export default store => next => action => {
-    if (action.type === addMessage.toString() && action.payload.name !== 'chatBot') {
+    if (action.type === addMessage.toString() && action.payload.name !== BOT_NAME) {
         const {id, name} = action.payload;
-        setTimeout (() => store.dispatch (addMessage (id, 'chatBot', `Hi, ${name}, I'm a robot in chat ${id}!`)), 3000);
+        clearTimeout (timer[id]);
+        timer[id] = setTimeout (() => store.dispatch (addMessage (id, BOT_NAME, `Hi, ${name}, I'm a robot in chat ${id}!`)), 3000);
     }
     next (action);
 };
