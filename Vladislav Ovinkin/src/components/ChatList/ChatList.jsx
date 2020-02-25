@@ -5,14 +5,18 @@ import TextField from '@material-ui/core/TextField';
 import './ChatList.css';
 
 export const ChatList = ({pathId, listChat, addChat}) => {
-    // const { pathId } = props;
-    const [newName, setNewName] = useState ('NewChatName');
 
-    // const {listChat} = props;
+    const [newName, setNewName] = useState ('NewChatName');
 
     const handleClick = () => {
         if (newName.length > 0) {
-            addChat(newName);
+            let chatsId = [];
+            listChat.forEach((item) => {
+                chatsId.push (item.id); 
+            });
+            const newChatId = Math.max.apply(null, chatsId) + 1;
+
+            addChat(newChatId, newName);
             setNewName('');
         }
     };

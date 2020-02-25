@@ -2,10 +2,12 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import { Profile } from '../Profile/Profile';
+import { ConnectedRouter} from 'connected-react-router';
+import { history } from '../../store/store';
 
 export const Router = () => {
     return (
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <Switch>
                 <Route path="/chats/" exact component={Layout} />
                 <Route path="/chats/:id" exact component={Layout} />
@@ -20,6 +22,6 @@ export const Router = () => {
                     It&#39;s 404
                 </Route>
             </Switch>
-        </BrowserRouter>
+        </ConnectedRouter>
     );
 };

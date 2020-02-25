@@ -43,14 +43,14 @@ export default handleActions ({
             }
         };
     },
-    [addChat]: (state, {payload: {name}}) => {
-        const chatsId = Object.keys (state.chats);
-        const newChatId = Math.max.apply(null, chatsId) + 1;
-        
+    [addChat]: (state, {payload: {id, name}}) => {
+        // const chatsId = Object.keys (state.chats);
+        // const newChatId = Math.max.apply(null, chatsId) + 1;
+
         return {
             ...state,
             chats: {...state.chats, 
-                [newChatId]: { 
+                [id]: { 
                     name: name,
                     messages: [],
                 },
