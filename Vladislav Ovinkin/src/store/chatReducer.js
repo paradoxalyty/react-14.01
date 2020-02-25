@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import {loadChats, addMessage} from './chatAction';
+import {loadChats, addChat, addMessage} from './chatAction';
 
 const defaultState = {
     chats: {}
@@ -39,6 +39,20 @@ export default handleActions ({
                 [id]: { 
                     name: state.chats[id].name,
                     messages: [...state.chats[id].messages, {name, content}],
+                },
+            }
+        };
+    },
+    [addChat]: (state, {payload: {name}}) => {
+        const chatsId = Object.keys (state.chats);
+        const newChatId = Math.max.apply(null, chatsId) + 1;
+        
+        return {
+            ...state,
+            chats: {...state.chats, 
+                [newChatId]: { 
+                    name: name,
+                    messages: [],
                 },
             }
         };

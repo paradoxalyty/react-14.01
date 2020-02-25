@@ -4,15 +4,16 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import './ChatList.css';
 
-export const ChatList = (props) => {
-    const { pathId } = props;
-    const [name, setName] = useState ('NewChatName');
+export const ChatList = ({pathId, listChat, addChat}) => {
+    // const { pathId } = props;
+    const [newName, setNewName] = useState ('NewChatName');
 
-    const {listChat} = props;
+    // const {listChat} = props;
 
     const handleClick = () => {
-        if (name.length > 0) {
-            setName('');
+        if (newName.length > 0) {
+            addChat(newName);
+            setNewName('');
         }
     };
 
@@ -30,20 +31,15 @@ export const ChatList = (props) => {
                 label="Новый чат"
                 variant="outlined"
                 size="small"
-                value={name}
-                onChange={({currentTarget: {value}}) => setName (value)}/>
+                value={newName}
+                onChange={({currentTarget: {value}}) => setNewName (value)}/>
             <Button
                 variant="contained"
                 size="small"
-                color="primary"
+                color="primary" 
                 onClick={handleClick}>
                     Добавить
             </Button>
         </div>
     </div>);
 };
-// const mapStateToProps = ({chatReducer}) => ({
-//     chats: chatReducer.chats,
-// });
-
-// export default connect (mapStateToProps) (ChatList);
