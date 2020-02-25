@@ -14,12 +14,12 @@ li {
     border-radius: 5px;
 }
 
-li:hover {
-    background-color: #fed;;
-}
+/* li:hover {
+    background-color: #fed;
+} */
 
 .li-current {
-    background-color: #fca;;
+    background-color: #fca;
 }
 
 .chatRow {
@@ -38,10 +38,12 @@ li:hover {
 
 .chatRow:hover {
     color: black;
+    text-shadow: none;
 }
 
 .chatRow:active {
-    color: gray;
+    color: white;
+    text-shadow: 2px 1px 1px black;
 }
 
 .formAddNewChat {

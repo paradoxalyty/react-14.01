@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux';
 import './ChatList.css';
 
-const ChatList = (props) => {
-    const chatList = props.chats;
+export const ChatList = (props) => {
     const { pathId } = props;
     const [name, setName] = useState ('NewChatName');
+
+    const {listChat} = props;
 
     const handleClick = () => {
         if (name.length > 0) {
@@ -18,13 +18,12 @@ const ChatList = (props) => {
 
     return (<div className="chatList">
         <ul>
-            {Object.keys (chatList).map (id => 
-                <li key={id} className={(+id === pathId ? 'li-current' : '') }>
-                    <Link to={'/chats/' + id} className="chatRow">
-                        {chatList[id].name}
-                    </Link>
-                </li>
-            )}
+            {listChat.map (({id, name}) => 
+            <li key={id} className={(+id === pathId ? 'li-current' : '') }>
+                <Link to={'/chats/' + id} className="chatRow">
+                    {name}
+                </Link>
+            </li>)}
         </ul>
         <div className="formAddNewChat">
             <TextField
@@ -43,8 +42,8 @@ const ChatList = (props) => {
         </div>
     </div>);
 };
-const mapStateToProps = ({chatReducer}) => ({
-    chats: chatReducer.chats,
-});
+// const mapStateToProps = ({chatReducer}) => ({
+//     chats: chatReducer.chats,
+// });
 
-export default connect (mapStateToProps) (ChatList);
+// export default connect (mapStateToProps) (ChatList);

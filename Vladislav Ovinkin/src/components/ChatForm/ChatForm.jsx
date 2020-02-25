@@ -11,9 +11,9 @@ import './ChatForm.css';
  */
 
 const ChatForm = (props) => {
+    const {id} = props;
     const [name, setName] = useState ('User');
     const [content, setContent] = useState ('Message');
-    const {id} = props;
 
     const handleClick = () => {
         if (content.length > 0) {
