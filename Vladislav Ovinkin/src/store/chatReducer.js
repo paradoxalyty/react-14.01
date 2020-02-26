@@ -44,8 +44,6 @@ export default handleActions ({
         };
     },
     [addChat]: (state, {payload: {id, name}}) => {
-        // const chatsId = Object.keys (state.chats);
-        // const newChatId = Math.max.apply(null, chatsId) + 1;
 
         return {
             ...state,
