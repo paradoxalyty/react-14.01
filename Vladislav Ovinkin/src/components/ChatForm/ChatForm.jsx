@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { addMessage } from '../../store/chatAction';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import { addMessage } from '../../store/chatAction';
 import './ChatForm.css';
 
 /**
  *  Компонент с формой отправки нового сообщения
  */
 
-const ChatForm = (props) => {
-    const {id} = props;
+export const ChatForm = ({onSendMessage}) => {
+
     const [name, setName] = useState ('User');
     const [content, setContent] = useState ('Message');
 
     const handleClick = () => {
         if (content.length > 0) {
-            props.addMessage (id, name, content);
+            // props.addMessage (id, name, content);
+            console.log (name, content);
+            onSendMessage ({name, content});
             setContent('');
         }
     };
@@ -54,14 +56,14 @@ const ChatForm = (props) => {
     </div>);
 };
 
-const mapStateToProps = ({chatReducer}) => ({
-    chats: chatReducer.chats,
-});
+// const mapStateToProps = ({chatReducer}) => ({
+//     chats: chatReducer.chats,
+// });
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        addMessage
-    }, dispatch);
-};
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({
+//         addMessage
+//     }, dispatch);
+// };
 
-export default connect (mapStateToProps, mapDispatchToProps) (ChatForm);
+// export default connect (mapStateToProps, mapDispatchToProps) (ChatForm);
