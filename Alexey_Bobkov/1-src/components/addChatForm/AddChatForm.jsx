@@ -11,20 +11,20 @@ export class AddChatForm extends React.Component {
     handleInput = ({ currentTarget: { value, name } }) => {
         this.setState(() => ({ [name]: value }))
     }
-  
+
     handleAddChat = () => {
-        const {  name } = this.state;
-        this.props.addChat(name);
-        
-        }
+        const { name } = this.state;
+        const id = this.props.newChatId;
+        this.props.addChat(id, name);
+
+    }
 
     handleKeyPress = (e) => {
-        
+
         if (e.key === 'Enter') {
             this.handleAddChat();
         }
-      }
-
+    }
     render() {
         return (
             <div className='AddChatForm'>

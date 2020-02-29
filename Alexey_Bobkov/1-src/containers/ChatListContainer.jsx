@@ -11,7 +11,9 @@ const mapStateToProps = (store) => {
         unread: store.chatReducer.chats[id].unread,
     }));
     return {
-        chatsList
+        chatsList,
+        newChatId: (Object.keys(store.chatReducer.chats).length + 1),
+
     }
 }
 

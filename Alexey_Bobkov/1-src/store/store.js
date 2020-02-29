@@ -11,6 +11,7 @@ import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import UnreadMessageMiddleware from '../middlewares/UnreadMessageMiddleware';
 import thunk from 'redux-thunk';
+import chatMiddleware from '../middlewares/chatMiddleware';
 
 const persistConfig = {
     key: 'geekmessanger',
@@ -44,7 +45,7 @@ export const initStore = (preloadedState = {}) => {
 
     return configureStore({
         reducer: persist,
-        middleware: [createLogger(), routerMiddleware(history), botMiddleware, UnreadMessageMiddleware, thunk],
+        middleware: [createLogger(), routerMiddleware(history), chatMiddleware, botMiddleware, UnreadMessageMiddleware, thunk],
         preloadedState,
         devTools: devTools,
 

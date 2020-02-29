@@ -3,7 +3,7 @@ import { createActions } from 'redux-actions'
 export const { addMessage, addChat, deleteChat, addUnread, deleteUnread, chatsRequest, chatsSuccess, chatsFailure } = createActions({
     //LOAD_CHATS: () => ({}), loadChats,
     ADD_MESSAGE: (id, name, content) => ({ id, name, content }),
-    ADD_CHAT: (name) => ({ name }),
+    ADD_CHAT: (id, name) => ({ id, name }),
     DELETE_CHAT: (id, name) => ({ id, name }),
     DELETE_MESSAGE: (id, name, content) => ({ id, name, content }),
     ADD_UNREAD: (id) => ({ id }),

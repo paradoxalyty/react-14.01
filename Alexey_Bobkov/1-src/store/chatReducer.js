@@ -19,8 +19,9 @@ export default handleActions({
             chats: payload,
         };
     },
-    [addChat]: (state, { payload: { name } }) => {
-        const chatId = Object.keys(state.chats).length + 1;
+    [addChat]: (state, { payload: { id, name } }) => {
+        console.log(id, name);
+        const chatId = id
         return {
             ...state,
             chats: {
@@ -95,10 +96,8 @@ export default handleActions({
 
     },
     [deleteChat]: (state, { payload: { id } }) => {
-        console.log(state.payload)
-        const chatId = Object.keys(state.chats)[id];
         const delChat = { ...state.chats };
-        delete delChat[chatId];
+        delete delChat[id];
         return {
             ...state,
             chats: delChat,

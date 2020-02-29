@@ -9,6 +9,7 @@ import ProfileContainer from './ProfileContainer.jsx';
 import { ConnectedRouter } from 'connected-react-router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import ChatListContainer from './ChatListContainer.jsx';
 
 
 const store = initStore();
@@ -27,6 +28,7 @@ export class App extends Component {
                         <Switch >
                             <Route path='/profile' exact component={ProfileContainer}></Route>
                             <Route path='/chats/:id' exact component={ChatContainer} />
+                            <Route path='/chats' exact component={ChatListContainer}></Route>
                         </Switch>
                     </ConnectedRouter>
                 </PersistGate>
