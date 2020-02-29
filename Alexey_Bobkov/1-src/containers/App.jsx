@@ -10,6 +10,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import ChatListContainer from './ChatListContainer.jsx';
+import InstallPopup from '../components/InstallPopup/InstallPopup.jsx';
 
 
 const store = initStore();
@@ -25,6 +26,7 @@ export class App extends Component {
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
                     <ConnectedRouter history={history}>
+                        <InstallPopup />
                         <Switch >
                             <Route path='/profile' exact component={ProfileContainer}></Route>
                             <Route path='/chats/:id' exact component={ChatContainer} />

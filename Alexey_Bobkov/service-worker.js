@@ -33,7 +33,7 @@ self.addEventListener('install', function (event) {
                         .then(assets => {
                             // Открываем и кэшируем нужные страницы и файлы
                             const urlsToCache = [
-                                '/profile',
+                                '',
                                 '/chats/*',
                             ];
                             cache.addAll(urlsToCache);
@@ -53,4 +53,21 @@ self.addEventListener('fetch', function (event) {
             })
         );
     }
+});
+
+self.addEventListener('push', function (event) {
+
+    console.info('Event: Push');
+
+    var title = 'Тут новый пуш прилетел!';
+
+    var body = {
+        'body': 'Нажми сюда, чтобы открыть',
+        'tag': 'pwa',
+        'icon': './manifest/logo-pwa-48.png'
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(title, body)
+    );
 });
