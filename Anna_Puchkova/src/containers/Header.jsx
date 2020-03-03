@@ -8,7 +8,7 @@ import connect from "react-redux/es/connect/connect";
 
 class Header extends Component {
     static propTypes = {
-        chats: PropTypes.object.isRequired,
+      //  chats: PropTypes.object.isRequired,
         chatId: PropTypes.number,
     };
  
@@ -17,7 +17,7 @@ class Header extends Component {
     };
 
     render () {
-        console.log('asd', this.props.chatsName)
+        //console.log('asd', this.props.profile.name);
         return <div className='header'>
                     <span>Chat { this.props.chatId }</span>
                     <Link to='/profile/' className='profileLink'>
@@ -29,7 +29,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = ({profileReducer}) => ({
-    profile: profileReducer
+    profile: profileReducer,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);

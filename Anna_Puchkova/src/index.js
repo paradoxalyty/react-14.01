@@ -1,22 +1,23 @@
-import React from "react";
-import ReactDom from "react-dom";
-import MessageField from './containers/MessageField';
-import Router from './containers/Router';
-import Layout from './containers/Layout';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Router from './containers/Router'
 import { Provider } from 'react-redux';
-import initStore from './utils/store';
+import { ConnectedRouter } from 'connected-react-router';
+import { PersistGate } from 'redux-persist/integration/react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import initStore, { history } from './utils/store';
 
-    ReactDom.render(
-        <Provider store={ initStore() }>
-            <BrowserRouter>
+const { store, persistor } = initStore();
+
+ReactDOM.render(
+    <Provider store={ store }>
+        <PersistGate loading={ null } persistor={ persistor }>
+            <ConnectedRouter history={history}>
                 <MuiThemeProvider>
                     <Router />
                 </MuiThemeProvider>
-            </BrowserRouter>
-        </Provider>,      
-    document.getElementById("root")
-    );
-
-    
+            </ConnectedRouter>
+        </PersistGate>
+    </Provider>,
+    document.getElementById('root'),
+ );

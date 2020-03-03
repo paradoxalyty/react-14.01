@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Message from '../components/Message';
 import { sendMessage } from '../actions/messageActions';
 import '../styles/styles.css';
@@ -39,27 +40,27 @@ class MessageField extends React.Component {
        }
    };
 
-   componentDidUpdate(prevProps, prevState) {
-    if (Object.keys(prevProps.messages).length < Object.keys(this.props.messages).length &&
-        this.props.messages[Object.keys(this.props.messages).length].sender === 'me') {
-        setTimeout(() => this.sendMessage(`I am Robot and it is Chat # ${this.props.chatId}`, 'bot'), 1000);
-    }
-}
     sendMessage = (message, sender) => {
         const { chatId, messages } = this.props;
         const messageId = Object.keys(messages).length + 1;
         this.props.sendMessage(messageId, message, sender, chatId);
     };
 
+    //deleteMessage = () => {};
+
    render() {
       const { chatId, messages, chats } = this.props;
 
        const messageElements = chats[chatId].messageList.map(messageId => (
+
            <Message
                key={ messageId }
                text={ messages[messageId].text }
                sender={ messages[messageId].sender }
-           />));
+               //deleteButton={<DeleteIcon className={"deleteButton"} onClick={() => this.deleteMessage(messageId)}/>}
+           />
+          
+           ));
 
        return [
            <div key='messageElements' className="message-field">
