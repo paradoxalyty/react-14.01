@@ -11,28 +11,31 @@ export default handleActions({
             ...state,
             chats: {
                 1: {
+                    number: 1,
                     name: 'Chat 1',
                     messages: [
-                        {author: "Bot", content: "Hello!"},
-                        {author: "Bot", content: "It's chat one."},
-                        {author: "Bot", content: "Hi, how are You?"}
+                        {name: "Robot", content: "Hello!"},
+                        {name: "Robot", content: "It's chat one."},
+                        {name: "Robot", content: "Hi, how are You?"}
                     ]
                 },
                 2: {
+                    number: 2,
                     name: 'Chat 2',
                     messages: [
-                        {author: "Robot", content: "Hi!"},
-                        {author: "Robot", content: "It's chat two"}
+                        {name: "Robot", content: "Hi!"},
+                        {name: "Robot", content: "It's chat two"}
                     ]
                 },
                 3: {
+                    number: 3,
                     name: 'Chat 3',
                     messages: []
                 }
             }
         }
     },
-    [addMessage]: (state, {payload: {id, author, content}}) => {
+    [addMessage]: (state, {payload: {id, name, content}}) => {
         return {
             ...state,
             chats: {
@@ -41,10 +44,10 @@ export default handleActions({
                     name: state.chats[id].name,
                     messages: [
                         ...state.chats[id].messages,
-                        {author, content},
+                        {name, content},
                     ]
                 },
             }
         }
-    }
+    },
 }, defaultState);
