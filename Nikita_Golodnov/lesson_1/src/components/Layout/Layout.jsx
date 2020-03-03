@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './Layout.css'
 import {initStore, history} from '../../store/store'
 import {Provider} from 'react-redux'
-import {loadChats} from '../../store/chatAction'
+import {loadChats} from '../../store/asyncChatAction'
 import ChatListContainer from '../../containers/ChatListContainer'
 import {ConnectedRouter} from 'connected-react-router'
 
