@@ -8,12 +8,14 @@ import { Header } from "../components/Header/Header";
 import { ConnectedRouter } from 'connected-react-router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore, persistReducer } from 'redux-persist';
+import { loadProfile } from "../store/profileActions";
 export const ROBOT_NAME = 'Robot';
 
 
 export const store = initStore();
 const persistor = persistStore(store)
 store.dispatch(loadChats())
+store.dispatch(loadProfile())
 
 export class App extends React.Component {
 
