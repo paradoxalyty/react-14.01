@@ -3,8 +3,10 @@ import chatReducer from './chatReducer';
 import botMiddleware from './botMiddleware';
 import chatMiddleware from './chatMiddleware';
 import { createLogger } from 'redux-logger';
-import {createBrowserHistory} from 'history'
-import {routerMiddleware, connectRouter} from 'connected-react-router'
+import {createBrowserHistory} from 'history';
+import {routerMiddleware, connectRouter} from 'connected-react-router';
+import { apiMiddleware } from 'redux-api-middleware';
+import thunk from 'redux-thunk';
 
 export const history = createBrowserHistory();
 
@@ -17,5 +19,5 @@ const logger = createLogger();
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {};
 
 export const initStore = (preloadedState = {}) => {
-    return createStore(reducer, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, chatMiddleware, botMiddleware), devTools));
+    return createStore(reducer, preloadedState, compose(applyMiddleware(routerMiddleware(history), logger, chatMiddleware, botMiddleware, apiMiddleware, thunk), devTools));
 }; 
