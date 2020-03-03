@@ -19,7 +19,7 @@ const messages = [
 */
 
 //import {Counter} from "./components/Counter";
-import { App } from "./containers/App";
+import { App } from "./App";
 //import MessageField from "./components/MessageField/MessageField";
 
 //ReactDom.render(<App />, document.getElementById("root"));
