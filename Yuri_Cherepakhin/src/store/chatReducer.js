@@ -1,12 +1,15 @@
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from './messageActions';
-import { ADD_CHAT } from './chatActions';
+import { ADD_CHAT, FIRE, UNFIRE } from './chatActions';
 
 const initialStore = {
     chats: {
-        1: {title: 'Chat 1', messageList: [1]},
-        2: {title: 'Chat 2', messageList: [2]},
-        3: {title: 'Chat 3', messageList: []},
+        1: {title: 'Chat 1', unread: true, messageList: [1]},
+        2: {title: 'Chat 2', unread: false, messageList: [2]},
+        3: {title: 'Chat 3', unread: false, messageList: []},
+        //1: {title: 'Chat 1', messageList: [1]},
+        //2: {title: 'Chat 2', messageList: [2]},
+        //3: {title: 'Chat 3', messageList: []},
     },
 };
 
@@ -17,7 +20,8 @@ export default function chatReducer(store = initialStore, action) {
             return update(store, {
                 chats: { $merge: { [action.chatId]: {
                     title: store.chats[action.chatId].title,
-                        messageList: [...store.chats[action.chatId].messageList, action.messageId]
+                    unread: store.chats[action.chatId].unread,
+                    messageList: [...store.chats[action.chatId].messageList, action.messageId]
                 } } },
             });
         }
@@ -26,7 +30,28 @@ export default function chatReducer(store = initialStore, action) {
             return update(store, {
                 chats: { $merge: {
                     [chatId]: {
-                        title: action.title, messageList: []
+                        //title: action.title, messageList: []
+                        title: action.title, unread: false, messageList: []
+                } } },
+            });
+        }
+        case FIRE: {
+            console.log('fire');
+            return update(store, {
+                chats: { $merge: { [action.chatId]: {
+                    title: store.chats[action.chatId].title,
+                    unread: true,
+                    messageList: store.chats[action.chatId].messageList
+                } } },
+            });
+        }
+        case UNFIRE: {
+            console.log('unfire');
+            return update(store, {
+                chats: { $merge: { [action.chatId]: {
+                    title: store.chats[action.chatId].title,
+                    unread: false,
+                    messageList: store.chats[action.chatId].messageList
                 } } },
             });
         }
