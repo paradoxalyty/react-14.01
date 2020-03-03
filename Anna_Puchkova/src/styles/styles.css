@@ -73,7 +73,7 @@ body {
    width: 70%;
 }
 .header {
-   width: 50%;
+   width: 70%;
    height: 40px;
    font-size: 22px;
    font-weight: bold; 
@@ -121,4 +121,35 @@ font-size: 20px;
 padding: 5px 10px;
 border-radius: 5px;
 margin: 50px 0 0 0;
+}
+
+@media screen and (min-width: 650px){
+   .layout {
+       width: 50%;
+   }
+
+   .layout-canvas {
+       height: 50%;
+       width: 100%;
+       display: flex;
+   }
+
+   .layout-right-side {
+       width: 70%;
+   }
+
+   .layout-left-side {
+       display: block;
+       height: 100%;
+       width: 30%;
+       background-color: darkgray;
+   }
+
+   .layout {
+       width: 50%;
+   }
+
+   .layout-canvas {
+       height: 50%;
+   }
 }
