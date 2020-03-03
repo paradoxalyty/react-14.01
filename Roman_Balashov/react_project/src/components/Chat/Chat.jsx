@@ -8,9 +8,10 @@ export class Chat extends Component {
         super(props);
     }
     render() {
+        const {messages, sendMessage} = this.props;
         return <div className="chat">
-            <MessageField messages={this.props.messages} />
-            <ChatForm sendMessage={this.props.sendMessage} />
+            <MessageField messages={messages} />
+            <ChatForm sendMessage={sendMessage} />
         </div>
     }
 }
