@@ -1,6 +1,6 @@
 import React from 'react';
 import {Layout} from "./components/Layout/Layout.jsx";
-import {initStore} from './store/store.js';
+import {initStore, history} from './store/store.js';
 import {Provider} from 'react-redux';
 import {loadChats} from './store/chatAction.js';
 

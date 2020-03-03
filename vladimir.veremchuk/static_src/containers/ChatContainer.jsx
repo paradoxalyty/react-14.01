@@ -1,7 +1,7 @@
-import {Chat} from '../../components/Chat/Chat.jsx';
+import {Chat} from '../components/Chat/Chat.jsx';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loadChats, addMessage} from '../../store/chatAction.js';
+import {loadChats, addMessage} from '../store/chatAction.js';
 
 const mapStateToProps = ({chatReducer}, {match}) => {
     const id = match.params.id;
