@@ -8,7 +8,6 @@ export class Clock extends Component {
             () => this.tick(),
             1000
         );
-        this.setState()
     }
 
     componentWillUnmount() {
