@@ -1,21 +1,20 @@
-import React, {useRef} from "react";
-import PropTypes from "prop-types";
+import React, {useRef} from 'react';
+//import PropTypes from 'prop-types';
 import ScrollableFeed from 'react-scrollable-feed';
 import {MessageList} from '../MessageList/MessageList';
-import {Message} from '../Message/Message';
-import {NewMessage} from "../NewMessage/NewMessage";
+import {NewMessage} from '../NewMessage/NewMessage';
 
 import css from './ChatPage.css';
 
-export const ChatPage = ({messages, userName, onSubmitMessage}) => {
+export const ChatPage = ({messages, userName, onSubmitMessage, handleDeleteMessage}) => {
     if (messages){
-    return (
-        <ScrollableFeed forceScroll className="container" >
-            <MessageList messages={messages} />
-            <NewMessage userName={userName} onSubmitMessage={onSubmitMessage} />
-        </ScrollableFeed>
-    )} else {
-        return <span className="container">Вы не выбрали чат</span>
+        return (
+            <ScrollableFeed forceScroll className="ChatPage__container" >
+                <MessageList messages={messages} handleDeleteMessage={handleDeleteMessage}/>
+                <NewMessage userName={userName} onSubmitMessage={onSubmitMessage} />
+            </ScrollableFeed>
+        );} else {
+        return <span className="container">Вы не выбрали чат</span>;
     }
 };
 // ChatPage.propTypes={

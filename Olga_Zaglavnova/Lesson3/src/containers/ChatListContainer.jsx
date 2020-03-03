@@ -1,24 +1,29 @@
-import React, {Component} from "react";
+import React from 'react';
 import {ChatList} from '../components/ChatList/ChatList';
-import {bindActionCreators} from "redux";
-import {loadChats} from "../store/chatAction";
-import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {switchToAdd, switchPage, deleteChat} from "../store/chatAction";
 
-class ChatListContainer extends Component {}
+//class ChatListContainer extends Component {}
 
 const mapStateToProps=({chatReducer})=>{
     return {
         chats: chatReducer.chats,
-    }
+    };
 };
 
 const mapDispatchToProps=(dispatch)=>{
-    return bindActionCreators({loadChats}, dispatch)
+    //return {}
+    return bindActionCreators({switchToAdd, switchPage, deleteChat}, dispatch);
 };
 
-const mergeProps =(stateProps, dispatchProps, props) => {
+const mergeProps =(stateProps, dispatchProps) => {
+
     return {
-        ...stateProps
+        ...stateProps,
+        switchToAdd: () => dispatchProps.switchToAdd(),
+        handleSwitchPage:({id, linkPath}) => dispatchProps.switchPage(id, linkPath),
+        handleDeleteChat: (id) => dispatchProps.deleteChat(id),
     }
 };
 
