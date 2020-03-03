@@ -28,7 +28,7 @@ export class Layout extends Component {
             <Switch>
               <Route path="/profile" exact component={HeaderContainer} />
               <Route path="/chats" exact component={HeaderContainer} />
-              <Route path="/chats/:id" exact component={HeaderContainer} />
+              <Route path="/chats/:chatId" exact component={HeaderContainer} />
             </Switch>
             <div className="Chat">
               <ChatListContainer className="ChatList-Position" />
@@ -36,7 +36,11 @@ export class Layout extends Component {
                 <Switch>
                   <Route path="/profile" exact component={ProfileContainer} />
                   <Route path="/chats" exact component={ChatContainer} />
-                  <Route path="/chats/:id" exact component={ChatContainer} />
+                  <Route
+                    path="/chats/:chatId"
+                    exact
+                    component={ChatContainer}
+                  />
                 </Switch>
               </div>
             </div>

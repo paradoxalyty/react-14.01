@@ -1,18 +1,30 @@
 import { handleActions } from "redux-actions";
-import { loadUser } from "./userAction";
+import { userRequest, userSuccess, userFailure } from "./userAction";
 
 const defaultState = {
-  user: {}
+  user: {},
+  isLoading: false
 };
 
 export default handleActions(
   {
-    [loadUser]: state => {
+    [userRequest]: state => {
       return {
         ...state,
-        user: {
-          userName: "Анна"
-        }
+        isLoading: true
+      };
+    },
+    [userSuccess]: (state, { payload }) => {
+      return {
+        ...state,
+        isLoading: false,
+        user: payload
+      };
+    },
+    [userFailure]: state => {
+      return {
+        ...state,
+        isLoading: false
       };
     }
   },

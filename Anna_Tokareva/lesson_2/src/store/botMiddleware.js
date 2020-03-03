@@ -1,21 +1,28 @@
 import { addMessage, highlightChat } from "./chatAction";
 
+const timers = {};
+
 export default store => next => action => {
   if (
     action.type === addMessage.toString() &&
     action.payload.name !== "Робот"
   ) {
-    const { id, name } = action.payload;
-    setTimeout(
-      () => store.dispatch(addMessage(id, "Робот", "Привет! Я робот.")),
+    const { chatId, messageId, name } = action.payload;
+    const messageBotId = +messageId + 1;
+    clearTimeout(timers[chatId]);
+    timers[chatId] = setTimeout(
+      () =>
+        store.dispatch(
+          addMessage(chatId, messageBotId, "Робот", "Привет! Я робот.")
+        ),
       500
     );
   } else if (
     action.type === addMessage.toString() &&
     action.payload.name === "Робот"
   ) {
-    const { id } = action.payload;
-    store.dispatch(highlightChat(id));
+    const { chatId } = action.payload;
+    store.dispatch(highlightChat(chatId));
     setTimeout(() => store.dispatch(highlightChat(0)), 500);
   }
   next(action);
