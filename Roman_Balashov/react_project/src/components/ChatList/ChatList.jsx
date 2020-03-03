@@ -6,38 +6,25 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PersonIcon from '@material-ui/icons/Person';
 import { Link } from "react-router-dom";
 import './ChatList.css'
+import { Button, Input } from '@material-ui/core';
 
 export class ChatList extends React.Component {
     render() {
+        const { chats, addChat } = this.props;
         return (
             <div className="chatlist-wrap">
                 <List>
-                    <Link to="/chats/1">
-                        <ListItem classes={{ root: "chatlist__item" }}>
-                            <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
-                                <PersonIcon fontSize="large" />
-                            </ListItemIcon>
-                            <ListItemText primary={'First chat'} />
-                        </ListItem>
-                    </Link>
-                    <Link to="/chats/2">
-                        <ListItem classes={{ root: "chatlist__item" }}>
-                            <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
-                                <PersonIcon fontSize="large" />
-                            </ListItemIcon>
-                            <ListItemText primary={'Second chat'} />
-                        </ListItem>
-                    </Link>
-                    <Link to="/chats/3">
-                        <ListItem classes={{ root: "chatlist__item" }}>
-                            <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
-                                <PersonIcon fontSize="large" />
-                            </ListItemIcon>
-                            <ListItemText primary={'Third chat'} />
-                        </ListItem>
-                    </Link>
+                    {chats.map(({ id, name }) => <li key={id}><Link to={"/chats/" + id}>                <ListItem classes={{ root: "chatlist__item" }}>
+                        <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
+                            <PersonIcon fontSize="large" />
+                        </ListItemIcon>
+                        <ListItemText primary={name} />
+                    </ListItem></Link></li>)}
                 </List>
+                {/* <Input type="text" value={chatName}></Input>
+                <Button onClick={() => addChat(chatName)}>+</Button> */}
             </div>
         )
     }
 }
+
