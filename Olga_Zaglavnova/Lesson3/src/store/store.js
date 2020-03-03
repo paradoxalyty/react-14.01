@@ -12,6 +12,8 @@ import {routerMiddleware, connectRouter} from 'connected-react-router';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import {apiMiddleware} from 'redux-api-middleware';
+import thunk from 'redux-thunk';
 
 const persisitConfig = {
     key: "olgazmessenger",
@@ -35,7 +37,7 @@ export const initStore =(preloadedState = {}) => {
     const store = createStore(
         persistReducer(persisitConfig, reducer),
         innitialStore,
-        compose(applyMiddleware(routerMiddleware(history), logger, loadMiddleware, addMiddleware, deleteChatMiddleware, switchPageMiddleware, chatMiddleware, botMiddleware), devTools),
+        compose(applyMiddleware(routerMiddleware(history), logger, loadMiddleware, addMiddleware, deleteChatMiddleware, switchPageMiddleware, chatMiddleware, botMiddleware, apiMiddleware, thunk), devTools),
     );
 
     const persistor = persistStore(store);

@@ -14,21 +14,27 @@ const getCurrentTime = () => {
     const currDate=new Date();
     return currDate.toTimeString().slice(0,8);
 };
+let timers1 = {};
+// let timers2 = {};
 
 export default store => next => action => {
 
     if (action.type === addMessage.toString()){
         const {id, name} = action.payload;
-        setTimeout(()=>{
+        clearTimeout(timers1[id]);
+        timers1[id] = setTimeout(()=>{
             const lastMessage = store.getState().chatReducer.chats[id].messages[store.getState().chatReducer.chats[id].messages.length -1];
             if (lastMessage.msgClass !== robotClass) {
+                // clearTimeout(timers2[id]);
                 store.dispatch(addMessage(id, robotClass, robotName, robotAnswer() + ` А я вот сижу разговариваю с ${name}`, getCurrentTime(), "switchedUp"));
-                store.dispatch(changeClass(id, "switchedUp"))
-                 setTimeout(()=>{
-                    store.dispatch(changeClass(id, ""))
-                   }, 1000)
+                if (store.getState().chatReducer.chats[id].isActive === ""){
+                    store.dispatch(changeClass(id, "switchedUp"))
+                }
+                //  timers2[id] = setTimeout(()=>{
+                //     store.dispatch(changeClass(id, ""))
+                //    }, 1000)
             }
-        }, 1000);
+        }, 3000);
     } ;
     next(action);
 };
