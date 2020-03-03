@@ -23,10 +23,10 @@ export const ChatList = ({pathId, listChat, addChat}) => {
 
     return (<div className="chatList">
         <ul>
-            {listChat.map (({id, name}) => 
+            {listChat.map (({id, name, unread}) => 
             <li key={id} className={(+id === pathId ? 'li-current' : '') }>
                 <Link to={'/chats/' + id} className="chatRow">
-                    {name}
+                    {name} {unread && '[unread]'}
                 </Link>
             </li>)}
         </ul>

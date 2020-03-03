@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, {id}) => {
-    console.log (`ChatFormContainer id = ${id}`);
+    // console.log (`ChatFormContainer id = ${id}`);
     return {
         ...stateProps,
         onSendMessage: ({name, content}) => dispatchProps.addMessage (id, name, content),

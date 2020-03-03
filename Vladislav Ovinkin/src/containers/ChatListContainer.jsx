@@ -9,6 +9,7 @@ const mapStateToProps = (store) => {
         {
             id, 
             name: chats[id].name,
+            unread: chats[id].unread,
         }));
     return {
         listChat
