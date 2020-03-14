@@ -1,10 +1,21 @@
 .header {
     width: 100%;
-    text-align: center;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
     background-color: #8ac2e6;
     border-bottom: 1px solid #FFFFFF;
     color: #FFF;
     margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+.header__link {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 479px) {
+    .header {
+        justify-content: center;
+    }
 }

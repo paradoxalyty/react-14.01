@@ -1,23 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Message } from "../Message/Message";
 import './MessageField.css';
-import {ChatForm} from "../ChatForm/ChatForm";
+import {Message} from '../Message/Message';
 
-export const MessageField = ({messages, onSendMessage, }) => {
-    if(messages) {
-        return (<div className='MessageField mainBlock'>
-            <div className="messages">
-                {messages.map((message, index) => <Message {...message} key={index}/>)}
-            </div>
-            <ChatForm onSendMessage={onSendMessage}/>
-        </div>);
-    } else {
-        return <div className="404 mainBlock">Chat does not exist</div>
-    }
-};
+export const MessageField = ({messages}) =>
+    (<div className='MessageField'>
+        <div className="messages">
+            {messages.map((message, index) => <Message {...message} key={index}/>)}
+        </div>
+    </div>);
 
 MessageField.propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
-    onSendMessage: PropTypes.func.isRequired,
+    messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes))
 };

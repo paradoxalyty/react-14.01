@@ -33,7 +33,6 @@ export class ChatForm extends React.Component {
       }
 
     render() {
-
         return (
             <div className='ChatForm'>
                 <TextField label="Name" variant="filled" name='name' value={this.state.name} onChange={this.handleInput} type='Name' />

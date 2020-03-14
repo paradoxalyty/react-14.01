@@ -1,12 +1,11 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import {Header} from "../Header/Header";
-import "./Profile.css";
-import { render } from "react-dom";
+import {Header} from '../Header/Header';
+import './Profile.css';
+import { render } from 'react-dom';
 
-export class Profile extends Component{
-    render(){
-        const chat =this.props.chat;
+export const Profile  = ({chat}) => {
+    if (chat){
         return (<>
             <div className="Profile">
                 <h3>PROFILE</h3>
@@ -15,6 +14,8 @@ export class Profile extends Component{
                 <p>Общее количество сообщений в чате: </p>
                 {chat.messages.length}
             </div>
-        </>)
+        </>);
+    } else {
+        return <div className="Layout__index"></div>
     }
-}
+};

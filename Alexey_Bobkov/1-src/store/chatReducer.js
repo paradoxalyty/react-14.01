@@ -1,72 +1,106 @@
-import { handleActions } from 'redux-action';
-import { loadChats, addMessage } from "./chatAction";
+import { handleActions } from 'redux-actions';
+import { addMessage, addChat, deleteChat, addUnread, deleteUnread, chatsRequest, chatsSuccess } from "./chatAction.js";
 
 const defaultState = {
-    chats: {
-
-    }
+    chats: {},
+    isLoading: false,
 };
 export default handleActions({
-    [loadChats]: (state) => {
+    [chatsRequest]: (state) => {
+        return {
+            ...state,
+            isLoading: true,
+        };
+    },
+    [chatsSuccess]: (state, { payload }) => {
+        return {
+            ...state,
+            isLoading: false,
+            chats: payload,
+        };
+    },
+    [addChat]: (state, { payload: { id, name } }) => {
+        console.log(id, name);
+        const chatId = id
         return {
             ...state,
             chats: {
-                1: {
-                    id: 1,
-                    name: 'Chat 1',
-                    messages: [
-                        { name: 'Name1', content: 'Text1' }
-                    ],
+                ...state.chats,
+                [chatId]: {
+                    name: name,
+                    unread: false,
+                    messages: []
                 },
-                2: {
-                    id: 2,
-                    name: 'Chat 2',
-                    messages: [
-                        { name: 'Name2', content: 'Text2' }
-
-                    ]
-                },
-                3: {
-                    id: 3,
-                    name: 'Chat 3',
-                    messages: [
-
-                        { name: 'Name3', content: 'Text3' }
-
-                    ]
-                },
-                4: {
-                    id: 4,
-                    name: 'Chat 4',
-                    messages: [
-
-                        { name: 'Name4', content: 'Text4' }
-                    ]
-                },
-                5: {
-                    id: 5,
-                    name: 'Chat 5',
-                    messages: [
-
-                        { name: 'Name5', content: 'Text5' }
-                    ]
-                },
-
-            },
-
-
-            [addMessage]: (state, { payload: { id, name, content } }) => {
-                return {
-                    ...state,
-                    chats: {...state.chats,
-                        [id]: {
-                            name: state.chats[id].name,
-                            messages: [...state.chats[id].messages, { name, content }, ]
-                        },
-                    }
-                }
-
             }
         }
-    }
+    },
+
+
+
+    [addUnread]: (state, {
+        payload: { id }
+    }) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    name: state.chats[id].name,
+                    messages: state.chats[id].messages,
+                    unread: true,
+
+                },
+            }
+        };
+
+    },
+    [deleteUnread]: (state, {
+        payload: { id }
+    }) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    name: state.chats[id].name,
+                    messages: state.chats[id].messages,
+                    unread: false,
+
+                },
+            }
+        };
+
+    },
+
+
+    [addMessage]: (state, {
+        payload: {
+            id,
+            name,
+            content
+        }
+    }) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    name: state.chats[id].name,
+                    messages: [...state.chats[id].messages, {
+                        name,
+                        content
+                    }]
+                }
+            }
+        }
+
+    },
+    [deleteChat]: (state, { payload: { id } }) => {
+        const delChat = { ...state.chats };
+        delete delChat[id];
+        return {
+            ...state,
+            chats: delChat,
+        }
+    },
 }, defaultState);

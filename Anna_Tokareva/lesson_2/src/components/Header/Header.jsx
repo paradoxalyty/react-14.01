@@ -14,16 +14,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Header = props => {
+export const Header = ({ title, userName }) => {
   const classes = useStyles();
-  const { id } = props.match.params;
   return (
     <AppBar position="static" className="Header">
       <Typography variant="h6" color="inherit">
-        Чат {id}
+        {title}
       </Typography>
       <Link to="/profile" className="profileLink">
-        Мой профиль
+        Перейти в профиль пользователя {userName}
       </Link>
     </AppBar>
   );

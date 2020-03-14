@@ -3,28 +3,17 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-import './ChatForm.css'
+import './ChatForm.css';
 
-// используем HOOKS
 export const ChatForm = ({onSendMessage}) => {
-
-    const [author] = useState('Me');
-    const [content, setContent] = useState('');
+    const [name, setName] = useState('User');
+    const [content, setContent] = useState('My message');
     let textInput = useRef(null);
 
     const handleClick = () => {
-        onSendMessage({author, content});
-        textInput.current.value = "";
+        onSendMessage({name, content});
+        textInput.current.value = '';
     };
-
-    /*  //Так делать нельзя
-    const DUMM_handleKeyUp = (event, message) => {
-        if (event.shiftKey && event.keyCode === 13) {
-            console.log('shift+enter');
-        } else if (event.keyCode === 13) {
-            handleClick(message);
-        }
-    };*/
 
     const handleKeyUp = (event, message) => {
         if (event.shiftKey && event.keyCode === 13) {
@@ -32,51 +21,28 @@ export const ChatForm = ({onSendMessage}) => {
         }
     };
 
-    return (<div className="user-message">
-        <TextField label="Your message"
-                   fullWidth={true}
-                   autoFocus
-                   multiline
-                   inputRef={textInput}
-                   defaultValue={content}
-                   onChange={({currentTarget: {value}}) => setContent(value)}
-                   onKeyUp={(event) => handleKeyUp(event, content)}
-        />
-        <Button onClick={handleClick} variant="contained" color="primary">Send</Button>
-    </div>);
+    return (
+        <div className="ChatForm">
+            <TextField variant="outlined"
+                label="Author"
+                value={name}
+                onChange={({currentTarget: {value}}) => setName(value)}
+                type="text"
+            />
+            <TextField variant="outlined"
+                label="Your message"
+                value={content}
+                multiline
+                inputRef={textInput}
+                autoFocus
+                onChange={({currentTarget: {value}}) => setContent(value)}
+                onKeyUp={(event) => handleKeyUp(event, content)}
+            />
+            <Button onClick={handleClick} variant="contained" color="primary">Send</Button>
+        </div>
+    );
 };
 
 ChatForm.propTypes = {
     onSendMessage: PropTypes.func.isRequired,
 };
-
-/*
-  // используем CLASS
-export class ChatForm extends React.Component {
-    state = {
-        author: 'User',
-        content: 'My message',
-    };
-
-    textarea = React.createRef();  //Вешаем фокус на поле ввода
-    componentDidMount() {
-        this.textarea.current.focus();  //Вешаем фокус на поле ввода
-    }
-
-    handleInput = ({currentTarget: {value, name}}) => {  //event.currentTarget.value
-        this.setState(() => ({[name]: value}))
-    };
-
-    handleClick = () => {
-      const {author, content} = this.state;
-      this.props.onSendMessage({author, content});
-    };
-
-    render() {
-        return (<div>
-            <input name="author" value={this.state.author} onChange={this.handleInput} type="text"/>
-            <textarea name="content" value={this.state.content} onChange={this.handleInput} ref={this.textarea}/>  {/!* ref={this.textarea} - Вешаем фокус на поле ввода *!/}
-            <button onClick={this.handleClick}>Send</button>
-        </div>);
-    }
-}*/

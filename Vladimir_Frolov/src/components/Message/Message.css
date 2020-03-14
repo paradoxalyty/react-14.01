@@ -1,0 +1,9 @@
+.Message{
+    background-color: antiquewhite;
+    align-self: flex-end;
+    margin: 5px;
+}
+.Message.isRobot{
+    background-color: #faacab;
+    align-self: flex-start;
+}

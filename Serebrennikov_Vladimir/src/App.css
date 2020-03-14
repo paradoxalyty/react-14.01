@@ -1,0 +1,14 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App-ChatsField {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

@@ -1,13 +1,11 @@
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from '../actions/messageActions';
-import { ADD_CHAT } from "../actions/chatActions";
+import { SUCCESS_CHATS_LOADING, ADD_CHAT, DELETE_CHAT, HIGHLIGHT_CHAT, UNHIGHLIGHT_CHAT } from "../actions/chatActions";
 
 const initialStore = {
-   chats: {
-           1: {title: 'Chat 1', messageList: [1]},
-           2: {title: 'Chat 2', messageList: [2]},
-           3: {title: 'Chat 3', messageList: []},
-       },
+    chats: {},
+    isLoading: true,
+    chatNewMessages: [],
 };
 
 
@@ -30,6 +28,37 @@ export default function chatReducer(store = initialStore, action) {
               } } },
            });
        }
+
+       case DELETE_CHAT: {
+        const chatId = Number(action.chatId);
+        return update(store, {
+          chats: { $splice: [
+              [chatId, 1]
+            ] },
+        });
+      }
+
+       case HIGHLIGHT_CHAT: {
+        const chatId = Number(action.chatId);
+        return update(store, {
+            chatNewMessages: { $set: [...store.chatNewMessages, chatId] }
+        });
+    }
+        case UNHIGHLIGHT_CHAT: {
+            const chatId = Number(action.chatId);
+            const chatNewMessages = [...store.chatNewMessages];
+            delete chatNewMessages[chatNewMessages.indexOf(chatId)];
+            return update(store, {
+                chatNewMessages: { $set: chatNewMessages }
+            });
+        }
+        case SUCCESS_CHATS_LOADING: {
+            return update(store, {
+                chats: { $set: action.payload.entities.chats },
+                isLoading: { $set: false },
+            });
+        }
+ 
        default:
            return store;
    }

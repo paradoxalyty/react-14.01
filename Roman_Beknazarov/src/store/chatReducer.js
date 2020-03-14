@@ -1,50 +1,83 @@
 import {handleActions} from 'redux-actions';
-import {loadChats, addMessage} from './chatAction';
+import {addChat, addMessage, fire, unfire} from './chatAction';
+import {CHATS_REQUEST, CHATS_SUCCESS} from "./apiChatAction";
 
 const defaultState = {
-    chats: {}
+    chats: {},
+    isLoading: false,
 };
 
 export default handleActions({
-    [loadChats]: (state) => {
+    [CHATS_REQUEST]: (state) => {
         return {
             ...state,
-            chats: {
-                1: {
-                    name: 'Chat 1',
-                    messages: [
-                        {author: "Bot", content: "Hello!"},
-                        {author: "Bot", content: "It's chat one."},
-                        {author: "Bot", content: "Hi, how are You?"}
-                    ]
-                },
-                2: {
-                    name: 'Chat 2',
-                    messages: [
-                        {author: "Robot", content: "Hi!"},
-                        {author: "Robot", content: "It's chat two"}
-                    ]
-                },
-                3: {
-                    name: 'Chat 3',
-                    messages: []
-                }
-            }
-        }
+            isLoading: true,
+        };
     },
-    [addMessage]: (state, {payload: {id, author, content}}) => {
+    [CHATS_SUCCESS]: (state, {payload}) => {
+        return {
+            ...state,
+            isLoading: false,
+            chats: payload,
+        };
+    },
+    [addMessage]: (state, {payload: {id, name, content}}) => {
         return {
             ...state,
             chats: {
                 ...state.chats,
                 [id]: {
+                    chatNumber: state.chats[id].chatNumber,
                     name: state.chats[id].name,
                     messages: [
                         ...state.chats[id].messages,
-                        {author, content},
+                        {name, content},
                     ]
                 },
             }
-        }
-    }
+        };
+    },
+    [addChat]: (state, {payload: {name, id}}) => {
+
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    chatNumber: id,
+                    name: name,
+                    messages: []
+                }
+            }
+        };
+    },
+    [fire]: (state, {payload: {id}}) => {
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    chatNumber: state.chats[id].chatNumber,
+                    name: state.chats[id].name,
+                    messages: state.chats[id].messages,
+                    unread: true,
+                },
+            }
+        };
+    },
+    [unfire]: (state, {payload: {id}}) => {
+        if(!state.chats[id]) return state;
+        return {
+            ...state,
+            chats: {
+                ...state.chats,
+                [id]: {
+                    chatNumber: state.chats[id].chatNumber,
+                    name: state.chats[id].name,
+                    messages: state.chats[id].messages,
+                    unread: false,
+                },
+            }
+        };
+    },
 }, defaultState);

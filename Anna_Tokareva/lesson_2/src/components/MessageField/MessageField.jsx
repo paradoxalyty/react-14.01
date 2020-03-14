@@ -3,14 +3,22 @@ import PropTypes from "prop-types";
 import { Message } from "../Message/Message";
 import "./MessageField.css";
 
-export const MessageField = ({ messages }) => (
+export const MessageField = ({ messages, deleteMessage }) => (
   <div className="MessageField">
-    {messages.map((message, index) => (
-      <Message {...message} key={index} />
-    ))}
+    {Object.keys(messages).map(messageId => {
+      return (
+        <Message
+          {...messages[messageId]}
+          messageId={messageId}
+          deleteMessage={deleteMessage}
+          key={messageId}
+        />
+      );
+    })}
   </div>
 );
 
 MessageField.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.shape(Message.PropTypes))
+  messages: PropTypes.objectOf(PropTypes.shape(Message.PropTypes)),
+  deleteMessage: PropTypes.func.isRequired
 };

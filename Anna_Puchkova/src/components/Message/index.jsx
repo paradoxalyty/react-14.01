@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDom from "react-dom";
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import '../../styles/styles.css';
@@ -18,7 +17,7 @@ export default class Message extends React.Component {
 
         return <div className={robotMessage}>
                     <div>{ this.props.text }</div>
-                    <div className="message-sender">{ this.props.sender }</div>
+                    <div className="message-sender">{ this.props.sender }</div>            
                </div>
 
     }

@@ -35,6 +35,13 @@ module: {
 },
 plugins: [
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, "index.html"), })
-]
+],
+
+devServer: {
+      port: 8080,
+      historyApiFallback: true
+   },
+
+  devtool: 'cheap-inline-module-source-map'
 
 };

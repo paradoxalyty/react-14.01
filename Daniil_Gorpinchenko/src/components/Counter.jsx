@@ -1,3 +1,4 @@
+/*
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
@@ -19,11 +20,13 @@ export class Counter extends Component {
         console.log("componentDidMount")
         this.interval = setInterval(() => console.log("Its fired!"), 2000)
     }
-    /*
+    */
+/*
     componentWillMount () {  //It's a BAD practice to use this method!;)
         console.log ("componentWillMount - DONT USE")
     }
     */
+/*
     componentDidUpdate () {
         console.log ("componentDidUpdate")
     }
@@ -46,3 +49,4 @@ export class Counter extends Component {
         </span>;
     } 
 }
+*/

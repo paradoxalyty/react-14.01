@@ -15,10 +15,6 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/env', '@babel/react'],
-                        plugins: ['@babel/plugin-proposal-class-properties'],
-                    },
                 },
             },
             {
@@ -32,5 +28,9 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html"), }),
-    ]
+    ],
+    devServer: {
+        historyApiFallback: true
+    },
+    devtool: 'inline-source-map',
 }

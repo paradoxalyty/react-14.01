@@ -1,33 +1,49 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import './ChatList.css'
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import './ChatList.css';
 
+export const ChatList = ({pathId, listChat, addChat}) => {
 
-export const ChatList = ({chatList, activeChatId, onChatChange}) => {
-    const [selectedIndex, setSelectedIndex] = React.useState(1); // подсветка в списке чата
-    // const [selectedIndex, setSelectedIndex] = React.useState(); // нет подсветки
+    const [newName, setNewName] = useState ('NewChatName');
 
-    const handleListItemClick = (event, index) => {
-        setSelectedIndex (index);
-    }
+    const handleClick = () => {
+        if (newName.length > 0) {
+            let chatsId = [];
+            listChat.forEach((item) => {
+                chatsId.push (item.id); 
+            });
+            const newChatId = Math.max.apply(null, chatsId) + 1;
 
-    function ListItemLink(props) {
-        return <ListItem button component="a" {...props} />;
-    }
+            addChat(newChatId, newName);
+            setNewName('');
+        }
+    };
 
     return (<div className="chatList">
-        <List component="nav">
-            {Object.keys (chatList).map (id => 
-                <ListItemLink key={id}
-                selected={selectedIndex === id-1}
-                onClick={event => handleListItemClick (event, id-1)}
-                href={"/chats/" + id}> 
-                    <ListItemText primary={chatList[id].name} />
-                </ListItemLink>)
-            }       
-        </List>
+        <ul>
+            {listChat.map (({id, name, unread}) => 
+            <li key={id} className={(+id === pathId ? 'li-current' : '') }>
+                <Link to={'/chats/' + id} className="chatRow">
+                    {name} {unread && '[unread]'}
+                </Link>
+            </li>)}
+        </ul>
+        <div className="formAddNewChat">
+            <TextField
+                label="Новый чат"
+                variant="outlined"
+                size="small"
+                value={newName}
+                onChange={({currentTarget: {value}}) => setNewName (value)}/>
+            <Button
+                variant="contained"
+                size="small"
+                color="primary" 
+                onClick={handleClick}>
+                    Добавить
+            </Button>
+        </div>
     </div>);
-}
+};

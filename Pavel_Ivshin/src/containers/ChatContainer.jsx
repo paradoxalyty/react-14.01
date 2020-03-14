@@ -1,30 +1,68 @@
-import React, {Component} from 'react';
+//import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+//import {addMessage} from '../store/chatAction';
 import {Chat} from '../components/Chat/Chat';
+import {addMessage} from '../store/actions/chatAction';
 
-const ROBOT_NAME = "Robot";
-export class ChatContainer extends Component{
-    state = {
-        messages: [
-            {name: "Ivan", content: "Hello!"},
-            {name: "Oleg", content: "Hi, how are you?"},
-            {name: "Ivan", content: "I am well"}
-        ],
-    }
+// class ChatContainer extends Component {
 
-    componentDidUpdate() {
-        const lastMessage = this.state.messages[this.state.messages.length - 1];
+//     // addChat = (chatName) => {
+//     //     const chatId = Object.keys(this.state.chats).length + 1;
+//     //     this.setState((state) => (
+//     //         {chats: {
+//     //             ...state.chats,
+//     //             [chatId] :
+//     //             {
+//     //                 name: chatName,
+//     //                 messages: []
+//     //             }
+//     //         }}
+//     //     ))
+//     // }
 
-        if(lastMessage.name !== ROBOT_NAME){
-            setTimeout(() => this.handleSendMessage({name: ROBOT_NAME, content: "Hi, I'm robot!"}), 2000);
-        }
-    }
+//     // handleSendMessage = (id) => (message) => {
+//     //     this.props.addMessage(id, message.name, message.content);
+//     // }
 
-    handleSendMessage = (message) => {
-            this.setState((state) => ({messages: [...state.messages, message]}));
-    }
+//     // componentDidMount(){
+//     //     this.props.loadChats();
+//     // }
 
-    render(){
-        const {messages} = this.state;
-        return <Chat {...{messages, onSendMessage: this.handleSendMessage}}/>
+//     // render(){
+//     //     console.log(this.props.chats);
+//     //     //this.props.match.params;
+//     //     //const {id} = this.props.match.params;
+//     //     const {chats, id, addMessage} = this.props;
+//     //     return (
+//     //             <Layout
+//     //                 chatId = {id}
+//     //                 chats = {chats}
+//     //                 onSendMessage = {addMessage}
+//     //             />
+//     //     )
+//     // }
+// }
+
+const mapStateToProps = ({chatReducer}, ownProps) => {
+    const id = ownProps.id;
+    return {
+        messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+      addMessage
+    }, dispatch);
+}
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const id = ownProps.id;
+    return {
+        ...stateProps,
+        onSendMessage:  ({name, content}) => dispatchProps.addMessage(id, name, content),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Chat);

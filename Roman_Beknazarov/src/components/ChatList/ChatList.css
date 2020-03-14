@@ -11,3 +11,9 @@
     padding-right: 10px;
     color: grey;
 }
+
+.unread {
+    padding: 3px 0 0 10px;
+    font-size: 10px;
+    color: red;
+}

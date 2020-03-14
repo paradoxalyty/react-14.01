@@ -1,0 +1,7 @@
+header>div>a{
+    display: inline-block;
+    padding-left: 10px;
+}
+header>div>a:first-child{
+    padding-left: 0;
+}

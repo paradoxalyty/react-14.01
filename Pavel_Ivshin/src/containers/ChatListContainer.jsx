@@ -1,19 +1,29 @@
-import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {ChatList} from '../components/ChatList/ChatList';
+import {addChat} from '../store/actions/chatAction';
 
-export class ChatListContainer extends Component{
-    state = {
-        chats: [
-            {name: 'Chat1'},
-            {name: 'Chat2'},
-            {name: 'Chat3'},
-            {name: 'Chat4'},
-            {name: 'Chat5'}
-        ]
-    }
 
-    render(){
-        const {chats} = this.state;
-        return <ChatList {...{chats}}/>
+const mapStateToProps = ({chatReducer}, ownProps) => {
+    return {
+        chats: chatReducer.chats,
+        chatsCount: Object.keys(chatReducer.chats).length,
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+      addChat
+    }, dispatch);
+}
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const cid = stateProps.chatsCount + 1;
+    return {
+        ...stateProps,
+        onAddChat: (name) => {
+            dispatchProps.addChat(cid, name)},
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ChatList);

@@ -1,13 +1,30 @@
-import React from "react";
+import React from 'react';
 import { Message } from '../Message/Message';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import { addMessage } from '../../store/chatAction';
 import './MessageList.css';
 
-export const MessageList = ({ messages }) => 
-    (<div className='messageList'> 
+
+const MessageList = (props) => {
+    const {id} = props;
+    const {messages} = props.chats[id];
+
+    // console.log (messages, id);
+
+    return (<div className='messageList'>
         {messages.map ((message, index) => <Message {...message} key = { index } />)}
     </div>);
+};
 
-MessageList.propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes))
-}
+const mapStateToProps = ({chatReducer}) => ({
+    chats: chatReducer.chats,
+});
+
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({
+//         addMessage
+//     }, dispatch);
+// };
+
+export default connect (mapStateToProps) (MessageList);

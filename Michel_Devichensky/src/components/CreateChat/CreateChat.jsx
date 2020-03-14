@@ -9,12 +9,13 @@ import { Link } from 'react-router-dom';
  * @param {*} param0 
  */
 // const {id} = this.props.match.params; 
-export const CreateChat = ({name, id}) => {
+// const {id} = this.props.match.params;
+export const CreateChat = ({name}) => {
     return (
         <div>
             <li>
                 <Link 
-                to={`/chats/${id}`}
+                to="/chats/1"
                 >{name}
                 </Link>
             </li> 

@@ -26,7 +26,7 @@ export class Header extends Component {
         return (
             <>
                 <h1 className="react-messenger__header">{this.state.headerText}</h1>
-                <h2 className="react-messenger__subheader">Chat {this.props.chatId}</h2>
+                <h3 className="react-messenger__subheader">ChatID: {this.props.chatId}</h3>
             </>
         );
     }

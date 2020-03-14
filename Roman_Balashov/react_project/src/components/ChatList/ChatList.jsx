@@ -4,33 +4,27 @@ import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PersonIcon from '@material-ui/icons/Person';
+import { Link } from "react-router-dom";
 import './ChatList.css'
+import { Button, Input } from '@material-ui/core';
 
 export class ChatList extends React.Component {
-    render () {
+    render() {
+        const { chats, addChat } = this.props;
         return (
             <div className="chatlist-wrap">
                 <List>
-                    <ListItem classes={{ root: "chatlist__item" }}>
+                    {chats.map(({ id, name, unread }) => <Link key={id} to={"/chats/" + id}>                <ListItem classes={{ root: "chatlist__item" }}>
                         <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
                             <PersonIcon fontSize="large" />
                         </ListItemIcon>
-                        <ListItemText primary={'First chat'} />
-                    </ListItem>
-                    <ListItem classes={{ root: "chatlist__item" }}>
-                        <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
-                            <PersonIcon fontSize="large" />
-                        </ListItemIcon>
-                        <ListItemText primary={'Second chat'} />
-                    </ListItem>
-                    <ListItem classes={{ root: "chatlist__item" }}>
-                        <ListItemIcon classes={{ root: "chatlist__item_icon" }}>
-                            <PersonIcon fontSize="large" />
-                        </ListItemIcon>
-                        <ListItemText primary={'Third chat'} />
-                    </ListItem>
+                        <ListItemText primary={name} classes={{ root: "chatlis__item_text" }} />
+                    </ListItem>{unread && "unread"}</Link>)}
                 </List>
+                {/* <Input type="text" value={chatName}></Input>
+                <Button onClick={() => addChat(chatName)}>+</Button> */}
             </div>
         )
     }
 }
+

@@ -18,12 +18,21 @@ main h2 {
     width: 70%;
 }
 
-.wrapper .mainBlock h4 {
-    font-size: 24px;
+.wrapper .mainBlock h3 {
+    font-size: 20px;
     color: grey;
     text-align: left;
 }
 
 .wrapper .ChatList a {
     text-decoration: none;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile span {
+    color: red;
 }

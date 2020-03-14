@@ -11,11 +11,16 @@ import './Chat.css';
  * @param {Function} onSendMessage Обработчик отправки нового сообщения
  */
 
-export const Chat = ({messages, onSendMessage}) =>
-    (<div className="Chat">
-        <MessageField messages={messages}/>
-        <ChatForm onSendMessage={onSendMessage}/>
-    </div>);
+export const Chat = ({messages, onSendMessage}) => {
+    if(messages){
+        return  (<div>
+            <MessageField messages={messages}/>
+            <ChatForm onSendMessage={onSendMessage}/>
+        </div>);
+    }else{
+        return <span>Вы не выбрали чат</span>
+    }
+}
 
 Chat.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),

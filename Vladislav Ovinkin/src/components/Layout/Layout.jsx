@@ -1,16 +1,31 @@
-import React from "react";
+import React from 'react';
 import { Header } from '../Header/Header';
-import { ChatList } from '../ChatList/ChatList';
-import { ChatContainer } from '../../containers/ChatContainer'
-import './Layout.css'
+// import ChatList from '../ChatList/ChatList';
+import ChatListContainer from '../../containers/ChatListContainer';
+import { connect } from 'react-redux';
+import ChatContainer from '../../containers/ChatContainer';
+import './Layout.css';
 
-export const Layout = ({id, chatList, activeChatId, onChatChange}) => {
+const Layout = (props) => {
+    const {chats, messages, id} = props;
+
     return (
         <div className="layoutHeader">
-            <Header text={activeChatId ? chatList[activeChatId].name : ""} />
+            <Header text={messages ? chats[id].name : ''} />
             <div className="layoutChatList">
-                <ChatList chatList={chatList} activeChahtId={activeChatId} onChatChange={onChatChange} />
-                <ChatContainer chats={chatList} id={id} activeChatId={activeChatId} onChatChange={onChatChange} />
+                <ChatListContainer pathId={id} />
+                <ChatContainer id={id} />
             </div>
         </div>);
-}
+};
+
+const mapStateToProps = ({chatReducer}, {match}) => {
+    const id = +match.params.id;
+    return {
+        chats: chatReducer.chats,
+        messages: id ? chatReducer.chats[id] ? chatReducer.chats[id].messages : null : null,
+        id: id ? +id : null,
+    };
+};
+
+export default connect (mapStateToProps) (Layout);

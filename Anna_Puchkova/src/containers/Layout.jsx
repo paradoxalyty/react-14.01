@@ -22,9 +22,7 @@ export default class Layout extends React.Component {
                       <ChatList />
                   </div>
                   <div className="layout-right-side">
-                      <MessageField 
-                        chatId={ this.props.chatId } 
-                      />
+                      <MessageField chatId={ this.props.chatId } />
                   </div>
               </div>
           </div>

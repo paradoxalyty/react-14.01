@@ -3,17 +3,18 @@ import PropTypes from 'prop-types';
 import './Message.css';
 import classnames from 'classnames';
 
-export const Message = ({author, content}) => {
-    const classNames = classnames('Message', {'Message--robot': author === 'Robot' ||  author === 'Bot'});
+export const Message = ({name, content}) => {
+    const classNames = classnames('Message', {'Message--robot': name === 'Robot'}, {'Message--user': name !== 'Robot'});
+
     return (
         <div className={classNames}>
             <div>{content}</div>
-            <div className="Message-sender">{author}</div>
+            <div className="Message-sender">{name}</div>
         </div>
     );
 };
 
 Message.propTypes = {
-    author: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
 };

@@ -5,8 +5,6 @@ import TextField from '@material-ui/core/TextField';
 
 /**
  * Компонент по отрисовке поля с формой отправки нового сообщения
- * @param {string} message Текст сообщения
- * @param {string} name Имя отправителя
  * @param {Function} onSendMessage Обработчик отправки новго сообщения
  */
 
@@ -15,10 +13,10 @@ export class ChatForm extends React.Component {
         name: 'User',
         content: 'My message'
     }
-//    textarea = React.createRef();
+
     componentDidMount() {
-//        console.log(this.textarea.current.focus());
     }
+
     handleInput = ({currentTarget: {value, name}}) => {
         this.setState(() => ({[name]: value}))
     }
@@ -52,26 +50,6 @@ export class ChatForm extends React.Component {
         </div>);
     }
 }
-
-// export const ChatForm = ({onSendMessage}) => {
-//     const [name, setName] = useState('User');
-//     const [content, setContent] = useState('My message');
-//     const textarea = useRef();
-
-//     useEffect(() => {
-//         textarea.current.focus();
-//     }, [])
-
-//     const handleClick = () => {
-//         onSendMessage({name, content});
-//     }
-
-//     return (<div>
-//         <input value={name} onChange={({currentTarget: {value}}) => setName(value)} type="text" />
-//         <textarea value={content} onChange={({currentTarget: {value}}) => setContent(value)} ref={textarea}/>
-//         <button onClick={handleClick}>Отправить</button>
-//     </div>);
-// }
 
 ChatForm.propTypes = {
     onSendMessage: PropTypes.func.isRequired

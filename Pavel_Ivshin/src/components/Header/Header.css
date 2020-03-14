@@ -3,3 +3,9 @@
     height: 50px;
     background-color: lightskyblue;
 }
+
+.Header--layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

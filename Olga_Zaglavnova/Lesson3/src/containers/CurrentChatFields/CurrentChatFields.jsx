@@ -1,23 +1,20 @@
-import React, {Component} from "react";
-import {Header} from "../../components/Header/Header";
-import {ChatContainer} from "../ChatContainer";
-import {Profile}  from "../../components/Profile/Profile";
+import React, {Component} from 'react';
+import HeaderContainer from '../HeaderContainer';
+import ChatContainer from '../ChatContainer';
+import ProfileContainer  from '../ProfileContainer';
 
 export class CurrentChatFields extends Component{
-    addNewMessage=(id) => (newMessage)=>{
-        this.props.addNewMessage(id)(newMessage);
-    };
     render(){
-        let pageToShow = "";
-        if (this.props.location.pathname.includes("profile")){
-            pageToShow = <Profile id={this.props.match.params.id} chat={this.props.chats[this.props.match.params.id]} />;
+        let pageToShow = '';
+        if (this.props.location.pathname.includes('profile')){
+            pageToShow = <ProfileContainer id={this.props.match.params.id} />;
         }else {
-            pageToShow= <ChatContainer id={this.props.match.params.id} chat={this.props.chats[this.props.match.params.id]} 
-            addNewMessage={this.addNewMessage} />;
+            pageToShow= <ChatContainer id={this.props.match.params.id}/>;
         }
-        return <>
-                    <Header id={this.props.match.params.id} chat={this.props.chats[this.props.match.params.id]} />
-                    {pageToShow}
-               </>
+        //return (<>{pageToShow}</>)
+        return (<>
+            <HeaderContainer id={this.props.match.params.id}/>
+            {pageToShow}
+        </>);
     }
 }

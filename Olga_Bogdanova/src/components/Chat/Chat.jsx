@@ -12,11 +12,19 @@ import { MessageField } from '../MessageField/MessageField';
  * @param {function} onSendMessage Функция отправки сообщения 
  */
 
-export const Chat = ({ messages, message, name, onSendMessage }) =>
-  (<div>
-    <MessageField messages={messages} />
-    <ChatForm onSendMessage={onSendMessage} />
-  </div>)
+export const Chat = ({ messages, onSendMessage }) => {
+  if(messages) {
+    return  (<div>
+      <MessageField messages={messages} />
+      <ChatForm onSendMessage={onSendMessage} />
+    </div>)
+  }else {
+    return <span>Вы не выбрали чат  </span>
+
+  }
+
+
+}
 
 Chat.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
